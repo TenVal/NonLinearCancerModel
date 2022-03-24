@@ -46,7 +46,7 @@ namespace NotLinearCancerModel
                 D dF = new D(speed, d);
                 Q q = new Q(0);
                 MethodDiffusion ValuesP = new MethodDiffusion(dF, c, q);
-                
+                // Продолжение следует...
             }
         }
     }
