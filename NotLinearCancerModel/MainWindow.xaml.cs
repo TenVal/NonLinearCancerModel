@@ -48,24 +48,37 @@ namespace NotLinearCancerModel
             float tMax;
             float[,,] valuesP;
 
-            List<float> difference = new List<float>();
+            //Storage to keep data about matched value
+            Dictionary<string, List<float>> cancerValuesParameters = new Dictionary<string, List<float>>()
+            {
+                {"Speed" , new List<float>()},
+                {"Difference" , new List<float>()}
+            };
+            List<float[,,]> listAllValuesP = new List<float[,,]>();
 
             for (int i = 0; i < 11; i++)
             {
                 do
                 {
+                    cancerValuesParameters["Speed"].Add(speed);
                     dF = new D(speed, d);
                     diffusion = new MethodDiffusion(dF, c, q);
                     tMax = modelData.Patients[i]["Diameter"][0][modelData.Patients[i]["Diameter"][0].Count - 1];
-                    valuesP = diffusion.getValues(tMax, h, k, length);
 
-                    difference.Add(diffusion.NumberPointsVolume[diffusion.NumberPointsVolume.Count - 1] - 
+                    valuesP = diffusion.getValues(tMax, h, k, length);
+                    listAllValuesP.Add(valuesP);
+
+                    cancerValuesParameters["Difference"].Add(diffusion.NumberPointsVolume[diffusion.NumberPointsVolume.Count - 1] - 
                         modelData.Patients[i]["Volume"][1][modelData.Patients[i]["Volume"][1].Count - 1]);
                     speed += stepAccuracy;
                 }
                 while (speed <= accuracy);
 
-                float minValue = difference.Min();
+                float minDifference = cancerValuesParameters["Difference"].Min();
+                int indexMinDifference = cancerValuesParameters["Difference"].IndexOf(cancerValuesParameters["Difference"].Min());
+                float requiredSpeed = cancerValuesParameters["Speed"][indexMinDifference];
+                float[,,] requiredValuesP = listAllValuesP[indexMinDifference];
+                ActionDataFile.writeDataToFIle("Volume", i, requiredValuesP);
             }
         }
     }
