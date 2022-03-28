@@ -36,11 +36,10 @@ namespace NotLinearCancerModel
                 {"Volume" , Volume}
             };
 
-            int count = 0;
-            ActionDataFile readFromFile = new ActionDataFile();
+            int count = 0;           
             foreach (KeyValuePair<string, List<List<float>>> kvp in cancerValues)
             {
-                List<List<float>> dataReadFile = readFromFile.getDataFromFile(kvp.Key, count);
+                List<List<float>> dataReadFile = ActionDataFile.getDataFromFile(kvp.Key, count);
                 // easy coping
                 cancerValues[kvp.Key] = dataReadFile;
                 count++;

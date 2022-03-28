@@ -7,9 +7,16 @@ using System.IO;
 
 namespace NotLinearCancerModel
 {
-    class ActionDataFile
+    static class ActionDataFile
     {
-        public List<List<float>> getDataFromFile(string type, int number, string pathToFile = @"D:\VolSU\НИР\ScienceArticle\NotLinearCancerModel\NotLinearCancerModel\dataTumor\ModelData\personalPatients\poly3current\")
+        static public string writeDataToFIle(List<List<float>> data)
+        {
+            string message = "Ok";
+
+            return message;
+        }
+
+        static public List<List<float>> getDataFromFile(string type, int number, string pathToFile = @"D:\VolSU\НИР\ScienceArticle\NotLinearCancerModel\NotLinearCancerModel\dataTumor\ModelData\personalPatients\poly3current\")
         {
             List<float> xValues = new List<float>();
             List<float> yValues = new List<float>();

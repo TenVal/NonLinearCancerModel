@@ -11,14 +11,17 @@ namespace NotLinearCancerModel
         private D d;
         private C c;
         private Q q;
-        private List<float> tValues 
+        private List<float> tValues;
+        private List<float> numberPointsVolume;
+
+        public  List<float> TValues 
         {
             get
             {
                 return tValues;
             }
         }
-        private List<float> numberPointsVolume
+        public List<float> NumberPointsVolume
         {
             get
             {
