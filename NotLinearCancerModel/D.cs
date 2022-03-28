@@ -8,6 +8,9 @@ namespace NotLinearCancerModel
 {
     class D
     {
+        /// <summary>
+        /// Diffusion function
+        /// </summary>
         private float d;
         private float c;
 

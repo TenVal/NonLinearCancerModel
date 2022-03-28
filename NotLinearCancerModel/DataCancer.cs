@@ -8,6 +8,9 @@ namespace NotLinearCancerModel
 {
     class DataCancer
     {
+        /// <summary>
+        /// Patient data store from third-party data
+        /// </summary>
         private List<Dictionary<string, List<List<float>>>> patients;
 
         public List<Dictionary<string, List<List<float>>>> Patients

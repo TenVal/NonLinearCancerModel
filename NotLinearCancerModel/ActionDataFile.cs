@@ -9,6 +9,9 @@ namespace NotLinearCancerModel
 {
     static class ActionDataFile
     {
+        /// <summary>
+        /// Actions to write, read and do everything with data in program and files
+        /// </summary>
         static public string writeDataToFIle(string type, int number, float[,,] data, string pathToSave = @"D:\VolSU\НИР\ScienceArticle\NotLinearCancerModel\NotLinearCancerModel\dataTumor\PredictData\PersonalPatients\")
         {
             string message = "Ok";

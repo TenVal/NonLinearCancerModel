@@ -8,6 +8,9 @@ namespace NotLinearCancerModel
 {
     class C
     {
+        /// <summary>
+        /// Cancer rate function (module of speed, projections etc.)
+        /// </summary>
         private float module;
         private float angleXY;
         private float angleZ;

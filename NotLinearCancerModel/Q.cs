@@ -8,6 +8,9 @@ namespace NotLinearCancerModel
 {
     class Q
     {
+        /// <summary>
+        /// Sources function
+        /// </summary>
         private float module;
 
         public Q(float module)
