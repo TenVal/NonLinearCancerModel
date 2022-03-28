@@ -37,12 +37,12 @@ namespace NotLinearCancerModel
             }
             catch (DirectoryNotFoundException e)
             {
-                message = $"The directory was not found: '{e}'"
+                message = $"The directory was not found: '{e}'";
                 Console.WriteLine(message);
             }
             catch (IOException e)
             {
-                message = $"The file could not be opened: '{e}'"
+                message = $"The file could not be opened: '{e}'";
                 Console.WriteLine(message);
             }
 
