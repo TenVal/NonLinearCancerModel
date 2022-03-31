@@ -28,8 +28,10 @@ namespace NotLinearCancerModel
 
         private void Calculate_Click(object sender, RoutedEventArgs e)
         {
+            // get data from files with polynomial regression
             DataCancer modelData = new DataCancer();
-          
+            
+            // get data from forms of interface
             float length = float.Parse(TextBoxLength.Text, CultureInfo.InvariantCulture);
             float RightX = length;
             float h = float.Parse(TextBoxH.Text, CultureInfo.InvariantCulture);
@@ -41,7 +43,6 @@ namespace NotLinearCancerModel
             float angleXY = float.Parse(TextBoxAngleXY.Text, CultureInfo.InvariantCulture);
             float angleZ = float.Parse(TextBoxAngleZ.Text, CultureInfo.InvariantCulture);
 
-            
             C c = new C(speed, angleXY, angleZ);
             D dF;
             Q q = new Q(0);
