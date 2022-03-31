@@ -23,7 +23,8 @@ namespace NotLinearCancerModel
 
         public DataCancer()
         {
-            for(int i = 1; i < 11; i++)
+            this.patients = new List<Dictionary<string, List<List<float>>>>();
+            for (int i = 1; i < 11; i++)
             {
                 this.patients.Add(this.getPersonalDataCancer(i));
             }

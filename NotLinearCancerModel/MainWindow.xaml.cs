@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Globalization;
 
 namespace NotLinearCancerModel
 {
@@ -28,16 +29,17 @@ namespace NotLinearCancerModel
         private void Calculate_Click(object sender, RoutedEventArgs e)
         {
             DataCancer modelData = new DataCancer();
-            float length = float.Parse(TextBoxLength.Text);
+          
+            float length = float.Parse(TextBoxLength.Text, CultureInfo.InvariantCulture);
             float RightX = length;
-            float h = float.Parse(TextBoxH.Text);
-            float d = float.Parse(TextBoxD.Text);
-            float k = float.Parse(TextBoxK.Text);
-            float accuracy = float.Parse(TextBoxAccuracy.Text);
-            float stepAccuracy = float.Parse(TextBoxStepAccuracy.Text);
-            float speed = float.Parse(TextBoxSpeed.Text);
-            float angleXY = float.Parse(TextBoxAngleXY.Text);
-            float angleZ = float.Parse(TextBoxAngleZ.Text);
+            float h = float.Parse(TextBoxH.Text, CultureInfo.InvariantCulture);
+            float d = float.Parse(TextBoxD.Text, CultureInfo.InvariantCulture);
+            float k = float.Parse(TextBoxK.Text, CultureInfo.InvariantCulture);
+            float accuracy = float.Parse(TextBoxAccuracy.Text, CultureInfo.InvariantCulture);
+            float stepAccuracy = float.Parse(TextBoxStepAccuracy.Text, CultureInfo.InvariantCulture);
+            float speed = float.Parse(TextBoxSpeed.Text, CultureInfo.InvariantCulture);
+            float angleXY = float.Parse(TextBoxAngleXY.Text, CultureInfo.InvariantCulture);
+            float angleZ = float.Parse(TextBoxAngleZ.Text, CultureInfo.InvariantCulture);
 
             
             C c = new C(speed, angleXY, angleZ);
