@@ -14,7 +14,7 @@ namespace NotLinearCancerModel
         /// Actions to write, read and do everything with data in program and files
         /// </summary>
         /// 
-        static public string writeParametersToFile(string type, int number, string pathToSave = @"D:\VolSU\НИР\ScienceArticle\NotLinearCancerModel\NotLinearCancerModel\dataTumor\PredictData\PersonalPatients\", params float[] cancerParameters)
+        static public string writeParametersToFile(string type, int number, string pathToSave = @"..\..\..\dataTumor\PredictData\PersonalPatients\", params float[] cancerParameters)
         {
             pathToSave += type + @"\txt\params\" + number.ToString() + @"Params.txt";
             StreamWriter outputFile = new StreamWriter(pathToSave);
@@ -29,7 +29,7 @@ namespace NotLinearCancerModel
             return "ok";
         }
 
-        static public string writeDataToFile(string type, int number, float[,,] data, string pathToSave = @"D:\VolSU\НИР\ScienceArticle\NotLinearCancerModel\NotLinearCancerModel\dataTumor\PredictData\PersonalPatients\")
+        static public string writeDataToFile(string type, int number, float[,,] data, string pathToSave = @"..\..\..\dataTumor\PredictData\PersonalPatients\")
         {
             string message = "Ok";
             pathToSave += type + @"\txt\" + number.ToString() + type + @".txt";
@@ -71,7 +71,7 @@ namespace NotLinearCancerModel
             return message;
         }
 
-        static public List<List<float>> getDataFromFile(string type, int number, string pathToFile = @"D:\VolSU\НИР\ScienceArticle\NotLinearCancerModel\NotLinearCancerModel\dataTumor\ModelData\personalPatients\poly3current\")
+        static public List<List<float>> getDataFromFile(string type, int number, string pathToFile = @"..\..\..\dataTumor\ModelData\personalPatients\poly3current\")
         {
             List<float> xValues = new List<float>();
             List<float> yValues = new List<float>();
