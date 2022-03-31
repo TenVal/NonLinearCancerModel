@@ -16,7 +16,7 @@ namespace NotLinearCancerModel
         /// 
         static public string writeParametersToFile(string type, int number, string pathToSave = @"D:\VolSU\НИР\ScienceArticle\NotLinearCancerModel\NotLinearCancerModel\dataTumor\PredictData\PersonalPatients\", params float[] cancerParameters)
         {
-            pathToSave += pathToSave + type + @"\txt\params\" + number.ToString() + @"Params.txt";
+            pathToSave += type + @"\txt\params\" + number.ToString() + @"Params.txt";
             StreamWriter outputFile = new StreamWriter(pathToSave);
 
             string singleStringParam = "";
@@ -25,22 +25,22 @@ namespace NotLinearCancerModel
                 singleStringParam += singleParam.ToString();
                 singleStringParam += "\t";
             }
-            outputFile.WriteLine();
+            outputFile.WriteLine(singleStringParam);
             return "ok";
         }
 
         static public string writeDataToFile(string type, int number, float[,,] data, string pathToSave = @"D:\VolSU\НИР\ScienceArticle\NotLinearCancerModel\NotLinearCancerModel\dataTumor\PredictData\PersonalPatients\")
         {
             string message = "Ok";
-            pathToSave += pathToSave + type + @"\txt\" + number.ToString() + type + @".txt";
+            pathToSave += type + @"\txt\" + number.ToString() + type + @".txt";
             try
             {
                 StreamWriter outputFile = new StreamWriter(pathToSave);
-                for (int i = 0; i <= data.GetLength(0); i++)
+                for (int i = 0; i < data.GetLength(0); i++)
                 {
-                    for (int j = 0; j <= data.GetLength(0); j++)
+                    for (int j = 0; j < data.GetLength(1); j++)
                     {
-                        for (int k = 0; k <= data.GetLength(0); k++)
+                        for (int k = 0; k < data.GetLength(2); k++)
                         {
                             outputFile.WriteLine(string.Format("{0}\t{1}\t{2}\t{3}", i, j, k, data[i, j, k]));
                         }

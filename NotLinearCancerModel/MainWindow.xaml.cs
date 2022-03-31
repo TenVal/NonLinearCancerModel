@@ -65,10 +65,6 @@ namespace NotLinearCancerModel
                     cancerValuesParameters["Speed"].Add(speed);
                     dF = new D(speed, d);
                     diffusion = new MethodDiffusion(dF, c, q);
-                    //System.Diagnostics.Debug.WriteLine(i);
-                    //System.Diagnostics.Debug.WriteLine(modelData.Patients.Count);
-                    //System.Diagnostics.Debug.WriteLine(modelData.Patients[i]["Diameter"].Count);
-                    System.Diagnostics.Debug.WriteLine(modelData.Patients[i]["Diameter"][0].Count);
                     tMax = modelData.Patients[i]["Diameter"][0][modelData.Patients[i]["Diameter"][0].Count - 1];
 
                     valuesP = diffusion.getValues(tMax, h, k, length);
@@ -86,7 +82,12 @@ namespace NotLinearCancerModel
                 int indexMinDifference = cancerValuesParameters["Difference"].IndexOf(cancerValuesParameters["Difference"].Min());
                 float requiredSpeed = cancerValuesParameters["Speed"][indexMinDifference];
                 float[,,] requiredValuesP = listAllValuesP[indexMinDifference];
+
+                // write every data about modeling to files
                 ActionDataFile.writeDataToFile("Volume", i, requiredValuesP);
+                // write params of modeling to file
+                float[] paramsForCancer = { speed, d, k };
+                ActionDataFile.writeParametersToFile(type:"Volume", number:i, cancerParameters:paramsForCancer);
             }
             MessageBox.Show("success");
         }
