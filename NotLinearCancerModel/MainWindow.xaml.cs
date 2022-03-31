@@ -58,20 +58,26 @@ namespace NotLinearCancerModel
             };
             List<float[,,]> listAllValuesP = new List<float[,,]>();
 
-            for (int i = 0; i < 11; i++)
+            for (int i = 0; i < 10; i++)
             {
                 do
                 {
                     cancerValuesParameters["Speed"].Add(speed);
                     dF = new D(speed, d);
                     diffusion = new MethodDiffusion(dF, c, q);
+                    //System.Diagnostics.Debug.WriteLine(i);
+                    //System.Diagnostics.Debug.WriteLine(modelData.Patients.Count);
+                    //System.Diagnostics.Debug.WriteLine(modelData.Patients[i]["Diameter"].Count);
+                    System.Diagnostics.Debug.WriteLine(modelData.Patients[i]["Diameter"][0].Count);
                     tMax = modelData.Patients[i]["Diameter"][0][modelData.Patients[i]["Diameter"][0].Count - 1];
 
                     valuesP = diffusion.getValues(tMax, h, k, length);
                     listAllValuesP.Add(valuesP);
 
-                    cancerValuesParameters["Difference"].Add(diffusion.NumberPointsVolume[diffusion.NumberPointsVolume.Count - 1] - 
-                        modelData.Patients[i]["Volume"][1][modelData.Patients[i]["Volume"][1].Count - 1]);
+                    // find difference between modelData and diffusionModelData
+                    cancerValuesParameters["Difference"].Add(Math.Abs(
+                        diffusion.NumberPointsVolume[diffusion.NumberPointsVolume.Count - 1] - 
+                        modelData.Patients[i]["Volume"][1][modelData.Patients[i]["Volume"][1].Count - 1]));
                     speed += stepAccuracy;
                 }
                 while (speed <= accuracy);
@@ -80,8 +86,9 @@ namespace NotLinearCancerModel
                 int indexMinDifference = cancerValuesParameters["Difference"].IndexOf(cancerValuesParameters["Difference"].Min());
                 float requiredSpeed = cancerValuesParameters["Speed"][indexMinDifference];
                 float[,,] requiredValuesP = listAllValuesP[indexMinDifference];
-                ActionDataFile.writeDataToFIle("Volume", i, requiredValuesP);
+                ActionDataFile.writeDataToFile("Volume", i, requiredValuesP);
             }
+            MessageBox.Show("success");
         }
     }
 }
