@@ -16,7 +16,7 @@ namespace NotLinearCancerModel
         /// 
         static public string writeParametersToFile(string type, int number, string pathToSave = @"..\..\..\dataTumor\PredictData\PersonalPatients\", params float[] cancerParameters)
         {
-            pathToSave += type + @"\txt\params\" + number.ToString() + @"Params.txt";
+            pathToSave += type + @"\txt\params\" + (number + 1).ToString() + @"Params.txt";
             StreamWriter outputFile = new StreamWriter(pathToSave);
 
             string singleStringParam = "";
@@ -32,7 +32,7 @@ namespace NotLinearCancerModel
         static public string writeDataToFile(string type, int number, float[,,] data, string pathToSave = @"..\..\..\dataTumor\PredictData\PersonalPatients\")
         {
             string message = "Ok";
-            pathToSave += type + @"\txt\" + number.ToString() + type + @".txt";
+            pathToSave += type + @"\txt\" + (number + 1).ToString() + type + @".txt";
             try
             {
                 StreamWriter outputFile = new StreamWriter(pathToSave);
