@@ -13,6 +13,22 @@ namespace NotLinearCancerModel
         /// <summary>
         /// Actions to write, read and do everything with data in program and files
         /// </summary>
+        /// 
+        static public string writeParametersToFile(string type, int number, string pathToSave = @"D:\VolSU\НИР\ScienceArticle\NotLinearCancerModel\NotLinearCancerModel\dataTumor\PredictData\PersonalPatients\", params float[] cancerParameters)
+        {
+            pathToSave += pathToSave + type + @"\txt\params\" + number.ToString() + @"Params.txt";
+            StreamWriter outputFile = new StreamWriter(pathToSave);
+
+            string singleStringParam = "";
+            foreach (float singleParam in cancerParameters)
+            {
+                singleStringParam += singleParam.ToString();
+                singleStringParam += "\t";
+            }
+            outputFile.WriteLine();
+            return "ok";
+        }
+
         static public string writeDataToFile(string type, int number, float[,,] data, string pathToSave = @"D:\VolSU\НИР\ScienceArticle\NotLinearCancerModel\NotLinearCancerModel\dataTumor\PredictData\PersonalPatients\")
         {
             string message = "Ok";
