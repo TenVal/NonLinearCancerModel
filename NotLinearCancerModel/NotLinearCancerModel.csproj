@@ -13,4 +13,20 @@
     <Folder Include="dataTumor\PredictData\Total\Volume\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Windows.Compatibility" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ILNumerics.Computing">
+      <HintPath>C:\Users\LERA\AppData\Local\Microsoft\VisualStudio\16.0_e8807e78\Extensions\wsutnozs.it1\ILNumerics.Computing.dll</HintPath>
+    </Reference>
+    <Reference Include="ILNumerics.Core">
+      <HintPath>C:\Users\LERA\AppData\Local\Microsoft\VisualStudio\16.0_e8807e78\Extensions\wsutnozs.it1\ILNumerics.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="ILNumerics.numpy">
+      <HintPath>C:\Users\LERA\AppData\Local\Microsoft\VisualStudio\16.0_e8807e78\Extensions\wsutnozs.it1\ILNumerics.numpy.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
