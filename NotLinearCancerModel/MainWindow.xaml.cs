@@ -16,6 +16,7 @@ using System.Globalization;
 using System.IO;
 
 using IronPython.Hosting;
+using Microsoft.Scripting;
 using Microsoft.Scripting.Hosting;
 
 using System.Diagnostics;
@@ -114,7 +115,7 @@ namespace NotLinearCancerModel
             var searchPath = engine.GetSearchPaths();
             searchPath.Add(@"D:\VolSU\НИР\ScienceArticle\NotLinearCancerModel\.venv\Lib");
             searchPath.Add(@"D:\VolSU\НИР\ScienceArticle\NotLinearCancerModel\.venv\Lib\site-packages");
-            searchPath.Add(@"D:\VolSU\НИР\ScienceArticle\NotLinearCancerModel\.venv\Lib\site-packages\");
+           /* searchPath.Add(@"D:\VolSU\НИР\ScienceArticle\NotLinearCancerModel\.venv\Lib\site-packages\");
             searchPath.Add(@"D:\VolSU\НИР\ScienceArticle\NotLinearCancerModel\.venv\Lib\site-packages\matplotlib");
             searchPath.Add(@"D:\VolSU\НИР\ScienceArticle\NotLinearCancerModel\.venv\Lib\site-packages\matplotlib\");
             searchPath.Add(@"D:\VolSU\НИР\ScienceArticle\NotLinearCancerModel\.venv\Lib\site-packages\mpl_toolkits");
@@ -122,7 +123,7 @@ namespace NotLinearCancerModel
             searchPath.Add(@"D:\VolSU\НИР\ScienceArticle\NotLinearCancerModel\.venv\Lib\site-packages\pylab");
             searchPath.Add(@"D:\VolSU\НИР\ScienceArticle\NotLinearCancerModel\.venv\Lib\site-packages\pylab\");
             searchPath.Add(@"D:\VolSU\НИР\ScienceArticle\NotLinearCancerModel\.venv\Lib\site-packages\numpy");
-            searchPath.Add(@"D:\VolSU\НИР\ScienceArticle\NotLinearCancerModel\.venv\Lib\site-packages\numpy\");
+            searchPath.Add(@"D:\VolSU\НИР\ScienceArticle\NotLinearCancerModel\.venv\Lib\site-packages\numpy\");*/
             engine.SetSearchPaths(searchPath);
 
             // Provide scripts and arguments
