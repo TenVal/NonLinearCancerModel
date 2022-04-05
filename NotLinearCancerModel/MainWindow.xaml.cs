@@ -13,6 +13,20 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Globalization;
+using System.IO;
+
+using IronPython.Hosting;
+using Microsoft.Scripting.Hosting;
+
+using System.Diagnostics;
+
+/*using ILNumerics;
+using ILNumerics.Drawing;
+using ILNumerics.Drawing.Plotting;
+using static ILNumerics.ILMath;
+using static ILNumerics.Globals;*/
+//Tools -> Options -> ILNumerics -> Licenses
+//Инструменты -> Параметры -> ILNumerics -> Лицензии
 
 namespace NotLinearCancerModel
 {
@@ -91,6 +105,65 @@ namespace NotLinearCancerModel
                 ActionDataFile.writeParametersToFile(type:"Volume", number:i, cancerParameters:paramsForCancer);
             }
             MessageBox.Show("success");
+        }
+
+        private void ShowPlots_Click(object sender, RoutedEventArgs e)
+        {
+            // Create engine
+            var engine = Python.CreateEngine();
+            var searchPath = engine.GetSearchPaths();
+            searchPath.Add(@"D:\VolSU\НИР\ScienceArticle\NotLinearCancerModel\.venv\Lib");
+            searchPath.Add(@"D:\VolSU\НИР\ScienceArticle\NotLinearCancerModel\.venv\Lib\site-packages");
+            searchPath.Add(@"D:\VolSU\НИР\ScienceArticle\NotLinearCancerModel\.venv\Lib\site-packages\");
+            searchPath.Add(@"D:\VolSU\НИР\ScienceArticle\NotLinearCancerModel\.venv\Lib\site-packages\matplotlib");
+            searchPath.Add(@"D:\VolSU\НИР\ScienceArticle\NotLinearCancerModel\.venv\Lib\site-packages\matplotlib\");
+            searchPath.Add(@"D:\VolSU\НИР\ScienceArticle\NotLinearCancerModel\.venv\Lib\site-packages\mpl_toolkits");
+            searchPath.Add(@"D:\VolSU\НИР\ScienceArticle\NotLinearCancerModel\.venv\Lib\site-packages\mpl_toolkits\");
+            searchPath.Add(@"D:\VolSU\НИР\ScienceArticle\NotLinearCancerModel\.venv\Lib\site-packages\pylab");
+            searchPath.Add(@"D:\VolSU\НИР\ScienceArticle\NotLinearCancerModel\.venv\Lib\site-packages\pylab\");
+            searchPath.Add(@"D:\VolSU\НИР\ScienceArticle\NotLinearCancerModel\.venv\Lib\site-packages\numpy");
+            searchPath.Add(@"D:\VolSU\НИР\ScienceArticle\NotLinearCancerModel\.venv\Lib\site-packages\numpy\");
+            engine.SetSearchPaths(searchPath);
+
+            // Provide scripts and arguments
+            var nameScriptPlotVolume = @"CancerVolumePlot.py";
+            var source = engine.CreateScriptSourceFromFile(nameScriptPlotVolume);
+
+            var argv = new List<string>();
+            argv.Add("");
+
+            engine.GetSysModule().SetVariable("argv", argv);
+
+            // Output redirect
+            var eIO = engine.Runtime.IO;
+
+            var errors = new MemoryStream();
+            eIO.SetErrorOutput(errors, Encoding.Default);
+
+            var results = new MemoryStream();
+            eIO.SetOutput(results, Encoding.Default);
+
+            // Execute script
+            var scope = engine.CreateScope();
+            source.Execute(scope);
+            
+            // Display output
+            string str(byte[] x) => Encoding.Default.GetString(x);
+            Debug.WriteLine("ERRORS");
+            Debug.WriteLine(str(errors.ToArray()));
+            Debug.WriteLine("RESULTS");
+            Debug.WriteLine(str(results.ToArray()));
+        }
+
+        private void WFHost1_Loaded(object sender, RoutedEventArgs e)
+        {
+            /*var scene = new Scene();
+
+            var panel = new ILNumerics.Drawing.Scene();
+            WFHost1.Child = panel;
+
+            panel.Scene.Add(new PlotCube(twoDMode: false));*/
+
         }
     }
 }

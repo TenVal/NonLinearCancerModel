@@ -4,6 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="IronPython" Version="2.7.12" />
     <PackageReference Include="Microsoft.Windows.Compatibility" Version="6.0.0" />
   </ItemGroup>
 
@@ -24,9 +26,21 @@
     <Reference Include="ILNumerics.Core">
       <HintPath>C:\Users\LERA\AppData\Local\Microsoft\VisualStudio\16.0_e8807e78\Extensions\wsutnozs.it1\ILNumerics.Core.dll</HintPath>
     </Reference>
+    <Reference Include="ILNumerics.Drawing">
+      <HintPath>C:\Users\LERA\AppData\Local\Microsoft\VisualStudio\16.0_e8807e78\Extensions\wsutnozs.it1\ILNumerics.Drawing.dll</HintPath>
+    </Reference>
     <Reference Include="ILNumerics.numpy">
       <HintPath>C:\Users\LERA\AppData\Local\Microsoft\VisualStudio\16.0_e8807e78\Extensions\wsutnozs.it1\ILNumerics.numpy.dll</HintPath>
     </Reference>
+    <Reference Include="ILNumerics.Toolboxes.Interpolation">
+      <HintPath>C:\Users\LERA\AppData\Local\Microsoft\VisualStudio\16.0_e8807e78\Extensions\wsutnozs.it1\ILNumerics.Toolboxes.Interpolation.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="CancerVolumePlot.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
