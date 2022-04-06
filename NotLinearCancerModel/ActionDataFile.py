@@ -40,7 +40,7 @@ def getTimeValueFromFile(type, number):
     number -- patient number
 
     Return:
-    Array[]
+    Array[time-values, volumeCancer-values]
     """
 
     valuesTime = []

@@ -4,6 +4,7 @@ import numpy as np
 from pylab import *
 
 from ActionDataFile import getDataFromFile
+from ActionDataFile import getTimeValueFromFile
   
 # get the cancer dataset and plot
 type = "Volume"
