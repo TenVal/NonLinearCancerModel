@@ -29,10 +29,10 @@ namespace NotLinearCancerModel
             return "ok";
         }
         
-        static public string writeTimeValueToFile(string type, int number, float[] tValues, float[] cancerValues, string pathToSave = @"")
+        static public string writeTimeValueToFile(string type, int number, float[] tValues, float[] cancerValues, string pathToSave = @"..\..\..\dataTumor\PredictData\PersonalPatients\")
         {
             string message = "Ok";
-            pathToSave += type + @"\txt\" + (number + 1).ToString() + type + @".txt";
+            pathToSave += type + @"\timeValue\txt\" + (number + 1).ToString() + type + @".txt";
             try
             {
                 StreamWriter outputFile = new StreamWriter(pathToSave);

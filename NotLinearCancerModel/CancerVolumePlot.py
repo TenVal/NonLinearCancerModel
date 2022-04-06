@@ -9,6 +9,10 @@ from ActionDataFile import getDataFromFile
 type = "Volume"
 quantity = 10
 for number in range(quantity):
+    timeCancer = getTimeValueFromFile(type, number)
+    timeValue = timeCancer[0]
+    cancerVolume = timeCancer[1]
+
     xyzc = getDataFromFile(type, number)
     x = xyzc[0]
     y = xyzc[1]
@@ -30,4 +34,8 @@ for number in range(quantity):
     ax.set_zlabel('Z-axis')
   
     # saving plot
-    fig.savefig(f"dataTumor/PredictData/PersonalPatients/Volume/img/{i}{type}.png")
+    fig.savefig(f"dataTumor/PredictData/PersonalPatients/{type}/img/{i}{type}.png")
+
+    plt.scatter(timeValues, cancerVolume)
+    plt.show()
+    fig.savefig(f"dataTumor/PredictData/PersonalPatients/{type}/timeValue/img/{i}{type}.png")
