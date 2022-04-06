@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <Folder Include="dataTumor\PredictData\PersonalPatients\Diameter\" />
-    <Folder Include="dataTumor\PredictData\PersonalPatients\Volume\" />
     <Folder Include="dataTumor\PredictData\Total\Diameter\" />
     <Folder Include="dataTumor\PredictData\Total\Volume\" />
   </ItemGroup>

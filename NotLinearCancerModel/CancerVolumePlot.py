@@ -1,39 +1,33 @@
-
-# 3D Heatmap in Python using matplotlib
-  
-# to make plot interactive 
-
-  
-# importing required libraries
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 import numpy as np
 from pylab import *
+
+from ActionDataFile import getDataFromFile
   
-# creating a dummy dataset
-x = np.random.randint(low=100, high=500, size=(1000,))
-y = np.random.randint(low=300, high=500, size=(1000,))
-z = np.random.randint(low=200, high=500, size=(1000,))
-colo = [x + y + z]
+# get the cancer dataset and plot
+type = "Volume"
+quantity = 10
+for number in range(quantity):
+    xyzc = getDataFromFile(type, number)
+    x = xyzc[0]
+    y = xyzc[1]
+    z = xyzc[2]
+    c = xyzc[3]
   
-# creating figures
-fig = plt.figure(figsize=(10, 10))
-ax = fig.add_subplot(111, projection='3d')
+    # creating figures
+    fig = plt.figure(figsize=(10, 10))
+    ax = fig.add_subplot(111, projection='3d')
+
+    # creating the cancer map (heatmap)
+    img = ax.scatter(x, y, z, c, marker='o')
+    plt.colorbar(img)
   
-# setting color bar
-color_map = cm.ScalarMappable(cmap=cm.Greens_r)
-color_map.set_array(colo)
+    # adding title and labels
+    ax.set_title("3D cancer map")
+    ax.set_xlabel('X-axis')
+    ax.set_ylabel('Y-axis')
+    ax.set_zlabel('Z-axis')
   
-# creating the heatmap
-img = ax.scatter(x, y, z, marker='s',
-                 s=200, color='green')
-plt.colorbar(color_map)
-  
-# adding title and labels
-ax.set_title("3D Heatmap")
-ax.set_xlabel('X-axis')
-ax.set_ylabel('Y-axis')
-ax.set_zlabel('Z-axis')
-  
-# displaying plot
-plt.show()
+    # saving plot
+    fig.savefig(f"dataTumor/PredictData/PersonalPatients/Volume/img/{i}{type}.png")

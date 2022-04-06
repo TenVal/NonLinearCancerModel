@@ -28,6 +28,45 @@ namespace NotLinearCancerModel
             outputFile.WriteLine(singleStringParam);
             return "ok";
         }
+        
+        static public string writeTimeValueToFile(string type, int number, float[] tValues, float[] cancerValues, string pathToSave = @"")
+        {
+            string message = "Ok";
+            pathToSave += type + @"\txt\" + (number + 1).ToString() + type + @".txt";
+            try
+            {
+                StreamWriter outputFile = new StreamWriter(pathToSave);
+                for (int i = 0; i < tValues.Length; i++)
+                {
+                    for (int j = 0; j < cancerValues.Length; j++)
+                    {
+                        outputFile.WriteLine(string.Format("{0}\t{1}", tValues[i], cancerValues[j]));
+                    }
+                }
+                System.Diagnostics.Debug.WriteLine(message);
+                Console.WriteLine(message);
+            }
+            catch (FileNotFoundException e)
+            {
+                message = $"The file was not found: '{e}'";
+                System.Diagnostics.Debug.WriteLine(message);
+                Console.WriteLine(message);
+            }
+            catch (DirectoryNotFoundException e)
+            {
+                message = $"The directory was not found: '{e}'";
+                System.Diagnostics.Debug.WriteLine(message);
+                Console.WriteLine(message);
+            }
+            catch (IOException e)
+            {
+                message = $"The file could not be opened: '{e}'";
+                System.Diagnostics.Debug.WriteLine(message);
+                Console.WriteLine(message);
+            }
+
+            return message;
+        }
 
         static public string writeDataToFile(string type, int number, float[,,] data, string pathToSave = @"..\..\..\dataTumor\PredictData\PersonalPatients\")
         {
