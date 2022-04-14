@@ -28,6 +28,7 @@ namespace NotLinearCancerModel
             InitializeComponent();
         }
 
+
         private void Calculate_Click(object sender, RoutedEventArgs e)
         {
             // get data from files with polynomial regression
@@ -105,7 +106,18 @@ namespace NotLinearCancerModel
             MessageBox.Show("success");
         }
 
+
         private void ShowPlots_Click(object sender, RoutedEventArgs e)
+        {
+            int patientNumber = int.Parse(TextBoxPatientNumberPlot.Text, CultureInfo.InvariantCulture);
+            Uri uri1 = new Uri(@"dataTumor\PredictData\Volume\img\" + patientNumber + "Volume.png", UriKind.Relative);
+            Uri uri2 = new Uri(@"dataTumor\PredictData\Diameter\img\" + patientNumber + "Diameter.png", UriKind.Relative);
+            Image1.Source = new BitmapImage(uri1);
+            Image2.Source = new BitmapImage(uri2);
+        }
+
+
+        private void SavePlots_Click(object sender, RoutedEventArgs e)
         {
             // Create Process start info
             var psi = new ProcessStartInfo();
@@ -128,7 +140,7 @@ namespace NotLinearCancerModel
             var errors = "";
             var results = "";
 
-            using(var process = Process.Start(psi))
+            using (var process = Process.Start(psi))
             {
                 errors = process.StandardError.ReadToEnd();
                 results = process.StandardOutput.ReadToEnd();
@@ -139,11 +151,6 @@ namespace NotLinearCancerModel
             Debug.WriteLine(errors);
             Debug.WriteLine("Results:");
             Debug.WriteLine(results);
-        }
-
-        private void WFHost1_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
