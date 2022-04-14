@@ -49,71 +49,122 @@ namespace NotLinearCancerModel
             C c = new C(speed, angleXY, angleZ);       
             Q q = new Q(0);
             MethodDiffusion diffusion;
-                       
-            //Storage to keep data about matched value
-            Dictionary<string, List<float>> cancerValuesParameters = new Dictionary<string, List<float>>()
+            
+            if (RadioButtonWithoutFindMin.IsChecked == true)
+            {
+                //Storage to keep data about matched value
+                Dictionary<string, List<float>> cancerValuesParameters = new Dictionary<string, List<float>>()
             {
                 {"Speed" , new List<float>()},
                 {"Difference" , new List<float>()}
             };
-            List<float[,,]> listAllValuesP = new List<float[,,]>();
+                List<float[,,]> listAllValuesP = new List<float[,,]>();
 
-            // Counting for everyone patient and find required by min difference between predict data and actual data
-            for (int i = 0; i < 10; i++)
-            {
-                do
+                // Counting for everyone patient and find required by min difference between predict data and actual data
+                for (int i = 0; i < 10; i++)
                 {
-                    cancerValuesParameters["Speed"].Add(speed);
+                    do
+                    {
+                        cancerValuesParameters["Speed"].Add(speed);
+                        D dF = new D(speed, d);
+                        diffusion = new MethodDiffusion(dF, c, q);
+                        float tMax = modelData.Patients[i]["Diameter"][0][modelData.Patients[i]["Diameter"][0].Count - 1];
+
+                        var valuesP = diffusion.getValues(tMax, h, k, length);
+                        Array.Copy(diffusion.getValues(tMax, h, k, length), valuesP, valuesP.GetLength(0) + valuesP.GetLength(1) + valuesP.GetLength(2));
+                        listAllValuesP.Add(valuesP);
+
+                        // find difference between modelData and diffusionModelData
+                        cancerValuesParameters["Difference"].Add(Math.Abs(
+                            diffusion.NumberPointsVolume[diffusion.NumberPointsVolume.Count - 1] -
+                            modelData.Patients[i]["Volume"][1][modelData.Patients[i]["Volume"][1].Count - 1]));
+                        speed += stepAccuracy;
+
+                        valuesP = null;
+                        dF = null;
+                    }
+                    while (speed <= accuracy);
+
+                    // Data for time-volume plot
+                    float[] numberPointsVolume = new float[diffusion.NumberPointsVolume.Count];
+                    Array.Copy(diffusion.NumberPointsVolume.ToArray(), numberPointsVolume, numberPointsVolume.Length);
+                    float[] tValues = new float[diffusion.TValues.Count];
+                    Array.Copy(diffusion.TValues.ToArray(), tValues, tValues.Length);
+
+                    // Find required speed
+                    float minDifference = cancerValuesParameters["Difference"].Min();
+                    int indexMinDifference = cancerValuesParameters["Difference"].IndexOf(cancerValuesParameters["Difference"].Min());
+                    float requiredSpeed = cancerValuesParameters["Speed"][indexMinDifference];
+                    float[,,] requiredValuesP = listAllValuesP[indexMinDifference];
+
+                    // write every data about modeling to files
+                    ActionDataFile.writeDataToFile("Volume", i, requiredValuesP);
+                    // Write time-value data to file
+                    ActionDataFile.writeTimeValueToFile("Volume", i, tValues, numberPointsVolume);
+                    // write params of modeling to file
+                    float[] paramsForCancer = { speed, d, k };
+                    ActionDataFile.writeParametersToFile(type: "Volume", number: i, cancerParameters: paramsForCancer);
+                }
+            }
+            else
+            {
+                for (int i = 0; i<10; i++)
+                {
                     D dF = new D(speed, d);
                     diffusion = new MethodDiffusion(dF, c, q);
                     float tMax = modelData.Patients[i]["Diameter"][0][modelData.Patients[i]["Diameter"][0].Count - 1];
-
                     var valuesP = diffusion.getValues(tMax, h, k, length);
-                    Array.Copy(diffusion.getValues(tMax, h, k, length), valuesP, valuesP.GetLength(0) + valuesP.GetLength(1) + valuesP.GetLength(2));
-                    listAllValuesP.Add(valuesP);
-
-                    // find difference between modelData and diffusionModelData
-                    cancerValuesParameters["Difference"].Add(Math.Abs(
-                        diffusion.NumberPointsVolume[diffusion.NumberPointsVolume.Count - 1] - 
-                        modelData.Patients[i]["Volume"][1][modelData.Patients[i]["Volume"][1].Count - 1]));
-                    speed += stepAccuracy;
-
                     valuesP = null;
                     dF = null;
-                }
-                while (speed <= accuracy);
 
-                // Data for time-volume plot
-                float[] numberPointsVolume = new float[diffusion.NumberPointsVolume.Count];
-                Array.Copy(diffusion.NumberPointsVolume.ToArray(), numberPointsVolume, numberPointsVolume.Length);
-                float[] tValues = new float[diffusion.TValues.Count];
-                Array.Copy(diffusion.TValues.ToArray(), tValues, tValues.Length);
+                    // Data for time-volume plot
+                    float[] numberPointsVolume = new float[diffusion.NumberPointsVolume.Count];
+                    Array.Copy(diffusion.NumberPointsVolume.ToArray(), numberPointsVolume, numberPointsVolume.Length);
+                    float[] tValues = new float[diffusion.TValues.Count];
+                    Array.Copy(diffusion.TValues.ToArray(), tValues, tValues.Length);
 
-                // Find required speed
-                float minDifference = cancerValuesParameters["Difference"].Min();
-                int indexMinDifference = cancerValuesParameters["Difference"].IndexOf(cancerValuesParameters["Difference"].Min());
-                float requiredSpeed = cancerValuesParameters["Speed"][indexMinDifference];
-                float[,,] requiredValuesP = listAllValuesP[indexMinDifference];
-
-                // write every data about modeling to files
-                ActionDataFile.writeDataToFile("Volume", i, requiredValuesP);
-                // Write time-value data to file
-                ActionDataFile.writeTimeValueToFile("Volume", i, tValues, numberPointsVolume);
-                // write params of modeling to file
-                float[] paramsForCancer = { speed, d, k };
-                ActionDataFile.writeParametersToFile(type:"Volume", number:i, cancerParameters:paramsForCancer);
+                    // write every data about modeling to files
+                    ActionDataFile.writeDataToFile("Volume", i, valuesP);
+                    // Write time-value data to file
+                    ActionDataFile.writeTimeValueToFile("Volume", i, tValues, numberPointsVolume);
+                    // write params of modeling to file
+                    float[] paramsForCancer = { speed, d, k };
+                    ActionDataFile.writeParametersToFile(type: "Volume", number: i, cancerParameters: paramsForCancer);
+                }     
             }
-            MessageBox.Show("success");
+            
+            MessageBox.Show("Success calculate");
         }
 
 
         private void ShowPlots_Click(object sender, RoutedEventArgs e)
         {
-            int patientNumber = int.Parse(TextBoxPatientNumberPlot.Text, CultureInfo.InvariantCulture);
-            Uri uri1 = new Uri(@"dataTumor\PredictData\Volume\img\" + patientNumber + "Volume.png", UriKind.Relative);
-            Uri uri2 = new Uri(@"dataTumor\PredictData\Diameter\img\" + patientNumber + "Diameter.png", UriKind.Relative);
-            Image1.Source = new BitmapImage(uri1);
-            Image2.Source = new BitmapImage(uri2);
+            int patientNumber = 1;
+            try
+            {
+                patientNumber = int.Parse(TextBoxPatientNumberPlot.Text, CultureInfo.InvariantCulture);
+            }
+            catch (System.FormatException ex)
+            {
+                MessageBox.Show("Please, input correct data (number patient).");
+            }
+            string pathImg1 = @"dataTumor/PredictData/PersonalPatients/Volume/img/" + patientNumber.ToString() + "Volume.png";
+            string pathImg2 = @"dataTumor/PredictData/PersonalPatients/Diameter/img/" + patientNumber.ToString() + "Diameter.png";
+            Uri uri1 = new Uri(pathImg1, UriKind.Relative);
+            Uri uri2 = new Uri(pathImg2, UriKind.Relative);
+            BitmapImage bmp1 = new BitmapImage();
+            bmp1.BeginInit();
+            bmp1.UriSource = new Uri(pathImg1, UriKind.Relative);
+            bmp1.EndInit();
+            BitmapImage bmp2 = new BitmapImage();
+            bmp2.BeginInit();
+            bmp2.UriSource = new Uri(pathImg2, UriKind.Relative);
+            bmp2.EndInit();
+            Image1.Stretch = Stretch.Fill;
+            Image1.Source = bmp1;
+            Image2.Stretch = Stretch.Fill;
+            Image2.Source = bmp2;
+            MessageBox.Show(pathImg1);
         }
 
 

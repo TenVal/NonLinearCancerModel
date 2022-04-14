@@ -6,119 +6,266 @@
         xmlns:local="clr-namespace:NotLinearCancerModel"
         mc:Ignorable="d"
         Title="Calculate Cancer" Height="800" Width="1300">
-    <Grid Margin="0,0,0,0" Width="1300" >
+    <Grid 
+        Margin="0,0,0,0" Width="1300" >
         <Grid.RowDefinitions>
-            <RowDefinition Height="0*"/>
-            <RowDefinition/>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
         </Grid.RowDefinitions>
-        <Button x:Name="Calculate"
-                Click="Calculate_Click"
-                Content="Calculate" 
-                HorizontalAlignment="Left" 
-                Margin="20,645,0,0" 
-                VerticalAlignment="Top" RenderTransformOrigin="0.768,1.543" Grid.RowSpan="2" Width="61"/>
-        <TextBox 
-            x:Name="TextBoxLength" 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Image 
+            x:Name="Image1" 
             HorizontalAlignment="Left" 
-            Margin="102,704,0,0" 
-            Text="250" 
-            TextWrapping="Wrap" 
-            VerticalAlignment="Top" 
-            Width="120" Grid.RowSpan="2"/>
-        <TextBox 
-            x:Name="TextBoxH" 
+            Height="511" 
+            Width="600"
+            VerticalAlignment="Top"  
+            Margin="20, 20, 0, 0"
+            Grid.Column="0" Grid.Row="0"
+            Grid.ColumnSpan="4" />
+        <Image 
+            x:Name="Image2" 
             HorizontalAlignment="Left" 
-            Margin="248,704,0,0" 
-            Text="10" 
-            TextWrapping="Wrap" 
+            Height="511" 
+            Width="600"
             VerticalAlignment="Top" 
+            Margin="20, 20, 0, 0"
+            Grid.Column="4" Grid.Row="0"
+            Grid.ColumnSpan="4"/>
+
+
+        <Button 
+            x:Name="SavePlots" 
+            Content="Save Plots" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center" 
+            Width="65" 
+            Height="18" 
+            Click="SavePlots_Click"
+            Margin="20, 0, 0, 0"
+            Grid.Column="0" Grid.Row="1"/>
+        <Button 
+            x:Name="ShowPlots" 
+            Content="Show Plots" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center" 
+            Width="65" 
+            Height="18" 
+            Click="ShowPlots_Click"
+            Margin="20, 0, 0, 0"
+            Grid.Column="1" Grid.Row="1"/>
+        <TextBox 
+            x:Name="TextBoxPatientNumberPlot" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center"
+            TextWrapping="Wrap"             
             Width="120"
-            Grid.RowSpan="2"/>
+            Margin="20, 0, 0, 0"
+            Grid.Column="2" Grid.Row="1"/>
+        <Label 
+            x:Name="LabelPatientNumberPlot" 
+            Content="Patient Number Plot" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center"
+            Margin="20, 0, 0, 0"
+            Grid.Column="2" Grid.Row="2"/>
+        <RadioButton  
+            x:Name="RadioButtonFindMin" 
+            IsChecked = "True"
+            GroupName="TypeOfCalculate"
+            Content="With find min"    
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center"
+            Margin="20,0,0,0" 
+            Grid.Column="3" Grid.Row="1" />
+        <RadioButton 
+            x:Name="RadioButtonWithoutFindMin" 
+            GroupName="TypeOfCalculate"
+            Content="Without find min" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center"
+            Margin="20,0,0,0" 
+            Grid.Column="4"  Grid.Row="1" />
+
+
+
+        <Button 
+            x:Name="Calculate"
+            Click="Calculate_Click"
+            Content="Calculate" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Bottom" 
+            Width="65"
+            Height="18"
+            Margin="20,0,0,3"
+            Grid.Column="0" Grid.Row="3" />
+
         <TextBox 
-            x:Name="TextBoxD" 
+            x:Name="TextBoxSpeed" 
             HorizontalAlignment="Left" 
-            Margin="392,704,0,0" 
-            Text="10e-12" 
-            TextWrapping="Wrap" 
-            VerticalAlignment="Top" 
-            Width="120" Grid.RowSpan="2"/>
-        <TextBox x:Name="TextBoxSpeed" 
-            HorizontalAlignment="Left" 
-            Margin="102,646,0,0" 
+            VerticalAlignment="Center"
             Text="1.3" 
-            TextWrapping="Wrap" 
-            VerticalAlignment="Top" 
-            Width="120" Grid.RowSpan="2"/>
-        <TextBox x:Name="TextBoxAngleXY" 
+            TextWrapping="Wrap"            
+            Width="120" 
+            Margin="20, 0, 0, 0"
+            Grid.Column="1" Grid.Row="3"/>
+        <Label 
+            x:Name="LabelSpeed" 
+            Content="Speed" 
             HorizontalAlignment="Left" 
-            Margin="248,646,0,0" 
+            VerticalAlignment="Center"
+            Margin="20, 0, 0, 0"
+            Grid.Column="1" Grid.Row="4"/>
+
+        <TextBox 
+            x:Name="TextBoxAngleXY" 
+            HorizontalAlignment="Left"             
+            VerticalAlignment="Center" 
+            Text="30" 
+            TextWrapping="Wrap"           
+            Width="120" 
+            Margin="20, 0, 0, 0"
+            Grid.Column="2" Grid.Row="3"/>
+        <Label 
+            x:Name="LabelAngleXY" 
+            Content="AngleXY" 
+            HorizontalAlignment="Left"  
+            VerticalAlignment="Center"
+            Margin="20, 0, 0, 0"
+            Grid.Column="2" Grid.Row="4"/>
+
+        <TextBox 
+            x:Name="TextBoxAngleZ" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center" 
             Text="30" 
             TextWrapping="Wrap" 
-            VerticalAlignment="Top" 
-            Width="120" Grid.RowSpan="2"/>
-        <TextBox x:Name="TextBoxAngleZ" 
+            Width="120" 
+            Margin="20, 0, 0, 0"
+            Grid.Column="3" Grid.Row="3"/>
+        <Label 
+            x:Name="LabelAngleZ" 
+            Content="AngleZ" 
             HorizontalAlignment="Left" 
-            Margin="392,646,0,0" 
-            Text="30" 
-            TextWrapping="Wrap" 
-            VerticalAlignment="Top" 
-            Width="120" Grid.RowSpan="2"/>
+            VerticalAlignment="Center"
+            Margin="20, 0, 0, 0"
+            Grid.Column="3" Grid.Row="4"/>
+
         <TextBox 
             x:Name="TextBoxK" 
             HorizontalAlignment="Left" 
-            Margin="538,646,0,0" 
+            VerticalAlignment="Center" 
             Text="0.4" 
-            TextWrapping="Wrap" 
-            VerticalAlignment="Top" 
-            Width="120" Grid.RowSpan="2"/>
+            TextWrapping="Wrap"            
+            Width="120" 
+            Margin="20, 0, 0, 0"
+            Grid.Column="4" Grid.Row="3"/>
+        <Label 
+            x:Name="LabelK" 
+            Content="K" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center" 
+            Margin="20, 0, 0, 0"
+            Grid.Column="4" Grid.Row="4"/>
+
         <TextBox 
             x:Name="TextBoxAccuracy" 
-            HorizontalAlignment="Left" 
-            Margin="683,646,0,0" 
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top" 
             Text="1" 
             TextWrapping="Wrap" 
-            VerticalAlignment="Top" 
             Width="120"
-            Grid.RowSpan="2"/>
-        <TextBox 
-            x:Name="TextBoxStepAccuracy" 
+            Margin="20, 0, 0, 0"
+            Grid.Column="5" Grid.Row="3"/>
+        <Label 
+            x:Name="LabelAccuracy" 
+            Content="Accuracy" 
             HorizontalAlignment="Left" 
-            Margin="683,704,0,0" 
-            Text="0.1" 
-            TextWrapping="Wrap" 
-            VerticalAlignment="Top" 
-            Width="120" Grid.RowSpan="2"/>
+            VerticalAlignment="Center" 
+            Margin="20, 0, 0, 0"
+            Grid.Column="5" Grid.Row="4"/>
+
+
+
+        <TextBox 
+            x:Name="TextBoxLength" 
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center" 
+            Text="250" 
+            TextWrapping="Wrap"            
+            Width="120" 
+            Margin="20, 0, 0, 0"
+            Grid.Column="1" Grid.Row="5"/>
         <Label 
             x:Name="LabelLength" 
             Content="Length" 
+            HorizontalAlignment="Left"  
+            VerticalAlignment="Center" 
+            Margin="20, 0, 0, 0"
+            Grid.Column="1" Grid.Row="6"/>
+
+        <TextBox 
+            x:Name="TextBoxH" 
             HorizontalAlignment="Left" 
-            Margin="102,726,0,0" 
-            VerticalAlignment="Top" Grid.RowSpan="2"/>
+            VerticalAlignment="Center" 
+            Text="10" 
+            TextWrapping="Wrap" 
+            Width="120"
+            Margin="20, 0, 0, 0"
+            Grid.Column="2" Grid.Row="5"/>
         <Label 
             x:Name="LabelH" 
             Content="H" 
             HorizontalAlignment="Left" 
-            Margin="248,726,0,0" 
-            VerticalAlignment="Top" Grid.RowSpan="2"/>
+            VerticalAlignment="Center" 
+            Margin="20, 0, 0, 0"
+            Grid.Column="2" Grid.Row="6"/>
+
+        <TextBox 
+            x:Name="TextBoxD" 
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center" 
+            Text="10e-12" 
+            TextWrapping="Wrap"             
+            Width="120" 
+            Margin="20, 0, 0, 0"
+            Grid.Column="3" Grid.Row="5"/>
         <Label 
             x:Name="LabelD" 
             Content="D" 
             HorizontalAlignment="Left" 
-            Margin="392,726,0,0" 
-            VerticalAlignment="Top" Grid.RowSpan="2"/>
-        <Label x:Name="LabelK" Content="K" HorizontalAlignment="Left" Margin="538,664,0,0" Grid.RowSpan="2" VerticalAlignment="Top" RenderTransformOrigin="0.839,-0.32"/>
-        <Label x:Name="LabelSpeed" Content="Speed" HorizontalAlignment="Left" Margin="102,664,0,0" Grid.RowSpan="2" VerticalAlignment="Top"/>
-        <Label x:Name="LabelAngleXY" Content="AngleXY" HorizontalAlignment="Left" Margin="248,664,0,0" Grid.RowSpan="2" VerticalAlignment="Top"/>
-        <Label x:Name="LabelAngleZ" Content="AngleZ" HorizontalAlignment="Left" Margin="392,664,0,0" Grid.RowSpan="2" VerticalAlignment="Top"/>
-        <Label x:Name="LabelAccuracy" Content="Accuracy" HorizontalAlignment="Left" Margin="683,664,0,0" Grid.RowSpan="2" VerticalAlignment="Top" RenderTransformOrigin="0.491,0.013"/>
-        <Label x:Name="LabelStepAccuracy" Content="StepAccuracy" HorizontalAlignment="Left" Margin="683,726,0,0" Grid.RowSpan="2" VerticalAlignment="Top"/>
-        <Image x:Name="Image1" HorizontalAlignment="Left" Height="511" Margin="40,50,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="600"/>
-        <Image x:Name="Image2" HorizontalAlignment="Left" Height="511" Margin="660,50,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="600"/>
-        <!--<WindowsFormsHost x:Name="WFHost1" HorizontalAlignment="Left" Height="502" Margin="20,40,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="500" Loaded="WFHost1_Loaded"/>-->
-        <Button x:Name="ShowPlots" Content="Show Plots" HorizontalAlignment="Left" Margin="102,598,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="61" Height="18" Click="ShowPlots_Click"/>
-        <Button x:Name="SavePlots" Content="Save Plots" HorizontalAlignment="Left" Margin="20,598,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="61" Height="18" Click="SavePlots_Click"/>
-        <TextBox x:Name="TextBoxPatientNumberPlot" HorizontalAlignment="Left" Margin="248,598,0,0" Grid.RowSpan="2" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="LabelPatientNumberPlot" Content="Patient Number Plot" HorizontalAlignment="Left" Margin="248,615,0,0" Grid.RowSpan="2" VerticalAlignment="Top"/>
+            VerticalAlignment="Center" 
+            Margin="20, 0, 0, 0"
+            Grid.Column="3" Grid.Row="6"/>
 
+        <TextBox 
+            x:Name="TextBoxStepAccuracy" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center" 
+            Text="0.1" 
+            TextWrapping="Wrap" 
+            Width="120" 
+            Margin="20, 0, 0, 0"
+            Grid.Column="5" Grid.Row="5"/>
+        <Label 
+            x:Name="LabelStepAccuracy" 
+            Content="StepAccuracy" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center"
+            Margin="20, 0, 0, 0"
+            Grid.Column="5" Grid.Row="6"/>
     </Grid>
 </Window>
