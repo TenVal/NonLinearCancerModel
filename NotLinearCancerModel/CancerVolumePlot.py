@@ -40,6 +40,9 @@ for number in range(1, quantity + 1):
     fig.savefig(f"D:/VolSU/НИР/ScienceArticle/NotLinearCancerModel/NotLinearCancerModel/dataTumor/PredictData/PersonalPatients/{type}/img/{number}{type}.png")
     # print(type(timeValues))
     # print(type(cancerVolume))
+
+    fig = plt.figure(figsize=(10, 10))
+    ax = fig.add_subplot(111)
     plt.scatter(timeValues, cancerVolume,s=1)
     # plt.show()
     fig.savefig(f"D:/VolSU/НИР/ScienceArticle/NotLinearCancerModel/NotLinearCancerModel/dataTumor/PredictData/PersonalPatients/{type}/timeValue/img/{number}{type}.png")

@@ -45,6 +45,8 @@ namespace NotLinearCancerModel
 
         public int getValues(float tMax, float h, float K, float length, double[,,] valuesP2)
         {
+            this.tValues = new List<float>();
+            this.numberPointsVolume = new List<float>();
             int currentPoints = 0;
             int N = (int)(length / h);
             float t = 0;

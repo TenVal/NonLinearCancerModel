@@ -43,14 +43,24 @@ def getDataFromFile(type, number, stepX=10, stepY=10, stepZ=10):
             except IndexError:
                 valuesC.append(0)
             
-                
-            i +=1
+            
             #print(i, number)
-            valuesX.pop(-1)
-            valuesY.pop(-1)
-            valuesZ.pop(-1)
-            valuesC.pop(-1)
-    return [valuesX, valuesY, valuesZ, valuesC]
+        valuesX.pop()
+        valuesY.pop()
+        valuesZ.pop()
+        valuesC.pop()
+        valuesX2 = []
+        valuesY2 = []
+        valuesZ2 = []
+        valuesC2 = []
+        for i in range(len(valuesC)):
+            if valuesC[i] != 0:
+                valuesX2.append(valuesX[i])
+                valuesY2.append(valuesY[i])
+                valuesZ2.append(valuesZ[i])
+                valuesC2.append(valuesC[i])    
+
+    return [valuesX2, valuesY2, valuesZ2, valuesC2]
 
 def getTimeValueFromFile(type, number, stepX=10, stepY=10, stepZ=10):
     """
@@ -79,6 +89,20 @@ def getTimeValueFromFile(type, number, stepX=10, stepY=10, stepZ=10):
                 valuesCancer.append(stepX * stepX * stepX * float(valuesString[1].replace(",", ".")))
             except IndexError:
                 valuesCancer.append(0)
-            valuesTime.pop(-1)
-            valuesCancer.pop(-1)
-    return [valuesTime, valuesCancer]
+            
+        valuesTime.pop()
+        valuesCancer.pop()
+        valuesTime2 = []
+        valuesCancer2 = []
+        for i in range(len(valuesTime)):
+            if valuesTime[i] not in valuesTime2 and valuesTime[i] > 125:
+                valuesTime2.append(valuesTime[i])
+                valuesCancer2.append(valuesCancer[i])
+        # for i in range(len(valuesTime2)):        
+        #     if valuesCancer2[i] == 0:
+        #         valuesTime2.pop(i)
+        #         valuesCancer2.pop(i)
+        # if number == 1:
+        #     for i in range(len(valuesTime2)):
+        #         print(f"{valuesTime2[i]}\t{valuesCancer2[i]}")
+    return [valuesTime2, valuesCancer2]

@@ -38,10 +38,7 @@ namespace NotLinearCancerModel
                 StreamWriter outputFile = new StreamWriter(pathToSave);
                 for (int i = 0; i < tValues.Length; i++)
                 {
-                    for (int j = 0; j < cancerValues.Length; j++)
-                    {
-                        outputFile.WriteLine(string.Format("{0}\t{1}", tValues[i], cancerValues[j]));
-                    }
+                    outputFile.WriteLine(string.Format("{0}\t{1}", tValues[i], cancerValues[i]));
                 }
                 System.Diagnostics.Debug.WriteLine(message);
                 Console.WriteLine(message);

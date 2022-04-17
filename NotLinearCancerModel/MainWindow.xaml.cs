@@ -208,8 +208,8 @@ namespace NotLinearCancerModel
                         modelData.Patients[i]["Volume"][1][modelData.Patients[i]["Volume"][1].Count - 1]));
                     speed += stepAccuracy;
 
-                    /*valuesP = null;
-                    dF = null;*/
+                    valuesP = null;
+                    dF = null;
                 }
                 while (speed <= accuracy);
 
