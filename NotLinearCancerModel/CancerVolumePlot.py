@@ -5,13 +5,15 @@ from pylab import *
 
 from ActionDataFile import getDataFromFile
 from ActionDataFile import getTimeValueFromFile
+
   
+# temporarily absolute paths of files!!!!!!!!!!!!!!!!!!!!!
 # get the cancer dataset and plot
 type = "Volume"
 quantity = 10
-for number in range(quantity):
+for number in range(1, quantity + 1):
     timeCancer = getTimeValueFromFile(type, number)
-    timeValue = timeCancer[0]
+    timeValues = timeCancer[0]
     cancerVolume = timeCancer[1]
 
     xyzc = getDataFromFile(type, number)
@@ -35,8 +37,9 @@ for number in range(quantity):
     ax.set_zlabel('Z-axis')
   
     # saving plot
-    fig.savefig(f"dataTumor/PredictData/PersonalPatients/{type}/img/{i}{type}.png")
-
-    plt.scatter(timeValues, cancerVolume)
-    plt.show()
-    fig.savefig(f"dataTumor/PredictData/PersonalPatients/{type}/timeValue/img/{i}{type}.png")
+    fig.savefig(f"D:/VolSU/НИР/ScienceArticle/NotLinearCancerModel/NotLinearCancerModel/dataTumor/PredictData/PersonalPatients/{type}/img/{number}{type}.png")
+    # print(type(timeValues))
+    # print(type(cancerVolume))
+    plt.scatter(timeValues, cancerVolume,s=1)
+    # plt.show()
+    fig.savefig(f"D:/VolSU/НИР/ScienceArticle/NotLinearCancerModel/NotLinearCancerModel/dataTumor/PredictData/PersonalPatients/{type}/timeValue/img/{number}{type}.png")
