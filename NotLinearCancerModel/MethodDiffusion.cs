@@ -43,14 +43,13 @@ namespace NotLinearCancerModel
             this.q = q;
         }
 
-        public float[,,] getValues(float tMax, float h, float K, float length)
+        public int getValues(float tMax, float h, float K, float length, double[,,] valuesP2)
         {
             int currentPoints = 0;
             int N = (int)(length / h);
             float t = 0;
 
-            float[,,] valuesP1 = new float[N, N, N];
-            float[,,] valuesP2 = new float[N, N, N];
+            double[,,] valuesP1 = new double[N, N, N];
 
             while (true)
             {
@@ -71,12 +70,12 @@ namespace NotLinearCancerModel
                     {
                         for (int k = 0; k < (N - 1); k++)
                         {
-                            float M1 = 0;
-                            float M2 = 0;
-                            float M3 = 0;
-                            float M4 = 0;
-                            float M5 = 0;
-                            float M6 = 0;
+                            double M1 = 0;
+                            double M2 = 0;
+                            double M3 = 0;
+                            double M4 = 0;
+                            double M5 = 0;
+                            double M6 = 0;
                             
                             if (this.c.getProjectionX(i * h, j * h, k * h) > 0)
                             {
@@ -121,11 +120,11 @@ namespace NotLinearCancerModel
                             }
 
                             // operands of finite difference scheme
-                            float S1 = valuesP1[i, j, k];
-                            float S2 = 1 / (h * h * h) * (M1 - M2 + M3 - M4 + M5 - M6);
-                            float valuesP1S3 = 0;
-                            float valuesP1S4 = 0;
-                            float valuesP1S5 = 0;
+                            double S1 = valuesP1[i, j, k];
+                            double S2 = 1 / (h * h * h) * (M1 - M2 + M3 - M4 + M5 - M6);
+                            double valuesP1S3 = 0;
+                            double valuesP1S4 = 0;
+                            double valuesP1S5 = 0;
 
                             if (i - 1 < 0)
                                 valuesP1S3 = valuesP1[valuesP1.GetLength(0) - 1, j, k];
@@ -139,15 +138,16 @@ namespace NotLinearCancerModel
                                 valuesP1S5 = valuesP1[i, j, valuesP1.GetLength(2) - 1];
                             else
                                 valuesP1S5 = valuesP1[i, j, k - 1];
-                            float S3 = (tau / (h * h)) * (d.get(i * h, j * h, k * h, length) * (valuesP1[i + 1, j, k] - valuesP1[i, j, k]) -
+                            double S3 = (tau / (h * h)) * (d.get(i * h, j * h, k * h, length) * (valuesP1[i + 1, j, k] - valuesP1[i, j, k]) -
                                                     d.get(i * h, j * h, k * h, length) * (valuesP1[i, j, k] - valuesP1S3));
-                            float S4 = (tau / (h * h)) * (d.get(i * h, j * h, k * h, length) * (valuesP1[i, j + 1, k] - valuesP1[i, j, k]) -
+                            double S4 = (tau / (h * h)) * (d.get(i * h, j * h, k * h, length) * (valuesP1[i, j + 1, k] - valuesP1[i, j, k]) -
                                                     d.get(i * h, j * h, k * h, length) * (valuesP1[i, j, k] - valuesP1S4));
-                            float S5 = (tau / (h * h)) * (K * (valuesP1[i, j, k + 1] - valuesP1[i, j, k]) - K * (valuesP1[i, j, k] - valuesP1S5));
+                            double S5 = (tau / (h * h)) * (K * (valuesP1[i, j, k + 1] - valuesP1[i, j, k]) - K * (valuesP1[i, j, k] - valuesP1S5));
                             // sources
-                            float S6 = this.q.get(i, j, k, t) * tau;
+                            double S6 = this.q.get(i, j, k, t) * tau;
                             // Implementation of a finite difference scheme
                             valuesP2[i, j, k] = S1 - S2 + S3 + S4 + S5 + S6;
+                            // System.Diagnostics.Debug.WriteLine(valuesP2[i, j, k]);
                             // Counting the number of volume points in each time layer
                             if (valuesP2[i, j, k] > 0)
                             {
@@ -201,7 +201,7 @@ namespace NotLinearCancerModel
                 if (t > tMax)
                     break;
             }
-            return valuesP2;
+            return 0;
         }
     }
 }

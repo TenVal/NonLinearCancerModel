@@ -68,7 +68,7 @@ namespace NotLinearCancerModel
             return message;
         }
 
-        static public string writeDataToFile(string type, int number, float[,,] data, string pathToSave = @"..\..\..\dataTumor\PredictData\PersonalPatients\")
+        static public string writeDataToFile(string type, int number, double[,,] data, string pathToSave = @"..\..\..\dataTumor\PredictData\PersonalPatients\")
         {
             string message = "Ok";
             pathToSave += type + @"\txt\" + (number + 1).ToString() + type + @".txt";
