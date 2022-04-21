@@ -8,6 +8,28 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="dataTumor\PredictData\PersonalPatients\Volume\img\1Volume.png" />
+    <None Remove="dataTumor\PredictData\PersonalPatients\Volume\img\2Volume.png" />
+    <None Remove="dataTumor\PredictData\PersonalPatients\Volume\img\3Volume.png" />
+    <None Remove="dataTumor\PredictData\PersonalPatients\Volume\img\4Volume.png" />
+    <None Remove="dataTumor\PredictData\PersonalPatients\Volume\img\5Volume.png" />
+    <None Remove="dataTumor\PredictData\PersonalPatients\Volume\img\6Volume.png" />
+    <None Remove="dataTumor\PredictData\PersonalPatients\Volume\img\7Volume.png" />
+    <None Remove="dataTumor\PredictData\PersonalPatients\Volume\img\8Volume.png" />
+    <None Remove="dataTumor\PredictData\PersonalPatients\Volume\img\9Volume.png" />
+    <None Remove="dataTumor\PredictData\PersonalPatients\Volume\timeValue\img\10Volume.png" />
+    <None Remove="dataTumor\PredictData\PersonalPatients\Volume\timeValue\img\1Volume.png" />
+    <None Remove="dataTumor\PredictData\PersonalPatients\Volume\timeValue\img\2Volume.png" />
+    <None Remove="dataTumor\PredictData\PersonalPatients\Volume\timeValue\img\3Volume.png" />
+    <None Remove="dataTumor\PredictData\PersonalPatients\Volume\timeValue\img\4Volume.png" />
+    <None Remove="dataTumor\PredictData\PersonalPatients\Volume\timeValue\img\5Volume.png" />
+    <None Remove="dataTumor\PredictData\PersonalPatients\Volume\timeValue\img\6Volume.png" />
+    <None Remove="dataTumor\PredictData\PersonalPatients\Volume\timeValue\img\7Volume.png" />
+    <None Remove="dataTumor\PredictData\PersonalPatients\Volume\timeValue\img\8Volume.png" />
+    <None Remove="dataTumor\PredictData\PersonalPatients\Volume\timeValue\img\9Volume.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="dataTumor\PredictData\PersonalPatients\Diameter\" />
     <Folder Include="dataTumor\PredictData\Total\Diameter\" />
     <Folder Include="dataTumor\PredictData\Total\Volume\" />
@@ -34,6 +56,66 @@
     <Reference Include="ILNumerics.Toolboxes.Interpolation">
       <HintPath>C:\Users\LERA\AppData\Local\Microsoft\VisualStudio\16.0_e8807e78\Extensions\wsutnozs.it1\ILNumerics.Toolboxes.Interpolation.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="dataTumor\PredictData\PersonalPatients\Volume\img\1Volume.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="dataTumor\PredictData\PersonalPatients\Volume\img\2Volume.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="dataTumor\PredictData\PersonalPatients\Volume\img\3Volume.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="dataTumor\PredictData\PersonalPatients\Volume\img\4Volume.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="dataTumor\PredictData\PersonalPatients\Volume\img\5Volume.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="dataTumor\PredictData\PersonalPatients\Volume\img\6Volume.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="dataTumor\PredictData\PersonalPatients\Volume\img\7Volume.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="dataTumor\PredictData\PersonalPatients\Volume\img\8Volume.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="dataTumor\PredictData\PersonalPatients\Volume\img\9Volume.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="dataTumor\PredictData\PersonalPatients\Volume\timeValue\img\10Volume.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="dataTumor\PredictData\PersonalPatients\Volume\timeValue\img\1Volume.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="dataTumor\PredictData\PersonalPatients\Volume\timeValue\img\2Volume.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="dataTumor\PredictData\PersonalPatients\Volume\timeValue\img\3Volume.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="dataTumor\PredictData\PersonalPatients\Volume\timeValue\img\4Volume.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="dataTumor\PredictData\PersonalPatients\Volume\timeValue\img\5Volume.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="dataTumor\PredictData\PersonalPatients\Volume\timeValue\img\6Volume.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="dataTumor\PredictData\PersonalPatients\Volume\timeValue\img\7Volume.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="dataTumor\PredictData\PersonalPatients\Volume\timeValue\img\8Volume.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="dataTumor\PredictData\PersonalPatients\Volume\timeValue\img\9Volume.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>

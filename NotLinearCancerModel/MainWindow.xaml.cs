@@ -261,8 +261,9 @@ namespace NotLinearCancerModel
             {
                 MessageBox.Show("Please, input correct data (number patient).");
             }
-            string pathImg1 = @"dataTumor/PredictData/PersonalPatients/Volume/img/" + patientNumber.ToString() + "Volume.png";
-            string pathImg2 = @"dataTumor/PredictData/PersonalPatients/Diameter/img/" + patientNumber.ToString() + "Diameter.png";
+            string pathImg1 = @"..\..\..\dataTumor\PredictData\PersonalPatients\Volume\img\" + patientNumber.ToString() + @"Volume.png";
+            //string pathImg2 = @"dataTumor\PredictData\PersonalPatients\Diameter\img\" + patientNumber.ToString() + "Diameter.png";
+            string pathImg2 = @"..\..\..\dataTumor\PredictData\PersonalPatients\Volume\timeValue\img\" + patientNumber.ToString() + @"Volume.png";
             Uri uri1 = new Uri(pathImg1, UriKind.Relative);
             Uri uri2 = new Uri(pathImg2, UriKind.Relative);
             BitmapImage bmp1 = new BitmapImage();
@@ -277,7 +278,6 @@ namespace NotLinearCancerModel
             Image1.Source = bmp1;
             Image2.Stretch = Stretch.Fill;
             Image2.Source = bmp2;
-            MessageBox.Show(pathImg1);
         }
 
 

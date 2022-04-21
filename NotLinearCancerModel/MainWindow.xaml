@@ -10,7 +10,7 @@
         Width="1300"
         ResizeMode="NoResize"
         Background="Transparent"
-        AllowsTransparency="True">
+        >
     <Border Background="#272537"
             CornerRadius="30">
         <Grid 
