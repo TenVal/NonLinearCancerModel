@@ -285,7 +285,7 @@ namespace NotLinearCancerModel
         {
             // Create Process start info
             var psi = new ProcessStartInfo();
-            string pathPython = @"D:\VolSU\НИР\ScienceArticle\Modeling\venv\Scripts\python.exe";
+            string pathPython = @"..\..\..\env\Scripts\python.exe";
             psi.FileName = pathPython;
 
             // Provide Scripts and Arguments

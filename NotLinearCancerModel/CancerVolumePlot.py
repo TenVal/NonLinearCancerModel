@@ -43,6 +43,6 @@ for number in range(1, quantity + 1):
 
     fig = plt.figure(figsize=(10, 10))
     ax = fig.add_subplot(111)
-    plt.scatter(timeValues, cancerVolume,s=1)
+    plt.plot(timeValues, cancerVolume)
     # plt.show()
     fig.savefig(f"D:/VolSU/НИР/ScienceArticle/NotLinearCancerModel/NotLinearCancerModel/dataTumor/PredictData/PersonalPatients/{type}/timeValue/img/{number}{type}.png")
