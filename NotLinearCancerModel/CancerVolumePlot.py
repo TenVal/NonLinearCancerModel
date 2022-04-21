@@ -25,6 +25,10 @@ for number in range(1, quantity + 1):
     # creating figures
     fig = plt.figure(figsize=(10, 10))
     ax = fig.add_subplot(111, projection='3d')
+    if number==10:
+        print(f"{number}\n\n")
+    # for i in range(len(x)):
+    #     print(f"{x[i]}\t{y[i]}\t{z[i]}\t{c[i]}")
 
     # creating the cancer map (heatmap)
     img = ax.scatter(x, y, z, c, marker='o')
@@ -40,6 +44,7 @@ for number in range(1, quantity + 1):
     fig.savefig(f"D:/VolSU/НИР/ScienceArticle/NotLinearCancerModel/NotLinearCancerModel/dataTumor/PredictData/PersonalPatients/{type}/img/{number}{type}.png")
     # print(type(timeValues))
     # print(type(cancerVolume))
+    # plt.show()
 
     fig = plt.figure(figsize=(10, 10))
     ax = fig.add_subplot(111)

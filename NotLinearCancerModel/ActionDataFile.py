@@ -1,4 +1,18 @@
 
+def writeTimeValueIntoFile(type, number, timeValue):
+
+    with open(f"PredictData/PersonalPatients/{type}/timeValue/txt/{number}{type}.txt", "w") as file:
+        for i in range(len(timeValue[0])):
+            file.write(f"{timeValue[0][i]}\t{timeValue[1][i]}\n".encode('utf-8').decode('utf-8'))
+
+
+def writeDataIntoFile(type, number, xyzc):
+
+    with open(f"PredictData/PersonalPatients/{type}/txt/{number}{type}.txt", "w") as file:
+        for i in range(len(xyzc[0])):
+            file.write(f"{xyzc[0][i]}\t{xyzc[1][i]}\t{xyzc[2][i]}\t{xyzc[3][i]}\n".encode('utf-8').decode('utf-8'))
+
+
 def getDataFromFile(type, number, stepX=10, stepY=10, stepZ=10):
     """
     Get cancer data from file
@@ -31,11 +45,11 @@ def getDataFromFile(type, number, stepX=10, stepY=10, stepZ=10):
             except IndexError:
                 valuesX.append(0)
             try:
-                valuesY.append(stepX * float(valuesString[1].replace(",", ".")))
+                valuesY.append(stepY * float(valuesString[1].replace(",", ".")))
             except IndexError:
                 valuesY.append(0)
             try:
-                valuesZ.append(stepX * float(valuesString[2].replace(",", ".")))
+                valuesZ.append(stepZ * float(valuesString[2].replace(",", ".")))
             except IndexError:
                 valuesZ.append(0)
             try:
@@ -59,7 +73,9 @@ def getDataFromFile(type, number, stepX=10, stepY=10, stepZ=10):
                 valuesY2.append(valuesY[i])
                 valuesZ2.append(valuesZ[i])
                 valuesC2.append(valuesC[i])    
-
+        # for i in range(len(valuesC)):
+        #     print(f"{valuesX2[i]}\t{valuesY2[i]}\t{valuesZ2[i]}\t{valuesC2[i]}")
+    writeDataIntoFile(type, number, [valuesX2, valuesY2, valuesZ2, valuesC2])
     return [valuesX2, valuesY2, valuesZ2, valuesC2]
 
 def getTimeValueFromFile(type, number, stepX=10, stepY=10, stepZ=10):
@@ -105,4 +121,7 @@ def getTimeValueFromFile(type, number, stepX=10, stepY=10, stepZ=10):
         # if number == 1:
         #     for i in range(len(valuesTime2)):
         #         print(f"{valuesTime2[i]}\t{valuesCancer2[i]}")
+    writeTimeValueIntoFile(type, number, [valuesTime2, valuesCancer2])
     return [valuesTime2, valuesCancer2]
+
+
