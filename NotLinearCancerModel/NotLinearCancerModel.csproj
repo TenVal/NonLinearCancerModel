@@ -33,6 +33,12 @@
     <Folder Include="dataTumor\PredictData\PersonalPatients\Diameter\" />
     <Folder Include="dataTumor\PredictData\Total\Diameter\" />
     <Folder Include="dataTumor\PredictData\Total\Volume\" />
+    <Folder Include="Fonts\" />
+    <Folder Include="MVVM\Model\" />
+    <Folder Include="MVVM\View\" />
+    <Folder Include="MVVM\ViewModel\" />
+    <Folder Include="Theme\" />
+    <Folder Include="Images\" />
   </ItemGroup>
 
   <ItemGroup>
