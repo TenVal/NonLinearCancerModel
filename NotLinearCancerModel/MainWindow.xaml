@@ -10,6 +10,7 @@
         Width="1500"
         ResizeMode="NoResize"
         Background="Transparent"
+      
         >
     <Border Background="#272537"
             CornerRadius="30">
@@ -29,7 +30,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="150"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
@@ -96,25 +97,20 @@
             Foreground="White"/>
             <RadioButton  
             x:Name="RadioButtonFindMin" 
-            IsChecked = "True"
+            Content="With find min" 
             GroupName="TypeOfCalculate"
-            Content="With find min"    
-            HorizontalAlignment="Left" 
-            VerticalAlignment="Center"
-            Margin="20,0,0,0" 
             Grid.Column="0" Grid.Row="2" 
+            FontSize="14"
             Foreground="White"
-            FontSize="14"/>
+            Style="{StaticResource MenuButtonTheme}"/>
             <RadioButton 
             x:Name="RadioButtonWithoutFindMin" 
-            GroupName="TypeOfCalculate"
-            Content="Without find min" 
-            HorizontalAlignment="Left" 
-            VerticalAlignment="Center"
-            Margin="20,0,0,0" 
+            Content="Without find min"  
+            GroupName="TypeOfCalculate"             
             Grid.Column="0"  Grid.Row="3" 
+            FontSize="14"
             Foreground="White"
-            FontSize="14"/>
+            Style="{StaticResource MenuButtonTheme}"/>
 
 
 
