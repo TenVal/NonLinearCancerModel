@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NotLinearCancerModel"
+        xmlns:viewModel="clr-namespace:NotLinearCancerModel.MVVM.ViewModel"
         mc:Ignorable="d"
         Title="Calculate Cancer" 
         Height="800" 
@@ -12,6 +13,9 @@
         Background="Transparent"
       
         >
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
     <Border Background="#272537"
             CornerRadius="30">
         <Grid 
