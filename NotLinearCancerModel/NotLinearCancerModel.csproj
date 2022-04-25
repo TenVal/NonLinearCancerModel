@@ -30,6 +30,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="dataTumor\PredictData\Any\txt\" />
+    <Folder Include="dataTumor\PredictData\Any\img\" />
     <Folder Include="dataTumor\PredictData\PersonalPatients\Diameter\" />
     <Folder Include="dataTumor\PredictData\Total\Diameter\" />
     <Folder Include="dataTumor\PredictData\Total\Volume\" />

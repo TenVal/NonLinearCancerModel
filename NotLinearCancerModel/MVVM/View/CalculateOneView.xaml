@@ -167,6 +167,23 @@
             Grid.Column="3" Grid.Row="3"
             Foreground="White"/>
        
+            <TextBox 
+            x:Name="TextBoxTMax" 
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center" 
+            Text="300" 
+            TextWrapping="Wrap"             
+            Width="120" 
+            Margin="20, 0, 0, 0"
+            Grid.Column="4" Grid.Row="2" Background="#FF353340" Foreground="White"/>
+            <Label 
+            x:Name="LabelTMax" 
+            Content="Time (days)" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center" 
+            Margin="20, 0, 0, 0"
+            Grid.Column="4" Grid.Row="3"
+            Foreground="White"/>
         </Grid>
 
     </StackPanel>
