@@ -15,7 +15,11 @@
             <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
                 <view:HomeView/>
             </DataTemplate>
-            
+
+            <DataTemplate DataType="{x:Type viewModel:CalculateOneViewModel}">
+                <view:CalculateOneView/>
+            </DataTemplate>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>
