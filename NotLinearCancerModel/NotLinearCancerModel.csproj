@@ -34,8 +34,8 @@
     <Folder Include="dataTumor\PredictData\Any\Diameter\txt\" />
     <Folder Include="dataTumor\PredictData\Any\Volume\timeValue\img\" />
     <Folder Include="dataTumor\PredictData\Any\Volume\timeValue\txt\" />
-    <Folder Include="dataTumor\PredictData\Any\Volume\txt\" />
     <Folder Include="dataTumor\PredictData\Any\Volume\img\" />
+    <Folder Include="dataTumor\PredictData\Any\Volume\txt\params\" />
     <Folder Include="dataTumor\PredictData\PersonalPatients\Diameter\" />
     <Folder Include="dataTumor\PredictData\Total\Diameter\" />
     <Folder Include="dataTumor\PredictData\Total\Volume\" />

@@ -42,39 +42,36 @@ namespace NotLinearCancerModel.MVVM.View
             Q q = new Q(0);
             D dF = new D(speed, d);
 
+            int i = 1;
             MethodDiffusion diffusion = new MethodDiffusion(dF, c, q);
+            int N = (int)(length / h);
+            double[,,] valuesP = new double[N, N, N];
+            diffusion.getValues(tMax, h, k, length, valuesP);
 
-            for (int i = 0; i < 10; i++)
+            float[] numberPointsVolume = new float[diffusion.NumberPointsVolume.Count];
+            Array.Copy(diffusion.NumberPointsVolume.ToArray(), numberPointsVolume, numberPointsVolume.Length);
+            float[] tValues = new float[diffusion.TValues.Count];
+            Array.Copy(diffusion.TValues.ToArray(), tValues, tValues.Length);
+
+            Dictionary<string, float> CancerValuesParameters = new Dictionary<string, float>()
             {
-                int N = (int)(length / h);
-                double[,,] valuesP = new double[N, N, N];
-                diffusion.getValues(tMax, h, k, length, valuesP);
+                {"Length" ,  length },
+                {"H" , h },
+                {"D" , d },
+                {"K" , k },
+                {"Speed" , speed},
+                {"AngleXY" , angleXY },
+                {"AngleZ" , angleZ },
+                {"TMax" , tMax }
+            };
 
-                float[] numberPointsVolume = new float[diffusion.NumberPointsVolume.Count];
-                Array.Copy(diffusion.NumberPointsVolume.ToArray(), numberPointsVolume, numberPointsVolume.Length);
-                float[] tValues = new float[diffusion.TValues.Count];
-                Array.Copy(diffusion.TValues.ToArray(), tValues, tValues.Length);
-
-                Dictionary<string, float> CancerValuesParameters = new Dictionary<string, float>()
-                {
-                    {"Length" ,  length },
-                    {"H" , h },
-                    {"D" , d },
-                    {"K" , k },
-                    {"Speed" , speed},
-                    {"AngleXY" , angleXY },
-                    {"AngleZ" , angleZ },
-                    {"TMax" , tMax }
-                };
-
-                // write every data about modeling to files
-                ActionDataFile.writeDataToFile("Volume", i, valuesP, path);
-                // Write time-value data to file
-                ActionDataFile.writeTimeValueToFile("Volume", i, tValues, numberPointsVolume, path);
-                // write params of modeling to file
-                ActionDataFile.writeParametersToFile(type: "Volume", number: i, cancerParameters: CancerValuesParameters, pathToSave: path);
-            }
-           
+            // write every data about modeling to files
+            ActionDataFile.writeDataToFile("Volume", i, valuesP, path);
+            // Write time-value data to file
+            ActionDataFile.writeTimeValueToFile("Volume", i, tValues, numberPointsVolume, path);
+            // write params of modeling to file
+            ActionDataFile.writeParametersToFile(type: "Volume", number: i, cancerParameters: CancerValuesParameters, pathToSave: path);
+      
             MessageBox.Show("Success calculate one!");
         }
     }
