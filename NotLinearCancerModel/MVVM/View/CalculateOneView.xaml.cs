@@ -75,7 +75,7 @@ namespace NotLinearCancerModel.MVVM.View
                 ActionDataFile.writeParametersToFile(type: "Volume", number: i, cancerParameters: CancerValuesParameters, pathToSave: path);
             }
            
-            MessageBox.Show("Success");
+            MessageBox.Show("Success calculate one!");
         }
     }
 }

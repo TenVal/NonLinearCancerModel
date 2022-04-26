@@ -163,7 +163,7 @@ namespace NotLinearCancerModel.MVVM.View
                 */
             }
 
-            MessageBox.Show("success");
+            MessageBox.Show("Success calculate min!");
         }
     }
 }

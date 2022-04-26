@@ -35,7 +35,8 @@
 
             </Grid.ColumnDefinitions>
             <TextBox 
-                Width="250"
+                x:Name="TextBoxPythonInterpreter"
+                Width="350"
                 Height="40"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Left"

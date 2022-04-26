@@ -7,7 +7,7 @@
                 <ControlTemplate TargetType="{x:Type TextBox}">
                     <Border CornerRadius="10"
                             Background="#353340"
-                            Width="200"
+                            Width="300"
                             Height="30">
                         <Grid>
                             <Rectangle StrokeThickness="1"/>
@@ -21,7 +21,7 @@
                                      x:Name="TextBoxPythonInterpreter"/>
 
                             <TextBlock IsHitTestVisible="False"
-                                       Text="Please, input your path to python interpreter"
+                                       Text="Please, input your absolute path to python interpreter"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Left" 
                                        Margin="10,0,0,0"

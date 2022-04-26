@@ -64,9 +64,14 @@ namespace NotLinearCancerModel
         {
             // Create Process start info
             var psi = new ProcessStartInfo();
-            string pathPython = @"..\..\..\env\Scripts\python.exe";
-            //string pathPython = TextBoxPythonInterpreter.Text;
-            //if()
+
+            string pathPython = TextBoxPythonInterpreter.Text;
+            // checking current path to python interpreter
+            if (pathPython == "Please, input your path to python interpreter" || pathPython == "")
+            {
+                pathPython = @"..\..\..\env\Scripts\python.exe";
+            }
+
             psi.FileName = pathPython;
 
             // Provide Scripts and Arguments
@@ -96,6 +101,7 @@ namespace NotLinearCancerModel
             Debug.WriteLine(errors);
             Debug.WriteLine("Results:");
             Debug.WriteLine(results);
+            MessageBox.Show("Success save img!");
         }
     }
 }
