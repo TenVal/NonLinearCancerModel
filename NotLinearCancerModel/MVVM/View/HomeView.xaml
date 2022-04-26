@@ -117,7 +117,7 @@
             x:Name="TextBoxAccuracy" 
             HorizontalAlignment="Left"
             VerticalAlignment="Top" 
-            Text="1" 
+            Text="1,5" 
             TextWrapping="Wrap" 
             Width="120"
             Margin="20, 0, 0, 0"

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,25 +46,25 @@ namespace NotLinearCancerModel.MVVM.View
             Q q = new Q(0);
             MethodDiffusion diffusion;
 
-            //Storage to keep data about matched value
-            Dictionary<string, List<float>> cancerValuesParameters = new Dictionary<string, List<float>>()
-            {
-                {"Length" , new List<float>() },
-                {"H" , new List<float>() },
-                {"D" , new List<float>() },
-                {"K" , new List<float>() },
-                {"Accuracy" , new List<float>() },
-                {"StepAccuracy" , new List<float>() },
-                {"Speed" , new List<float>()},
-                {"AngleXY" , new List<float>() },
-                {"AngleZ" , new List<float>() },
-                {"Difference" , new List<float>()},
-            };
-            
-
+            float speedForFindMin = speed;
             // Counting for everyone patient and find required by min difference between predict data and actual data
             for (int i = 0; i < 10; i++)
             {
+
+                //Storage to keep data about matched value
+                Dictionary<string, List<float>> cancerValuesParameters = new Dictionary<string, List<float>>()
+                {
+                    {"Length" , new List<float>() },
+                    {"H" , new List<float>() },
+                    {"D" , new List<float>() },
+                    {"K" , new List<float>() },
+                    {"Accuracy" , new List<float>() },
+                    {"StepAccuracy" , new List<float>() },
+                    {"Speed" , new List<float>()},
+                    {"AngleXY" , new List<float>() },
+                    {"AngleZ" , new List<float>() },
+                    {"Difference" , new List<float>()},
+                };
                 List<double[,,]> listAllValuesP = new List<double[,,]>();
                 List<float[]> listAllValuesT = new List<float[]>();
                 List<float[]> listAllValuesNumberPointsVolume = new List<float[]>();
@@ -76,11 +77,11 @@ namespace NotLinearCancerModel.MVVM.View
                     cancerValuesParameters["K"].Add(k);
                     cancerValuesParameters["Accuracy"].Add(accuracy);
                     cancerValuesParameters["StepAccuracy"].Add(stepAccuracy);
-                    cancerValuesParameters["Speed"].Add(speed);
+                    cancerValuesParameters["Speed"].Add(speedForFindMin);
                     cancerValuesParameters["AngleXY"].Add(angleXY);
                     cancerValuesParameters["AngleZ"].Add(angleZ);
 
-                    D dF = new D(speed, d);
+                    D dF = new D(speedForFindMin, d);
                     diffusion = new MethodDiffusion(dF, c, q);
                     float tMax = modelData.Patients[i]["Diameter"][0][modelData.Patients[i]["Diameter"][0].Count - 1];
 
@@ -104,20 +105,27 @@ namespace NotLinearCancerModel.MVVM.View
                         diffusion.NumberPointsVolume[diffusion.NumberPointsVolume.Count - 1] -
                         modelData.Patients[i]["Volume"][1][modelData.Patients[i]["Volume"][1].Count - 1]));
 
-                    speed += stepAccuracy;
+                    speedForFindMin += stepAccuracy;
 
+                    /*
                     numberPointsVolume = null;
                     tValues = null;
                     valuesP = null;
                     dF = null;
+                    */
                 }
-                while (speed <= accuracy);
+                while (speedForFindMin <= accuracy);
 
-                
+                speedForFindMin = speed;
                 // Find required speed and others parameters
                 float minDifference = cancerValuesParameters["Difference"].Min();
                 int indexMinDifference = cancerValuesParameters["Difference"].IndexOf(cancerValuesParameters["Difference"].Min());
                 float requiredSpeed = cancerValuesParameters["Speed"][indexMinDifference];
+                Debug.WriteLine("indexMinDifference\t" + indexMinDifference.ToString());
+                Debug.WriteLine("listAllValuesP\t" + listAllValuesP.Count.ToString());
+                Debug.WriteLine("listAllValuesT\t" + listAllValuesT.Count.ToString());
+                Debug.WriteLine("listAllValuesNumberPointsVolume\t" + listAllValuesNumberPointsVolume.Count.ToString());
+                Debug.WriteLine("cancerValuesParameters(Speed)\t" + cancerValuesParameters["Speed"].Count.ToString());
                 double[,,] requiredValuesP = listAllValuesP[indexMinDifference];
                 float[] requiredTValue = listAllValuesT[indexMinDifference];
                 float[] requiredNumberPointsVolume = listAllValuesNumberPointsVolume[indexMinDifference];
@@ -128,12 +136,14 @@ namespace NotLinearCancerModel.MVVM.View
                 // Write time-value data to file
                 ActionDataFile.writeTimeValueToFile("Volume", i, requiredTValue, requiredNumberPointsVolume);
                 // write params of modeling to file
-                float[] paramsForCancer = { speed, d, k };
+                float[] paramsForCancer = { requiredSpeed, d, k };
                 ActionDataFile.writeParametersToFile(type: "Volume", number: i, cancerParameters: paramsForCancer);
 
+                /*
                 listAllValuesP = null;
                 listAllValuesT = null;
                 listAllValuesNumberPointsVolume = null;
+                */
             }
 
             MessageBox.Show("success");
