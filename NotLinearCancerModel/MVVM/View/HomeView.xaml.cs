@@ -129,7 +129,21 @@ namespace NotLinearCancerModel.MVVM.View
                 double[,,] requiredValuesP = listAllValuesP[indexMinDifference];
                 float[] requiredTValue = listAllValuesT[indexMinDifference];
                 float[] requiredNumberPointsVolume = listAllValuesNumberPointsVolume[indexMinDifference];
-                
+
+
+                Dictionary<string, float> requiredCancerValuesParameters = new Dictionary<string, float>()
+                {
+                    {"Length" ,  cancerValuesParameters["Length"][indexMinDifference] },
+                    {"H" , cancerValuesParameters["H"][indexMinDifference] },
+                    {"D" , cancerValuesParameters["D"][indexMinDifference] },
+                    {"K" , cancerValuesParameters["K"][indexMinDifference] },
+                    {"Accuracy" , cancerValuesParameters["Accuracy"][indexMinDifference] },
+                    {"StepAccuracy" , cancerValuesParameters["StepAccuracy"][indexMinDifference] },
+                    {"Speed" , cancerValuesParameters["Speed"][indexMinDifference]},
+                    {"AngleXY" , cancerValuesParameters["AngleXY"][indexMinDifference] },
+                    {"AngleZ" , cancerValuesParameters["AngleZ"][indexMinDifference] },
+                    {"Difference" , cancerValuesParameters["Difference"][indexMinDifference]},
+                };
 
                 // write every data about modeling to files
                 ActionDataFile.writeDataToFile("Volume", i, requiredValuesP);

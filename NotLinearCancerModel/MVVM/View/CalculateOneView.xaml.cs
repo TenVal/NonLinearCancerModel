@@ -36,7 +36,7 @@ namespace NotLinearCancerModel.MVVM.View
             float angleXY = float.Parse(TextBoxAngleXY.Text);
             float angleZ = float.Parse(TextBoxAngleZ.Text);
             float tMax = float.Parse(TextBoxTMax.Text);
-            string path = @"..\..\..\dataTumor\PredictData\PersonalPatients\";
+            string path = @"..\..\..\dataTumor\PredictData\Any\";
 
             C c = new C(speed, angleXY, angleZ);
             Q q = new Q(0);

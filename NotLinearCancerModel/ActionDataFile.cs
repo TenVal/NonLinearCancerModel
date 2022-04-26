@@ -14,21 +14,40 @@ namespace NotLinearCancerModel
         /// Actions to write, read and do everything with data in program and files
         /// </summary>
         /// 
-        static public string writeParametersToFile(string type, int number, string pathToSave = @"..\..\..\dataTumor\PredictData\PersonalPatients\", params float[] cancerParameters)
+        static public string writeParametersToFile(string type, int number, string pathToSave = @"..\..\..\dataTumor\PredictData\PersonalPatients\", Dictionary<string, float> cancerParameters)
         {
+            string message = "Ok";
             pathToSave += type + @"\txt\params\" + (number + 1).ToString() + @"Params.txt";
-            StreamWriter outputFile = new StreamWriter(pathToSave);
-
-            string singleStringParam = "";
-            foreach (float singleParam in cancerParameters)
+            try
             {
-                singleStringParam += singleParam.ToString();
-                singleStringParam += "\t";
+                StreamWriter outputFile = new StreamWriter(pathToSave);
+                foreach (var singleParam in cancerParameters)
+                {
+                    outputFile.WriteLine(string.Format("{0}\t{1}", singleParam.Key, singleParam.Value));
+                }
             }
-            outputFile.WriteLine(singleStringParam);
-            return "ok";
+            catch (FileNotFoundException e)
+            {
+                message = $"The file was not found: '{e}'";
+                System.Diagnostics.Debug.WriteLine(message);
+                Console.WriteLine(message);
+            }
+            catch (DirectoryNotFoundException e)
+            {
+                message = $"The directory was not found: '{e}'";
+                System.Diagnostics.Debug.WriteLine(message);
+                Console.WriteLine(message);
+            }
+            catch (IOException e)
+            {
+                message = $"The file could not be opened: '{e}'";
+                System.Diagnostics.Debug.WriteLine(message);
+                Console.WriteLine(message);
+            }
+            return message;
         }
         
+
         static public string writeTimeValueToFile(string type, int number, float[] tValues, float[] cancerValues, string pathToSave = @"..\..\..\dataTumor\PredictData\PersonalPatients\")
         {
             string message = "Ok";
@@ -64,6 +83,7 @@ namespace NotLinearCancerModel
 
             return message;
         }
+
 
         static public string writeDataToFile(string type, int number, double[,,] data, string pathToSave = @"..\..\..\dataTumor\PredictData\PersonalPatients\")
         {
@@ -106,6 +126,7 @@ namespace NotLinearCancerModel
 
             return message;
         }
+
 
         static public List<List<float>> getDataFromFile(string type, int number, string pathToFile = @"..\..\..\dataTumor\ModelData\personalPatients\poly3current\")
         {
