@@ -18,10 +18,10 @@
                                      VerticalAlignment="Center"
                                      Padding="5"
                                      Foreground="#cfcfcf"
-                                     x:Name="SearchBox"/>
+                                     x:Name="TextBoxPythonInterpreter"/>
 
                             <TextBlock IsHitTestVisible="False"
-                                       Text="Search"
+                                       Text="Please, input your path to python interpreter"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Left" 
                                        Margin="10,0,0,0"
@@ -31,7 +31,7 @@
                                 <TextBlock.Style>
                                     <Style TargetType="{x:Type TextBlock}">
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Text, ElementName=SearchBox}" Value="">
+                                            <DataTrigger Binding="{Binding Text, ElementName=TextBoxPythonInterpreter}" Value="">
                                                 <Setter Property="Visibility" Value="Visible"/>
                                             </DataTrigger>
                                         </Style.Triggers>

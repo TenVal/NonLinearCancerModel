@@ -55,16 +55,27 @@ namespace NotLinearCancerModel.MVVM.View
                 float[] tValues = new float[diffusion.TValues.Count];
                 Array.Copy(diffusion.TValues.ToArray(), tValues, tValues.Length);
 
+                Dictionary<string, float> CancerValuesParameters = new Dictionary<string, float>()
+                {
+                    {"Length" ,  length },
+                    {"H" , h },
+                    {"D" , d },
+                    {"K" , k },
+                    {"Speed" , speed},
+                    {"AngleXY" , angleXY },
+                    {"AngleZ" , angleZ },
+                    {"TMax" , tMax }
+                };
+
                 // write every data about modeling to files
                 ActionDataFile.writeDataToFile("Volume", i, valuesP, path);
                 // Write time-value data to file
                 ActionDataFile.writeTimeValueToFile("Volume", i, tValues, numberPointsVolume, path);
                 // write params of modeling to file
-                float[] paramsForCancer = { speed, d, k };
-                ActionDataFile.writeParametersToFile(type: "Volume", path, number: i, cancerParameters: paramsForCancer);
+                ActionDataFile.writeParametersToFile(type: "Volume", number: i, cancerParameters: CancerValuesParameters, pathToSave: path);
             }
-
-            MessageBox.Show("UUUUUUURRRRAAAAAAA");
+           
+            MessageBox.Show("Success");
         }
     }
 }

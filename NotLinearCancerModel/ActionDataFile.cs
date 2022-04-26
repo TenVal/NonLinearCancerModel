@@ -14,7 +14,7 @@ namespace NotLinearCancerModel
         /// Actions to write, read and do everything with data in program and files
         /// </summary>
         /// 
-        static public string writeParametersToFile(string type, int number, string pathToSave = @"..\..\..\dataTumor\PredictData\PersonalPatients\", Dictionary<string, float> cancerParameters)
+        static public string writeParametersToFile(string type, int number, Dictionary<string, float> cancerParameters, string pathToSave = @"..\..\..\dataTumor\PredictData\PersonalPatients\")
         {
             string message = "Ok";
             pathToSave += type + @"\txt\params\" + (number + 1).ToString() + @"Params.txt";

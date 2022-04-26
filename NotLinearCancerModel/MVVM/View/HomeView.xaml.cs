@@ -42,6 +42,8 @@ namespace NotLinearCancerModel.MVVM.View
             float angleXY = float.Parse(TextBoxAngleXY.Text);
             float angleZ = float.Parse(TextBoxAngleZ.Text);
 
+            float tMax;
+
             C c = new C(speed, angleXY, angleZ);
             Q q = new Q(0);
             MethodDiffusion diffusion;
@@ -83,7 +85,7 @@ namespace NotLinearCancerModel.MVVM.View
 
                     D dF = new D(speedForFindMin, d);
                     diffusion = new MethodDiffusion(dF, c, q);
-                    float tMax = modelData.Patients[i]["Diameter"][0][modelData.Patients[i]["Diameter"][0].Count - 1];
+                    tMax = modelData.Patients[i]["Diameter"][0][modelData.Patients[i]["Diameter"][0].Count - 1];
 
                     int N = (int)(length / h);
                     double[,,] valuesP = new double[N, N, N];
@@ -130,7 +132,7 @@ namespace NotLinearCancerModel.MVVM.View
                 float[] requiredTValue = listAllValuesT[indexMinDifference];
                 float[] requiredNumberPointsVolume = listAllValuesNumberPointsVolume[indexMinDifference];
 
-
+                // prepare data about parameters of cancer for writing into files
                 Dictionary<string, float> requiredCancerValuesParameters = new Dictionary<string, float>()
                 {
                     {"Length" ,  cancerValuesParameters["Length"][indexMinDifference] },
@@ -142,6 +144,7 @@ namespace NotLinearCancerModel.MVVM.View
                     {"Speed" , cancerValuesParameters["Speed"][indexMinDifference]},
                     {"AngleXY" , cancerValuesParameters["AngleXY"][indexMinDifference] },
                     {"AngleZ" , cancerValuesParameters["AngleZ"][indexMinDifference] },
+                    {"TMax" , tMax },
                     {"Difference" , cancerValuesParameters["Difference"][indexMinDifference]},
                 };
 
@@ -151,7 +154,7 @@ namespace NotLinearCancerModel.MVVM.View
                 ActionDataFile.writeTimeValueToFile("Volume", i, requiredTValue, requiredNumberPointsVolume);
                 // write params of modeling to file
                 float[] paramsForCancer = { requiredSpeed, d, k };
-                ActionDataFile.writeParametersToFile(type: "Volume", number: i, cancerParameters: paramsForCancer);
+                ActionDataFile.writeParametersToFile(type: "Volume", number: i, cancerParameters: requiredCancerValuesParameters);
 
                 /*
                 listAllValuesP = null;
