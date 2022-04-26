@@ -36,6 +36,7 @@ namespace NotLinearCancerModel.MVVM.View
             float angleXY = float.Parse(TextBoxAngleXY.Text);
             float angleZ = float.Parse(TextBoxAngleZ.Text);
             float tMax = float.Parse(TextBoxTMax.Text);
+            string path = @"..\..\..\dataTumor\PredictData\PersonalPatients\";
 
             C c = new C(speed, angleXY, angleZ);
             Q q = new Q(0);
@@ -55,12 +56,12 @@ namespace NotLinearCancerModel.MVVM.View
                 Array.Copy(diffusion.TValues.ToArray(), tValues, tValues.Length);
 
                 // write every data about modeling to files
-                ActionDataFile.writeDataToFile("Volume", i, valuesP);
+                ActionDataFile.writeDataToFile("Volume", i, valuesP, path);
                 // Write time-value data to file
-                ActionDataFile.writeTimeValueToFile("Volume", i, tValues, numberPointsVolume);
+                ActionDataFile.writeTimeValueToFile("Volume", i, tValues, numberPointsVolume, path);
                 // write params of modeling to file
                 float[] paramsForCancer = { speed, d, k };
-                ActionDataFile.writeParametersToFile(type: "Volume", number: i, cancerParameters: paramsForCancer);
+                ActionDataFile.writeParametersToFile(type: "Volume", path, number: i, cancerParameters: paramsForCancer);
             }
 
             MessageBox.Show("UUUUUUURRRRAAAAAAA");
