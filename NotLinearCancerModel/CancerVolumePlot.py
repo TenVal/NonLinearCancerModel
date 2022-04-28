@@ -36,9 +36,9 @@ for number in range(1, quantity + 1):
   
     # adding title and labels
     ax.set_title("3D cancer map")
-    ax.set_xlabel('X-axis')
-    ax.set_ylabel('Y-axis')
-    ax.set_zlabel('Z-axis')
+    ax.set_xlabel('X-axis (mm)')
+    ax.set_ylabel('Y-axis (mm)')
+    ax.set_zlabel('Z-axis (mm)')
   
     # saving plot
     fig.savefig(f"D:/VolSU/НИР/ScienceArticle/NotLinearCancerModel/NotLinearCancerModel/dataTumor/PredictData/PersonalPatients/{type}/img/{number}{type}.png")
@@ -49,5 +49,8 @@ for number in range(1, quantity + 1):
     fig = plt.figure(figsize=(10, 10))
     ax = fig.add_subplot(111)
     plt.plot(timeValues, cancerVolume)
+    ax.set_title(f"{number}-patient Time-Volume Dinamic")
+    ax.set_xlabel('time (days)')
+    ax.set_ylabel('volume (mm^2)')
     # plt.show()
     fig.savefig(f"D:/VolSU/НИР/ScienceArticle/NotLinearCancerModel/NotLinearCancerModel/dataTumor/PredictData/PersonalPatients/{type}/timeValue/img/{number}{type}.png")

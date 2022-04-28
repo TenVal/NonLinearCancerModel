@@ -1,19 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Globalization;
-using System.IO;
 using System.Diagnostics;
 
 namespace NotLinearCancerModel
@@ -34,15 +23,18 @@ namespace NotLinearCancerModel
             int patientNumber = 1;
             string pathImg1;
             string pathImg2;
+            string type = "Volume";
             if (RadioButtonFindMin.IsChecked == true)
             {
-                pathImg1 = @"..\..\..\dataTumor\PredictData\PersonalPatients\Volume\img\" + patientNumber.ToString() + @"Volume.png";
-                pathImg2 = @"..\..\..\dataTumor\PredictData\PersonalPatients\Volume\timeValue\img\" + patientNumber.ToString() + @"Volume.png";
+                pathImg1 = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\img\" + patientNumber.ToString() + type + @".png";
+                pathImg2 = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\timeValue\img\" + patientNumber.ToString() + type + @".png";
             }
             else
             {
-                pathImg1 = @"..\..\..\dataTumor\PredictData\Any\Volume\img\" + patientNumber.ToString() + @"Volume.png";
-                pathImg2 = @"..\..\..\dataTumor\PredictData\Any\Volume\timeValue\img\" + patientNumber.ToString() + @"Volume.png";
+                Debug.WriteLine(RadioButtonWithoutFindMin.IsChecked);
+                pathImg1 = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\img\" + patientNumber.ToString() + type + @".png";
+                pathImg2 = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\timeValue\img\" + patientNumber.ToString() + type + @".png";
+                
             }
 
             try
@@ -53,7 +45,8 @@ namespace NotLinearCancerModel
             {
                 MessageBox.Show("Please, input correct data (number patient).");
             }
-            
+            Debug.WriteLine(pathImg1);
+            Debug.WriteLine(pathImg2);
             Uri uri1 = new Uri(pathImg1, UriKind.Relative);
             Uri uri2 = new Uri(pathImg2, UriKind.Relative);
             BitmapImage bmp1 = new BitmapImage();

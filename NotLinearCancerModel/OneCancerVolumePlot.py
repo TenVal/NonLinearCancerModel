@@ -25,10 +25,6 @@ c = xyzc[3]
 # creating figures
 fig = plt.figure(figsize=(10, 10))
 ax = fig.add_subplot(111, projection='3d')
-if number==10:
-    print(f"{number}\n\n")
-# for i in range(len(x)):
-#     print(f"{x[i]}\t{y[i]}\t{z[i]}\t{c[i]}")
 
 # creating the cancer map (heatmap)
 img = ax.scatter(x, y, z, c, marker='o')
@@ -36,9 +32,9 @@ plt.colorbar(img)
   
 # adding title and labels
 ax.set_title("3D cancer map")
-ax.set_xlabel('X-axis')
-ax.set_ylabel('Y-axis')
-ax.set_zlabel('Z-axis')
+ax.set_xlabel('X-axis (mm)')
+ax.set_ylabel('Y-axis (mm)')
+ax.set_zlabel('Z-axis (mm)')
   
 # saving plot
 fig.savefig(f"D:/VolSU/НИР/ScienceArticle/NotLinearCancerModel/NotLinearCancerModel/dataTumor/PredictData/Any/{type}/img/{number}{type}.png")
@@ -49,5 +45,8 @@ fig.savefig(f"D:/VolSU/НИР/ScienceArticle/NotLinearCancerModel/NotLinearCance
 fig = plt.figure(figsize=(10, 10))
 ax = fig.add_subplot(111)
 plt.plot(timeValues, cancerVolume)
+ax.set_title("Time-Volume Dinamic")
+ax.set_xlabel('time (days)')
+ax.set_ylabel('volume (mm^2)')
 # plt.show()
 fig.savefig(f"D:/VolSU/НИР/ScienceArticle/NotLinearCancerModel/NotLinearCancerModel/dataTumor/PredictData/Any/{type}/timeValue/img/{number}{type}.png")
