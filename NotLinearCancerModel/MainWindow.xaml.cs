@@ -39,12 +39,9 @@ namespace NotLinearCancerModel
             }
             else
             {
-                Debug.WriteLine(RadioButtonWithoutFindMin.IsChecked);
                 pathImg1 = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\img\" + patientNumber.ToString() + type + @".png";
                 pathImg2 = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\timeValue\img\" + patientNumber.ToString() + type + @".png";
             }
-            Debug.WriteLine(pathImg1);
-            Debug.WriteLine(pathImg2);
 
             BitmapImage bmp1 = new BitmapImage();
             bmp1.BeginInit();
@@ -56,10 +53,8 @@ namespace NotLinearCancerModel
             bmp2.EndInit();
             Image1.Stretch = Stretch.Fill;
             Image1.Source = bmp1;
-            Debug.WriteLine(Image1.Source);
             Image2.Stretch = Stretch.Fill;
             Image2.Source = bmp2;
-            Debug.WriteLine(Image2.Source);
         }
 
 

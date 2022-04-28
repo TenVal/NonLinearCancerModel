@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Globalization;
+using System.Diagnostics;
 
 namespace NotLinearCancerModel
 {
@@ -25,6 +26,7 @@ namespace NotLinearCancerModel
                 {
                     outputFile.WriteLine(string.Format("{0}\t{1}", singleParam.Key, singleParam.Value));
                 }
+                outputFile.Close();
             }
             catch (FileNotFoundException e)
             {
@@ -52,13 +54,16 @@ namespace NotLinearCancerModel
         {
             string message = "Ok";
             pathToSave += type + @"\timeValue\txt\" + (number + 1).ToString() + type + @".txt";
+            
             try
             {
                 StreamWriter outputFile = new StreamWriter(pathToSave);
                 for (int i = 0; i < tValues.Length; i++)
                 {
                     outputFile.WriteLine(string.Format("{0}\t{1}", tValues[i], cancerValues[i]));
+                    Debug.WriteLine(string.Format("{0}\t{1}", tValues[i], cancerValues[i]));
                 }
+                outputFile.Close();
                 System.Diagnostics.Debug.WriteLine(message);
                 Console.WriteLine(message);
             }
@@ -102,6 +107,7 @@ namespace NotLinearCancerModel
                         }
                     }
                 }
+                outputFile.Close();
                 System.Diagnostics.Debug.WriteLine(message);
                 Console.WriteLine(message);
             }
