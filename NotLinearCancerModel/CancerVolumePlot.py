@@ -41,7 +41,7 @@ for number in range(1, quantity + 1):
     ax.set_zlabel('Z-axis (mm)')
   
     # saving plot
-    fig.savefig(f"D:/VolSU/НИР/ScienceArticle/NotLinearCancerModel/NotLinearCancerModel/dataTumor/PredictData/PersonalPatients/{type}/img/{number}{type}.png")
+    fig.savefig(f"../../../dataTumor/PredictData/PersonalPatients/{type}/img/{number}{type}.png")
     # print(type(timeValues))
     # print(type(cancerVolume))
     # plt.show()
@@ -53,4 +53,4 @@ for number in range(1, quantity + 1):
     ax.set_xlabel('time (days)')
     ax.set_ylabel('volume (mm^2)')
     # plt.show()
-    fig.savefig(f"D:/VolSU/НИР/ScienceArticle/NotLinearCancerModel/NotLinearCancerModel/dataTumor/PredictData/PersonalPatients/{type}/timeValue/img/{number}{type}.png")
+    fig.savefig(f"../../../dataTumor/PredictData/PersonalPatients/{type}/timeValue/img/{number}{type}.png")

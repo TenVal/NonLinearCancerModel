@@ -13,7 +13,7 @@ def writeDataIntoFile(type, number, xyzc, path = "PredictData/PersonalPatients/"
             file.write(f"{xyzc[0][i]}\t{xyzc[1][i]}\t{xyzc[2][i]}\t{xyzc[3][i]}\n".encode('utf-8').decode('utf-8'))
 
 
-def getDataFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "D:/VolSU/НИР/ScienceArticle/NotLinearCancerModel/NotLinearCancerModel/dataTumor/PredictData/PersonalPatients/"):
+def getDataFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "../../../dataTumor/PredictData/PersonalPatients/"):
     """
     Get cancer data from file
 
@@ -81,7 +81,7 @@ def getDataFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "D:/VolSU
     return [valuesX2, valuesY2, valuesZ2, valuesC2]
 
 
-def getTimeValueFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "D:/VolSU/НИР/ScienceArticle/NotLinearCancerModel/NotLinearCancerModel/dataTumor/PredictData/PersonalPatients/"):
+def getTimeValueFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "../../../dataTumor/PredictData/PersonalPatients/"):
     """
     Get time, cancer-value (volume) from file
 
