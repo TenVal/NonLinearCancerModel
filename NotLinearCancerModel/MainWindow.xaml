@@ -87,7 +87,7 @@
                     Margin="20, 0, 0, 0"
                     Grid.Column="2" Grid.Row="2"
                     Background="#4e99ff"
-                    Foreground="White"/>    
+                    Foreground="White"/>
                     <TextBox 
                     x:Name="TextBoxPatientNumberPlot" 
                     HorizontalAlignment="Left" 
@@ -98,7 +98,7 @@
                     Grid.Column="3" Grid.Row="2" Background="#FF353340" Foreground="White"/>
 
                 </StackPanel>
-                
+
                 <Label 
                 x:Name="LabelPatientNumberPlot" 
                 Content="Patient Number Plot" 
@@ -109,10 +109,10 @@
                 Foreground="White"/>
             </StackPanel>
 
-            
+
             <StackPanel
                 Grid.Column="0" Grid.Row="3">
-                
+
                 <RadioButton  
                 x:Name="RadioButtonFindMin" 
                 Content="With find min" 
@@ -123,7 +123,7 @@
                 IsChecked="True"
                 Style="{StaticResource MenuButtonTheme}"
                 Command="{Binding HomeViewCommand}"/>
-                
+
                 <RadioButton 
                 x:Name="RadioButtonWithoutFindMin" 
                 Content="Without find min"  
@@ -133,17 +133,37 @@
                 Foreground="White"
                 Style="{StaticResource MenuButtonTheme}"
                 Command="{Binding CalculateOneViewCommand}"/>
-                
+
             </StackPanel>
             <ContentControl
                 Grid.Column="1" Grid.Row="3"
                 Grid.ColumnSpan="2"
                 Content="{Binding CurrentView}">
-                
+
             </ContentControl>
+            <Label 
+                x:Name="labelParameters"
+                Content=""
+                Foreground="White"
+                FontSize="14"
+                HorizontalAlignment="Left" 
+                Margin="10,20,0,0" 
+                Grid.Row="1"                 
+                VerticalAlignment="Top"/>
 
+            <TextBox Name="TextBox1" Text="Пример" Margin="0,400,0,150" Grid.Row="1" />
+            <TextBlock Text="Какой-то текст" Margin="0,449,0,101" Grid.Row="1">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=TextBox1}" Value="">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
 
-            
         </Grid>
     </Border>
 </Window>

@@ -4,6 +4,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Globalization;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace NotLinearCancerModel
 {
@@ -23,6 +24,7 @@ namespace NotLinearCancerModel
             int patientNumber = 1;
             string pathImg1;
             string pathImg2;
+            string pathParameters;
             string type = "Volume";
             if (RadioButtonFindMin.IsChecked == true)
             {
@@ -36,13 +38,23 @@ namespace NotLinearCancerModel
                 }
                 pathImg1 = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\img\" + patientNumber.ToString() + type + @".png";
                 pathImg2 = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\timeValue\img\" + patientNumber.ToString() + type + @".png";
+                pathParameters = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\txt\params\" + patientNumber.ToString() + "Params.txt";
             }
             else
             {
                 pathImg1 = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\img\" + patientNumber.ToString() + type + @".png";
                 pathImg2 = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\timeValue\img\" + patientNumber.ToString() + type + @".png";
+                pathParameters = @"..\dataTumor\PredictData\Any\" + type + @"\txt\params\" + patientNumber.ToString() + "Params.txt";
             }
-
+            string textLabelParams = "Cancer Parameters:\n";
+            Dictionary<string, float> cancerParameters = ActionDataFile.getParametersFromFile(type, patientNumber, pathParameters);
+            
+            foreach (var keyValueCancer in cancerParameters)
+            {
+                textLabelParams += (keyValueCancer.Key + "\t");
+                textLabelParams += (keyValueCancer.Value.ToString() + "\n");
+            }
+            labelParameters.Content = textLabelParams;
             BitmapImage bmp1 = new BitmapImage();
             bmp1.BeginInit();
             bmp1.UriSource = new Uri(pathImg1, UriKind.Relative);

@@ -17,7 +17,7 @@ namespace NotLinearCancerModel
         /// 
         static public string writeParametersToFile(string type, int number, Dictionary<string, float> cancerParameters, string pathToSave = @"..\..\..\dataTumor\PredictData\PersonalPatients\")
         {
-            string message = "Ok";
+            string message = "Ok";           
             pathToSave += type + @"\txt\params\" + (number + 1).ToString() + @"Params.txt";
             try
             {
@@ -61,7 +61,6 @@ namespace NotLinearCancerModel
                 for (int i = 0; i < tValues.Length; i++)
                 {
                     outputFile.WriteLine(string.Format("{0}\t{1}", tValues[i], cancerValues[i]));
-                    Debug.WriteLine(string.Format("{0}\t{1}", tValues[i], cancerValues[i]));
                 }
                 outputFile.Close();
                 System.Diagnostics.Debug.WriteLine(message);
@@ -172,6 +171,38 @@ namespace NotLinearCancerModel
             }
 
             return xyValues;
+        }
+
+
+        static public Dictionary<string, float> getParametersFromFile(string type, int number, string pathToRead = @"..\..\..\dataTumor\PredictData\PersonalPatients\")
+        {
+            Dictionary<string, float> cancerParameters = new Dictionary<string, float> ();
+            string singleString = "";
+            try
+            {
+                StreamReader inputFile = new StreamReader(pathToRead);
+                while((singleString = inputFile.ReadLine()) != null)
+                {
+                    string[] splitSingleString = singleString.Split("\t");
+                    cancerParameters.Add(splitSingleString[0].Trim(), float.Parse(splitSingleString[1].Trim(), CultureInfo.InvariantCulture));
+                }
+            }
+            catch (FileNotFoundException e)
+            {
+                System.Diagnostics.Debug.WriteLine($"The file was not found: '{e}'");
+                Console.WriteLine($"The file was not found: '{e}'");
+            }
+            catch (DirectoryNotFoundException e)
+            {
+                System.Diagnostics.Debug.WriteLine($"The directory was not found: '{e}'");
+                Console.WriteLine($"The directory was not found: '{e}'");
+            }
+            catch (IOException e)
+            {
+                System.Diagnostics.Debug.WriteLine($"The file could not be opened: '{e}'");
+                Console.WriteLine($"The file could not be opened: '{e}'");
+            }
+            return cancerParameters;
         }
     }
 }
