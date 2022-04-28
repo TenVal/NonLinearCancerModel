@@ -8,6 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="dataTumor\PredictData\Any\Volume\img\1Volume.png" />
+    <None Remove="dataTumor\PredictData\Any\Volume\timeValue\img\1Volume.png" />
     <None Remove="dataTumor\PredictData\PersonalPatients\Volume\img\1Volume.png" />
     <None Remove="dataTumor\PredictData\PersonalPatients\Volume\img\2Volume.png" />
     <None Remove="dataTumor\PredictData\PersonalPatients\Volume\img\3Volume.png" />
@@ -30,11 +32,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="dataTumor\PredictData\Any\Volume\img\1Volume.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="dataTumor\PredictData\Any\Diameter\img\" />
     <Folder Include="dataTumor\PredictData\Any\Diameter\txt\" />
-    <Folder Include="dataTumor\PredictData\Any\Volume\timeValue\img\" />
     <Folder Include="dataTumor\PredictData\Any\Volume\timeValue\txt\" />
-    <Folder Include="dataTumor\PredictData\Any\Volume\img\" />
     <Folder Include="dataTumor\PredictData\Any\Volume\txt\params\" />
     <Folder Include="dataTumor\PredictData\PersonalPatients\Diameter\" />
     <Folder Include="dataTumor\PredictData\Total\Diameter\" />
@@ -68,6 +72,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="dataTumor\PredictData\Any\Volume\timeValue\img\1Volume.png" />
     <Resource Include="dataTumor\PredictData\PersonalPatients\Volume\img\1Volume.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

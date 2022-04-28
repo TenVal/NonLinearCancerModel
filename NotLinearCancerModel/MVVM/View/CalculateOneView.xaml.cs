@@ -39,10 +39,10 @@ namespace NotLinearCancerModel.MVVM.View
             string path = @"..\..\..\dataTumor\PredictData\Any\";
 
             C c = new C(speed, angleXY, angleZ);
-            Q q = new Q(0);
+            Q q = new Q(0); 
             D dF = new D(speed, d);
 
-            int i = 1;
+            int i = 0;
             MethodDiffusion diffusion = new MethodDiffusion(dF, c, q);
             int N = (int)(length / h);
             double[,,] valuesP = new double[N, N, N];

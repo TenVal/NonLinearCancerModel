@@ -26,6 +26,14 @@ namespace NotLinearCancerModel
             string type = "Volume";
             if (RadioButtonFindMin.IsChecked == true)
             {
+                try
+                {
+                    patientNumber = int.Parse(TextBoxPatientNumberPlot.Text, CultureInfo.InvariantCulture);
+                }
+                catch (System.FormatException ex)
+                {
+                    MessageBox.Show("Please, input correct data (number patient).");
+                }
                 pathImg1 = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\img\" + patientNumber.ToString() + type + @".png";
                 pathImg2 = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\timeValue\img\" + patientNumber.ToString() + type + @".png";
             }
@@ -34,21 +42,10 @@ namespace NotLinearCancerModel
                 Debug.WriteLine(RadioButtonWithoutFindMin.IsChecked);
                 pathImg1 = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\img\" + patientNumber.ToString() + type + @".png";
                 pathImg2 = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\timeValue\img\" + patientNumber.ToString() + type + @".png";
-                
-            }
-
-            try
-            {
-                patientNumber = int.Parse(TextBoxPatientNumberPlot.Text, CultureInfo.InvariantCulture);
-            }
-            catch (System.FormatException ex)
-            {
-                MessageBox.Show("Please, input correct data (number patient).");
             }
             Debug.WriteLine(pathImg1);
             Debug.WriteLine(pathImg2);
-            Uri uri1 = new Uri(pathImg1, UriKind.Relative);
-            Uri uri2 = new Uri(pathImg2, UriKind.Relative);
+
             BitmapImage bmp1 = new BitmapImage();
             bmp1.BeginInit();
             bmp1.UriSource = new Uri(pathImg1, UriKind.Relative);
@@ -59,8 +56,10 @@ namespace NotLinearCancerModel
             bmp2.EndInit();
             Image1.Stretch = Stretch.Fill;
             Image1.Source = bmp1;
+            Debug.WriteLine(Image1.Source);
             Image2.Stretch = Stretch.Fill;
             Image2.Source = bmp2;
+            Debug.WriteLine(Image2.Source);
         }
 
 

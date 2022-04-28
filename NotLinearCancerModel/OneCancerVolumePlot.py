@@ -12,11 +12,12 @@ from ActionDataFile import getTimeValueFromFile
 type = "Volume"
 number = 1
 
-timeCancer = getTimeValueFromFile(type, number)
+path1 = "D:/VolSU/НИР/ScienceArticle/NotLinearCancerModel/NotLinearCancerModel/dataTumor/PredictData/Any/"
+timeCancer = getTimeValueFromFile(type, number, path=path1)
 timeValues = timeCancer[0]
 cancerVolume = timeCancer[1]
 
-xyzc = getDataFromFile(type, number)
+xyzc = getDataFromFile(type, number, path=path1)
 x = xyzc[0]
 y = xyzc[1]
 z = xyzc[2]
@@ -48,5 +49,6 @@ plt.plot(timeValues, cancerVolume)
 ax.set_title("Time-Volume Dinamic")
 ax.set_xlabel('time (days)')
 ax.set_ylabel('volume (mm^2)')
-# plt.show()
+plt.show()
 fig.savefig(f"D:/VolSU/НИР/ScienceArticle/NotLinearCancerModel/NotLinearCancerModel/dataTumor/PredictData/Any/{type}/timeValue/img/{number}{type}.png")
+print(f"D:/VolSU/НИР/ScienceArticle/NotLinearCancerModel/NotLinearCancerModel/dataTumor/PredictData/Any/{type}/img/{number}{type}.png")
