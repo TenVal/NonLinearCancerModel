@@ -32,6 +32,19 @@ namespace NotLinearCancerModel
         private void ShowPlots_Click(object sender, RoutedEventArgs e)
         {
             int patientNumber = 1;
+            string pathImg1;
+            string pathImg2;
+            if (RadioButtonFindMin.IsChecked == true)
+            {
+                pathImg1 = @"..\..\..\dataTumor\PredictData\PersonalPatients\Volume\img\" + patientNumber.ToString() + @"Volume.png";
+                pathImg2 = @"..\..\..\dataTumor\PredictData\PersonalPatients\Volume\timeValue\img\" + patientNumber.ToString() + @"Volume.png";
+            }
+            else
+            {
+                pathImg1 = @"..\..\..\dataTumor\PredictData\Any\Volume\img\" + patientNumber.ToString() + @"Volume.png";
+                pathImg2 = @"..\..\..\dataTumor\PredictData\Any\Volume\timeValue\img\" + patientNumber.ToString() + @"Volume.png";
+            }
+
             try
             {
                 patientNumber = int.Parse(TextBoxPatientNumberPlot.Text, CultureInfo.InvariantCulture);
@@ -40,9 +53,7 @@ namespace NotLinearCancerModel
             {
                 MessageBox.Show("Please, input correct data (number patient).");
             }
-            string pathImg1 = @"..\..\..\dataTumor\PredictData\PersonalPatients\Volume\img\" + patientNumber.ToString() + @"Volume.png";
-            //string pathImg2 = @"dataTumor\PredictData\PersonalPatients\Diameter\img\" + patientNumber.ToString() + "Diameter.png";
-            string pathImg2 = @"..\..\..\dataTumor\PredictData\PersonalPatients\Volume\timeValue\img\" + patientNumber.ToString() + @"Volume.png";
+            
             Uri uri1 = new Uri(pathImg1, UriKind.Relative);
             Uri uri2 = new Uri(pathImg2, UriKind.Relative);
             BitmapImage bmp1 = new BitmapImage();
@@ -62,6 +73,15 @@ namespace NotLinearCancerModel
 
         private void SavePlots_Click(object sender, RoutedEventArgs e)
         {
+            string scriptPython;
+            if (RadioButtonFindMin.IsChecked == true)
+            {
+                scriptPython = @"CancerVolumePlot.py";
+            }
+            else
+            {
+                scriptPython = @"OneCancerVolumePlot.py";
+            }
             // Create Process start info
             var psi = new ProcessStartInfo();
 
@@ -75,7 +95,6 @@ namespace NotLinearCancerModel
             psi.FileName = pathPython;
 
             // Provide Scripts and Arguments
-            var scriptPython = @"CancerVolumePlot.py";
             var var1 = "";
             var var2 = "";
 
