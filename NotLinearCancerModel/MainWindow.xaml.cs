@@ -54,7 +54,7 @@ namespace NotLinearCancerModel
                 textLabelParams += (keyValueCancer.Key + "\t");
                 textLabelParams += (keyValueCancer.Value.ToString() + "\n");
             }
-            labelParameters.Content = textLabelParams;
+            textBoxCancerParameters.Text = textLabelParams;
             BitmapImage bmp1 = new BitmapImage();
             bmp1.BeginInit();
             bmp1.UriSource = new Uri(pathImg1, UriKind.Relative);

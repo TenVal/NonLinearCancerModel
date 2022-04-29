@@ -141,28 +141,33 @@
                 Content="{Binding CurrentView}">
 
             </ContentControl>
-            <Label 
-                x:Name="labelParameters"
-                Content=""
-                Foreground="White"
-                FontSize="14"
-                HorizontalAlignment="Left" 
-                Margin="10,20,0,0" 
-                Grid.Row="1"                 
-                VerticalAlignment="Top"/>
 
-            <TextBox Name="TextBox1" Text="Пример" Margin="0,400,0,150" Grid.Row="1" />
-            <TextBlock Text="Какой-то текст" Margin="0,449,0,101" Grid.Row="1">
-                <TextBlock.Style>
-                    <Style TargetType="TextBlock">
+            <TextBox Name="textBoxCancerParameters"  
+                     Text="" 
+                     IsReadOnly="True"
+                     Height="250"
+                     HorizontalAlignment="Stretch"
+                     Background="#22202f"
+                     Foreground="#ffffff"
+                     HorizontalScrollBarVisibility="Auto"
+                     VerticalScrollBarVisibility="Auto"
+                     Margin="0,20,0,324" 
+                     Grid.Row="1">
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type ScrollBar}">
+                        <Setter Property="Background" Value="#000"/>
+                    </Style>
+                </TextBox.Resources>
+                <TextBox.Style>
+                    <Style TargetType="TextBox">
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding Text, ElementName=TextBox1}" Value="">
+                            <DataTrigger Binding="{Binding Text, ElementName=textBoxCancerParameters}" Value="">
                                 <Setter Property="Visibility" Value="Collapsed" />
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
-                </TextBlock.Style>
-            </TextBlock>
+                </TextBox.Style>
+            </TextBox>
 
         </Grid>
     </Border>
