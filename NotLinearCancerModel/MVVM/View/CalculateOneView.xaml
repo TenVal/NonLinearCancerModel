@@ -19,7 +19,7 @@
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="500"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
@@ -32,14 +32,57 @@
             Click="Calculate_Click"
             Content="Calculate" 
             HorizontalAlignment="Left" 
-            VerticalAlignment="Bottom" 
-            Width="150"
-            Height="30"
-            Margin="10,0,0,10"
+            VerticalAlignment="Center" 
+            Width="200"
+            Height="50"
+            Margin="10,0,0,0"
             Grid.Column="0" Grid.Row="0" 
             Grid.RowSpan="2"
             Background="#4e99ff"
             Foreground="White"/>
+
+            <Button 
+            x:Name="ImportParams"
+            Click="ImportParams_Click"
+            Content="Import finded &#xD;&#xA;min params" 
+            HorizontalAlignment="Left" 
+            Width="200"
+            Margin="220,0,0,0"
+            Grid.Column="0" Grid.Row="0" 
+            Grid.RowSpan="2" 
+            Background="#4e99ff"
+            Foreground="White"/>
+
+            <ComboBox 
+                Margin="422,0,0,0"
+                Grid.Column="0" Grid.Row="0" 
+                Grid.RowSpan="2" 
+                Name="patientsList" 
+                Height="30" 
+                Width="50"
+                VerticalAlignment="Top">
+                <TextBlock>1</TextBlock>
+                <TextBlock>2</TextBlock>
+                <TextBlock>3</TextBlock>
+                <TextBlock>4</TextBlock>
+                <TextBlock>5</TextBlock>
+                <TextBlock>6</TextBlock>
+                <TextBlock>7</TextBlock>
+                <TextBlock>8</TextBlock>
+                <TextBlock>9</TextBlock>
+                <TextBlock>10</TextBlock>
+            </ComboBox>
+            <Label 
+            x:Name="LabelChoosePatient" 
+            Content="Choose &#xD;&#xA;patient" 
+            HorizontalAlignment="Left" 
+            Width="50"
+            Height="40"
+            VerticalAlignment="Top"
+            Margin="435,5,0,0"
+            Grid.Column="0" Grid.Row="1"
+            Foreground="White" Grid.RowSpan="3"/>
+
 
             <TextBox 
             x:Name="TextBoxSpeed" 
@@ -117,10 +160,8 @@
 
             <ProgressBar
                 x:Name="ProgressBarCalculate"
-                Grid.Column="0" Grid.Row="2"
-                Width="250">
-
-            </ProgressBar>
+                Grid.Column="0" Grid.Row="3" Margin="10,4,0,4"/>
+            <TextBlock Grid.Row="3" Text="{Binding ElementName=ProgressBarCalculate, Path=Value, StringFormat={}{0:0}%}" HorizontalAlignment="Center" VerticalAlignment="Center" />
 
             <TextBox 
             x:Name="TextBoxLength" 

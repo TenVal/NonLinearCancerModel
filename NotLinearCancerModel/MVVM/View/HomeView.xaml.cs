@@ -67,13 +67,13 @@ namespace NotLinearCancerModel.MVVM.View
             InitializeComponent();
         }
 
-        private void Calculate_Click(object sender, RoutedEventArgs e)
+        private void CalculateMin_Click(object sender, RoutedEventArgs e)
         {
             BackgroundWorker worker = new BackgroundWorker();
-            worker.RunWorkerCompleted += worker_RunWorkerComplited;
+            worker.RunWorkerCompleted += workerMin_RunWorkerComplited;
             worker.WorkerReportsProgress = true;
-            worker.DoWork += worker_Calculate;
-            worker.ProgressChanged += worker_ProgressChanged;
+            worker.DoWork += workerMin_Calculate;
+            worker.ProgressChanged += workerMin_ProgressChanged;
 
             ParametersCancer paramsCancer = new ParametersCancer(
                                     float.Parse(TextBoxLength.Text),
@@ -89,18 +89,18 @@ namespace NotLinearCancerModel.MVVM.View
             worker.RunWorkerAsync(paramsCancer);
         }
 
-        private void worker_RunWorkerComplited(object sender, RunWorkerCompletedEventArgs e)
+        private void workerMin_RunWorkerComplited(object sender, RunWorkerCompletedEventArgs e)
         {
-            MessageBox.Show("Progress Bar!");
+            MessageBox.Show("Done Calculate min!");
             ProgressBarCalculate.Value = 0;
         }
 
-        private void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        private void workerMin_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             ProgressBarCalculate.Value = e.ProgressPercentage;
         }
 
-        private void worker_Calculate(object sender, DoWorkEventArgs e)
+        private void workerMin_Calculate(object sender, DoWorkEventArgs e)
         {
             ParametersCancer paramsCancer = (ParametersCancer)e.Argument;
             var worker = sender as BackgroundWorker;
@@ -189,12 +189,6 @@ namespace NotLinearCancerModel.MVVM.View
 
                     speedForFindMin += stepAccuracy;
 
-                    /*
-                    numberPointsVolume = null;
-                    tValues = null;
-                    valuesP = null;
-                    dF = null;
-                    */
                 }
                 while (speedForFindMin <= accuracy);
 
@@ -237,16 +231,10 @@ namespace NotLinearCancerModel.MVVM.View
                 float[] paramsForCancer = { requiredSpeed, d, k };
                 ActionDataFile.writeParametersToFile(type: "Volume", number: i, cancerParameters: requiredCancerValuesParameters);
 
-                /*
-                listAllValuesP = null;
-                listAllValuesT = null;
-                listAllValuesNumberPointsVolume = null;
-                */
-                //ProgressBarCalculate.Value += valueOfDivision;
-                worker.ReportProgress((i + 1) * (int)valueOfDivision, String.Format("Processing Iteration {0}", i + 2));
+                worker.ReportProgress((i + 2) * (int)valueOfDivision, String.Format("Processing Iteration {0}", i + 2));
             }
             
-            worker.ReportProgress(100, "Done Calculate!");
+            worker.ReportProgress(100, "Done Calculate min!");
         }
     }
 }

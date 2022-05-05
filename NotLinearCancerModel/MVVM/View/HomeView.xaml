@@ -13,10 +13,11 @@
 
         <Grid Margin="0,0,0,0" Width="1350">
             <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
+                <RowDefinition Height="9*"></RowDefinition>
+                <RowDefinition Height="13*"></RowDefinition>
+                <RowDefinition Height="9*"></RowDefinition>
+                <RowDefinition Height="5*"></RowDefinition>
+                <RowDefinition Height="8*"/>
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
@@ -29,14 +30,14 @@
             </Grid.ColumnDefinitions>
 
             <Button 
-            x:Name="Calculate"
-            Click="Calculate_Click"
-            Content="Calculate" 
+            x:Name="CalculateMin"
+            Click="CalculateMin_Click"
+            Content="Find Min" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Bottom" 
-            Width="150"
-            Height="30"
-            Margin="0,0,0,10"
+            Width="215"
+            Height="44"
+            Margin="10,0,0,0"
             Grid.Column="0" Grid.Row="0" 
             Grid.RowSpan="2" 
             Background="#4e99ff"
@@ -49,14 +50,14 @@
             Text="1,3" 
             TextWrapping="Wrap"            
             Width="120" 
-            Margin="20, 0, 0, 0"
-            Grid.Column="1" Grid.Row="0" Background="#FF353340" Foreground="White"/>
+            Margin="20,0,0,0"
+            Grid.Column="1" Background="#FF353340" Foreground="White"/>
             <Label 
             x:Name="LabelSpeed" 
             Content="Speed" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Center"
-            Margin="20, 0, 0, 0"
+            Margin="20,0,0,0"
             Grid.Column="1" Grid.Row="1"
             Foreground="White"/>
 
@@ -67,14 +68,14 @@
             Text="30" 
             TextWrapping="Wrap"           
             Width="120" 
-            Margin="20, 0, 0, 0"
-            Grid.Column="2" Grid.Row="0" Background="#FF353340" Foreground="White"/>
+            Margin="20,0,0,0"
+            Grid.Column="2" Background="#FF353340" Foreground="White"/>
             <Label 
             x:Name="LabelAngleXY" 
             Content="AngleXY" 
             HorizontalAlignment="Left"  
             VerticalAlignment="Center"
-            Margin="20, 0, 0, 0"
+            Margin="20,0,0,0"
             Grid.Column="2" Grid.Row="1"
             Foreground="White"/>
 
@@ -85,14 +86,14 @@
             Text="30" 
             TextWrapping="Wrap" 
             Width="120" 
-            Margin="20, 0, 0, 0"
-            Grid.Column="3" Grid.Row="0" Background="#FF353340" Foreground="White"/>
+            Margin="20,0,0,0"
+            Grid.Column="3" Background="#FF353340" Foreground="White"/>
             <Label 
             x:Name="LabelAngleZ" 
             Content="AngleZ" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Center"
-            Margin="20, 0, 0, 0"
+            Margin="20,0,0,0"
             Grid.Column="3" Grid.Row="1"
             Foreground="White"/>
 
@@ -103,32 +104,32 @@
             Text="0,4" 
             TextWrapping="Wrap"            
             Width="120" 
-            Margin="20, 0, 0, 0"
-            Grid.Column="4" Grid.Row="0" Background="#FF353340" Foreground="White"/>
+            Margin="20,0,0,0"
+            Grid.Column="4" Background="#FF353340" Foreground="White"/>
             <Label 
             x:Name="LabelK" 
             Content="K" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Center" 
-            Margin="20, 0, 0, 0"
+            Margin="20,0,0,0"
             Grid.Column="4" Grid.Row="1"
             Foreground="White"/>
 
             <TextBox 
             x:Name="TextBoxAccuracy" 
             HorizontalAlignment="Left"
-            VerticalAlignment="Top" 
+            VerticalAlignment="Center" 
             Text="1,5" 
             TextWrapping="Wrap" 
             Width="120"
-            Margin="20, 0, 0, 0"
-            Grid.Column="5" Grid.Row="0" Background="#FF353340" Foreground="White"/>
+            Margin="20,0,0,0"
+            Grid.Column="5" Background="#FF353340" Foreground="White"/>
             <Label 
             x:Name="LabelAccuracy" 
             Content="Accuracy" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Center" 
-            Margin="20, 0, 0, 0"
+            Margin="20,0,0,0"
             Grid.Column="5" Grid.Row="1"
             Foreground="White"/>
 
@@ -138,13 +139,9 @@
 
             <ProgressBar
                 x:Name="ProgressBarCalculate"
-                Grid.Column="0" Grid.Row="2"
-                Width="250"
-                Minimum="0" Maximum="100" Value="0">
-
-
-            </ProgressBar>
-            <TextBlock Grid.Column="0" Grid.Row="2" Text="{Binding ElementName=ProgressBarCalculate, Path=Value, StringFormat={}{0:0}%}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                Grid.Column="0" Grid.Row="3"
+                Minimum="0" Maximum="100" Value="0" Margin="10,5,0,3" Grid.RowSpan="2"/>
+            <TextBlock Grid.Row="3" Text="{Binding ElementName=ProgressBarCalculate, Path=Value, StringFormat={}{0:0}%}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Grid.RowSpan="2" />
 
             <TextBox 
             x:Name="TextBoxLength" 
@@ -153,16 +150,16 @@
             Text="250" 
             TextWrapping="Wrap"            
             Width="120" 
-            Margin="20, 0, 0, 0"
+            Margin="20,0,0,0"
             Grid.Column="1" Grid.Row="2" Background="#FF353340" Foreground="White"/>
             <Label 
             x:Name="LabelLength" 
             Content="Length" 
             HorizontalAlignment="Left"  
-            VerticalAlignment="Center" 
+            VerticalAlignment="Top" 
             Margin="20, 0, 0, 0"
             Grid.Column="1" Grid.Row="3"
-            Foreground="White"/>
+            Foreground="White" Grid.RowSpan="2"/>
 
             <TextBox 
             x:Name="TextBoxH" 
@@ -171,16 +168,16 @@
             Text="10" 
             TextWrapping="Wrap" 
             Width="120"
-            Margin="20, 0, 0, 0"
+            Margin="20,0,0,0"
             Grid.Column="2" Grid.Row="2" Background="#FF353340" Foreground="White"/>
             <Label 
             x:Name="LabelH" 
             Content="H" 
             HorizontalAlignment="Left" 
-            VerticalAlignment="Center" 
+            VerticalAlignment="Top" 
             Margin="20, 0, 0, 0"
             Grid.Column="2" Grid.Row="3"
-            Foreground="White"/>
+            Foreground="White" Grid.RowSpan="2"/>
 
             <TextBox 
             x:Name="TextBoxD" 
@@ -189,16 +186,16 @@
             Text="10e-12" 
             TextWrapping="Wrap"             
             Width="120" 
-            Margin="20, 0, 0, 0"
+            Margin="20,0,0,0"
             Grid.Column="3" Grid.Row="2" Background="#FF353340" Foreground="White"/>
             <Label 
             x:Name="LabelD" 
             Content="D" 
             HorizontalAlignment="Left" 
-            VerticalAlignment="Center" 
+            VerticalAlignment="Top" 
             Margin="20, 0, 0, 0"
             Grid.Column="3" Grid.Row="3"
-            Foreground="White"/>
+            Foreground="White" Grid.RowSpan="2"/>
 
             <TextBox 
             x:Name="TextBoxStepAccuracy" 
@@ -207,16 +204,16 @@
             Text="0,1" 
             TextWrapping="Wrap" 
             Width="120" 
-            Margin="20, 0, 0, 0"
+            Margin="20,0,0,0"
             Grid.Column="5" Grid.Row="2" Background="#FF353340" Foreground="White"/>
             <Label 
             x:Name="LabelStepAccuracy" 
             Content="StepAccuracy" 
             HorizontalAlignment="Left" 
-            VerticalAlignment="Center"
+            VerticalAlignment="Top"
             Margin="20, 0, 0, 0"
             Grid.Column="5" Grid.Row="3"
-            Foreground="White"/>
+            Foreground="White" Grid.RowSpan="2"/>
         </Grid>
 
 
