@@ -125,7 +125,7 @@ def getTimeValueFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "../
             # if valuesTime[i] not in valuesTime2 and valuesTime[i] < 125:
             if valuesTime[i] not in valuesTime2:
                 valuesTime2.append(valuesTime[i])
-                valuesCancer2.append(valuesCancer[i])
+                valuesCancer2.append(valuesCancer[i] / 1000)
         # for i in range(len(valuesTime2)):        
         #     if valuesCancer2[i] == 0:
         #         valuesTime2.pop(i)

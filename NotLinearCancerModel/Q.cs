@@ -22,7 +22,7 @@ namespace NotLinearCancerModel
         {
             if (x == 10 && y == 15 && z == 10)
             {
-                return 10 * t;
+                return 1 / t;
             }
             else
             {

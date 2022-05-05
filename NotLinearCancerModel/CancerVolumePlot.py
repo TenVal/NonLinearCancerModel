@@ -51,6 +51,6 @@ for number in range(1, quantity + 1):
     plt.plot(timeValues, cancerVolume)
     ax.set_title(f"{number}-patient Time-Volume Dinamic")
     ax.set_xlabel('time (days)')
-    ax.set_ylabel('volume (mm^2)')
+    ax.set_ylabel('volume (mL)')
     # plt.show()
     fig.savefig(f"../../../dataTumor/PredictData/PersonalPatients/{type}/timeValue/img/{number}{type}.png")
