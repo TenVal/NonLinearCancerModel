@@ -41,6 +41,7 @@ namespace NotLinearCancerModel.MVVM.View
             float speed = float.Parse(TextBoxSpeed.Text);
             float angleXY = float.Parse(TextBoxAngleXY.Text);
             float angleZ = float.Parse(TextBoxAngleZ.Text);
+            int N = (int)(length / h);
 
             float tMax;
 
@@ -87,10 +88,19 @@ namespace NotLinearCancerModel.MVVM.View
                     diffusion = new MethodDiffusion(dF, c, q);
                     tMax = modelData.Patients[i]["Diameter"][0][modelData.Patients[i]["Diameter"][0].Count - 1];
 
-                    int N = (int)(length / h);
+                    
                     double[,,] valuesP = new double[N, N, N];
                     diffusion.getValues(tMax, h, k, length, valuesP);
-
+                    /*for (int ii = 0; ii < N; ii++)
+                    {
+                        for (int jj = 0; jj < N; jj++)
+                        {
+                            for (int kk = 0; kk < N; kk++)
+                            {
+                                Debug.WriteLine(valuesP[ii, jj, kk].ToString());
+                            }
+                        }
+                    }*/
                     // Data for time-volume plot
                     float[] numberPointsVolume = new float[diffusion.NumberPointsVolume.Count];
                     Array.Copy(diffusion.NumberPointsVolume.ToArray(), numberPointsVolume, numberPointsVolume.Length);
@@ -148,6 +158,7 @@ namespace NotLinearCancerModel.MVVM.View
                     {"Difference" , cancerValuesParameters["Difference"][indexMinDifference]},
                 };
 
+                
                 // write every data about modeling to files
                 ActionDataFile.writeDataToFile("Volume", i, requiredValuesP);
                 // Write time-value data to file

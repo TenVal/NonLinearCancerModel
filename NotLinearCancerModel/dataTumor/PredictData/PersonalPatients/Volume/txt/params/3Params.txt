@@ -8,4 +8,4 @@ Speed	1,3
 AngleXY	30
 AngleZ	30
 TMax	2929,4119
-Difference	13678,129
+Difference	75,870895

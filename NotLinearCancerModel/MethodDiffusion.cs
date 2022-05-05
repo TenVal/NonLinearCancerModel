@@ -149,14 +149,15 @@ namespace NotLinearCancerModel
                             // sources
                             double S6 = this.q.get(i, j, k, t) * tau;
                             // Implementation of a finite difference scheme
+                            
                             valuesP2[i, j, k] = S1 - S2 + S3 + S4 + S5 + S6;
+
                             // System.Diagnostics.Debug.WriteLine(valuesP2[i, j, k]);
                             // Counting the number of volume points in each time layer
                             if (valuesP2[i, j, k] > 0)
                             {
                                 currentPoints++;
                             }
-                                
                         }
                     }
                 }

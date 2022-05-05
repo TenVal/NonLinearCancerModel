@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="1350">
 
-    
+
     <StackPanel Margin="0,0,0,0" Width="1350">
 
         <Grid Margin="0,0,0,0" Width="1350">
@@ -33,10 +33,11 @@
             Content="Calculate" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Bottom" 
-            Width="65"
-            Height="18"
-            Margin="20,0,0,3"
+            Width="150"
+            Height="30"
+            Margin="10,0,0,10"
             Grid.Column="0" Grid.Row="0" 
+            Grid.RowSpan="2"
             Background="#4e99ff"
             Foreground="White"/>
 
@@ -113,6 +114,14 @@
             Foreground="White"/>
 
 
+
+            <ProgressBar
+                x:Name="ProgressBarCalculate"
+                Grid.Column="0" Grid.Row="2"
+                Width="250">
+
+            </ProgressBar>
+
             <TextBox 
             x:Name="TextBoxLength" 
             HorizontalAlignment="Left"
@@ -166,7 +175,7 @@
             Margin="20, 0, 0, 0"
             Grid.Column="3" Grid.Row="3"
             Foreground="White"/>
-       
+
             <TextBox 
             x:Name="TextBoxTMax" 
             HorizontalAlignment="Left"
