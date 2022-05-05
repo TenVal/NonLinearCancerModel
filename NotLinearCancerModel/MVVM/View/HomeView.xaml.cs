@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,6 +23,45 @@ namespace NotLinearCancerModel.MVVM.View
     /// </summary>
     public partial class HomeView : UserControl
     {
+        public struct ParametersCancer
+        {
+            public float length;
+            public float RightX;
+            public float h;
+            public float d;
+            public float k;
+            public float accuracy;
+            public float stepAccuracy;
+            public float speed;
+            public float angleXY;
+            public float angleZ;
+
+            public ParametersCancer(
+                float length,
+                float RightX,
+                float h,
+                float d,
+                float k,
+                float accuracy,
+                float stepAccuracy,
+                float speed,
+                float angleXY,
+                float angleZ)
+            {
+                this.length = length;
+                this.RightX = RightX;
+                this.h = h;
+                this.d = d;
+                this.k = k;
+                this.accuracy = accuracy;
+                this.stepAccuracy = stepAccuracy;
+                this.speed = speed;
+                this.angleXY = angleXY;
+                this.angleZ = angleZ;
+            }
+        }
+
+
         public HomeView()
         {
             InitializeComponent();
@@ -28,19 +69,57 @@ namespace NotLinearCancerModel.MVVM.View
 
         private void Calculate_Click(object sender, RoutedEventArgs e)
         {
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.RunWorkerCompleted += worker_RunWorkerComplited;
+            worker.WorkerReportsProgress = true;
+            worker.DoWork += worker_Calculate;
+            worker.ProgressChanged += worker_ProgressChanged;
+
+            ParametersCancer paramsCancer = new ParametersCancer(
+                                    float.Parse(TextBoxLength.Text),
+                                    float.Parse(TextBoxLength.Text),
+                                    float.Parse(TextBoxH.Text),
+                                    float.Parse(TextBoxD.Text),
+                                    float.Parse(TextBoxK.Text),
+                                    float.Parse(TextBoxAccuracy.Text),
+                                    float.Parse(TextBoxStepAccuracy.Text),
+                                    float.Parse(TextBoxSpeed.Text),
+                                    float.Parse(TextBoxAngleXY.Text),
+                                        float.Parse(TextBoxAngleZ.Text));
+            worker.RunWorkerAsync(paramsCancer);
+        }
+
+        private void worker_RunWorkerComplited(object sender, RunWorkerCompletedEventArgs e)
+        {
+            MessageBox.Show("Progress Bar!");
+            ProgressBarCalculate.Value = 0;
+        }
+
+        private void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            ProgressBarCalculate.Value = e.ProgressPercentage;
+        }
+
+        private void worker_Calculate(object sender, DoWorkEventArgs e)
+        {
+            ParametersCancer paramsCancer = (ParametersCancer)e.Argument;
+            var worker = sender as BackgroundWorker;
+            worker.ReportProgress(0, String.Format("Processing Iteration 1."));
             DataCancer modelData = new DataCancer();
 
-            
-            float length = float.Parse(TextBoxLength.Text);
-            float RightX = length;
-            float h = float.Parse(TextBoxH.Text);
-            float d = float.Parse(TextBoxD.Text);
-            float k = float.Parse(TextBoxK.Text);
-            float accuracy = float.Parse(TextBoxAccuracy.Text);
-            float stepAccuracy = float.Parse(TextBoxStepAccuracy.Text);
-            float speed = float.Parse(TextBoxSpeed.Text);
-            float angleXY = float.Parse(TextBoxAngleXY.Text);
-            float angleZ = float.Parse(TextBoxAngleZ.Text);
+            int numberPatients = 10;
+            float valueOfDivision = 100 / numberPatients;
+
+            float length = paramsCancer.length;
+            float RightX = paramsCancer.RightX;
+            float h = paramsCancer.h;
+            float d = paramsCancer.d;
+            float k = paramsCancer.k;
+            float accuracy = paramsCancer.accuracy;
+            float stepAccuracy = paramsCancer.stepAccuracy;
+            float speed = paramsCancer.speed;
+            float angleXY = paramsCancer.angleXY;
+            float angleZ = paramsCancer.angleZ;
             int N = (int)(length / h);
 
             float tMax;
@@ -51,7 +130,7 @@ namespace NotLinearCancerModel.MVVM.View
 
             float speedForFindMin = speed;
             // Counting for everyone patient and find required by min difference between predict data and actual data
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < numberPatients; i++)
             {
 
                 //Storage to keep data about matched value
@@ -88,19 +167,10 @@ namespace NotLinearCancerModel.MVVM.View
                     diffusion = new MethodDiffusion(dF, c, q);
                     tMax = modelData.Patients[i]["Diameter"][0][modelData.Patients[i]["Diameter"][0].Count - 1];
 
-                    
+
                     double[,,] valuesP = new double[N, N, N];
                     diffusion.getValues(tMax, h, k, length, valuesP);
-                    /*for (int ii = 0; ii < N; ii++)
-                    {
-                        for (int jj = 0; jj < N; jj++)
-                        {
-                            for (int kk = 0; kk < N; kk++)
-                            {
-                                Debug.WriteLine(valuesP[ii, jj, kk].ToString());
-                            }
-                        }
-                    }*/
+
                     // Data for time-volume plot
                     float[] numberPointsVolume = new float[diffusion.NumberPointsVolume.Count];
                     Array.Copy(diffusion.NumberPointsVolume.ToArray(), numberPointsVolume, numberPointsVolume.Length);
@@ -158,7 +228,7 @@ namespace NotLinearCancerModel.MVVM.View
                     {"Difference" , cancerValuesParameters["Difference"][indexMinDifference]},
                 };
 
-                
+
                 // write every data about modeling to files
                 ActionDataFile.writeDataToFile("Volume", i, requiredValuesP);
                 // Write time-value data to file
@@ -172,9 +242,11 @@ namespace NotLinearCancerModel.MVVM.View
                 listAllValuesT = null;
                 listAllValuesNumberPointsVolume = null;
                 */
+                //ProgressBarCalculate.Value += valueOfDivision;
+                worker.ReportProgress((i + 1) * (int)valueOfDivision, String.Format("Processing Iteration {0}", i + 2));
             }
-
-            MessageBox.Show("Success calculate min!");
+            
+            worker.ReportProgress(100, "Done Calculate!");
         }
     }
 }
