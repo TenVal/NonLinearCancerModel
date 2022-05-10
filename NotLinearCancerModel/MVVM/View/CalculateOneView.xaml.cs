@@ -200,7 +200,8 @@ namespace NotLinearCancerModel.MVVM.View
             
             
             string type = "Volume";
-            Dictionary<string, float> cancerParams = ActionDataFile.getParametersFromFile(type, number);
+            string pathToRead = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\txt\params\" + number.ToString() + @"Params.txt";
+            Dictionary<string, float> cancerParams = ActionDataFile.getParametersFromFile(type, number, pathToRead);
 
             foreach(var keyValue in cancerParams)
             {

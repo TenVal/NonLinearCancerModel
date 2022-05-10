@@ -176,8 +176,6 @@ namespace NotLinearCancerModel
 
         static public Dictionary<string, float> getParametersFromFile(string type, int number, string pathToRead = @"..\..\..\dataTumor\PredictData\PersonalPatients\")
         {
-            pathToRead += type + @"\txt\params\" + number.ToString() + @"Params.txt";
-
             Dictionary<string, float> cancerParameters = new Dictionary<string, float> ();
             string singleString = "";
             var ci = (CultureInfo)CultureInfo.CurrentCulture.Clone();

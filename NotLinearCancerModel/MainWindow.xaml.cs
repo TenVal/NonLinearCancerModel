@@ -32,9 +32,9 @@ namespace NotLinearCancerModel
                 {
                     patientNumber = int.Parse(TextBoxPatientNumberPlot.Text, CultureInfo.InvariantCulture);
                 }
-                catch (System.FormatException ex)
+                catch (FormatException ex)
                 {
-                    MessageBox.Show("Please, input correct data (number patient).");
+                    MessageBox.Show($"Please, input correct data (number patient).\n{ex}");
                 }
                 pathImg1 = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\img\" + patientNumber.ToString() + type + @".png";
                 pathImg2 = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\timeValue\img\" + patientNumber.ToString() + type + @".png";
