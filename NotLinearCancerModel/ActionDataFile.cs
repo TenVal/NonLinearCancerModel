@@ -176,15 +176,19 @@ namespace NotLinearCancerModel
 
         static public Dictionary<string, float> getParametersFromFile(string type, int number, string pathToRead = @"..\..\..\dataTumor\PredictData\PersonalPatients\")
         {
+            pathToRead += type + @"\txt\params\" + number.ToString() + @"Params.txt";
+
             Dictionary<string, float> cancerParameters = new Dictionary<string, float> ();
             string singleString = "";
+            var ci = (CultureInfo)CultureInfo.CurrentCulture.Clone();
+            ci.NumberFormat.NumberDecimalSeparator = ",";
             try
             {
                 StreamReader inputFile = new StreamReader(pathToRead);
                 while((singleString = inputFile.ReadLine()) != null)
                 {
                     string[] splitSingleString = singleString.Split("\t");
-                    cancerParameters.Add(splitSingleString[0].Trim(), float.Parse(splitSingleString[1].Trim(), CultureInfo.InvariantCulture));
+                    cancerParameters.Add(splitSingleString[0].Trim(), float.Parse(splitSingleString[1].Trim(), ci));
                 }
             }
             catch (FileNotFoundException e)

@@ -181,11 +181,11 @@ namespace NotLinearCancerModel.MVVM.View
             int number = 1;
             if (patientsList.SelectedItem != null)
             {
-                ComboBoxItem selectedItem = (ComboBoxItem)patientsList.SelectedItem;
+                TextBlock selectedItem = (TextBlock)patientsList.SelectedItem;
                 
                 try
                 {
-                    number = int.Parse(selectedItem.Content.ToString());
+                    number = int.Parse(selectedItem.Text.ToString());
                 }
                 catch (System.NullReferenceException ex)
                 {
@@ -202,6 +202,10 @@ namespace NotLinearCancerModel.MVVM.View
             string type = "Volume";
             Dictionary<string, float> cancerParams = ActionDataFile.getParametersFromFile(type, number);
 
+            foreach(var keyValue in cancerParams)
+            {
+                Debug.WriteLine(String.Format("Key - {0} \t Value - {1}", keyValue.Key, keyValue.Value));
+            }
             TextBoxLength.Text = cancerParams["Length"].ToString();
             TextBoxH.Text = cancerParams["H"].ToString();
             TextBoxD.Text = cancerParams["D"].ToString();

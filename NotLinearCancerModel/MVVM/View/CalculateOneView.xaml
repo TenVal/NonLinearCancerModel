@@ -54,13 +54,13 @@
             Foreground="White"/>
 
             <ComboBox 
-                Margin="422,0,0,0"
+                Margin="436,0,14,21"
                 Grid.Column="0" Grid.Row="0" 
                 Grid.RowSpan="2" 
                 Name="patientsList" 
                 Height="30" 
                 Width="50"
-                VerticalAlignment="Top">
+                VerticalAlignment="Bottom">
                 <TextBlock>1</TextBlock>
                 <TextBlock>2</TextBlock>
                 <TextBlock>3</TextBlock>
