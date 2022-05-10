@@ -35,7 +35,7 @@ for number in range(1, quantity + 1):
     plt.colorbar(img)
   
     # adding title and labels
-    ax.set_title("3D cancer map")
+    ax.set_title(f"{number}-patient 3D cancer map")
     ax.set_xlabel('X-axis (mm)')
     ax.set_ylabel('Y-axis (mm)')
     ax.set_zlabel('Z-axis (mm)')

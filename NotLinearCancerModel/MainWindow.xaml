@@ -51,6 +51,36 @@
             VerticalAlignment="Top"  
             Margin="20, 20, 0, 0"
             Grid.Column="1" Grid.Row="1"/>
+            <Button 
+                x:Name="ButtonGoBackImg"
+                Click="ButtonGoBackImg_Click"
+                Width="160"
+                Height="40"
+                HorizontalAlignment="Left" 
+                Margin="250,540,0,0" 
+                Grid.Column="1" Grid.Row="1" 
+                VerticalAlignment="Top"
+                Background="#4e99ff"
+                Foreground="White">
+                <Style TargetType="Button">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#6ebfff"></Setter>
+                            <Setter Property="Cursor" Value="Hand"></Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+                <Button.Template>
+                    <ControlTemplate>
+                        <Grid Background="{Binding Background, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}}">
+                            <Line Stroke="#fff" StrokeThickness="6" X1="120" Y1="18" X2="40" Y2="18"/>
+                            <Line Stroke="#fff" StrokeThickness="6" X1="40" Y1="18" X2="60" Y2="28"/>
+                            <Line Stroke="#fff" StrokeThickness="6" X1="40" Y1="18" X2="60" Y2="8"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
             <Image 
             x:Name="Image2" 
             HorizontalAlignment="Left" 
@@ -59,6 +89,35 @@
             VerticalAlignment="Top" 
             Margin="20, 20, 0, 0"
             Grid.Column="2" Grid.Row="1"/>
+            <Button 
+                x:Name="ButtoGoNextImg"
+                Click="ButtonGoNextImg_Click"
+                Width="160"
+                Height="40"
+                HorizontalAlignment="Left" 
+                Margin="250,540,0,0" 
+                Grid.Column="2"  Grid.Row="1" 
+                VerticalAlignment="Top"
+                Background="#4e99ff"
+                Foreground="White">
+                <Style TargetType="Button">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#6ebfff"></Setter>
+                            <Setter Property="Cursor" Value="Hand"></Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+                    <Button.Template>
+                    <ControlTemplate>
+                        <Grid Background="{Binding Background, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}}">
+                            <Line Stroke="#fff" StrokeThickness="6" X1="120" Y1="18" X2="40" Y2="18"/>
+                            <Line Stroke="#fff" StrokeThickness="6" X1="120" Y1="18" X2="100" Y2="28"/>
+                            <Line Stroke="#fff" StrokeThickness="6" X1="120" Y1="18" X2="100" Y2="8"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
 
 
             <StackPanel 
@@ -93,7 +152,7 @@
                     HorizontalAlignment="Left" 
                     VerticalAlignment="Center"
                     TextWrapping="Wrap"             
-                    Width="120"
+                    Width="200"
                     Margin="20, 0, 0, 0"
                     Grid.Column="3" Grid.Row="2" Background="#FF353340" Foreground="White"/>
 
@@ -121,6 +180,7 @@
                 FontSize="14"
                 Foreground="White"
                 IsChecked="True"
+                Checked="RadioButtonFindMin_Checked"
                 Style="{StaticResource MenuButtonTheme}"
                 Command="{Binding HomeViewCommand}"/>
 
@@ -131,6 +191,7 @@
                 Grid.Column="0"  Grid.Row="3" 
                 FontSize="14"
                 Foreground="White"
+                Checked="RadioButtonWithoutFindMin_Checked"
                 Style="{StaticResource MenuButtonTheme}"
                 Command="{Binding CalculateOneViewCommand}"/>
 
@@ -149,6 +210,7 @@
                      HorizontalAlignment="Stretch"
                      Background="#22202f"
                      Foreground="#ffffff"
+                     BorderBrush="{x:Null}"
                      HorizontalScrollBarVisibility="Auto"
                      VerticalScrollBarVisibility="Auto"
                      Margin="0,20,0,324" 
@@ -157,6 +219,7 @@
                     <Style TargetType="{x:Type ScrollBar}">
                         <Setter Property="Background" Value="#000"/>
                     </Style>
+
                 </TextBox.Resources>
                 <TextBox.Style>
                     <Style TargetType="TextBox">
@@ -164,6 +227,12 @@
                             <DataTrigger Binding="{Binding Text, ElementName=textBoxCancerParameters}" Value="">
                                 <Setter Property="Visibility" Value="Collapsed" />
                             </DataTrigger>
+                            <Trigger Property="TextBox.IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="{x:Null}"/>
+                            </Trigger>
+                            <Trigger Property="TextBox.IsFocused" Value="True">
+                                <Setter Property="BorderBrush" Value="{x:Null}"/>
+                            </Trigger>
                         </Style.Triggers>
                     </Style>
                 </TextBox.Style>
