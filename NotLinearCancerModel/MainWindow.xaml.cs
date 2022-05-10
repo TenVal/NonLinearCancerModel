@@ -44,9 +44,9 @@ namespace NotLinearCancerModel
             {
                 pathImg1 = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\img\" + patientNumber.ToString() + type + @".png";
                 pathImg2 = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\timeValue\img\" + patientNumber.ToString() + type + @".png";
-                pathParameters = @"..\dataTumor\PredictData\Any\" + type + @"\txt\params\" + patientNumber.ToString() + "Params.txt";
+                pathParameters = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\txt\params\" + patientNumber.ToString() + "Params.txt";
             }
-            string textLabelParams = "Cancer Parameters:\n";
+            string textLabelParams = "Cancer\tParameters:\n";
             Dictionary<string, float> cancerParameters = ActionDataFile.getParametersFromFile(type, patientNumber, pathParameters);
             
             foreach (var keyValueCancer in cancerParameters)
@@ -55,6 +55,8 @@ namespace NotLinearCancerModel
                 textLabelParams += (keyValueCancer.Value.ToString() + "\n");
             }
             textBoxCancerParameters.Text = textLabelParams;
+
+            // Output images (plots)
             BitmapImage bmp1 = new BitmapImage();
             bmp1.BeginInit();
             bmp1.UriSource = new Uri(pathImg1, UriKind.Relative);
@@ -67,6 +69,22 @@ namespace NotLinearCancerModel
             Image1.Source = bmp1;
             Image2.Stretch = Stretch.Fill;
             Image2.Source = bmp2;
+        }
+
+
+        private void RadioButtonFindMin_Checked(object sender, RoutedEventArgs e)
+        {
+            TextBoxPatientNumberPlot.Text = "";
+            TextBoxPatientNumberPlot.IsReadOnly = false;
+            TextBoxPatientNumberPlot.Visibility = Visibility.Visible;
+        }
+
+
+        private void RadioButtonWithoutFindMin_Checked(object sender, RoutedEventArgs e)
+        {
+            TextBoxPatientNumberPlot.Text = "There is no any definite patient";
+            TextBoxPatientNumberPlot.IsReadOnly = true;
+            TextBoxPatientNumberPlot.Visibility = Visibility.Collapsed;
         }
 
 
@@ -120,6 +138,94 @@ namespace NotLinearCancerModel
             Debug.WriteLine("Results:");
             Debug.WriteLine(results);
             MessageBox.Show("Success save img!");
+        }
+
+
+        private void ButtonGoBackImg_Click(object sender, RoutedEventArgs e)
+        {
+            int patientNumber = 1;
+            string pathImg1;
+            string pathImg2;
+            string pathParameters;
+            string type = "Volume";
+            if (RadioButtonFindMin.IsChecked == true)
+            {
+                try
+                {
+                    patientNumber = int.Parse(TextBoxPatientNumberPlot.Text, CultureInfo.InvariantCulture);
+                }
+                catch (FormatException ex)
+                {
+                    MessageBox.Show($"Please, input correct data (number patient)!\n{ex}");
+                }
+                pathImg1 = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\img\" + patientNumber.ToString() + type + @".png";
+                pathImg2 = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\timeValue\img\" + patientNumber.ToString() + type + @".png";
+                pathParameters = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\txt\params\" + patientNumber.ToString() + "Params.txt";
+            }
+            else
+            {
+                pathImg1 = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\img\" + patientNumber.ToString() + type + @".png";
+                pathImg2 = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\timeValue\img\" + patientNumber.ToString() + type + @".png";
+                pathParameters = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\txt\params\" + patientNumber.ToString() + "Params.txt";
+            }
+
+            // Output images (plots)
+            BitmapImage bmp1 = new BitmapImage();
+            bmp1.BeginInit();
+            bmp1.UriSource = new Uri(pathImg1, UriKind.Relative);
+            bmp1.EndInit();
+            BitmapImage bmp2 = new BitmapImage();
+            bmp2.BeginInit();
+            bmp2.UriSource = new Uri(pathImg2, UriKind.Relative);
+            bmp2.EndInit();
+            Image1.Stretch = Stretch.Fill;
+            Image1.Source = bmp1;
+            Image2.Stretch = Stretch.Fill;
+            Image2.Source = bmp2;
+        }
+
+
+        private void ButtonGoNextImg_Click(object sender, RoutedEventArgs e)
+        {
+            int patientNumber = 1;
+            string pathImg1;
+            string pathImg2;
+            string pathParameters;
+            string type = "Volume";
+            if (RadioButtonFindMin.IsChecked == true)
+            {
+                try
+                {
+                    patientNumber = int.Parse(TextBoxPatientNumberPlot.Text, CultureInfo.InvariantCulture);
+                }
+                catch (FormatException ex)
+                {
+                    MessageBox.Show($"Please, input correct data (number patient)!\n{ex}");
+                }
+                pathImg1 = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\img\" + patientNumber.ToString() + type + @".png";
+                pathImg2 = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\timeValue\img\" + patientNumber.ToString() + type + @".png";
+                pathParameters = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\txt\params\" + patientNumber.ToString() + "Params.txt";
+            }
+            else
+            {
+                pathImg1 = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\img\" + patientNumber.ToString() + type + @".png";
+                pathImg2 = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\timeValue\img\" + patientNumber.ToString() + type + @".png";
+                pathParameters = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\txt\params\" + patientNumber.ToString() + "Params.txt";
+            }
+
+            // Output images (plots)
+            BitmapImage bmp1 = new BitmapImage();
+            bmp1.BeginInit();
+            bmp1.UriSource = new Uri(pathImg1, UriKind.Relative);
+            bmp1.EndInit();
+            BitmapImage bmp2 = new BitmapImage();
+            bmp2.BeginInit();
+            bmp2.UriSource = new Uri(pathImg2, UriKind.Relative);
+            bmp2.EndInit();
+            Image1.Stretch = Stretch.Fill;
+            Image1.Source = bmp1;
+            Image2.Stretch = Stretch.Fill;
+            Image2.Source = bmp2;
         }
     }
 }

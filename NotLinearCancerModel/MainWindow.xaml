@@ -51,6 +51,17 @@
             VerticalAlignment="Top"  
             Margin="20, 20, 0, 0"
             Grid.Column="1" Grid.Row="1"/>
+            <Button 
+                x:Name="ButtonGoBackImg"
+                Click="ButtonGoBackImg_Click"
+                Content="Left" 
+                Width="160"
+                Height="40"
+                HorizontalAlignment="Left" 
+                Margin="250,545,0,0" 
+                Grid.Column="1" Grid.Row="1" 
+                VerticalAlignment="Top"/>
+
             <Image 
             x:Name="Image2" 
             HorizontalAlignment="Left" 
@@ -59,6 +70,16 @@
             VerticalAlignment="Top" 
             Margin="20, 20, 0, 0"
             Grid.Column="2" Grid.Row="1"/>
+            <Button 
+                x:Name="ButtoGoNextImg"
+                Click="ButtonGoNextImg_Click"
+                Content="Right" 
+                Width="160"
+                Height="40"
+                HorizontalAlignment="Left" 
+                Margin="250,545,0,0" 
+                Grid.Column="2"  Grid.Row="1" 
+                VerticalAlignment="Top"/>
 
 
             <StackPanel 
@@ -93,7 +114,7 @@
                     HorizontalAlignment="Left" 
                     VerticalAlignment="Center"
                     TextWrapping="Wrap"             
-                    Width="120"
+                    Width="200"
                     Margin="20, 0, 0, 0"
                     Grid.Column="3" Grid.Row="2" Background="#FF353340" Foreground="White"/>
 
@@ -121,6 +142,7 @@
                 FontSize="14"
                 Foreground="White"
                 IsChecked="True"
+                Checked="RadioButtonFindMin_Checked"
                 Style="{StaticResource MenuButtonTheme}"
                 Command="{Binding HomeViewCommand}"/>
 
@@ -131,6 +153,7 @@
                 Grid.Column="0"  Grid.Row="3" 
                 FontSize="14"
                 Foreground="White"
+                Checked="RadioButtonWithoutFindMin_Checked"
                 Style="{StaticResource MenuButtonTheme}"
                 Command="{Binding CalculateOneViewCommand}"/>
 
@@ -149,6 +172,7 @@
                      HorizontalAlignment="Stretch"
                      Background="#22202f"
                      Foreground="#ffffff"
+                     BorderBrush="{x:Null}"
                      HorizontalScrollBarVisibility="Auto"
                      VerticalScrollBarVisibility="Auto"
                      Margin="0,20,0,324" 
@@ -157,6 +181,7 @@
                     <Style TargetType="{x:Type ScrollBar}">
                         <Setter Property="Background" Value="#000"/>
                     </Style>
+
                 </TextBox.Resources>
                 <TextBox.Style>
                     <Style TargetType="TextBox">
@@ -164,6 +189,12 @@
                             <DataTrigger Binding="{Binding Text, ElementName=textBoxCancerParameters}" Value="">
                                 <Setter Property="Visibility" Value="Collapsed" />
                             </DataTrigger>
+                            <Trigger Property="TextBox.IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="{x:Null}"/>
+                            </Trigger>
+                            <Trigger Property="TextBox.IsFocused" Value="True">
+                                <Setter Property="BorderBrush" Value="{x:Null}"/>
+                            </Trigger>
                         </Style.Triggers>
                     </Style>
                 </TextBox.Style>

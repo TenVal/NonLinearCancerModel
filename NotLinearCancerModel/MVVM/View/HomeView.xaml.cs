@@ -101,7 +101,7 @@ namespace NotLinearCancerModel.MVVM.View
             }
             catch(OverflowException ex)
             {
-                MessageBox.Show($"Please don't go beyound the limits!\n{ex}")
+                MessageBox.Show($"Please don't go beyound the limits!\n{ex}");
             }
         }
 
