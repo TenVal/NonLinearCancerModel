@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq
-    
-    ;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -16,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Globalization;
 
 namespace NotLinearCancerModel.MVVM.View
 {
@@ -76,15 +75,15 @@ namespace NotLinearCancerModel.MVVM.View
             try
             {
                 paramsCancer = new ParametersCancerForOneCalculate(
-                                    float.Parse(TextBoxLength.Text),
-                                    float.Parse(TextBoxLength.Text),
-                                    float.Parse(TextBoxH.Text),
-                                    float.Parse(TextBoxD.Text),
-                                    float.Parse(TextBoxK.Text),
-                                    float.Parse(TextBoxSpeed.Text),
-                                    float.Parse(TextBoxAngleXY.Text),
-                                    float.Parse(TextBoxAngleZ.Text),
-                                    float.Parse(TextBoxTMax.Text));
+                                    float.Parse(TextBoxLength.Text, CultureInfo.InvariantCulture),
+                                    float.Parse(TextBoxLength.Text, CultureInfo.InvariantCulture),
+                                    float.Parse(TextBoxH.Text, CultureInfo.InvariantCulture),
+                                    float.Parse(TextBoxD.Text, CultureInfo.InvariantCulture),
+                                    float.Parse(TextBoxK.Text, CultureInfo.InvariantCulture),
+                                    float.Parse(TextBoxSpeed.Text, CultureInfo.InvariantCulture),
+                                    float.Parse(TextBoxAngleXY.Text, CultureInfo.InvariantCulture),
+                                    float.Parse(TextBoxAngleZ.Text, CultureInfo.InvariantCulture),
+                                    float.Parse(TextBoxTMax.Text, CultureInfo.InvariantCulture));
                 worker.RunWorkerAsync(paramsCancer);
             }
             catch (ArgumentNullException ex)

@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Globalization;
 
 namespace NotLinearCancerModel.MVVM.View
 {
@@ -75,18 +76,33 @@ namespace NotLinearCancerModel.MVVM.View
             worker.DoWork += workerMin_Calculate;
             worker.ProgressChanged += workerMin_ProgressChanged;
 
-            ParametersCancer paramsCancer = new ParametersCancer(
-                                    float.Parse(TextBoxLength.Text),
-                                    float.Parse(TextBoxLength.Text),
-                                    float.Parse(TextBoxH.Text),
-                                    float.Parse(TextBoxD.Text),
-                                    float.Parse(TextBoxK.Text),
-                                    float.Parse(TextBoxAccuracy.Text),
-                                    float.Parse(TextBoxStepAccuracy.Text),
-                                    float.Parse(TextBoxSpeed.Text),
-                                    float.Parse(TextBoxAngleXY.Text),
-                                        float.Parse(TextBoxAngleZ.Text));
-            worker.RunWorkerAsync(paramsCancer);
+            try
+            {
+                ParametersCancer paramsCancer = new ParametersCancer(
+                                    float.Parse(TextBoxLength.Text, CultureInfo.InvariantCulture),
+                                    float.Parse(TextBoxLength.Text, CultureInfo.InvariantCulture),
+                                    float.Parse(TextBoxH.Text, CultureInfo.InvariantCulture),
+                                    float.Parse(TextBoxD.Text, CultureInfo.InvariantCulture),
+                                    float.Parse(TextBoxK.Text, CultureInfo.InvariantCulture),
+                                    float.Parse(TextBoxAccuracy.Text, CultureInfo.InvariantCulture),
+                                    float.Parse(TextBoxStepAccuracy.Text, CultureInfo.InvariantCulture),
+                                    float.Parse(TextBoxSpeed.Text, CultureInfo.InvariantCulture),
+                                    float.Parse(TextBoxAngleXY.Text, CultureInfo.InvariantCulture),
+                                        float.Parse(TextBoxAngleZ.Text, CultureInfo.InvariantCulture));
+                worker.RunWorkerAsync(paramsCancer);
+            }
+            catch(ArgumentNullException ex)
+            {
+                MessageBox.Show($"Please input correct parameters!\n{ex}");
+            }
+            catch(FormatException ex)
+            {
+                MessageBox.Show($"Please input correct parameters!\n{ex}");
+            }
+            catch(OverflowException ex)
+            {
+                MessageBox.Show($"Please don't go beyound the limits!\n{ex}")
+            }
         }
 
         private void workerMin_RunWorkerComplited(object sender, RunWorkerCompletedEventArgs e)

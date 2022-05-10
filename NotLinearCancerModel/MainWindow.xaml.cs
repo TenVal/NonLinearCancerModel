@@ -34,7 +34,7 @@ namespace NotLinearCancerModel
                 }
                 catch (FormatException ex)
                 {
-                    MessageBox.Show($"Please, input correct data (number patient).\n{ex}");
+                    MessageBox.Show($"Please, input correct data (number patient)!\n{ex}");
                 }
                 pathImg1 = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\img\" + patientNumber.ToString() + type + @".png";
                 pathImg2 = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\timeValue\img\" + patientNumber.ToString() + type + @".png";
@@ -84,7 +84,7 @@ namespace NotLinearCancerModel
             // Create Process start info
             var psi = new ProcessStartInfo();
 
-            string pathPython = TextBoxPythonInterpreter.Text;
+            string pathPython = TextBoxPythonInterpreter.Text.ToString().Trim();
             // checking current path to python interpreter
             if (pathPython == "Please, input your path to python interpreter" || pathPython == "")
             {
