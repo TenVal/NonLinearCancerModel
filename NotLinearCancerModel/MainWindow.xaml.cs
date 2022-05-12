@@ -23,6 +23,8 @@ namespace NotLinearCancerModel
 
         private void ShowPlots_Click(object sender, RoutedEventArgs e)
         {
+            Image1.Source = null;
+            Image2.Source = null;
             numberPatientForOutputPlots = 1;
             string pathImg1;
             string pathImg2;

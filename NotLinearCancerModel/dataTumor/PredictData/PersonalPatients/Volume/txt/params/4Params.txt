@@ -1,6 +1,6 @@
 Length	250
 H	10
-D	1E-11
+D	1
 K	4
 Accuracy	15
 StepAccuracy	1
