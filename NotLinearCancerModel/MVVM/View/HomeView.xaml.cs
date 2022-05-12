@@ -247,7 +247,7 @@ namespace NotLinearCancerModel.MVVM.View
                 float[] paramsForCancer = { requiredSpeed, d, k };
                 ActionDataFile.writeParametersToFile(type: "Volume", number: i, cancerParameters: requiredCancerValuesParameters);
 
-                worker.ReportProgress((i + 2) * (int)valueOfDivision, String.Format("Processing Iteration {0}", i + 2));
+                worker.ReportProgress((i + 1) * (int)valueOfDivision, String.Format("Processing Iteration {0}", i + 1));
             }
             
             worker.ReportProgress(100, "Done Calculate min!");
