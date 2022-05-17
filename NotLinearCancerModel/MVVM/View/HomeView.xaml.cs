@@ -15,7 +15,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Globalization;
 
 namespace NotLinearCancerModel.MVVM.View
 {
@@ -76,33 +75,18 @@ namespace NotLinearCancerModel.MVVM.View
             worker.DoWork += workerMin_Calculate;
             worker.ProgressChanged += workerMin_ProgressChanged;
 
-            try
-            {
-                ParametersCancer paramsCancer = new ParametersCancer(
-                                    float.Parse(TextBoxLength.Text, CultureInfo.InvariantCulture),
-                                    float.Parse(TextBoxLength.Text, CultureInfo.InvariantCulture),
-                                    float.Parse(TextBoxH.Text, CultureInfo.InvariantCulture),
-                                    float.Parse(TextBoxD.Text, CultureInfo.InvariantCulture),
-                                    float.Parse(TextBoxK.Text, CultureInfo.InvariantCulture),
-                                    float.Parse(TextBoxAccuracy.Text, CultureInfo.InvariantCulture),
-                                    float.Parse(TextBoxStepAccuracy.Text, CultureInfo.InvariantCulture),
-                                    float.Parse(TextBoxSpeed.Text, CultureInfo.InvariantCulture),
-                                    float.Parse(TextBoxAngleXY.Text, CultureInfo.InvariantCulture),
-                                        float.Parse(TextBoxAngleZ.Text, CultureInfo.InvariantCulture));
-                worker.RunWorkerAsync(paramsCancer);
-            }
-            catch(ArgumentNullException ex)
-            {
-                MessageBox.Show($"Please input correct parameters!\n{ex}");
-            }
-            catch(FormatException ex)
-            {
-                MessageBox.Show($"Please input correct parameters!\n{ex}");
-            }
-            catch(OverflowException ex)
-            {
-                MessageBox.Show($"Please don't go beyound the limits!\n{ex}");
-            }
+            ParametersCancer paramsCancer = new ParametersCancer(
+                                    float.Parse(TextBoxLength.Text),
+                                    float.Parse(TextBoxLength.Text),
+                                    float.Parse(TextBoxH.Text),
+                                    float.Parse(TextBoxD.Text),
+                                    float.Parse(TextBoxK.Text),
+                                    float.Parse(TextBoxAccuracy.Text),
+                                    float.Parse(TextBoxStepAccuracy.Text),
+                                    float.Parse(TextBoxSpeed.Text),
+                                    float.Parse(TextBoxAngleXY.Text),
+                                        float.Parse(TextBoxAngleZ.Text));
+            worker.RunWorkerAsync(paramsCancer);
         }
 
         private void workerMin_RunWorkerComplited(object sender, RunWorkerCompletedEventArgs e)
@@ -181,8 +165,12 @@ namespace NotLinearCancerModel.MVVM.View
 
                     D dF = new D(speedForFindMin, d);
                     diffusion = new MethodDiffusion(dF, c, q);
-                    tMax = modelData.Patients[i]["Diameter"][0][modelData.Patients[i]["Diameter"][0].Count - 1];
 
+                    //float tStart = modelData.Patients[i]["Diameter"][0][0];
+                    float tEnd = modelData.Patients[i]["Diameter"][0][modelData.Patients[i]["Diameter"][0].Count - 1];
+                    //tMax = tEnd - tStart;
+                    tMax = tEnd;
+                    tMax /= 30;
 
                     double[,,] valuesP = new double[N, N, N];
                     diffusion.getValues(tMax, h, k, length, valuesP);
@@ -247,9 +235,9 @@ namespace NotLinearCancerModel.MVVM.View
                 float[] paramsForCancer = { requiredSpeed, d, k };
                 ActionDataFile.writeParametersToFile(type: "Volume", number: i, cancerParameters: requiredCancerValuesParameters);
 
-                worker.ReportProgress((i + 1) * (int)valueOfDivision, String.Format("Processing Iteration {0}", i + 1));
+                worker.ReportProgress((i + 2) * (int)valueOfDivision, String.Format("Processing Iteration {0}", i + 2));
             }
-            
+
             worker.ReportProgress(100, "Done Calculate min!");
         }
     }

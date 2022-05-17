@@ -16,17 +16,14 @@ def writeDataIntoFile(type, number, xyzc, path = "PredictData/PersonalPatients/"
 def getDataFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "../../../dataTumor/PredictData/PersonalPatients/"):
     """
     Get cancer data from file
-
     Positional arguments:
     type -- data type (Volume or Diameter)
     number -- patient number
-
     Keywords argiments:
     stepX -- X-axis steep
     stepY -- Y-axis steep
     stepZ -- Z-axis steep
     path -- path to directory file
-
     Return:
     Array[X-axis coordinates, Y-axis steep, Z-axis steep, degree of cancer damage (density)]
     """
@@ -84,18 +81,14 @@ def getDataFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "../../..
 def getTimeValueFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "../../../dataTumor/PredictData/PersonalPatients/"):
     """
     Get time, cancer-value (volume) from file
-
-
     Positional arguments:
     type -- data type (Volume or Diameter)
     number -- patient number
-
     Keywords argiments:
     stepX -- X-axis steep
     stepY -- Y-axis steep
     stepZ -- Z-axis steep
     path -- path to directory file
-
     Return:
     Array[time-values, volumeCancer-values]
     """
@@ -103,17 +96,18 @@ def getTimeValueFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "../
     path = path + str(type) + "/timeValue/txt/" + str(number) + str(type) + ".txt"
     valuesTime = []
     valuesCancer = []
+
     with open(path, "r") as file:
-    # with open(f"../dataTumor/ModelData/personalPatients/poly3current/{type}/txt/{number}{type}.txt", "r") as file:
-    # with open(f"'../dataTumor/ModelData/personalPatients/poly3current/Diameter/txt/1Diameter.txt'", "r") as file:
         for line in file.readlines():
             valuesString = line.split()
+
             try:
-                valuesTime.append(float(valuesString[0].replace(",", ".")))
+                valuesTime.append(float((valuesString[0].replace(",", ".").strip())))
             except IndexError:
                 valuesTime.append(0)
             try:
-                valuesCancer.append(stepX * stepX * stepX * float(valuesString[1].replace(",", ".")))
+                # valuesCancer.append(stepX * stepX * stepX * float(valuesString[1].replace(",", ".")))
+                valuesCancer.append(float((valuesString[1].replace(",", ".").strip())))
             except IndexError:
                 valuesCancer.append(0)
         if len(valuesTime)>0: 
@@ -140,3 +134,37 @@ def getTimeValueFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "../
     return [valuesTime2, valuesCancer2]
 
 
+def getExperimentalDataFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "../../../dataTumor/ExperimentalData/"):
+    """
+    Get experimental time, cancer-value (volume) from file
+    Positional arguments:
+    type -- data type (Volume or Diameter)
+    number -- patient number
+    Keywords argiments:
+    stepX -- X-axis steep
+    stepY -- Y-axis steep
+    stepZ -- Z-axis steep
+    path -- path to directory file
+    Return:
+    Array[time-values, volumeCancer-values]
+    """
+
+    path = path + str(type) + "/" + str(number) + str(type) + ".txt"
+    
+    valuesTime = []
+    valuesCancer = []
+    with open(path, "r") as file:
+        for line in file.readlines():
+            valuesString = line.split()
+
+            try:
+                valuesTime.append(float((valuesString[0].replace(",", ".")).strip()) / 30)
+            except IndexError:
+                valuesTime.append(0)
+            try:
+                # valuesCancer.append(stepX * stepX * stepX * float(valuesString[1].replace(",", ".")))
+                valuesCancer.append(float((valuesString[1].replace(",", ".")).strip()))
+            except IndexError:
+                valuesCancer.append(0)
+
+    return [valuesTime, valuesCancer]
