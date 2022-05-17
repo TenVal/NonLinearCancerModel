@@ -27,7 +27,7 @@ namespace NotLinearCancerModel
                 //return (float)(-1/(Math.Exp(t)) + 1);
                 //return (float)(1);
                 //return (float)(1/t);
-                return 1;
+                return (float)Math.Exp(t);
             }
             else
             {

@@ -161,7 +161,7 @@ def getExperimentalDataFromFile(type, number, stepX=10, stepY=10, stepZ=10, path
     """
 
     path = path + str(type) + "/" + str(number) + str(type) + ".txt"
-
+    
     valuesTime = []
     valuesCancer = []
     with open(path, "r") as file:
@@ -169,7 +169,7 @@ def getExperimentalDataFromFile(type, number, stepX=10, stepY=10, stepZ=10, path
             valuesString = line.split()
 
             try:
-                valuesTime.append(float((valuesString[0].replace(",", ".")).strip()))
+                valuesTime.append(float((valuesString[0].replace(",", ".")).strip()) / 30)
             except IndexError:
                 valuesTime.append(0)
             try:
