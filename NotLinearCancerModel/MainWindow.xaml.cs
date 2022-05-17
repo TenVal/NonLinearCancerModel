@@ -46,6 +46,7 @@ namespace NotLinearCancerModel
             }
             else
             {
+                numberPatientForOutputPlots = 1;
                 pathImg1 = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\img\" + numberPatientForOutputPlots.ToString() + type + @".png";
                 pathImg2 = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\timeValue\img\" + numberPatientForOutputPlots.ToString() + type + @".png";
                 pathParameters = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\txt\params\" + numberPatientForOutputPlots.ToString() + "Params.txt";
@@ -78,24 +79,24 @@ namespace NotLinearCancerModel
 
         private void ButtonGoBackImg_Click(object sender, RoutedEventArgs e)
         {
-            numberPatientForOutputPlots--;
-            if (numberPatientForOutputPlots < 1)
-            {
-                numberPatientForOutputPlots = 10;
-            }
             string pathImg1;
             string pathImg2;
             string pathParameters;
             string type = "Volume";
             if (RadioButtonFindMin.IsChecked == true)
             {
-
+                numberPatientForOutputPlots--;
+                if (numberPatientForOutputPlots < 1)
+                {
+                    numberPatientForOutputPlots = 10;
+                }
                 pathImg1 = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\img\" + numberPatientForOutputPlots.ToString() + type + @".png";
                 pathImg2 = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\timeValue\img\" + numberPatientForOutputPlots.ToString() + type + @".png";
                 pathParameters = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\txt\params\" + numberPatientForOutputPlots.ToString() + "Params.txt";
             }
             else
             {
+                numberPatientForOutputPlots = 1;
                 pathImg1 = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\img\" + numberPatientForOutputPlots.ToString() + type + @".png";
                 pathImg2 = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\timeValue\img\" + numberPatientForOutputPlots.ToString() + type + @".png";
                 pathParameters = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\txt\params\" + numberPatientForOutputPlots.ToString() + "Params.txt";
@@ -129,23 +130,24 @@ namespace NotLinearCancerModel
 
         private void ButtonGoNextImg_Click(object sender, RoutedEventArgs e)
         {
-            numberPatientForOutputPlots++;
-            if (numberPatientForOutputPlots > 10)
-            {
-                numberPatientForOutputPlots = 1;
-            }
             string pathImg1;
             string pathImg2;
             string pathParameters;
             string type = "Volume";
             if (RadioButtonFindMin.IsChecked == true)
             {
+                numberPatientForOutputPlots++;
+                if (numberPatientForOutputPlots > 10)
+                {
+                    numberPatientForOutputPlots = 1;
+                }
                 pathImg1 = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\img\" + numberPatientForOutputPlots.ToString() + type + @".png";
                 pathImg2 = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\timeValue\img\" + numberPatientForOutputPlots.ToString() + type + @".png";
                 pathParameters = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\txt\params\" + numberPatientForOutputPlots.ToString() + "Params.txt";
             }
             else
             {
+                numberPatientForOutputPlots = 1;
                 pathImg1 = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\img\" + numberPatientForOutputPlots.ToString() + type + @".png";
                 pathImg2 = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\timeValue\img\" + numberPatientForOutputPlots.ToString() + type + @".png";
                 pathParameters = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\txt\params\" + numberPatientForOutputPlots.ToString() + "Params.txt";
