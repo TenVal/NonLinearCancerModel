@@ -1,3 +1,4 @@
+import codecs
 
 def writeTimeValueIntoFile(type, number, timeValue, path = "PredictData/PersonalPatients/"):
     path = path + str(type) + "/timeValue/txt/" + str(number) + str(type) + ".txt"
@@ -16,14 +17,17 @@ def writeDataIntoFile(type, number, xyzc, path = "PredictData/PersonalPatients/"
 def getDataFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "../../../dataTumor/PredictData/PersonalPatients/"):
     """
     Get cancer data from file
+
     Positional arguments:
     type -- data type (Volume or Diameter)
     number -- patient number
+
     Keywords argiments:
     stepX -- X-axis steep
     stepY -- Y-axis steep
     stepZ -- Z-axis steep
     path -- path to directory file
+
     Return:
     Array[X-axis coordinates, Y-axis steep, Z-axis steep, degree of cancer damage (density)]
     """
@@ -81,14 +85,18 @@ def getDataFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "../../..
 def getTimeValueFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "../../../dataTumor/PredictData/PersonalPatients/"):
     """
     Get time, cancer-value (volume) from file
+
+
     Positional arguments:
     type -- data type (Volume or Diameter)
     number -- patient number
+
     Keywords argiments:
     stepX -- X-axis steep
     stepY -- Y-axis steep
     stepZ -- Z-axis steep
     path -- path to directory file
+
     Return:
     Array[time-values, volumeCancer-values]
     """
@@ -137,14 +145,18 @@ def getTimeValueFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "../
 def getExperimentalDataFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "../../../dataTumor/ExperimentalData/"):
     """
     Get experimental time, cancer-value (volume) from file
+
+
     Positional arguments:
     type -- data type (Volume or Diameter)
     number -- patient number
+
     Keywords argiments:
     stepX -- X-axis steep
     stepY -- Y-axis steep
     stepZ -- Z-axis steep
     path -- path to directory file
+
     Return:
     Array[time-values, volumeCancer-values]
     """
