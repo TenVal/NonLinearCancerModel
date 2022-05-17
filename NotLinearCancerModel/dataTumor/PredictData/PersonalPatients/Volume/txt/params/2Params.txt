@@ -7,5 +7,5 @@ StepAccuracy	0,1
 Speed	1,3
 AngleXY	30
 AngleZ	30
-TMax	5682,353
-Difference	72,65247
+TMax	72,94118
+Difference	228,34753

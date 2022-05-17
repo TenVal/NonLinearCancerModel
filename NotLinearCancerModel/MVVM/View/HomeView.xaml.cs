@@ -165,8 +165,11 @@ namespace NotLinearCancerModel.MVVM.View
 
                     D dF = new D(speedForFindMin, d);
                     diffusion = new MethodDiffusion(dF, c, q);
-                    tMax = modelData.Patients[i]["Diameter"][0][modelData.Patients[i]["Diameter"][0].Count - 1];
 
+                    float tStart = modelData.Patients[i]["Diameter"][0][0];
+                    float tEnd = modelData.Patients[i]["Diameter"][0][modelData.Patients[i]["Diameter"][0].Count - 1];
+                    tMax = tEnd - tStart;
+                    tMax /= 30;
 
                     double[,,] valuesP = new double[N, N, N];
                     diffusion.getValues(tMax, h, k, length, valuesP);

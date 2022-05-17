@@ -5,6 +5,7 @@ from pylab import *
 
 from ActionDataFile import getDataFromFile
 from ActionDataFile import getTimeValueFromFile
+from ActionDataFile import getExperimentalDataFromFile;
 
   
 # temporarily absolute paths of files!!!!!!!!!!!!!!!!!!!!!
@@ -14,7 +15,11 @@ quantity = 10
 for number in range(1, quantity + 1):
     timeCancer = getTimeValueFromFile(type, number)
     timeValues = timeCancer[0]
-    cancerVolume = timeCancer[1]
+    cancerValues = timeCancer[1] 
+
+    experimentalData = getExperimentalDataFromFile(type, number)
+    experimentalTimeValues = experimentalData[0]
+    experimentalCancerValues = experimentalData[1]
 
     xyzc = getDataFromFile(type, number)
     x = xyzc[0]
@@ -48,7 +53,8 @@ for number in range(1, quantity + 1):
 
     fig = plt.figure(figsize=(10, 10))
     ax = fig.add_subplot(111)
-    plt.plot(timeValues, cancerVolume)
+    plt.plot(timeValues, cancerValues)
+    plt.scatter(experimentalTimeValues, experimentalCancerValues, c = "red")
     ax.set_title(f"{number}-patient Time-Volume Dinamic")
     ax.set_xlabel('time (days)')
     ax.set_ylabel('volume (mL)')

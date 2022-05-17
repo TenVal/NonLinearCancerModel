@@ -22,7 +22,8 @@ x = xyzc[0]
 y = xyzc[1]
 z = xyzc[2]
 c = xyzc[3]
-  
+for cNumber in c:
+    print(c)
 # creating figures
 fig = plt.figure(figsize=(10, 10))
 ax = fig.add_subplot(111, projection='3d')

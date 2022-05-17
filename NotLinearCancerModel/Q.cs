@@ -22,7 +22,12 @@ namespace NotLinearCancerModel
         {
             if (x == 10 && y == 15 && z == 10)
             {
-                return (float)Math.Log(t) + 1;
+                // return (float)Math.Log(t) + 1;
+                //return t;
+                //return (float)(-1/(Math.Exp(t)) + 1);
+                //return (float)(1);
+                //return (float)(1/t);
+                return 1;
             }
             else
             {
