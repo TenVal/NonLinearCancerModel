@@ -159,13 +159,13 @@
                 </StackPanel>
 
                 <Label 
-                x:Name="LabelPatientNumberPlot" 
-                Content="Patient Number Plot" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center"
-                Margin="190, 0, 0, 0"
-                Grid.Column="3" Grid.Row="3"
-                Foreground="White"/>
+                    x:Name="LabelPatientNumberPlot" 
+                    Content="Patient Number Plot" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Center"
+                    Margin="190, 0, 0, 0"
+                    Grid.Column="3" Grid.Row="3"
+                    Foreground="White"/>
             </StackPanel>
 
 

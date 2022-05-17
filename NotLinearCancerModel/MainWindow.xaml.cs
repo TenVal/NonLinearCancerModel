@@ -168,12 +168,12 @@ namespace NotLinearCancerModel
                 pathParameters = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\txt\params\" + numberPatientForOutputPlots.ToString() + "Params.txt";
             }
 
-            string textLabelParams = "Cancer\tParameters:\n";
+            string textLabelParams = "Cancer\t\tParameters:\n";
             Dictionary<string, float> cancerParameters = ActionDataFile.getParametersFromFile(type, numberPatientForOutputPlots, pathParameters);
 
             foreach (var keyValueCancer in cancerParameters)
             {
-                textLabelParams += (keyValueCancer.Key + "\t");
+                textLabelParams += (keyValueCancer.Key + "\t\t");
                 textLabelParams += (keyValueCancer.Value.ToString() + "\n");
             }
             textBoxCancerParameters.Text = textLabelParams;
@@ -207,6 +207,7 @@ namespace NotLinearCancerModel
             TextBoxPatientNumberPlot.Text = "There is no any definite patient";
             TextBoxPatientNumberPlot.IsReadOnly = true;
             TextBoxPatientNumberPlot.Visibility = Visibility.Collapsed;
+            LabelPatientNumberPlot.Visibility = Visibility.Collapsed;
         }
 
 
@@ -307,7 +308,6 @@ namespace NotLinearCancerModel
 
         private void worker_RunWorkerComplited(object sender, RunWorkerCompletedEventArgs e)
         {
-            MessageBox.Show("Done save plots!");
             SavePlots.Content = "Save Plots";
         }
 
