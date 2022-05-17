@@ -98,15 +98,14 @@ namespace NotLinearCancerModel.MVVM.View
             {
                 MessageBox.Show(String.Format("Please don't go beyond the limits\n{ex}", ex));
             }
-
-            
-
         }
+
 
         private void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             ProgressBarCalculate.Value = e.ProgressPercentage;
         }
+
 
         private void worker_Calculate(object sender, DoWorkEventArgs e)
         {

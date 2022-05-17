@@ -5,6 +5,7 @@ using System.Windows.Media.Imaging;
 using System.Globalization;
 using System.Diagnostics;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace NotLinearCancerModel
 {
@@ -14,6 +15,20 @@ namespace NotLinearCancerModel
     public partial class MainWindow : Window
     {
         private int numberPatientForOutputPlots;
+        public struct ParamsForSavePlot
+        {
+            public bool radioButtonChecked;
+            public string pathPythonInterpreter;
+
+            public ParamsForSavePlot(
+                bool radioButtonChecked,
+                string pathPythonInterpreter)
+            {
+                this.radioButtonChecked = radioButtonChecked;
+                this.pathPythonInterpreter = pathPythonInterpreter;
+            }
+        }
+
 
         public MainWindow()
         {
@@ -197,8 +212,42 @@ namespace NotLinearCancerModel
 
         private void SavePlots_Click(object sender, RoutedEventArgs e)
         {
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.RunWorkerCompleted += worker_RunWorkerComplited;
+            worker.WorkerReportsProgress = true;
+            worker.DoWork += worker_SavePlots;
+            worker.ProgressChanged += worker_ProgressChanged;
+            ParamsForSavePlot paramsForSavePlot;
+            try
+            {
+                paramsForSavePlot = new ParamsForSavePlot(
+                    (bool)RadioButtonFindMin.IsChecked,
+                    TextBoxPythonInterpreter.Text.ToString().Trim());
+                worker.RunWorkerAsync(paramsForSavePlot);
+            }
+            catch (ArgumentNullException ex)
+            {
+                MessageBox.Show(String.Format("Please input correct parameters!\n{ex}"));
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show(String.Format("Please input correct parameters!\n{ex}", ex));
+            }
+            catch (OverflowException ex)
+            {
+                MessageBox.Show(String.Format("Please don't go beyond the limits\n{ex}", ex));
+            } 
+        }
+        
+
+        private void worker_SavePlots(object sender, DoWorkEventArgs e)
+        {
+            ParamsForSavePlot paramsForSavePlot = (ParamsForSavePlot)e.Argument;
+            var worker = sender as BackgroundWorker;
+
+            worker.ReportProgress(0);
             string scriptPython;
-            if (RadioButtonFindMin.IsChecked == true)
+            if (paramsForSavePlot.radioButtonChecked == true)
             {
                 scriptPython = @"CancerVolumePlot.py";
             }
@@ -209,7 +258,7 @@ namespace NotLinearCancerModel
             // Create Process start info
             var psi = new ProcessStartInfo();
 
-            string pathPython = TextBoxPythonInterpreter.Text.ToString().Trim();
+            string pathPython = paramsForSavePlot.pathPythonInterpreter.Trim();
             // checking current path to python interpreter
             if (pathPython == "Please, input your path to python interpreter" || pathPython == "")
             {
@@ -252,7 +301,20 @@ namespace NotLinearCancerModel
             {
                 MessageBox.Show($"There were some errors!\nErrors:\t{errors}");
             }
+            worker.ReportProgress(100);
         }
 
+
+        private void worker_RunWorkerComplited(object sender, RunWorkerCompletedEventArgs e)
+        {
+            MessageBox.Show("Done save plots!");
+            SavePlots.Content = "Save Plots";
+        }
+
+
+        private void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            SavePlots.Content = "Saving...";
+        }
     }
 }
