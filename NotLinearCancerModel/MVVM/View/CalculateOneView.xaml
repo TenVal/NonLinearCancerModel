@@ -160,8 +160,15 @@
 
             <ProgressBar
                 x:Name="ProgressBarCalculate"
-                Grid.Column="0" Grid.Row="3" Margin="10,4,0,4"/>
-            <TextBlock Grid.Row="3" Text="{Binding ElementName=ProgressBarCalculate, Path=Value, StringFormat={}{0:0}%}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                Grid.Column="0" Grid.Row="3" Margin="10,4,0,4"
+                Visibility="Collapsed"/>
+            <TextBlock 
+                x:Name="PercentProgressBarCalculate"
+                Grid.Row="3" 
+                Visibility="Collapsed"
+                Text="{Binding ElementName=ProgressBarCalculate, Path=Value, StringFormat={}{0:0}%}" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center" />
 
             <TextBox 
             x:Name="TextBoxLength" 

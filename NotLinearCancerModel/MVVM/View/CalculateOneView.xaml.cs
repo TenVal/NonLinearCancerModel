@@ -66,6 +66,8 @@ namespace NotLinearCancerModel.MVVM.View
 
         private void Calculate_Click(object sender, RoutedEventArgs e)
         {
+            PercentProgressBarCalculate.Visibility = Visibility.Visible;
+            ProgressBarCalculate.Visibility = Visibility.Visible;
             BackgroundWorker worker = new BackgroundWorker();
             worker.RunWorkerCompleted += worker_RunWorkerComplited;
             worker.WorkerReportsProgress = true;
@@ -170,6 +172,8 @@ namespace NotLinearCancerModel.MVVM.View
         private void worker_RunWorkerComplited(object sender, RunWorkerCompletedEventArgs e)
         {
             MessageBox.Show("Done Calculate!");
+            PercentProgressBarCalculate.Visibility = Visibility.Visible;
+            ProgressBarCalculate.Visibility = Visibility.Visible;
             ProgressBarCalculate.Value = 0;
         }
 

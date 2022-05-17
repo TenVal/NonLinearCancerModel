@@ -69,6 +69,8 @@ namespace NotLinearCancerModel.MVVM.View
 
         private void CalculateMin_Click(object sender, RoutedEventArgs e)
         {
+            PercentProgressBarCalculate.Visibility = Visibility.Visible;
+            ProgressBarCalculate.Visibility = Visibility.Visible;
             BackgroundWorker worker = new BackgroundWorker();
             worker.RunWorkerCompleted += workerMin_RunWorkerComplited;
             worker.WorkerReportsProgress = true;
@@ -92,6 +94,8 @@ namespace NotLinearCancerModel.MVVM.View
         private void workerMin_RunWorkerComplited(object sender, RunWorkerCompletedEventArgs e)
         {
             MessageBox.Show("Done Calculate min!");
+            PercentProgressBarCalculate.Visibility = Visibility.Collapsed;
+            ProgressBarCalculate.Visibility = Visibility.Collapsed;
             ProgressBarCalculate.Value = 0;
         }
 
@@ -108,7 +112,7 @@ namespace NotLinearCancerModel.MVVM.View
             DataCancer modelData = new DataCancer();
 
             int numberPatients = 10;
-            float valueOfDivision = 100 / numberPatients;
+            float valueOfDivisionProgressBar = 100 / numberPatients;
 
             float length = paramsCancer.length;
             float RightX = paramsCancer.RightX;
@@ -235,7 +239,7 @@ namespace NotLinearCancerModel.MVVM.View
                 float[] paramsForCancer = { requiredSpeed, d, k };
                 ActionDataFile.writeParametersToFile(type: "Volume", number: i, cancerParameters: requiredCancerValuesParameters);
 
-                worker.ReportProgress((i + 2) * (int)valueOfDivision, String.Format("Processing Iteration {0}", i + 2));
+                worker.ReportProgress((i + 2) * (int)valueOfDivisionProgressBar, String.Format("Processing Iteration {0}", i + 2));
             }
 
             worker.ReportProgress(100, "Done Calculate min!");
