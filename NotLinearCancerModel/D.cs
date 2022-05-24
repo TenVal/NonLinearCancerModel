@@ -24,9 +24,46 @@ namespace NotLinearCancerModel
             this.c = c;
         }
 
-        public float get(float x, float y, float z, float lenthX = 250, float lenthY = 250, float lenthZ = 250)
+        public float get(float x, float y, float z, float lengthX = 250, float lengthY = 250, float lengthZ = 250)
         {
-            return this.d;
+            float length = lengthX;
+            float resultD = this.d;
+            if (x > length / 2 && y > length / 2 && z > length / 2)
+            {
+                return resultD * 2;
+            }
+            else if (x > length / 2 && y > length / 2 && z < length / 2)
+            {
+                return resultD * 2;
+            }
+            else if (x > length / 2 && y < length / 2 && z > length / 2)
+            {
+                return resultD;
+            }
+            else if (x > length / 2 && y < length / 2 && z < length / 2)
+            {
+                return resultD / 2;
+            }
+            else if (x < length / 2 && y > length / 2 && z > length / 2)
+            {
+                return resultD;
+            }
+            else if (x < length / 2 && y > length / 2 && z < length / 2)
+            {
+                return resultD * 2;
+            }
+            else if (x < length / 2 && y < length / 2 && z > length / 2)
+            {
+                return resultD;
+            }
+            else if (x < length / 2 && y < length / 2 && z < length / 2)
+            {
+                return resultD;
+            }
+            else
+            {
+                return resultD;
+            }
         }
     }
 }

@@ -51,3 +51,4 @@ ax.set_xlabel('time (days)')
 ax.set_ylabel('volume (mL)')
 # plt.show()
 fig.savefig(f"../../../dataTumor/PredictData/Any/{type}/timeValue/img/{number}{type}.png")
+ 
