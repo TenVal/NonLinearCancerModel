@@ -154,7 +154,7 @@ namespace NotLinearCancerModel
 
                             // System.Diagnostics.Debug.WriteLine(valuesP2[i, j, k]);
                             // Counting the number of volume points in each time layer
-                            if (valuesP2[i, j, k] > 1)
+                            if (valuesP2[i, j, k] > 0)
                             {
                                 currentPoints++;
                             }
@@ -202,7 +202,7 @@ namespace NotLinearCancerModel
                 t += tau;
                 numberPointsVolume.Add(currentPoints);
                 tValues.Add(t);
-                if (t > tMax)
+                if (t > (tMax + tau))
                     break;
             }
             return 0;
