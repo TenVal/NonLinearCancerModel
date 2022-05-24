@@ -26,8 +26,10 @@ namespace NotLinearCancerModel
 
         public float get(float x, float y, float z, float lengthX = 250, float lengthY = 250, float lengthZ = 250)
         {
+            /*
             float length = lengthX;
             float resultD = this.d;
+            
             if (x > length / 2 && y > length / 2 && z > length / 2)
             {
                 return resultD * 2;
@@ -64,6 +66,8 @@ namespace NotLinearCancerModel
             {
                 return resultD;
             }
+            */
+            return this.d;
         }
     }
 }

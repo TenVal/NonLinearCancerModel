@@ -37,9 +37,10 @@ namespace NotLinearCancerModel
             {
                 float a = (float) 10e-1;
                 // result = 1 / (a * t);
+                result = (float)(Math.Log(x) + 1 / (x));
                 // result = (float)(-Math.Exp(-t) + 1);
                 //result = (float)(Math.Log(t + 1));
-                result = (float)(1/t);
+                //result = (float)(1 / t);
             }
             else
             {
