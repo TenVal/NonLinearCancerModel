@@ -154,6 +154,12 @@ namespace NotLinearCancerModel.MVVM.View
                 List<double[,,]> listAllValuesP = new List<double[,,]>();
                 List<float[]> listAllValuesT = new List<float[]>();
                 List<float[]> listAllValuesNumberPointsVolume = new List<float[]>();
+
+                float tStart = modelData.Patients[i]["Diameter"][0][0];
+                float tEnd = modelData.Patients[i]["Diameter"][0][modelData.Patients[i]["Diameter"][0].Count - 1];
+                tMax = tEnd - tStart;
+                //tMax = tEnd;
+                tMax /= 30;
                 do
                 {
                     // add to list every parameter
@@ -169,12 +175,6 @@ namespace NotLinearCancerModel.MVVM.View
 
                     D dF = new D(speedForFindMin, d);
                     diffusion = new MethodDiffusion(dF, c, q);
-
-                    float tStart = modelData.Patients[i]["Diameter"][0][0];
-                    float tEnd = modelData.Patients[i]["Diameter"][0][modelData.Patients[i]["Diameter"][0].Count - 1];
-                    tMax = tEnd - tStart;
-                    //tMax = tEnd;
-                    tMax /= 30;
 
                     double[,,] valuesP = new double[N, N, N];
                     diffusion.getValues(tMax, h, k, length, valuesP);
@@ -212,6 +212,10 @@ namespace NotLinearCancerModel.MVVM.View
                 Debug.WriteLine("cancerValuesParameters(Speed)\t" + cancerValuesParameters["Speed"].Count.ToString());
                 double[,,] requiredValuesP = listAllValuesP[indexMinDifference];
                 float[] requiredTValue = listAllValuesT[indexMinDifference];
+                for (int itemTValues = 0; itemTValues < requiredTValue.Length; itemTValues++)
+                {
+                    requiredTValue[itemTValues] = requiredTValue[itemTValues] + (tStart / 30);
+                }
                 float[] requiredNumberPointsVolume = listAllValuesNumberPointsVolume[indexMinDifference];
 
                 // prepare data about parameters of cancer for writing into files
