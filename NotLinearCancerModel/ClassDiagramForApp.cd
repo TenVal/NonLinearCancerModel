@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="NotLinearCancerModel.D">
+    <Position X="8.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>D.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NotLinearCancerModel.DataCancer">
+    <Position X="5.25" Y="0.75" Width="2" />
+    <AssociationLine Name="HomeView" Type="NotLinearCancerModel.MVVM.View.HomeView" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="5.25" Y="1.125" />
+        <Point X="0.625" Y="1.125" />
+        <Point X="0.625" Y="7.562" />
+        <Point X="1" Y="7.562" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.047" Y="-0.32" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="CalculateOneView" Type="NotLinearCancerModel.MVVM.View.CalculateOneView" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.25" Y="1.125" />
+        <Point X="9.875" Y="1.125" />
+        <Point X="9.875" Y="6.375" />
+        <Point X="9.5" Y="6.375" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>EAASAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAABAAA=</HashCode>
+      <FileName>DataCancer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="HomeView" />
+      <Property Name="CalculateOneView" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="NotLinearCancerModel.MethodDiffusion">
+    <Position X="4.5" Y="9.25" Width="2" />
+    <AssociationLine Name="HomeView" Type="NotLinearCancerModel.MVVM.View.HomeView" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.5" Y="9.75" />
+        <Point X="3.135" Y="9.75" />
+        <Point X="3.135" Y="8.261" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="CalculateOneView" Type="NotLinearCancerModel.MVVM.View.CalculateOneView" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.5" Y="9.812" />
+        <Point X="7.578" Y="9.812" />
+        <Point X="7.578" Y="8.454" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.474" Y="0.155" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>EAAQgAAAAQAAACAQBBAAAAAAAAAAAAAAAAAABAABAAA=</HashCode>
+      <FileName>MethodDiffusion.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_c" />
+      <Field Name="_q" />
+      <Field Name="_d" />
+      <Property Name="HomeView" />
+      <Property Name="CalculateOneView" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="NotLinearCancerModel.Q">
+    <Position X="4.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Q.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NotLinearCancerModel.C">
+    <Position X="0.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABCAAAAAAAABAAAAAIBAAAAAAAAgAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>C.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NotLinearCancerModel.ActionDataFile">
+    <Position X="1.25" Y="1.75" Width="2" />
+    <AssociationLine Name="CalculateOneView" Type="NotLinearCancerModel.MVVM.View.CalculateOneView" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3.25" Y="2.375" />
+        <Point X="5" Y="2.375" />
+        <Point X="5" Y="3.199" />
+        <Point X="8.844" Y="3.199" />
+        <Point X="8.844" Y="6" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.092" Y="2.407" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="HomeView" Type="NotLinearCancerModel.MVVM.View.HomeView" FixedFromPoint="true">
+      <Path>
+        <Point X="1.75" Y="3.623" />
+        <Point X="1.75" Y="6" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.031" Y="0.44" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="DataCancer" Type="NotLinearCancerModel.DataCancer" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="2.042" Y="1.75" />
+        <Point X="2.042" Y="1.5" />
+        <Point X="5.25" Y="1.5" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>EAAQAIAAAIAAAAAAAAAAAAAAQAAAAAgAAAABAQAAAAA=</HashCode>
+      <FileName>ActionDataFile.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CalculateOneView" />
+      <Property Name="HomeView" />
+      <Property Name="DataCancer" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="NotLinearCancerModel.MVVM.View.HomeView">
+    <Position X="1" Y="6" Width="2.5" />
+    <NestedTypes>
+      <Struct Name="NotLinearCancerModel.MVVM.View.HomeView.ParametersCancer" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>MVVM\View\HomeView.xaml.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <AssociationLine Name="MainViewModel" Type="NotLinearCancerModel.MVVM.ViewModel.MainViewModel" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3.5" Y="7.438" />
+        <Point X="3.75" Y="7.438" />
+        <Point X="3.75" Y="4.936" />
+        <Point X="4" Y="4.936" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAACAAAAAAAAAAAAADAAAAAAA=</HashCode>
+      <FileName>MVVM\View\HomeView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="MainViewModel" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NotLinearCancerModel.MVVM.View.CalculateOneView">
+    <Position X="7.25" Y="6" Width="2.25" />
+    <NestedTypes>
+      <Struct Name="NotLinearCancerModel.MVVM.View.CalculateOneView.ParametersCancerForOneCalculate" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>MVVM\View\CalculateOneView.xaml.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <AssociationLine Name="MainViewModel" Type="NotLinearCancerModel.MVVM.ViewModel.MainViewModel" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.25" Y="7.227" />
+        <Point X="6.875" Y="7.227" />
+        <Point X="6.875" Y="4.938" />
+        <Point X="6.25" Y="4.938" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAIgAABAAAAAAAACAAAAACAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>MVVM\View\CalculateOneView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="MainViewModel" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NotLinearCancerModel.App">
+    <Position X="13" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NotLinearCancerModel.MVVM.ViewModel.CalculateOneViewModel">
+    <Position X="11" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MVVM\ViewModel\CalculateOneViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NotLinearCancerModel.MVVM.ViewModel.HomeViewModel">
+    <Position X="12.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MVVM\ViewModel\HomeViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NotLinearCancerModel.MVVM.ViewModel.MainViewModel">
+    <Position X="4" Y="3.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAACAACEAAAAAAAAAECAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>MVVM\ViewModel\MainViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

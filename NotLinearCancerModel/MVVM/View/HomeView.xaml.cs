@@ -67,6 +67,14 @@ namespace NotLinearCancerModel.MVVM.View
             InitializeComponent();
         }
 
+        internal ViewModel.MainViewModel MainViewModel
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         private void CalculateMin_Click(object sender, RoutedEventArgs e)
         {
             PercentProgressBarCalculate.Visibility = Visibility.Visible;

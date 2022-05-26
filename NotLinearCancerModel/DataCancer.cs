@@ -25,6 +25,22 @@ namespace NotLinearCancerModel
             }
         }
 
+        public MVVM.View.HomeView HomeView
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public MVVM.View.CalculateOneView CalculateOneView
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         public DataCancer()
         {
             this._patients = new List<Dictionary<string, List<List<float>>>>();

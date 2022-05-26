@@ -35,6 +35,22 @@ namespace NotLinearCancerModel
             }
         }
 
+        public MVVM.View.HomeView HomeView
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public MVVM.View.CalculateOneView CalculateOneView
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         public MethodDiffusion(D d, C c, Q q)
         {
             this._tValues = new List<float>();

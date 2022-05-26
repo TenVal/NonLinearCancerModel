@@ -11,6 +11,30 @@ namespace NotLinearCancerModel
 {
     static class ActionDataFile
     {
+        public static MVVM.View.CalculateOneView CalculateOneView
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public static MVVM.View.HomeView HomeView
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        internal static DataCancer DataCancer
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         /// <summary>
         /// Actions to write, read and do everything with data in program and files
         /// </summary>
