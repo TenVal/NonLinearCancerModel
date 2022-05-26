@@ -87,12 +87,12 @@ for i in range(10):
              allTimeCancer["cancer"][i], 
              color = colors[i],
              linestyle = "-", 
-             label=f"Simulated data patient {i}")
+             label=f"Simulated data patient {i+1}")
     plt.plot(allExperimentalTimeCancer["time"][i], 
              allExperimentalTimeCancer["cancer"][i], 
              color = colors[i],
-             linestyle = ":", 
-             label=f"Experimental data patient {i}")
+             linestyle = "--",
+             label=f"Experimental data patient {i+1}")
 
 plt.legend()
 fig.suptitle(f"Time-Volume Dinamic for everu patient", fontsize=24)
