@@ -57,7 +57,7 @@
                 Width="160"
                 Height="40"
                 HorizontalAlignment="Left" 
-                Margin="250,531,0,0" 
+                Margin="250,530,0,0" 
                 Grid.Column="1" Grid.Row="1" 
                 VerticalAlignment="Top"
                 Background="#4e99ff"
@@ -81,6 +81,29 @@
                 </Button.Template>
             </Button>
 
+            <TextBox 
+                    x:Name="TextBoxPatientNumberPlot" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top"
+                    TextWrapping="Wrap"             
+                    Width="200"
+                    Grid.Column="1" 
+                    Grid.Row="1" 
+                    Grid.ColumnSpan="2"
+                    Margin="575,530,0,0"
+                    Background="#FF353340" Foreground="White"/>
+
+            <Label 
+                    x:Name="LabelPatientNumberPlot" 
+                    Content="Patient Number Plot" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top"
+                    Margin="618,546,0,0"
+                    Grid.Column="1" 
+                    Grid.Row="1" 
+                    Grid.ColumnSpan="2"
+                    Foreground="White"/>
+
             <Button x:Name="ButtonShowTotal"
                     Content="Show total data about&#xD;&#xA;        every patient" 
                     Width="150"
@@ -88,7 +111,7 @@
                     Grid.Column="1" 
                     Grid.Row="1" 
                     HorizontalAlignment="Left" 
-                    Margin="20,531,0,0" 
+                    Margin="20,530,0,0" 
                     Background="#4e99ff"
                     Foreground="White"                   
                     VerticalAlignment="Top" Click="ButtonShowTotal_Click"/>
@@ -107,7 +130,7 @@
                 Width="160"
                 Height="40"
                 HorizontalAlignment="Left" 
-                Margin="250,531,0,0" 
+                Margin="250,530,0,0" 
                 Grid.Column="2"  Grid.Row="1" 
                 VerticalAlignment="Top"
                 Background="#4e99ff"
@@ -159,25 +182,10 @@
                     Grid.Column="2" Grid.Row="2"
                     Background="#4e99ff"
                     Foreground="White"/>
-                    <TextBox 
-                    x:Name="TextBoxPatientNumberPlot" 
-                    HorizontalAlignment="Left" 
-                    VerticalAlignment="Center"
-                    TextWrapping="Wrap"             
-                    Width="200"
-                    Margin="20, 0, 0, 0"
-                    Grid.Column="3" Grid.Row="2" Background="#FF353340" Foreground="White"/>
+
 
                 </StackPanel>
 
-                <Label 
-                    x:Name="LabelPatientNumberPlot" 
-                    Content="Patient Number Plot" 
-                    HorizontalAlignment="Left" 
-                    VerticalAlignment="Center"
-                    Margin="190, 0, 0, 0"
-                    Grid.Column="3" Grid.Row="3"
-                    Foreground="White"/>
             </StackPanel>
 
 

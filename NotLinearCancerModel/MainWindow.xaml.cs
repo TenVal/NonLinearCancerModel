@@ -199,6 +199,7 @@ namespace NotLinearCancerModel
             TextBoxPatientNumberPlot.Text = "";
             TextBoxPatientNumberPlot.IsReadOnly = false;
             TextBoxPatientNumberPlot.Visibility = Visibility.Visible;
+            LabelPatientNumberPlot.Visibility = Visibility.Visible;
         }
 
 
