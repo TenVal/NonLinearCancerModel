@@ -61,9 +61,9 @@
       <FileName>MethodDiffusion.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
+      <Field Name="_d" />
       <Field Name="_c" />
       <Field Name="_q" />
-      <Field Name="_d" />
       <Property Name="HomeView" />
       <Property Name="CalculateOneView" />
     </ShowAsAssociation>
@@ -173,27 +173,6 @@
       <Property Name="MainViewModel" />
     </ShowAsAssociation>
     <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="NotLinearCancerModel.App">
-    <Position X="13" Y="3.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>App.xaml.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="NotLinearCancerModel.MVVM.ViewModel.CalculateOneViewModel">
-    <Position X="11" Y="2.5" Width="2" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>MVVM\ViewModel\CalculateOneViewModel.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="NotLinearCancerModel.MVVM.ViewModel.HomeViewModel">
-    <Position X="12.25" Y="1.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>MVVM\ViewModel\HomeViewModel.cs</FileName>
-    </TypeIdentifier>
   </Class>
   <Class Name="NotLinearCancerModel.MVVM.ViewModel.MainViewModel">
     <Position X="4" Y="3.5" Width="2.25" />
