@@ -316,5 +316,23 @@ namespace NotLinearCancerModel
         {
             SavePlots.Content = "Saving...";
         }
+
+        private void ButtonShowTotal_Click(object sender, RoutedEventArgs e)
+        {
+            string type = @"Volume";
+            string pathImg = @"..\..\..\dataTumor\PredictData\Total\" + type + @"\img\All.png";
+
+            textBoxCancerParameters.Text = "";
+
+            // Output images (plots)
+            BitmapImage bmp = new BitmapImage();
+            bmp.BeginInit();
+            bmp.UriSource = new Uri(pathImg, UriKind.Relative);
+            bmp.EndInit();
+
+            Image1.Stretch = Stretch.Fill;
+            Image1.Source = bmp;
+            Image2.Source = null;
+        }
     }
 }

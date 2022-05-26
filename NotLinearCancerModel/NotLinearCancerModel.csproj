@@ -29,6 +29,7 @@
     <None Remove="dataTumor\PredictData\PersonalPatients\Volume\timeValue\img\7Volume.png" />
     <None Remove="dataTumor\PredictData\PersonalPatients\Volume\timeValue\img\8Volume.png" />
     <None Remove="dataTumor\PredictData\PersonalPatients\Volume\timeValue\img\9Volume.png" />
+    <None Remove="dataTumor\PredictData\Total\Volume\img\All.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,7 +43,6 @@
     <Folder Include="dataTumor\PredictData\Any\Volume\txt\params\" />
     <Folder Include="dataTumor\PredictData\PersonalPatients\Diameter\" />
     <Folder Include="dataTumor\PredictData\Total\Diameter\" />
-    <Folder Include="dataTumor\PredictData\Total\Volume\" />
     <Folder Include="Fonts\" />
     <Folder Include="MVVM\Model\" />
     <Folder Include="Images\" />
@@ -74,31 +74,31 @@
   <ItemGroup>
     <Resource Include="dataTumor\PredictData\Any\Volume\timeValue\img\1Volume.png" />
     <Resource Include="dataTumor\PredictData\PersonalPatients\Volume\img\1Volume.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="dataTumor\PredictData\PersonalPatients\Volume\img\2Volume.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="dataTumor\PredictData\PersonalPatients\Volume\img\3Volume.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="dataTumor\PredictData\PersonalPatients\Volume\img\4Volume.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="dataTumor\PredictData\PersonalPatients\Volume\img\5Volume.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="dataTumor\PredictData\PersonalPatients\Volume\img\6Volume.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="dataTumor\PredictData\PersonalPatients\Volume\img\7Volume.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="dataTumor\PredictData\PersonalPatients\Volume\img\8Volume.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="dataTumor\PredictData\PersonalPatients\Volume\img\9Volume.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="dataTumor\PredictData\PersonalPatients\Volume\timeValue\img\10Volume.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
@@ -130,9 +130,15 @@
     <Resource Include="dataTumor\PredictData\PersonalPatients\Volume\timeValue\img\9Volume.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="dataTumor\PredictData\Total\Volume\img\All.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="dataTumor\PredictData\PersonalPatients\Volume\img\10Volume.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="OneCancerVolumePlot.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
