@@ -15,13 +15,13 @@ namespace NotLinearCancerModel
         /// <summary>
         /// Diffusion function
         /// </summary>
-        private float d;
-        private float c;
+        private float _d;
+        private float _c;
 
         public D(float d, float c)
         {
-            this.d = d;
-            this.c = c;
+            this._d = d;
+            this._c = c;
         }
 
         public float get(float x, float y, float z, float lengthX = 250, float lengthY = 250, float lengthZ = 250)
@@ -67,7 +67,7 @@ namespace NotLinearCancerModel
                 return resultD;
             }
             */
-            return this.d;
+            return this._d;
         }
     }
 }

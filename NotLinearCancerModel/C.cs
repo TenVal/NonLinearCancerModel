@@ -11,38 +11,38 @@ namespace NotLinearCancerModel
         /// <summary>
         /// Cancer rate function (module of speed, projections etc.)
         /// </summary>
-        private float module;
-        private float angleXY;
-        private float angleZ;
+        private float _module;
+        private float _angleXY;
+        private float _angleZ;
 
         public C(float module, float angleXY, float angleZ)
         {
-            this.module = module;
-            this.angleXY = angleXY;
-            this.angleZ = angleZ;
+            _module = module;
+            _angleXY = angleXY;
+            _angleZ = angleZ;
         }
 
         public float getModule(float x, float y, float z)
         {
             if (x > 0 && y > 0)
-                return this.module;
+                return this._module;
             else
-                return this.module;
+                return this._module;
         }
 
         public float getProjectionX(float x, float y, float z)
         {
-            return (float)(this.getModule(x, y, z) * Math.Cos(this.angleXY));
+            return (float)(this.getModule(x, y, z) * Math.Cos(this._angleXY));
         }
 
         public float getProjectionY(float x, float y, float z)
         {
-            return (float)(this.getModule(x, y, z) * Math.Sin(this.angleXY));
+            return (float)(this.getModule(x, y, z) * Math.Sin(this._angleXY));
         }
 
         public float getProjectionZ(float x, float y, float z)
         {
-            return (float)(this.getModule(x, y, z) * Math.Sin(this.angleZ));
+            return (float)(this.getModule(x, y, z) * Math.Sin(this._angleZ));
         }
     }
 }

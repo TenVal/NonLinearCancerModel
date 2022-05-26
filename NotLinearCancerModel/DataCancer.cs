@@ -15,22 +15,22 @@ namespace NotLinearCancerModel
         /// <summary>
         /// Patient data store from third-party data
         /// </summary>
-        private List<Dictionary<string, List<List<float>>>> patients;
+        private List<Dictionary<string, List<List<float>>>> _patients;
 
         public List<Dictionary<string, List<List<float>>>> Patients
         {
             get
             {
-                return patients;
+                return _patients;
             }
         }
 
         public DataCancer()
         {
-            this.patients = new List<Dictionary<string, List<List<float>>>>();
+            this._patients = new List<Dictionary<string, List<List<float>>>>();
             for (int i = 1; i < 11; i++)
             {
-                this.patients.Add(this.getPersonalDataCancer(i));
+                this._patients.Add(this.getPersonalDataCancer(i));
             }
         }
 

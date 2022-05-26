@@ -23,11 +23,11 @@ namespace NotLinearCancerModel
         /// <summary>
         /// Sources function
         /// </summary>
-        private float module;
+        private float _module;
 
         public Q(float module)
         {
-            this.module = module;
+            _module = module;
         }
 
         public float get(float x, float y, float z, float t)
