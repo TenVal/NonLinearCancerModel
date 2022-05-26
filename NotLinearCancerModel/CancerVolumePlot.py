@@ -12,14 +12,25 @@ from ActionDataFile import getExperimentalDataFromFile;
 # get the cancer dataset and plot
 type = "Volume"
 quantity = 10
+allTimeCancer = {"time" : [],
+                 "cancer" : []
+                 }
+allExperimentalTimeCancer = {"time" : [],
+                 "cancer" : []
+                 }
+
 for number in range(1, quantity + 1):
     timeCancer = getTimeValueFromFile(type, number)
     timeValues = timeCancer[0]
     cancerValues = timeCancer[1] 
+    allTimeCancer["time"].append(timeValues)
+    allTimeCancer["cancer"].append(cancerValues)
 
     experimentalData = getExperimentalDataFromFile(type, number)
     experimentalTimeValues = experimentalData[0]
     experimentalCancerValues = experimentalData[1]
+    allExperimentalTimeCancer["time"].append(experimentalTimeValues)
+    allExperimentalTimeCancer["cancer"].append(experimentalCancerValues)
 
     xyzc = getDataFromFile(type, number)
     x = xyzc[0]
@@ -61,3 +72,33 @@ for number in range(1, quantity + 1):
     ax.set_ylabel('volume (mL)')
     # plt.show()
     fig.savefig(f"../../../dataTumor/PredictData/PersonalPatients/{type}/timeValue/img/{number}{type}.png")
+plt.cla()
+plt.clf()
+plt.close()
+
+fig = plt.figure(figsize=(10, 10))
+ax = fig.add_subplot(111)
+colors = ["blue", "orange", "green", "red", "purple", "brown", "pink", "gray", "olive", "cyan"]
+for i in range(10):
+    #print(allTimeCancer["time"][i])
+    plt.plot(allTimeCancer["time"][i], 
+             allTimeCancer["cancer"][i], 
+             color = colors[i],
+             linestyle = "-", 
+             label=f"Simulated data patient {i}")
+    plt.plot(allExperimentalTimeCancer["time"][i], 
+             allExperimentalTimeCancer["cancer"][i], 
+             color = colors[i],
+             linestyle = "--", 
+             label=f"Experimental data patient {i}")
+
+plt.legend()
+ax.set_title(f"Time-Volume Dinamic for everu patient")
+# ax.set_xlabel('time (days)')
+ax.set_xlabel('time (month)')
+ax.set_ylabel('volume (mL)')
+# plt.show()
+fig.savefig(f"../../../dataTumor/PredictData/Total/Volume/img/All.png")
+plt.cla()
+plt.clf()
+plt.close()
