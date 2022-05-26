@@ -219,12 +219,23 @@ namespace NotLinearCancerModel.MVVM.View
                 Debug.WriteLine("listAllValuesNumberPointsVolume\t" + listAllValuesNumberPointsVolume.Count.ToString());
                 Debug.WriteLine("cancerValuesParameters(Speed)\t" + cancerValuesParameters["Speed"].Count.ToString());
                 double[,,] requiredValuesP = listAllValuesP[indexMinDifference];
-                float[] requiredTValue = listAllValuesT[indexMinDifference];
+                float[] requiredTValue = listAllValuesT[indexMinDifference];              
+                float[] requiredNumberPointsVolume = listAllValuesNumberPointsVolume[indexMinDifference];
+
+                float differenceT = requiredTValue[0] - (tStart / 30);
                 for (int itemTValues = 0; itemTValues < requiredTValue.Length; itemTValues++)
                 {
-                    requiredTValue[itemTValues] = requiredTValue[itemTValues] + (tStart / 30);
+                    
+                    requiredTValue[itemTValues] = requiredTValue[itemTValues] - differenceT;
                 }
-                float[] requiredNumberPointsVolume = listAllValuesNumberPointsVolume[indexMinDifference];
+
+                float differencePoints = requiredNumberPointsVolume[0] - modelData.Patients[i]["Volume"][1][0];
+                for (int itemPointsValues = 0; itemPointsValues < requiredNumberPointsVolume.Length; itemPointsValues++)
+                {
+                    
+                    requiredNumberPointsVolume[itemPointsValues] = requiredNumberPointsVolume[itemPointsValues] - differencePoints;
+                }
+                
 
                 // prepare data about parameters of cancer for writing into files
                 Dictionary<string, float> requiredCancerValuesParameters = new Dictionary<string, float>()
@@ -251,7 +262,7 @@ namespace NotLinearCancerModel.MVVM.View
                 float[] paramsForCancer = { requiredSpeed, d, k };
                 ActionDataFile.writeParametersToFile(type: "Volume", number: i, cancerParameters: requiredCancerValuesParameters);
 
-                worker.ReportProgress((i + 2) * (int)valueOfDivisionProgressBar, String.Format("Processing Iteration {0}", i + 2));
+                worker.ReportProgress((i + 1) * (int)valueOfDivisionProgressBar, String.Format("Processing Iteration {0}", i + 1));
             }
 
             worker.ReportProgress(100, "Done Calculate min!");
