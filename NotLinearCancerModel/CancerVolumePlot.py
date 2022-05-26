@@ -78,7 +78,7 @@ plt.close()
 
 fig = plt.figure(figsize=(10, 10))
 ax = fig.add_subplot(111)
-colors = ["blue", "orange", "green", "red", "purple", "brown", "pink", "gray", "olive", "cyan"]
+colors = ["blue", "orange", "green", "red", "purple", "brown", "pink", "gray", "tan", "cyan"]
 for i in range(10):
     #print(allTimeCancer["time"][i])
     plt.plot(allTimeCancer["time"][i], 
@@ -89,7 +89,7 @@ for i in range(10):
     plt.plot(allExperimentalTimeCancer["time"][i], 
              allExperimentalTimeCancer["cancer"][i], 
              color = colors[i],
-             linestyle = "--", 
+             linestyle = ":", 
              label=f"Experimental data patient {i}")
 
 plt.legend()
