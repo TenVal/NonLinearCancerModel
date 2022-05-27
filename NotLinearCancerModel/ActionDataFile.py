@@ -118,9 +118,9 @@ def getTimeValueFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "../
                 valuesCancer.append(float((valuesString[1].replace(",", ".").strip())))
             except IndexError:
                 valuesCancer.append(0)
-        if len(valuesTime)>0: 
-            valuesTime.pop()
-            valuesCancer.pop()
+        # if len(valuesTime)>0: 
+        #     valuesTime.pop()
+        #     valuesCancer.pop()
         valuesTime2 = []
         valuesCancer2 = []
         for i in range(len(valuesTime)):
