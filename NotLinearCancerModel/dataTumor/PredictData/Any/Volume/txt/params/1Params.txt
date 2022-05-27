@@ -1,8 +1,8 @@
-Length	400
+Length	250
 H	10
 D	1E-11
-K	4
-Speed	13
+K	6
+Speed	11
 AngleXY	30
 AngleZ	30
 TMax	300

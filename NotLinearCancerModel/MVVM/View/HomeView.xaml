@@ -212,7 +212,7 @@
             Grid.Column="4" Grid.Row="2" Background="#FF353340" Foreground="White"/>
             <Label 
             x:Name="LabelTMax" 
-            Content="Time (days)" 
+            Content="Time" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Center" 
             Margin="20, 0, 0, 0"
