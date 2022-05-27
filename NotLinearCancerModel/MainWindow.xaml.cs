@@ -214,6 +214,9 @@ namespace NotLinearCancerModel
 
         private void SavePlots_Click(object sender, RoutedEventArgs e)
         {
+            SavePlots.Content = "Saving...";
+            SavePlots.IsEnabled = false;
+
             BackgroundWorker worker = new BackgroundWorker();
             worker.RunWorkerCompleted += worker_RunWorkerComplited;
             worker.WorkerReportsProgress = true;
@@ -310,6 +313,7 @@ namespace NotLinearCancerModel
         private void worker_RunWorkerComplited(object sender, RunWorkerCompletedEventArgs e)
         {
             SavePlots.Content = "Save Plots";
+            SavePlots.IsEnabled = true;
         }
 
 

@@ -76,6 +76,8 @@ namespace NotLinearCancerModel.MVVM.View
         {
             PercentProgressBarCalculate.Visibility = Visibility.Visible;
             ProgressBarCalculate.Visibility = Visibility.Visible;
+            Calculate.Content = "Calculate...";
+            Calculate.IsEnabled = false;
             BackgroundWorker worker = new BackgroundWorker();
             worker.RunWorkerCompleted += worker_RunWorkerComplited;
             worker.WorkerReportsProgress = true;
@@ -180,6 +182,8 @@ namespace NotLinearCancerModel.MVVM.View
         private void worker_RunWorkerComplited(object sender, RunWorkerCompletedEventArgs e)
         {
             MessageBox.Show("Done Calculate!");
+            Calculate.Content = "Calculate";
+            Calculate.IsEnabled = true;
             PercentProgressBarCalculate.Visibility = Visibility.Collapsed;
             ProgressBarCalculate.Visibility = Visibility.Collapsed;
             ProgressBarCalculate.Value = 0;

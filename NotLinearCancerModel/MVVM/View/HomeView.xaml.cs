@@ -79,9 +79,12 @@ namespace NotLinearCancerModel.MVVM.View
         {
             PercentProgressBarCalculate.Visibility = Visibility.Visible;
             ProgressBarCalculate.Visibility = Visibility.Visible;
+            CalculateMin.Content = "Calculate...";
+            
             BackgroundWorker worker = new BackgroundWorker();
             worker.RunWorkerCompleted += workerMin_RunWorkerComplited;
             worker.WorkerReportsProgress = true;
+            CalculateMin.IsEnabled = false;
             worker.DoWork += workerMin_Calculate;
             worker.ProgressChanged += workerMin_ProgressChanged;
 
@@ -102,6 +105,8 @@ namespace NotLinearCancerModel.MVVM.View
         private void workerMin_RunWorkerComplited(object sender, RunWorkerCompletedEventArgs e)
         {
             MessageBox.Show("Done Calculate min!");
+            CalculateMin.Content = "Find min";
+            CalculateMin.IsEnabled = true;
             PercentProgressBarCalculate.Visibility = Visibility.Collapsed;
             ProgressBarCalculate.Visibility = Visibility.Collapsed;
             ProgressBarCalculate.Value = 0;
