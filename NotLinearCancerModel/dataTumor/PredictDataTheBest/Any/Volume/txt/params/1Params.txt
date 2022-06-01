@@ -1,0 +1,8 @@
+Length	250
+H	10
+D	1E-11
+K	6
+Speed	11
+AngleXY	30
+AngleZ	30
+TMax	300
