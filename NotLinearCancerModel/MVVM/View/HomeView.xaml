@@ -202,22 +202,20 @@
             Foreground="White"/>
 
             <TextBox 
-            x:Name="TextBoxTMax" 
+            x:Name="TextBoxAlpha" 
             HorizontalAlignment="Left"
             VerticalAlignment="Center" 
-            Text="300" 
+            Text="1" 
             TextWrapping="Wrap"             
             Width="120" 
             Margin="20, 0, 0, 0"
-            Visibility="Collapsed"
             Grid.Column="4" Grid.Row="2" Background="#FF353340" Foreground="White"/>
             <Label 
-            x:Name="LabelTMax" 
-            Content="Time" 
+            x:Name="LabelAlpha" 
+            Content="Resistance" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Center" 
             Margin="20, 0, 0, 0"
-            Visibility="Collapsed"
             Grid.Column="4" Grid.Row="3"
             Foreground="White"/>
             
