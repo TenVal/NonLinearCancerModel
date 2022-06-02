@@ -115,7 +115,7 @@ def getTimeValueFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "../
                 valuesTime.append(0)
             try:
                 # valuesCancer.append(stepX * stepX * stepX * float(valuesString[1].replace(",", ".")))
-                valuesCancer.append(float((valuesString[1].replace(",", ".").strip())))
+                valuesCancer.append(float((valuesString[1].replace(",", ".").strip())) / 1000)
             except IndexError:
                 valuesCancer.append(0)
         # if len(valuesTime)>0: 
@@ -170,7 +170,7 @@ def getExperimentalDataFromFile(type, number, stepX=10, stepY=10, stepZ=10, path
             valuesString = line.split()
 
             try:
-                valuesTime.append(float((valuesString[0].replace(",", ".")).strip()) / 30)
+                valuesTime.append(float((valuesString[0].replace(",", ".")).strip()))
             except IndexError:
                 valuesTime.append(0)
             try:
