@@ -205,7 +205,7 @@ namespace NotLinearCancerModel.MVVM.View
 
                     // find difference between modelData and diffusionModelData and add to list
                     cancerValuesParameters["Difference"].Add(Math.Abs(
-                        diffusion.NumberPointsVolume[diffusion.NumberPointsVolume.Count - 1] -
+                        diffusion.NumberPointsVolume[diffusion.NumberPointsVolume.Count - 1] / 1000 -
                         modelData.Patients[i]["Volume"][1][modelData.Patients[i]["Volume"][1].Count - 1]));
 
                     speedForFindMin += stepAccuracy;
