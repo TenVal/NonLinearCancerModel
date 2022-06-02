@@ -35,6 +35,7 @@ namespace NotLinearCancerModel.MVVM.View
             public float speed;
             public float angleXY;
             public float angleZ;
+            public float resistance;
 
             public ParametersCancer(
                 float length,
@@ -46,7 +47,8 @@ namespace NotLinearCancerModel.MVVM.View
                 float stepAccuracy,
                 float speed,
                 float angleXY,
-                float angleZ)
+                float angleZ,
+                float resistance)
             {
                 this.length = length;
                 this.RightX = RightX;
@@ -58,6 +60,7 @@ namespace NotLinearCancerModel.MVVM.View
                 this.speed = speed;
                 this.angleXY = angleXY;
                 this.angleZ = angleZ;
+                this.resistance = resistance;
             }
         }
 
@@ -98,7 +101,8 @@ namespace NotLinearCancerModel.MVVM.View
                                     float.Parse(TextBoxStepAccuracy.Text),
                                     float.Parse(TextBoxSpeed.Text),
                                     float.Parse(TextBoxAngleXY.Text),
-                                        float.Parse(TextBoxAngleZ.Text));
+                                    float.Parse(TextBoxAngleZ.Text),
+                                    float.Parse(TextBoxAlpha.Text));
             worker.RunWorkerAsync(paramsCancer);
         }
 
@@ -137,6 +141,7 @@ namespace NotLinearCancerModel.MVVM.View
             float speed = paramsCancer.speed;
             float angleXY = paramsCancer.angleXY;
             float angleZ = paramsCancer.angleZ;
+            float alpha = paramsCancer.resistance;
             int N = (int)(length / h);
 
             float tMax;
@@ -162,6 +167,7 @@ namespace NotLinearCancerModel.MVVM.View
                     {"Speed" , new List<float>()},
                     {"AngleXY" , new List<float>() },
                     {"AngleZ" , new List<float>() },
+                    {"Resistance" , new List<float>() },
                     {"Difference" , new List<float>()},
                 };
                 List<double[,,]> listAllValuesP = new List<double[,,]>();
@@ -185,9 +191,10 @@ namespace NotLinearCancerModel.MVVM.View
                     cancerValuesParameters["Speed"].Add(speedForFindMin);
                     cancerValuesParameters["AngleXY"].Add(angleXY);
                     cancerValuesParameters["AngleZ"].Add(angleZ);
+                    cancerValuesParameters["Resistance"].Add(alpha);
 
                     D dF = new D(speedForFindMin, d);
-                    diffusion = new MethodDiffusion(dF, c, q);
+                    diffusion = new MethodDiffusion(dF, c, q, alpha);
 
                     double[,,] valuesP = new double[N, N, N];
                     diffusion.getValues(tMax, h, k, length, valuesP);
@@ -254,6 +261,7 @@ namespace NotLinearCancerModel.MVVM.View
                     {"Speed" , cancerValuesParameters["Speed"][indexMinDifference]},
                     {"AngleXY" , cancerValuesParameters["AngleXY"][indexMinDifference] },
                     {"AngleZ" , cancerValuesParameters["AngleZ"][indexMinDifference] },
+                    {"Alpha" , cancerValuesParameters["Resistance"][indexMinDifference] },
                     {"TMax" , tMax },
                     {"Difference" , cancerValuesParameters["Difference"][indexMinDifference]},
                 };

@@ -16,6 +16,7 @@ namespace NotLinearCancerModel
         private D _d;
         private C _c;
         private Q _q;
+        private float _alpha;
         private List<float> _tValues;
         private List<float> _numberPointsVolume;
 
@@ -51,13 +52,14 @@ namespace NotLinearCancerModel
             }
         }
 
-        public MethodDiffusion(D d, C c, Q q)
+        public MethodDiffusion(D d, C c, Q q, float alpha)
         {
             this._tValues = new List<float>();
             this._numberPointsVolume = new List<float>();
             this._d = d;
             this._c = c;
             this._q = q;
+            this._alpha = alpha;
         }
 
         public int getValues(float tMax, float h, float K, float length, double[,,] valuesP2)
@@ -163,10 +165,9 @@ namespace NotLinearCancerModel
                                                     _d.get(i * h, j * h, k * h, length) * (valuesP1[i, j, k] - valuesP1S4));
                             double S5 = (tau / (h * h)) * (K * (valuesP1[i, j, k + 1] - valuesP1[i, j, k]) - K * (valuesP1[i, j, k] - valuesP1S5));
                             // sources
-                            double S6 = this._q.get(i, j, k, t) * tau;
+                            double S6 = (this._q.get(i, j, k, t) - this._alpha * valuesP1[i, j, k]) * tau;
                             // Implementation of a finite difference scheme
-                            double alpha = 10e-12;
-                            valuesP2[i, j, k] = S1 - S2 + S3 + S4 + S5 + S6 - alpha * _d.get(i * h, j * h, k * h, length);
+                            valuesP2[i, j, k] = S1 - S2 + S3 + S4 + S5 + S6;
 
                             // System.Diagnostics.Debug.WriteLine(valuesP2[i, j, k]);
                             // Counting the number of volume points in each time layer

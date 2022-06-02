@@ -33,7 +33,9 @@ namespace NotLinearCancerModel.MVVM.View
             public float speed;
             public float angleXY;
             public float angleZ;
+            public float alpha;
             public float tMax;
+            
 
             public ParametersCancerForOneCalculate(
                 float length,
@@ -44,6 +46,7 @@ namespace NotLinearCancerModel.MVVM.View
                 float speed,
                 float angleXY,
                 float angleZ,
+                float alpha,
                 float tMax)
             {
                 this.length = length;
@@ -54,6 +57,7 @@ namespace NotLinearCancerModel.MVVM.View
                 this.speed = speed;
                 this.angleXY = angleXY;
                 this.angleZ = angleZ;
+                this.alpha = alpha;
                 this.tMax = tMax;
             }
         }
@@ -95,7 +99,8 @@ namespace NotLinearCancerModel.MVVM.View
                                     float.Parse(TextBoxSpeed.Text, CultureInfo.InvariantCulture),
                                     float.Parse(TextBoxAngleXY.Text, CultureInfo.InvariantCulture),
                                     float.Parse(TextBoxAngleZ.Text, CultureInfo.InvariantCulture),
-                                    float.Parse(TextBoxTMax.Text, CultureInfo.InvariantCulture));
+                                    float.Parse(TextBoxTMax.Text, CultureInfo.InvariantCulture),
+                                    float.Parse(TextBoxAlpha.Text, CultureInfo.InvariantCulture));
                 worker.RunWorkerAsync(paramsCancer);
             }
             catch (ArgumentNullException ex)
@@ -133,6 +138,7 @@ namespace NotLinearCancerModel.MVVM.View
             float speed = paramsCancer.speed;
             float angleXY = paramsCancer.angleXY;
             float angleZ = paramsCancer.angleZ;
+            float alpha = paramsCancer.alpha;
             float tMax = paramsCancer.tMax;
             string path = @"..\..\..\dataTumor\PredictData\Any\";
 
@@ -144,7 +150,7 @@ namespace NotLinearCancerModel.MVVM.View
 
             worker.ReportProgress(10, String.Format("Processing ..."));
 
-            MethodDiffusion diffusion = new MethodDiffusion(dF, c, q);
+            MethodDiffusion diffusion = new MethodDiffusion(dF, c, q, alpha);
 
             worker.ReportProgress(20, String.Format("Processing ..."));
             int N = (int)(length / h);

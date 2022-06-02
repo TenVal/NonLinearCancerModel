@@ -24,6 +24,7 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
 
             </Grid.ColumnDefinitions>
 
@@ -146,18 +147,37 @@
             TextWrapping="Wrap"            
             Width="120" 
             Margin="20, 0, 0, 0"
-            Grid.Column="5" Grid.Row="0" Background="#FF353340" Foreground="White"/>
+            Grid.Column="4" Grid.Row="0" Background="#FF353340" Foreground="White"/>
             <Label 
             x:Name="LabelK" 
             Content="K" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Center" 
             Margin="20, 0, 0, 0"
+            Grid.Column="4" Grid.Row="1"
+            Foreground="White"/>
+
+            <TextBox 
+            x:Name="TextBoxAlpha" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center" 
+            Text="0,6" 
+            TextWrapping="Wrap"            
+            Width="120" 
+            Margin="20, 0, 0, 0"
+            Grid.Column="5" Grid.Row="0" Background="#FF353340" Foreground="White"/>
+            <Label 
+            x:Name="LabelAlpha" 
+            Content="Alpha" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center" 
+            Margin="20, 0, 0, 0"
             Grid.Column="5" Grid.Row="1"
             Foreground="White"/>
             
-            
-          
+
+
+
             <ProgressBar
                 x:Name="ProgressBarCalculate"
                 Grid.Column="0" Grid.Row="3" Margin="10,4,0,4"
