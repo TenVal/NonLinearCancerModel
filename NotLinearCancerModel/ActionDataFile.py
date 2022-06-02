@@ -1,4 +1,6 @@
 import codecs
+import locale
+locale.setlocale(locale.LC_ALL, 'en_US')
 
 def writeTimeValueIntoFile(type, number, timeValue, path = "PredictData/PersonalPatients/"):
     path = path + str(type) + "/timeValue/txt/" + str(number) + str(type) + ".txt"
@@ -12,6 +14,26 @@ def writeDataIntoFile(type, number, xyzc, path = "PredictData/PersonalPatients/"
     with open(path, "w") as file:
         for i in range(len(xyzc[0])):
             file.write(f"{xyzc[0][i]}\t{xyzc[1][i]}\t{xyzc[2][i]}\t{xyzc[3][i]}\n".encode('utf-8').decode('utf-8'))
+
+
+def writeAccuracyIntoFile(type, number, relativeError, path="../../../dataTumor/PredictData/PersonalPatients/"):
+    
+    path = path + str(type) + "/txt/params/" + str(number) + "Params" + ".txt"
+    relativeError = str(relativeError).replace(".", ",")
+    # calculate line count
+    with open(path, "r") as file:
+        count = sum(1 for line in file if line.rstrip('\n'))  
+    # delete last line if it exists because there are relativeError 
+    if count > 11:
+        with open(path, 'r') as file:
+            lines = file.readlines()
+            lines = lines[:-1]
+
+        with open(path, 'w') as file:
+            file.writelines(lines)
+    with open(path, 'a') as file:
+        file.writelines("RelativeError\t{}".format(relativeError))
+    return "Ok"
 
 
 def getDataFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "../../../dataTumor/PredictData/PersonalPatients/"):
@@ -184,7 +206,7 @@ def getExperimentalDataFromFile(type, number, stepX=10, stepY=10, stepZ=10, path
 
 
 
-def compareData(type, number, experimentalData, modelData, stepX=10, stepY=10, stepZ=10, path = "../../../dataTumor/ExperimentalData/"):
+def compareData(experimentalData, modelData):
     """
     Get comparable data between
 
@@ -203,14 +225,18 @@ def compareData(type, number, experimentalData, modelData, stepX=10, stepY=10, s
     Array[time-values, volumeCancer-values]
     """
 
+    # print("\n{0}\t{1}\n".format(len(experimentalData[0]), len(modelData[0])))
     absoluteError = []
     relativeError = 0
     difference = []
     for i in range(len(experimentalData[0])):
-
-        for iLenModelData in range(len(modelData)):
+        indexMin = 0
+        difference = []
+        difference.clear()
+        for iLenModelData in range(len(modelData[0])):
             difference.append(abs(experimentalData[0][i] - modelData[0][iLenModelData]))
         indexMin = difference.index(min(difference))
         relativeError += abs(modelData[1][indexMin] - experimentalData[1][i]) / experimentalData[1][i]
-
+        
+        # print("index:{0}\tmodelX:{1}\texpX:{2}\tmodelY:{1}\texpY:{2}\n".format(indexMin, modelData[0][indexMin], experimentalData[0][i], modelData[1][indexMin], experimentalData[1][i]))
     return relativeError / len(experimentalData[0])

@@ -9,3 +9,4 @@ AngleXY	30
 AngleZ	30
 TMax	63,52941
 Difference	31,090126
+RelativeError	0,11924126553168132

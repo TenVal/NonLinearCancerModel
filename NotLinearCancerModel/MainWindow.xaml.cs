@@ -173,7 +173,7 @@ namespace NotLinearCancerModel
 
             foreach (var keyValueCancer in cancerParameters)
             {
-                textLabelParams += (keyValueCancer.Key + "\t\t");
+                textLabelParams += (keyValueCancer.Key + "\t");
                 textLabelParams += (keyValueCancer.Value.ToString() + "\n");
             }
             textBoxCancerParameters.Text = textLabelParams;

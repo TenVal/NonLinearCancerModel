@@ -5,10 +5,11 @@ from pylab import *
 
 from ActionDataFile import getDataFromFile
 from ActionDataFile import getTimeValueFromFile
-from ActionDataFile import getExperimentalDataFromFile;
+from ActionDataFile import getExperimentalDataFromFile
+from ActionDataFile import writeAccuracyIntoFile
+from ActionDataFile import compareData
 
   
-# temporarily absolute paths of files!!!!!!!!!!!!!!!!!!!!!
 # get the cancer dataset and plot
 type = "Volume"
 quantity = 10
@@ -38,14 +39,16 @@ for number in range(1, quantity + 1):
     y = xyzc[1]
     z = xyzc[2]
     c = xyzc[3]
+
+    # calculate relative Error
+    relativeError = compareData(experimentalData, timeCancer)
+    writeAccuracyIntoFile(type, number, relativeError)
   
     # creating figures
     fig = plt.figure(figsize=(10, 10))
     ax = fig.add_subplot(111, projection='3d')
     if number==10:
         print(f"{number}\n\n")
-    # for i in range(len(x)):
-    #     print(f"{x[i]}\t{y[i]}\t{z[i]}\t{c[i]}")
 
     # creating the cancer map (heatmap)
     img = ax.scatter(x, y, z, c, marker='o')
