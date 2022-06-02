@@ -172,7 +172,7 @@ namespace NotLinearCancerModel.MVVM.View
                 float tEnd = modelData.Patients[i]["Diameter"][0][modelData.Patients[i]["Diameter"][0].Count - 1];
                 tMax = tEnd - tStart;
                 //tMax = tEnd;
-                //tMax /= 30;
+                tMax /= 30;
                 do
                 {
                     // add to list every parameter
@@ -227,8 +227,8 @@ namespace NotLinearCancerModel.MVVM.View
                 float[] requiredTValue = listAllValuesT[indexMinDifference];              
                 float[] requiredNumberPointsVolume = listAllValuesNumberPointsVolume[indexMinDifference];
 
-                //float differenceT = requiredTValue[0] - (tStart / 30);
-                float differenceT = requiredTValue[0] - tStart;
+                float differenceT = requiredTValue[0] - (tStart / 30);
+                //float differenceT = requiredTValue[0] - tStart;
                 for (int itemTValues = 0; itemTValues < requiredTValue.Length; itemTValues++)
                 {
                     

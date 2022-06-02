@@ -67,7 +67,7 @@ for number in range(1, quantity + 1):
 
     fig.suptitle(f"{number}-patient Time-Volume Dinamic", fontsize=24)
     #plt.xlabel('time (month)', fontsize=22)
-    plt.xlabel('time (days)', fontsize=22)
+    plt.xlabel('time (month)', fontsize=22)
     plt.ylabel('volume (mL)', fontsize=22)
     plt.xticks(fontsize=20)
     plt.yticks(fontsize=20)
@@ -96,7 +96,7 @@ for i in range(10):
              label=f"Experimental data patient {i+1}")
 
 plt.legend()
-fig.suptitle(f"Time-Volume Dinamic for everu patient", fontsize=24)
+fig.suptitle(f"Time-Volume Dinamic for every patient", fontsize=24)
 #plt.xlabel('time (month)', fontsize=22)
 plt.xlabel('time (days)', fontsize=22)
 plt.ylabel('volume (mL)', fontsize=22)
