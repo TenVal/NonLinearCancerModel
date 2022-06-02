@@ -170,7 +170,8 @@ def getExperimentalDataFromFile(type, number, stepX=10, stepY=10, stepZ=10, path
             valuesString = line.split()
 
             try:
-                valuesTime.append(float((valuesString[0].replace(",", ".")).strip()))
+                valuesTime.append(float((valuesString[0].replace(",", ".")).strip()) / 30)
+                # valuesTime.append(float((valuesString[0].replace(",", ".")).strip()))
             except IndexError:
                 valuesTime.append(0)
             try:
@@ -180,3 +181,36 @@ def getExperimentalDataFromFile(type, number, stepX=10, stepY=10, stepZ=10, path
                 valuesCancer.append(0)
 
     return [valuesTime, valuesCancer]
+
+
+
+def compareData(type, number, experimentalData, modelData, stepX=10, stepY=10, stepZ=10, path = "../../../dataTumor/ExperimentalData/"):
+    """
+    Get comparable data between
+
+
+    Positional arguments:
+    type -- data type (Volume or Diameter)
+    number -- patient number
+
+    Keywords argiments:
+    stepX -- X-axis steep
+    stepY -- Y-axis steep
+    stepZ -- Z-axis steep
+    path -- path to directory file
+
+    Return:
+    Array[time-values, volumeCancer-values]
+    """
+
+    absoluteError = []
+    relativeError = 0
+    difference = []
+    for i in range(len(experimentalData[0])):
+
+        for iLenModelData in range(len(modelData)):
+            difference.append(abs(experimentalData[0][i] - modelData[0][iLenModelData]))
+        indexMin = difference.index(min(difference))
+        relativeError += abs(modelData[1][indexMin] - experimentalData[1][i]) / experimentalData[1][i]
+
+    return relativeError / len(experimentalData[0])

@@ -32,6 +32,12 @@ for number in range(1, quantity + 1):
     allExperimentalTimeCancer["time"].append(experimentalTimeValues)
     allExperimentalTimeCancer["cancer"].append(experimentalCancerValues)
 
+
+    
+    differencePoints = cancerValues[0] - experimentalCancerValues[0]
+    for i in range(len(cancerValues)):
+        cancerValues[i] = cancerValues[i] - differencePoints
+
     xyzc = getDataFromFile(type, number)
     x = xyzc[0]
     y = xyzc[1]

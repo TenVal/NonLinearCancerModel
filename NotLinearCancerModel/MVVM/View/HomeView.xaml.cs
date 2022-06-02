@@ -234,15 +234,15 @@ namespace NotLinearCancerModel.MVVM.View
                     
                     requiredTValue[itemTValues] = requiredTValue[itemTValues] - differenceT;
                 }
-
+                //now save mm
                 //float differencePoints = requiredNumberPointsVolume[0] - modelData.Patients[i]["Volume"][1][0];
-                float differencePoints = requiredNumberPointsVolume[0] - modelData.Patients[i]["Volume"][1][0];
+                /*float differencePoints = requiredNumberPointsVolume[0] - modelData.Patients[i]["Volume"][1][0];
                 for (int itemPointsValues = 0; itemPointsValues < requiredNumberPointsVolume.Length; itemPointsValues++)
                 {
-                    
+
                     requiredNumberPointsVolume[itemPointsValues] = requiredNumberPointsVolume[itemPointsValues] - differencePoints;
-                }
-                
+                }*/
+
 
                 // prepare data about parameters of cancer for writing into files
                 Dictionary<string, float> requiredCancerValuesParameters = new Dictionary<string, float>()
