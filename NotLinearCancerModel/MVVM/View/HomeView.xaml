@@ -101,7 +101,7 @@
             x:Name="TextBoxK" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Center" 
-            Text="0,6" 
+            Text="0,1" 
             TextWrapping="Wrap"            
             Width="120" 
             Margin="20, 0, 0, 0"
@@ -209,6 +209,7 @@
             TextWrapping="Wrap"             
             Width="120" 
             Margin="20, 0, 0, 0"
+            Visibility="Collapsed"
             Grid.Column="4" Grid.Row="2" Background="#FF353340" Foreground="White"/>
             <Label 
             x:Name="LabelTMax" 
@@ -216,6 +217,7 @@
             HorizontalAlignment="Left" 
             VerticalAlignment="Center" 
             Margin="20, 0, 0, 0"
+            Visibility="Collapsed"
             Grid.Column="4" Grid.Row="3"
             Foreground="White"/>
             
@@ -223,7 +225,7 @@
             x:Name="TextBoxStepAccuracy" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Center" 
-            Text="0,001" 
+            Text="0,01" 
             TextWrapping="Wrap" 
             Width="120" 
             Margin="20,0,0,0"

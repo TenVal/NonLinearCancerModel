@@ -228,7 +228,6 @@ namespace NotLinearCancerModel.MVVM.View
                 float[] requiredNumberPointsVolume = listAllValuesNumberPointsVolume[indexMinDifference];
 
                 float differenceT = requiredTValue[0] - (tStart / 30);
-                //float differenceT = requiredTValue[0] - tStart;
                 for (int itemTValues = 0; itemTValues < requiredTValue.Length; itemTValues++)
                 {
                     
@@ -236,11 +235,6 @@ namespace NotLinearCancerModel.MVVM.View
                 }
 
                 //now save ml
-                /*for (int itemPointsValues = 0; itemPointsValues < requiredNumberPointsVolume.Length; itemPointsValues++)
-                {
-                    requiredNumberPointsVolume[itemPointsValues] = requiredNumberPointsVolume[itemPointsValues] / 1000;
-                }*/
-                //float differencePoints = requiredNumberPointsVolume[0] - modelData.Patients[i]["Volume"][1][0];
                 float differencePoints = (requiredNumberPointsVolume[0] / 1000) - modelData.Patients[i]["Volume"][1][0];
                 for (int itemPointsValues = 0; itemPointsValues < requiredNumberPointsVolume.Length; itemPointsValues++)
                 {
