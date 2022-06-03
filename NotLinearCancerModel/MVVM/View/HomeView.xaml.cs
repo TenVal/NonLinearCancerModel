@@ -231,7 +231,7 @@ namespace NotLinearCancerModel.MVVM.View
                 Debug.WriteLine("listAllValuesNumberPointsVolume\t" + listAllValuesNumberPointsVolume.Count.ToString());
                 Debug.WriteLine("cancerValuesParameters(Speed)\t" + cancerValuesParameters["Speed"].Count.ToString());
                 double[,,] requiredValuesP = listAllValuesP[indexMinDifference];
-                float[] requiredTValue = listAllValuesT[indexMinDifference];              
+                float[] requiredTValue = listAllValuesT[indexMinDifference];
                 float[] requiredNumberPointsVolume = listAllValuesNumberPointsVolume[indexMinDifference];
 
                 float differenceT = requiredTValue[0] - (tStart / 30);

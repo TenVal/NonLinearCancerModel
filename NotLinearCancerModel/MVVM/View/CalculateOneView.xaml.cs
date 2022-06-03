@@ -161,6 +161,10 @@ namespace NotLinearCancerModel.MVVM.View
 
             float[] numberPointsVolume = new float[diffusion.NumberPointsVolume.Count];
             Array.Copy(diffusion.NumberPointsVolume.ToArray(), numberPointsVolume, numberPointsVolume.Length);
+            for (int itemPointsValues = 0; itemPointsValues < numberPointsVolume.Length; itemPointsValues++)
+            {
+                numberPointsVolume[itemPointsValues] = numberPointsVolume[itemPointsValues] / 1000;
+            }
             float[] tValues = new float[diffusion.TValues.Count];
             Array.Copy(diffusion.TValues.ToArray(), tValues, tValues.Length);
 
@@ -173,6 +177,7 @@ namespace NotLinearCancerModel.MVVM.View
                 {"Speed" , speed},
                 {"AngleXY" , angleXY },
                 {"AngleZ" , angleZ },
+                {"Alpha", alpha },
                 {"TMax" , tMax }
             };
 
