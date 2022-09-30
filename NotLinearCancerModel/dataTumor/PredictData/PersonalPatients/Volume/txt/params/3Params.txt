@@ -3,10 +3,11 @@ H	10
 D	1E-11
 K	0,1
 Accuracy	1,5
-StepAccuracy	0,001
-Speed	1,1240011
+StepAccuracy	0,01
+Speed	1,3699998
 AngleXY	30
 AngleZ	30
+Alpha	1
 TMax	74,11765
-Difference	1,0168991
-RelativeError	0,15437122852685173
+Difference	0,00289917
+RelativeError	0,08929985358215302
