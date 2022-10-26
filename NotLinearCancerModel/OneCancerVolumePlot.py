@@ -24,7 +24,7 @@ z = xyzc[2]
 c = xyzc[3]
   
 # creating figures
-fig = plt.figure(figsize=(10, 10))
+fig = plt.figure(figsize=(15, 10))
 ax = fig.add_subplot(111, projection='3d')
 
 # creating the cancer map (heatmap)

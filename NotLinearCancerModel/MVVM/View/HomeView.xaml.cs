@@ -135,6 +135,7 @@ namespace NotLinearCancerModel.MVVM.View
             float RightX = paramsCancer.RightX;
             float h = paramsCancer.h;
             float d = paramsCancer.d;
+            Debug.WriteLine("D\t" + d);
             float k = paramsCancer.k;
             float accuracy = paramsCancer.accuracy;
             float stepAccuracy = paramsCancer.stepAccuracy;
@@ -154,7 +155,6 @@ namespace NotLinearCancerModel.MVVM.View
             // Counting for everyone patient and find required by min difference between predict data and actual data
             for (int i = 0; i < numberPatients; i++)
             {
-
                 //Storage to keep data about matched value
                 Dictionary<string, List<float>> cancerValuesParameters = new Dictionary<string, List<float>>()
                 {
@@ -185,6 +185,7 @@ namespace NotLinearCancerModel.MVVM.View
                     cancerValuesParameters["Length"].Add(length);
                     cancerValuesParameters["H"].Add(h);
                     cancerValuesParameters["D"].Add(d);
+                    //Debug.WriteLine("add D\t" + d);
                     cancerValuesParameters["K"].Add(k);
                     cancerValuesParameters["Accuracy"].Add(accuracy);
                     cancerValuesParameters["StepAccuracy"].Add(stepAccuracy);
@@ -216,7 +217,6 @@ namespace NotLinearCancerModel.MVVM.View
                         modelData.Patients[i]["Volume"][1][modelData.Patients[i]["Volume"][1].Count - 1]));
 
                     speedForFindMin += stepAccuracy;
-
                 }
                 while (speedForFindMin <= accuracy);
 
@@ -237,16 +237,31 @@ namespace NotLinearCancerModel.MVVM.View
                 float differenceT = requiredTValue[0] - (tStart / 30);
                 for (int itemTValues = 0; itemTValues < requiredTValue.Length; itemTValues++)
                 {
-                    
                     requiredTValue[itemTValues] = requiredTValue[itemTValues] - differenceT;
                 }
+                Debug.WriteLine("requiredTValue\t" + requiredTValue[0].ToString() + "\ntStart\t" + tStart);
+
 
                 //now save ml
+                /*float differencePoints = Math.Abs((requiredNumberPointsVolume[0] / 1000) - modelData.Patients[i]["Volume"][1][0]);
+                for (int itemPointsValues = 0; itemPointsValues < requiredNumberPointsVolume.Length; itemPointsValues++)
+                {
+                    if (((requiredNumberPointsVolume[0] / 1000) - modelData.Patients[i]["Volume"][1][0]) > 0) {
+                        requiredNumberPointsVolume[itemPointsValues] = requiredNumberPointsVolume[itemPointsValues] / 1000 - differencePoints;
+                    }
+                    else
+                    {
+                        requiredNumberPointsVolume[itemPointsValues] = requiredNumberPointsVolume[itemPointsValues] / 1000 + differencePoints;
+                    }
+                }
+*/
                 float differencePoints = (requiredNumberPointsVolume[0] / 1000) - modelData.Patients[i]["Volume"][1][0];
                 for (int itemPointsValues = 0; itemPointsValues < requiredNumberPointsVolume.Length; itemPointsValues++)
                 {
                     requiredNumberPointsVolume[itemPointsValues] = requiredNumberPointsVolume[itemPointsValues] / 1000 - differencePoints;
                 }
+                Debug.WriteLine("requiredNumberPointsVolume\t" + requiredNumberPointsVolume[0].ToString() + "\nmodelData\t" + modelData.Patients[i]["Volume"][1][0].ToString());
+
 
 
                 // prepare data about parameters of cancer for writing into files

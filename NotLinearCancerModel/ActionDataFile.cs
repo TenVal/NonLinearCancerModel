@@ -157,7 +157,7 @@ namespace NotLinearCancerModel
         }
 
 
-        static public List<List<float>> getDataFromFile(string type, int number, string pathToFile = @"..\..\..\dataTumor\ModelData\personalPatients\poly3current\")
+        static public List<List<float>> getDataFromFile(string type, int number, string pathToFile = @"..\..\..\dataTumor\ExperimentalData\")
         {
             List<float> xValues = new List<float>();
             List<float> yValues = new List<float>();
@@ -166,8 +166,8 @@ namespace NotLinearCancerModel
                 xValues,
                 yValues
             };
-            pathToFile = pathToFile + type + @"\txt\" + number.ToString() + type + @".txt";
-            
+            //pathToFile = pathToFile + type + @"\txt\" + number.ToString() + type + @".txt";
+            pathToFile = pathToFile + type + @"\" + number.ToString() + type + @".txt";
             // Read the file and display it line by line.
             try
             {
