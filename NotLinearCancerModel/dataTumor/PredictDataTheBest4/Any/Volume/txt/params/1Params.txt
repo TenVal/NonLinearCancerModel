@@ -1,0 +1,9 @@
+Length	250
+H	10
+D	1E-11
+K	18
+Speed	1377013
+AngleXY	30
+AngleZ	30
+Alpha	9764706
+TMax	0

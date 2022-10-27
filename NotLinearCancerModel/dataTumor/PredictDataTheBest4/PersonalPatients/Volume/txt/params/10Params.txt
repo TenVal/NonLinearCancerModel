@@ -1,0 +1,13 @@
+Length	250
+H	10
+D	0,0006
+K	0,2
+Accuracy	4
+StepAccuracy	0,01
+Speed	3,9199991
+AngleXY	30
+AngleZ	30
+Alpha	1
+TMax	39,88235
+Difference	53,556328
+RelativeError	0,048163832237759004
