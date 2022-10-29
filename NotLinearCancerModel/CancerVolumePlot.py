@@ -55,10 +55,10 @@ for number in range(1, quantity + 1):
     plt.colorbar(img)
   
     # adding title and labels
-    ax.set_title("3D cancer map")
-    ax.set_xlabel('X-axis (mm)')
-    ax.set_ylabel('Y-axis (mm)')
-    ax.set_zlabel('Z-axis (mm)')
+    ax.set_title("3D моделирование опухоли")
+    ax.set_xlabel('X (мм)')
+    ax.set_ylabel('Y (мм)')
+    ax.set_zlabel('Z (мм)')
   
     # saving plot
     fig.savefig(f"../../../dataTumor/PredictData/PersonalPatients/{type}/img/{number}{type}.png")
@@ -69,10 +69,12 @@ for number in range(1, quantity + 1):
     fig = plt.figure(figsize=(10, 10))
     ax = fig.add_subplot(111)
 
-    fig.suptitle(f"{number}-patient Time-Volume Dinamic", fontsize=28)
+    #fig.suptitle(f"{number}-patient Time-Volume Dinamic", fontsize=28)
+    fig.suptitle(f"Динамика опухоли пациента {number}", fontsize=28)
     #plt.xlabel('time (month)', fontsize=22)
-    plt.xlabel('time (month)', fontsize=26)
-    plt.ylabel('volume (mL)', fontsize=26)
+    plt.xlabel('время (месяцы)', fontsize=26)
+    #plt.ylabel('volume (mL)', fontsize=26)
+    plt.ylabel('объем (mл)', fontsize=26)
     plt.xticks(fontsize=24)
     plt.yticks(fontsize=24)
     plt.plot(timeValues, cancerValues)
@@ -92,18 +94,23 @@ for i in range(10):
              allTimeCancer["cancer"][i], 
              color = colors[i],
              linestyle = "-", 
-             label=f"Simulated data patient {i+1}")
+             #label=f"Simulated data patient {i+1}")
+             label=f"Смоделированные данные пацента-{i+1}")
     plt.plot(allExperimentalTimeCancer["time"][i], 
              allExperimentalTimeCancer["cancer"][i], 
              color = colors[i],
              linestyle = "--",
-             label=f"Experimental data patient {i+1}")
+             #label=f"Experimental data patient {i+1}")
+             label=f"Клинические данные пацента-{i+1}")
 
 plt.legend()
-fig.suptitle(f"Time-Volume Dinamic for every patient", fontsize=24)
+#fig.suptitle(f"Time-Volume Dinamic for every patient", fontsize=24)
+fig.suptitle(f"Динамика опухоли всех пациентов", fontsize=24)
 #plt.xlabel('time (month)', fontsize=22)
-plt.xlabel('time (days)', fontsize=22)
-plt.ylabel('volume (mL)', fontsize=22)
+#plt.xlabel('time (days)', fontsize=22)
+plt.xlabel('время (месяцы)', fontsize=22)
+#plt.ylabel('volume (mL)', fontsize=22)
+plt.ylabel('объем (mл)', fontsize=22)
 plt.xticks(fontsize=20)
 plt.yticks(fontsize=20)
 # plt.show()
