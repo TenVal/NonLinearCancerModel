@@ -205,7 +205,7 @@ namespace NotLinearCancerModel.MVVM.View
                     diffusion = new MethodDiffusion(dF, c, q, alpha);
 
                     double[,,] valuesP = new double[N, N, N];
-                    diffusion.getValues(tMax, h, k, length, valuesP);
+                    diffusion.getValues(tMax, h, k, length, valuesP);      
 
                     // Data for time-volume plot
                     float[] numberPointsVolume = new float[diffusion.NumberPointsVolume.Count];
@@ -227,6 +227,7 @@ namespace NotLinearCancerModel.MVVM.View
                 }
                 while (speedForFindMin <= accuracy);
 
+                
                 speedForFindMin = speed;
                 // Find required speed and others parameters
                 float minDifference = cancerValuesParameters["Difference"].Min();
@@ -247,7 +248,6 @@ namespace NotLinearCancerModel.MVVM.View
                     requiredTValue[itemTValues] = requiredTValue[itemTValues] - differenceT;
                 }
                 Debug.WriteLine("requiredTValue\t" + requiredTValue[0].ToString() + "\ntStart\t" + tStart);
-
 
                 //now save ml
                 /*float differencePoints = Math.Abs((requiredNumberPointsVolume[0] / 1000) - modelData.Patients[i]["Volume"][1][0]);
@@ -270,7 +270,6 @@ namespace NotLinearCancerModel.MVVM.View
                 Debug.WriteLine("requiredNumberPointsVolume\t" + requiredNumberPointsVolume[0].ToString() + "\nmodelData\t" + modelData.Patients[i]["Volume"][1][0].ToString());
 
 
-
                 // prepare data about parameters of cancer for writing into files
                 Dictionary<string, float> requiredCancerValuesParameters = new Dictionary<string, float>()
                 {
@@ -284,7 +283,7 @@ namespace NotLinearCancerModel.MVVM.View
                     {"AngleXY" , cancerValuesParameters["AngleXY"][indexMinDifference] },
                     {"AngleZ" , cancerValuesParameters["AngleZ"][indexMinDifference] },
                     {"Alpha" , cancerValuesParameters["Resistance"][indexMinDifference] },
-                    {"TMax" , tMax },
+                    {"TMax" , requiredTValue.Last()},
                     {"Difference" , cancerValuesParameters["Difference"][indexMinDifference]},
                 };
 

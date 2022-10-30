@@ -103,8 +103,6 @@ namespace NotLinearCancerModel.MVVM.View
             }
             try
             {
-                Debug.WriteLine(String.Format("ParsValue - {0}", float.Parse(TextBoxSpeed.Text, CultureInfo.InvariantCulture)));
-                Debug.WriteLine(String.Format("ParsValue - {0}", float.Parse(TextBoxTMax.Text, CultureInfo.InvariantCulture)));
                 paramsCancer = new ParametersCancerForOneCalculate(
                                     float.Parse(TextBoxLength.Text),
                                     float.Parse(TextBoxLength.Text),
@@ -159,17 +157,6 @@ namespace NotLinearCancerModel.MVVM.View
             int numberPatient = paramsCancer.numberPatient;
             string path = @"..\..\..\dataTumor\PredictData\Any\";
 
-            Debug.WriteLine(String.Format("Value - {0}", paramsCancer.length));
-            Debug.WriteLine(String.Format("Value - {0}", paramsCancer.RightX));
-            Debug.WriteLine(String.Format("Value - {0}", paramsCancer.h));
-            Debug.WriteLine(String.Format("Value - {0}", paramsCancer.d));
-            Debug.WriteLine(String.Format("Value - {0}", paramsCancer.k));
-            Debug.WriteLine(String.Format("Value - {0}", paramsCancer.speed));
-            Debug.WriteLine(String.Format("Value - {0}", paramsCancer.angleXY));
-            Debug.WriteLine(String.Format("Value - {0}", paramsCancer.angleZ));
-            Debug.WriteLine(String.Format("Value - {0}", paramsCancer.alpha));
-            Debug.WriteLine(String.Format("Value - {0}", paramsCancer.tMax));
-            Debug.WriteLine(String.Format("Value - {0}", paramsCancer.numberPatient));
             C c = new C(speed, angleXY, angleZ);
             Q q = new Q(0);
             D dF = new D(speed, d);

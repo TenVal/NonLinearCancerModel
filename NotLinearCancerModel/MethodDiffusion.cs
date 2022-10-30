@@ -19,6 +19,7 @@ namespace NotLinearCancerModel
         private float _alpha;
         private List<float> _tValues;
         private List<float> _numberPointsVolume;
+        public float tMax = 0;
 
         public  List<float> TValues 
         {
@@ -71,6 +72,7 @@ namespace NotLinearCancerModel
             float t = 0;
 
             double[,,] valuesP1 = new double[N, N, N];
+            float tau = 0;
 
             while (true)
             {
@@ -85,7 +87,7 @@ namespace NotLinearCancerModel
                     minTau[1] = h / this._c.getProjectionY(0, 0, 0);
                     minTau[2] = h / this._c.getProjectionZ(0, 0, 0);
                 }
-                float tau = K * minTau.Min();
+                tau = K * minTau.Min();
                 for (int i = 0; i < (N - 1); i++)
                 {
                     for (int j = 0; j < (N - 1); j++)
@@ -223,6 +225,7 @@ namespace NotLinearCancerModel
                 if (t > (tMax + tau))
                     break;
             }
+            this.tMax = t - tau;
             return 0;
         }
     }
