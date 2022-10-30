@@ -35,7 +35,7 @@ namespace NotLinearCancerModel.MVVM.View
             public float angleZ;
             public float alpha;
             public float tMax;
-            
+            public int numberPatient;
 
             public ParametersCancerForOneCalculate(
                 float length,
@@ -47,7 +47,8 @@ namespace NotLinearCancerModel.MVVM.View
                 float angleXY,
                 float angleZ,
                 float alpha,
-                float tMax)
+                float tMax,
+                int numberPatient)
             {
                 this.length = length;
                 this.RightX = RightX;
@@ -59,6 +60,7 @@ namespace NotLinearCancerModel.MVVM.View
                 this.angleZ = angleZ;
                 this.alpha = alpha;
                 this.tMax = tMax;
+                this.numberPatient = numberPatient;
             }
         }
 
@@ -78,18 +80,28 @@ namespace NotLinearCancerModel.MVVM.View
 
         private void Calculate_Click(object sender, RoutedEventArgs e)
         {
+            /*change style pressed and calculated button*/
             PercentProgressBarCalculate.Visibility = Visibility.Visible;
             ProgressBarCalculate.Visibility = Visibility.Visible;
             Calculate.Content = "Calculate...";
+            SolidColorBrush brushForPressedButton = new SolidColorBrush(Colors.Black);
+            Calculate.Foreground = brushForPressedButton;
             Calculate.IsEnabled = false;
             BackgroundWorker worker = new BackgroundWorker();
             worker.RunWorkerCompleted += worker_RunWorkerComplited;
             worker.WorkerReportsProgress = true;
             worker.DoWork += worker_Calculate;
             worker.ProgressChanged += worker_ProgressChanged;
+
+            /*create structer to save parameters from input box*/
             ParametersCancerForOneCalculate paramsCancer;
-            try
+            int numberPatient = 0;
+            if (ComboBoxChoosePatient.SelectedItem != null)
             {
+                numberPatient = int.Parse(ComboBoxChoosePatient.Text, CultureInfo.InvariantCulture);
+            }
+            try
+                {
                 paramsCancer = new ParametersCancerForOneCalculate(
                                     float.Parse(TextBoxLength.Text, CultureInfo.InvariantCulture),
                                     float.Parse(TextBoxLength.Text, CultureInfo.InvariantCulture),
@@ -100,10 +112,11 @@ namespace NotLinearCancerModel.MVVM.View
                                     float.Parse(TextBoxAngleXY.Text, CultureInfo.InvariantCulture),
                                     float.Parse(TextBoxAngleZ.Text, CultureInfo.InvariantCulture),
                                     float.Parse(TextBoxTMax.Text, CultureInfo.InvariantCulture),
-                                    float.Parse(TextBoxAlpha.Text, CultureInfo.InvariantCulture));
+                                    float.Parse(TextBoxAlpha.Text, CultureInfo.InvariantCulture),
+                                    numberPatient);
                 worker.RunWorkerAsync(paramsCancer);
             }
-            catch (ArgumentNullException ex)
+                catch (ArgumentNullException ex)
             {
                 MessageBox.Show(String.Format("Please input correct parameters!\n{ex}", ex));
             }
@@ -140,6 +153,7 @@ namespace NotLinearCancerModel.MVVM.View
             float angleZ = paramsCancer.angleZ;
             float alpha = paramsCancer.alpha;
             float tMax = paramsCancer.tMax;
+            int numberPatient = paramsCancer.numberPatient;
             string path = @"..\..\..\dataTumor\PredictData\Any\";
 
             C c = new C(speed, angleXY, angleZ);
@@ -178,7 +192,8 @@ namespace NotLinearCancerModel.MVVM.View
                 {"AngleXY" , angleXY },
                 {"AngleZ" , angleZ },
                 {"Alpha", alpha },
-                {"TMax" , tMax }
+                {"TMax" , tMax },
+                {"numberPatient", numberPatient }
             };
 
             // write every data about modeling to files
@@ -197,6 +212,8 @@ namespace NotLinearCancerModel.MVVM.View
             Calculate.IsEnabled = true;
             PercentProgressBarCalculate.Visibility = Visibility.Collapsed;
             ProgressBarCalculate.Visibility = Visibility.Collapsed;
+            SolidColorBrush brushForPressedButton = new SolidColorBrush(Colors.White);
+            Calculate.Foreground = brushForPressedButton;
             ProgressBarCalculate.Value = 0;
         }
 
@@ -204,9 +221,10 @@ namespace NotLinearCancerModel.MVVM.View
         private void ImportParams_Click(object sender, RoutedEventArgs e)
         {
             int number = 1;
-            if (patientsList.SelectedItem != null)
+            string type = "Volume";
+            if (ComboBoxChoosePatient.SelectedItem != null)
             {
-                TextBlock selectedItem = (TextBlock)patientsList.SelectedItem;
+                TextBlock selectedItem = (TextBlock)ComboBoxChoosePatient.SelectedItem;
                 
                 try
                 {
@@ -214,32 +232,29 @@ namespace NotLinearCancerModel.MVVM.View
                 }
                 catch (System.NullReferenceException ex)
                 {
-                    patientsList.SelectedIndex = 0;
+                    ComboBoxChoosePatient.SelectedIndex = 0;
                     MessageBox.Show(String.Format("Please choose patient at the list!\n{ex}", ex));
                 }
+                string pathToRead = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\txt\params\" + number.ToString() + @"Params.txt";
+                Dictionary<string, float> cancerParams = ActionDataFile.getParametersFromFile(type, number, pathToRead);
+
+                foreach (var keyValue in cancerParams)
+                {
+                    Debug.WriteLine(String.Format("Key - {0} \t Value - {1}", keyValue.Key, keyValue.Value));
+                }
+                TextBoxLength.Text = cancerParams["Length"].ToString();
+                TextBoxH.Text = cancerParams["H"].ToString();
+                TextBoxD.Text = cancerParams["D"].ToString();
+                TextBoxK.Text = cancerParams["K"].ToString();
+                TextBoxSpeed.Text = cancerParams["Speed"].ToString();
+                TextBoxAngleXY.Text = cancerParams["AngleXY"].ToString();
+                TextBoxAngleZ.Text = cancerParams["AngleZ"].ToString();
+                TextBoxTMax.Text = cancerParams["TMax"].ToString();
             }
             else
             {
                 MessageBox.Show(String.Format("Please choose patient at the list!"));
-            }
-            
-            
-            string type = "Volume";
-            string pathToRead = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\txt\params\" + number.ToString() + @"Params.txt";
-            Dictionary<string, float> cancerParams = ActionDataFile.getParametersFromFile(type, number, pathToRead);
-
-            foreach(var keyValue in cancerParams)
-            {
-                Debug.WriteLine(String.Format("Key - {0} \t Value - {1}", keyValue.Key, keyValue.Value));
-            }
-            TextBoxLength.Text = cancerParams["Length"].ToString();
-            TextBoxH.Text = cancerParams["H"].ToString();
-            TextBoxD.Text = cancerParams["D"].ToString();
-            TextBoxK.Text = cancerParams["K"].ToString();
-            TextBoxSpeed.Text = cancerParams["Speed"].ToString();
-            TextBoxAngleXY.Text = cancerParams["AngleXY"].ToString();
-            TextBoxAngleZ.Text = cancerParams["AngleZ"].ToString();
-            TextBoxTMax.Text = cancerParams["TMax"].ToString();
+            }            
         }
     }
 }

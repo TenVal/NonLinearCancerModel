@@ -7,17 +7,18 @@ from ActionDataFile import getDataFromFile
 from ActionDataFile import getTimeValueFromFile
 
   
-# temporarily absolute paths of files!!!!!!!!!!!!!!!!!!!!!
-# get the cancer dataset and plot
+# get the new and old cancer dataset and plot
 type = "Volume"
 number = 1
 
-path1 = "D:/VolSU/НИР/ScienceArticle/NotLinearCancerModel/NotLinearCancerModel/dataTumor/PredictData/Any/"
-timeCancer = getTimeValueFromFile(type, number, path=path1)
-timeValues = timeCancer[0]
-cancerVolume = timeCancer[1]
+pathOld = 1;
+pathNew = f"../../../dataTumor/PredictData/Any/"
+timeCancerNew = getTimeValueFromFile(type, number, path=pathNew)
+timecancerOld = get
+timeValuesNew = timeCancerNew[0]
+cancerVolumeNew = timeCancerNew[1]
 
-xyzc = getDataFromFile(type, number, path=path1)
+xyzc = getDataFromFile(type, number, path=pathNew)
 x = xyzc[0]
 y = xyzc[1]
 z = xyzc[2]
@@ -43,13 +44,13 @@ ax.set_zlabel('Z (мм)')
   
 # saving plot
 fig.savefig(f"../../../dataTumor/PredictData/Any/{type}/img/{number}{type}.png")
-# print(type(timeValues))
-# print(type(cancerVolume))
+# print(type(timeValuesNew))
+# print(type(cancerVolumeNew))
 # plt.show()
 
 fig = plt.figure(figsize=(10, 10))
 ax = fig.add_subplot(111)
-plt.plot(timeValues, cancerVolume)
+plt.plot(timeValuesNew, cancerVolumeNew)
 ax.set_title("Динамика опухоли")
 ax.set_xlabel('время (месяцы)')
 ax.set_ylabel('объем (мл)')
