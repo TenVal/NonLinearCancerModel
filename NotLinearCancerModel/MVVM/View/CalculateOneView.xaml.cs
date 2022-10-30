@@ -112,8 +112,8 @@ namespace NotLinearCancerModel.MVVM.View
                                     float.Parse(TextBoxSpeed.Text),
                                     float.Parse(TextBoxAngleXY.Text),
                                     float.Parse(TextBoxAngleZ.Text),
-                                    float.Parse(TextBoxTMax.Text),
                                     float.Parse(TextBoxAlpha.Text),
+                                    float.Parse(TextBoxTMax.Text),
                                     numberPatient);
                 worker.RunWorkerAsync(paramsCancer);
             }
@@ -161,8 +161,6 @@ namespace NotLinearCancerModel.MVVM.View
             Q q = new Q(0);
             D dF = new D(speed, d);
 
-            int i = 0;
-
             worker.ReportProgress(10, String.Format("Processing ..."));
 
             MethodDiffusion diffusion = new MethodDiffusion(dF, c, q, alpha);
@@ -196,14 +194,18 @@ namespace NotLinearCancerModel.MVVM.View
                 {"TMax" , tMax },
                 {"numberPatient", numberPatient }
             };
+            foreach (var keyValue in CancerValuesParameters)
+            {
+                Debug.WriteLine(String.Format("2Import Key - {0} \t Value - {1}", keyValue.Key, keyValue.Value));
+            }
             // copy old data to compare predict and last in the future
             ActionDataFile.copyAllFiles(path + @"Volume\timeValue\txt");
             // write every data about modeling to files
-            ActionDataFile.writeDataToFile("Volume", i, valuesP, path);
+            ActionDataFile.writeDataToFile("Volume", numberPatient-1, valuesP, path);
             // Write time-value data to file
-            ActionDataFile.writeTimeValueToFile("Volume", i, tValues, numberPointsVolume, path);
+            ActionDataFile.writeTimeValueToFile("Volume", numberPatient-1, tValues, numberPointsVolume, path);
             // write params of modeling to file
-            ActionDataFile.writeParametersToFile(type: "Volume", number: i, cancerParameters: CancerValuesParameters, pathToSave: path);
+            ActionDataFile.writeParametersToFile(type: "Volume", number: numberPatient-1, cancerParameters: CancerValuesParameters, pathToSave: path);
             worker.ReportProgress(100, String.Format("Done Calculate!"));
         }
 

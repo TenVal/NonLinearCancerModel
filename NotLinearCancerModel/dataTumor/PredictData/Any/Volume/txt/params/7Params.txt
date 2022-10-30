@@ -1,0 +1,10 @@
+Length	250
+H	10
+D	1E-05
+K	0,1
+Speed	2,49
+AngleXY	30
+AngleZ	30
+Alpha	1
+TMax	51,367615
+numberPatient	7

@@ -7,4 +7,4 @@ AngleXY	30
 AngleZ	30
 Alpha	300
 TMax	1
-numberPatient	0
+numberPatient	5
