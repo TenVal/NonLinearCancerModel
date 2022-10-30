@@ -90,8 +90,10 @@ namespace NotLinearCancerModel.MVVM.View
             CalculateMin.IsEnabled = false;
             worker.DoWork += workerMin_Calculate;
             worker.ProgressChanged += workerMin_ProgressChanged;
-
-            ParametersCancer paramsCancer = new ParametersCancer(
+            
+            try
+            {
+                ParametersCancer paramsCancer = new ParametersCancer(
                                     float.Parse(TextBoxLength.Text),
                                     float.Parse(TextBoxLength.Text),
                                     float.Parse(TextBoxH.Text),
@@ -103,7 +105,12 @@ namespace NotLinearCancerModel.MVVM.View
                                     float.Parse(TextBoxAngleXY.Text),
                                     float.Parse(TextBoxAngleZ.Text),
                                     float.Parse(TextBoxAlpha.Text));
-            worker.RunWorkerAsync(paramsCancer);
+                worker.RunWorkerAsync(paramsCancer);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }   
         }
 
         private void workerMin_RunWorkerComplited(object sender, RunWorkerCompletedEventArgs e)

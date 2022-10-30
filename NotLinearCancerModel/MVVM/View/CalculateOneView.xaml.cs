@@ -102,22 +102,24 @@ namespace NotLinearCancerModel.MVVM.View
                 numberPatient = int.Parse(ComboBoxChoosePatient.Text, CultureInfo.InvariantCulture);
             }
             try
-                {
+            {
+                Debug.WriteLine(String.Format("ParsValue - {0}", float.Parse(TextBoxSpeed.Text, CultureInfo.InvariantCulture)));
+                Debug.WriteLine(String.Format("ParsValue - {0}", float.Parse(TextBoxTMax.Text, CultureInfo.InvariantCulture)));
                 paramsCancer = new ParametersCancerForOneCalculate(
-                                    float.Parse(TextBoxLength.Text, CultureInfo.InvariantCulture),
-                                    float.Parse(TextBoxLength.Text, CultureInfo.InvariantCulture),
-                                    float.Parse(TextBoxH.Text, CultureInfo.InvariantCulture),
-                                    float.Parse(TextBoxD.Text, CultureInfo.InvariantCulture),
-                                    float.Parse(TextBoxK.Text, CultureInfo.InvariantCulture),
-                                    float.Parse(TextBoxSpeed.Text, CultureInfo.InvariantCulture),
-                                    float.Parse(TextBoxAngleXY.Text, CultureInfo.InvariantCulture),
-                                    float.Parse(TextBoxAngleZ.Text, CultureInfo.InvariantCulture),
-                                    float.Parse(TextBoxTMax.Text, CultureInfo.InvariantCulture),
-                                    float.Parse(TextBoxAlpha.Text, CultureInfo.InvariantCulture),
+                                    float.Parse(TextBoxLength.Text),
+                                    float.Parse(TextBoxLength.Text),
+                                    float.Parse(TextBoxH.Text),
+                                    float.Parse(TextBoxD.Text),
+                                    float.Parse(TextBoxK.Text),
+                                    float.Parse(TextBoxSpeed.Text),
+                                    float.Parse(TextBoxAngleXY.Text),
+                                    float.Parse(TextBoxAngleZ.Text),
+                                    float.Parse(TextBoxTMax.Text),
+                                    float.Parse(TextBoxAlpha.Text),
                                     numberPatient);
                 worker.RunWorkerAsync(paramsCancer);
             }
-                catch (ArgumentNullException ex)
+            catch (ArgumentNullException ex)
             {
                 MessageBox.Show(String.Format("Please input correct parameters!\n{ex}", ex));
             }
@@ -156,7 +158,18 @@ namespace NotLinearCancerModel.MVVM.View
             float tMax = paramsCancer.tMax;
             int numberPatient = paramsCancer.numberPatient;
             string path = @"..\..\..\dataTumor\PredictData\Any\";
-            Debug.WriteLine(paramsCancer);
+
+            Debug.WriteLine(String.Format("Value - {0}", paramsCancer.length));
+            Debug.WriteLine(String.Format("Value - {0}", paramsCancer.RightX));
+            Debug.WriteLine(String.Format("Value - {0}", paramsCancer.h));
+            Debug.WriteLine(String.Format("Value - {0}", paramsCancer.d));
+            Debug.WriteLine(String.Format("Value - {0}", paramsCancer.k));
+            Debug.WriteLine(String.Format("Value - {0}", paramsCancer.speed));
+            Debug.WriteLine(String.Format("Value - {0}", paramsCancer.angleXY));
+            Debug.WriteLine(String.Format("Value - {0}", paramsCancer.angleZ));
+            Debug.WriteLine(String.Format("Value - {0}", paramsCancer.alpha));
+            Debug.WriteLine(String.Format("Value - {0}", paramsCancer.tMax));
+            Debug.WriteLine(String.Format("Value - {0}", paramsCancer.numberPatient));
             C c = new C(speed, angleXY, angleZ);
             Q q = new Q(0);
             D dF = new D(speed, d);
@@ -242,7 +255,7 @@ namespace NotLinearCancerModel.MVVM.View
 
                 foreach (var keyValue in cancerParams)
                 {
-                    Debug.WriteLine(String.Format("Key - {0} \t Value - {1}", keyValue.Key, keyValue.Value));
+                    Debug.WriteLine(String.Format("Import Key - {0} \t Value - {1}", keyValue.Key, keyValue.Value));
                 }
                 TextBoxLength.Text = cancerParams["Length"].ToString();
                 TextBoxH.Text = cancerParams["H"].ToString();
@@ -251,8 +264,8 @@ namespace NotLinearCancerModel.MVVM.View
                 TextBoxSpeed.Text = cancerParams["Speed"].ToString();
                 TextBoxAngleXY.Text = cancerParams["AngleXY"].ToString();
                 TextBoxAngleZ.Text = cancerParams["AngleZ"].ToString();
-                TextBoxTMax.Text = cancerParams["TMax"].ToString();
                 TextBoxAlpha.Text = cancerParams["Alpha"].ToString();
+                TextBoxTMax.Text = cancerParams["TMax"].ToString();
             }
             else
             {
