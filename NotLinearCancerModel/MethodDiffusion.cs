@@ -74,6 +74,7 @@ namespace NotLinearCancerModel
 
             while (true)
             {
+                currentPoints = 0;
                 float[] minTau = { h * h / (2 * _d.get(0, 0, 0, length)) + h / this._c.getProjectionX(0, 0, 0),
                                                  h * h / (2 * _d.get(0, 0, 0, length)) + h / this._c.getProjectionY(0, 0, 0),
                                                  h * h / (2 * _d.get(0, 0, 0, length)) + h / this._c.getProjectionZ(0, 0, 0)};
