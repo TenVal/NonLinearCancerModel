@@ -161,7 +161,7 @@
             x:Name="TextBoxAlpha" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Center" 
-            Text="0,6" 
+            Text="1" 
             TextWrapping="Wrap"            
             Width="120" 
             Margin="20, 0, 0, 0"

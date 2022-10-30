@@ -5,16 +5,18 @@ from pylab import *
 
 from ActionDataFile import getDataFromFile
 from ActionDataFile import getTimeValueFromFile
-
+from ActionDataFile import getExperimentalDataFromFile
+from ActionDataFile import writeAccuracyIntoFile
+from ActionDataFile import compareData
+from ActionDataFile import getParamsFromFile
+from ActionDataFile import findFileLastModification
   
 # get the new and old cancer dataset and plot
 type = "Volume"
-number = 1
 
-pathOld = 1;
-pathNew = f"../../../dataTumor/PredictData/Any/"
+pathNew = f"../../../dataTumor/PredictData/Any/{type}/txt/"
 timeCancerNew = getTimeValueFromFile(type, number, path=pathNew)
-timecancerOld = get
+
 timeValuesNew = timeCancerNew[0]
 cancerVolumeNew = timeCancerNew[1]
 
@@ -50,10 +52,25 @@ fig.savefig(f"../../../dataTumor/PredictData/Any/{type}/img/{number}{type}.png")
 
 fig = plt.figure(figsize=(10, 10))
 ax = fig.add_subplot(111)
+
 plt.plot(timeValuesNew, cancerVolumeNew)
+
+# check number patient to compare and last date of last file modification
+paramNumberPatient = getParamsFromFile(type)[1][-1]
+if paramNumberPatient != 0:   
+    #get last data to put it on plot to compare
+    pathOld = findFileLastModification(type, paramNumberPatient);
+    timecancerOld = getTimeValueFromFile(type, number, path=pathOld)
+    plt.plot(timecancerOld[0], timecancerOld[1], color="#964b00")
+    # get experimental data to put it on plot
+    experimentalData = getExperimentalDataFromFile(type, paramNumberPatient)
+    plt.scatter(experimentalData[0], experimentalData[1], c="red")
+    plt.legend()
+
 ax.set_title("Динамика опухоли")
 ax.set_xlabel('время (месяцы)')
 ax.set_ylabel('объем (мл)')
+plt.grid(True)
 # plt.show()
 fig.savefig(f"../../../dataTumor/PredictData/Any/{type}/timeValue/img/{number}{type}.png")
  

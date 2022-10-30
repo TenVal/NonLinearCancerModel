@@ -41,8 +41,8 @@ namespace NotLinearCancerModel
             Image1.Source = null;
             Image2.Source = null;
             numberPatientForOutputPlots = 1;
-            string pathImg1;
-            string pathImg2;
+            string pathImgVolume;
+            string pathImgTimeVolume;
             string pathParameters;
             string type = "Volume";
             if (RadioButtonFindMin.IsChecked == true)
@@ -55,15 +55,15 @@ namespace NotLinearCancerModel
                 {
                     MessageBox.Show($"Please, input correct data (number patient)!\n{ex}");
                 }
-                pathImg1 = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\img\" + numberPatientForOutputPlots.ToString() + type + @".png";
-                pathImg2 = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\timeValue\img\" + numberPatientForOutputPlots.ToString() + type + @".png";
+                pathImgVolume = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\img\" + numberPatientForOutputPlots.ToString() + type + @".png";
+                pathImgTimeVolume = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\timeValue\img\" + numberPatientForOutputPlots.ToString() + type + @".png";
                 pathParameters = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\txt\params\" + numberPatientForOutputPlots.ToString() + "Params.txt";
             }
             else
             {
                 numberPatientForOutputPlots = 1;
-                pathImg1 = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\img\" + numberPatientForOutputPlots.ToString() + type + @".png";
-                pathImg2 = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\timeValue\img\" + numberPatientForOutputPlots.ToString() + type + @".png";
+                pathImgVolume = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\img\" + numberPatientForOutputPlots.ToString() + type + @".png";
+                pathImgTimeVolume = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\timeValue\img\" + numberPatientForOutputPlots.ToString() + type + @".png";
                 pathParameters = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\txt\params\" + numberPatientForOutputPlots.ToString() + "Params.txt";
             }
             string textLabelParams = "Cancer\tParameters:\n";
@@ -77,25 +77,25 @@ namespace NotLinearCancerModel
             textBoxCancerParameters.Text = textLabelParams;
 
             // Output images (plots)
-            BitmapImage bmp1 = new BitmapImage();
-            bmp1.BeginInit();
-            bmp1.UriSource = new Uri(pathImg1, UriKind.Relative);
-            bmp1.EndInit();
-            BitmapImage bmp2 = new BitmapImage();
-            bmp2.BeginInit();
-            bmp2.UriSource = new Uri(pathImg2, UriKind.Relative);
-            bmp2.EndInit();
+            BitmapImage bmpVolume = new BitmapImage();
+            bmpVolume.BeginInit();
+            bmpVolume.UriSource = new Uri(pathImgVolume, UriKind.Relative);
+            bmpVolume.EndInit();
+            BitmapImage bmpTimeVolume = new BitmapImage();
+            bmpTimeVolume.BeginInit();
+            bmpTimeVolume.UriSource = new Uri(pathImgTimeVolume, UriKind.Relative);
+            bmpTimeVolume.EndInit();
             Image1.Stretch = Stretch.Fill;
-            Image1.Source = bmp1;
+            Image1.Source = bmpVolume;
             Image2.Stretch = Stretch.Fill;
-            Image2.Source = bmp2;
+            Image2.Source = bmpTimeVolume;
         }
 
 
         private void ButtonGoBackImg_Click(object sender, RoutedEventArgs e)
         {
-            string pathImg1;
-            string pathImg2;
+            string pathImgVolume;
+            string pathImgTimeVolume;
             string pathParameters;
             string type = "Volume";
             if (RadioButtonFindMin.IsChecked == true)
@@ -105,15 +105,15 @@ namespace NotLinearCancerModel
                 {
                     numberPatientForOutputPlots = 10;
                 }
-                pathImg1 = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\img\" + numberPatientForOutputPlots.ToString() + type + @".png";
-                pathImg2 = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\timeValue\img\" + numberPatientForOutputPlots.ToString() + type + @".png";
+                pathImgVolume = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\img\" + numberPatientForOutputPlots.ToString() + type + @".png";
+                pathImgTimeVolume = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\timeValue\img\" + numberPatientForOutputPlots.ToString() + type + @".png";
                 pathParameters = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\txt\params\" + numberPatientForOutputPlots.ToString() + "Params.txt";
             }
             else
             {
                 numberPatientForOutputPlots = 1;
-                pathImg1 = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\img\" + numberPatientForOutputPlots.ToString() + type + @".png";
-                pathImg2 = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\timeValue\img\" + numberPatientForOutputPlots.ToString() + type + @".png";
+                pathImgVolume = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\img\" + numberPatientForOutputPlots.ToString() + type + @".png";
+                pathImgTimeVolume = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\timeValue\img\" + numberPatientForOutputPlots.ToString() + type + @".png";
                 pathParameters = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\txt\params\" + numberPatientForOutputPlots.ToString() + "Params.txt";
             }
 
@@ -128,25 +128,25 @@ namespace NotLinearCancerModel
             textBoxCancerParameters.Text = textLabelParams;
 
             // Output images (plots)
-            BitmapImage bmp1 = new BitmapImage();
-            bmp1.BeginInit();
-            bmp1.UriSource = new Uri(pathImg1, UriKind.Relative);
-            bmp1.EndInit();
-            BitmapImage bmp2 = new BitmapImage();
-            bmp2.BeginInit();
-            bmp2.UriSource = new Uri(pathImg2, UriKind.Relative);
-            bmp2.EndInit();
+            BitmapImage bmpVolume = new BitmapImage();
+            bmpVolume.BeginInit();
+            bmpVolume.UriSource = new Uri(pathImgVolume, UriKind.Relative);
+            bmpVolume.EndInit();
+            BitmapImage bmpTimeVolume = new BitmapImage();
+            bmpTimeVolume.BeginInit();
+            bmpTimeVolume.UriSource = new Uri(pathImgTimeVolume, UriKind.Relative);
+            bmpTimeVolume.EndInit();
             Image1.Stretch = Stretch.Fill;
-            Image1.Source = bmp1;
+            Image1.Source = bmpVolume;
             Image2.Stretch = Stretch.Fill;
-            Image2.Source = bmp2;
+            Image2.Source = bmpTimeVolume;
         }
 
 
         private void ButtonGoNextImg_Click(object sender, RoutedEventArgs e)
         {
-            string pathImg1;
-            string pathImg2;
+            string pathImgVolume;
+            string pathImgTimeVolume;
             string pathParameters;
             string type = "Volume";
             if (RadioButtonFindMin.IsChecked == true)
@@ -156,15 +156,15 @@ namespace NotLinearCancerModel
                 {
                     numberPatientForOutputPlots = 1;
                 }
-                pathImg1 = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\img\" + numberPatientForOutputPlots.ToString() + type + @".png";
-                pathImg2 = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\timeValue\img\" + numberPatientForOutputPlots.ToString() + type + @".png";
+                pathImgVolume = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\img\" + numberPatientForOutputPlots.ToString() + type + @".png";
+                pathImgTimeVolume = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\timeValue\img\" + numberPatientForOutputPlots.ToString() + type + @".png";
                 pathParameters = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\txt\params\" + numberPatientForOutputPlots.ToString() + "Params.txt";
             }
             else
             {
                 numberPatientForOutputPlots = 1;
-                pathImg1 = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\img\" + numberPatientForOutputPlots.ToString() + type + @".png";
-                pathImg2 = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\timeValue\img\" + numberPatientForOutputPlots.ToString() + type + @".png";
+                pathImgVolume = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\img\" + numberPatientForOutputPlots.ToString() + type + @".png";
+                pathImgTimeVolume = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\timeValue\img\" + numberPatientForOutputPlots.ToString() + type + @".png";
                 pathParameters = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\txt\params\" + numberPatientForOutputPlots.ToString() + "Params.txt";
             }
 
@@ -179,18 +179,18 @@ namespace NotLinearCancerModel
             textBoxCancerParameters.Text = textLabelParams;
 
             // Output images (plots)
-            BitmapImage bmp1 = new BitmapImage();
-            bmp1.BeginInit();
-            bmp1.UriSource = new Uri(pathImg1, UriKind.Relative);
-            bmp1.EndInit();
-            BitmapImage bmp2 = new BitmapImage();
-            bmp2.BeginInit();
-            bmp2.UriSource = new Uri(pathImg2, UriKind.Relative);
-            bmp2.EndInit();
+            BitmapImage bmpVolume = new BitmapImage();
+            bmpVolume.BeginInit();
+            bmpVolume.UriSource = new Uri(pathImgVolume, UriKind.Relative);
+            bmpVolume.EndInit();
+            BitmapImage bmpTimeVolume = new BitmapImage();
+            bmpTimeVolume.BeginInit();
+            bmpTimeVolume.UriSource = new Uri(pathImgTimeVolume, UriKind.Relative);
+            bmpTimeVolume.EndInit();
             Image1.Stretch = Stretch.Fill;
-            Image1.Source = bmp1;
+            Image1.Source = bmpVolume;
             Image2.Stretch = Stretch.Fill;
-            Image2.Source = bmp2;
+            Image2.Source = bmpTimeVolume;
         }
 
 

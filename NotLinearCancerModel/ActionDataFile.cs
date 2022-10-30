@@ -244,5 +244,23 @@ namespace NotLinearCancerModel
             }
             return cancerParameters;
         }
+
+        static public string copyAllFiles(string path)
+        {
+            try
+            {
+                DirectoryInfo dirInfo = new DirectoryInfo(path);
+                foreach (FileInfo file in dirInfo.GetFiles("*Volume.txt*"))
+                {
+                    File.Copy(file.FullName, file.FullName.TrimEnd(new char[] { '.', 't', 'x'}) + "Old.txt", true);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"{ex}");
+                Console.WriteLine($"{ex}");
+            }
+            return "Ok";
+        }
     }
 }

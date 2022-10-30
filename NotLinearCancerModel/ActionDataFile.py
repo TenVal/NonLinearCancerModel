@@ -1,6 +1,11 @@
 import codecs
 import locale
+from os.path import getctime
+from os.path import getmtime
+from datetime import datetime as dt
+
 locale.setlocale(locale.LC_ALL, 'en_US')
+
 
 def writeTimeValueIntoFile(type, number, timeValue, path = "PredictData/PersonalPatients/"):
     path = path + str(type) + "/timeValue/txt/" + str(number) + str(type) + ".txt"
@@ -204,7 +209,68 @@ def getExperimentalDataFromFile(type, number, stepX=10, stepY=10, stepZ=10, path
 
     return [valuesTime, valuesCancer]
 
+def getParamsFromFile(type, stepX=10, stepY=10, stepZ=10, path="../../../dataTumor/PredictData/PersonalPatients/"):
+    """
+    Get params data about patient from file
 
+
+    Positional arguments:
+    type -- data type (Volume or Diameter)
+    number -- patient number
+
+    Keywords argiments:
+    stepX -- X-axis steep
+    stepY -- Y-axis steep
+    stepZ -- Z-axis steep
+    path -- path to directory file
+
+    Return:
+    Array[paramsName, paramsValues]
+    """
+    path = path + str(type) + "/txt/params/" + str(number) + "Params" + ".txt"
+    paramsName = []
+    paramsValues = []
+    with open(path, "r") as file:
+         for line in file.readlines():
+            valuesString = line.split()
+
+            try:
+                paramsName.append(valuesString[0].strip())
+            except IndexError:
+                print(f"IndexError")
+            try:
+                # valuesCancer.append(stepX * stepX * stepX * float(valuesString[1].replace(",", ".")))
+                paramsValues.append(float((valuesString[1].replace(",", ".").strip())))
+            except IndexError:
+                print(f"IndexError")
+    return [paramsName, paramsvalues]
+
+
+def findFileLastModification(type, number, pathFile1="../../../dataTumor/PredictData/PersonalPatients/", pathFile2="../../../dataTumor/PredictData/Any/"):
+    """
+    Find File of the last modification
+
+    Positional arguments:
+    type -- data type (Volume or Diameter)
+    number -- patient number
+
+    Keywords argiments:
+    stepX -- X-axis steep
+    stepY -- Y-axis steep
+    stepZ -- Z-axis steep
+    path -- path to directory file
+
+    Return:
+    String pathFileLastModification
+    """
+    pathFile1 = pathFile1 + str(type) + "/timeValue/txt/" + str(number) + str(type) + ".txt"
+    pathFile2 = pathFile2 + str(type) + "/timeValue/txt/" + str(number) + str(type) + "Old.txt"
+    dataModoficationFile1 = os.path.getmtime(pathFile1)
+    dataModificationFile2 = os.path.getmtime(pathFile2)
+    if dataModificationFile2 > dataModificationFile1:
+        return pathFile2
+    else:
+        return pathFile1
 
 def compareData(experimentalData, modelData):
     """

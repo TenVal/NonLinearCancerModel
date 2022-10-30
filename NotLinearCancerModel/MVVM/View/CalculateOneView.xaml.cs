@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Globalization;
+using System.IO;
 
 namespace NotLinearCancerModel.MVVM.View
 {
@@ -155,7 +156,7 @@ namespace NotLinearCancerModel.MVVM.View
             float tMax = paramsCancer.tMax;
             int numberPatient = paramsCancer.numberPatient;
             string path = @"..\..\..\dataTumor\PredictData\Any\";
-
+            Debug.WriteLine(paramsCancer);
             C c = new C(speed, angleXY, angleZ);
             Q q = new Q(0);
             D dF = new D(speed, d);
@@ -195,7 +196,8 @@ namespace NotLinearCancerModel.MVVM.View
                 {"TMax" , tMax },
                 {"numberPatient", numberPatient }
             };
-
+            // copy old data to compare predict and last in the future
+            ActionDataFile.copyAllFiles(path + @"Volume\timeValue\txt");
             // write every data about modeling to files
             ActionDataFile.writeDataToFile("Volume", i, valuesP, path);
             // Write time-value data to file
@@ -250,6 +252,7 @@ namespace NotLinearCancerModel.MVVM.View
                 TextBoxAngleXY.Text = cancerParams["AngleXY"].ToString();
                 TextBoxAngleZ.Text = cancerParams["AngleZ"].ToString();
                 TextBoxTMax.Text = cancerParams["TMax"].ToString();
+                TextBoxAlpha.Text = cancerParams["Alpha"].ToString();
             }
             else
             {
