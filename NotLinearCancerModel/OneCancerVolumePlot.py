@@ -2,6 +2,7 @@ from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 import numpy as np
 from pylab import *
+from os.path import dirname, join
 
 from ActionDataFile import getDataFromFile
 from ActionDataFile import getTimeValueFromFile
@@ -14,7 +15,7 @@ from ActionDataFile import findFileLastModification
 # get the new and old cancer dataset and plot
 type = "Volume"
 
-pathNew = f"../../../dataTumor/PredictData/Any/{type}/txt/"
+pathNew = f"dataTumor/PredictData/Any/{type}/txt/"
 timeCancerNew = getTimeValueFromFile(type, number, path=pathNew)
 
 timeValuesNew = timeCancerNew[0]
@@ -45,7 +46,9 @@ ax.set_ylabel('Y (мм)')
 ax.set_zlabel('Z (мм)')
   
 # saving plot
-fig.savefig(f"../../../dataTumor/PredictData/Any/{type}/img/{number}{type}.png")
+current_dir = dirname(__file__)
+pathSave = join(current_dir, f"dataTumor/PredictData/Any/{type}/img/{number}{type}.png")
+fig.savefig(pathSave)
 # print(type(timeValuesNew))
 # print(type(cancerVolumeNew))
 # plt.show()
@@ -72,5 +75,6 @@ ax.set_xlabel('время (месяцы)')
 ax.set_ylabel('объем (мл)')
 plt.grid(True)
 # plt.show()
-fig.savefig(f"../../../dataTumor/PredictData/Any/{type}/timeValue/img/{number}{type}.png")
- 
+current_dir = dirname(__file__)
+pathSave = join(current_dir, f"dataTumor/PredictData/Any/{type}/timeValue/img/{number}{type}.png")
+fig.savefig(pathSave)

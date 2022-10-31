@@ -2,6 +2,7 @@ from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 import numpy as np
 from pylab import *
+from os.path import dirname, join
 
 from ActionDataFile import getDataFromFile
 from ActionDataFile import getTimeValueFromFile
@@ -61,7 +62,7 @@ for number in range(1, quantity + 1):
     ax.set_zlabel('Z (мм)')
   
     # saving plot
-    fig.savefig(f"../../../dataTumor/PredictData/PersonalPatients/{type}/img/{number}{type}.png")
+    fig.savefig(f"dataTumor/PredictData/PersonalPatients/{type}/img/{number}{type}.png")
     # print(type(timeValues))
     # print(type(cancerVolume))
     # plt.show()
@@ -80,7 +81,9 @@ for number in range(1, quantity + 1):
     plt.plot(timeValues, cancerValues)
     plt.scatter(experimentalTimeValues, experimentalCancerValues, c = "red")  
     # plt.show()
-    fig.savefig(f"../../../dataTumor/PredictData/PersonalPatients/{type}/timeValue/img/{number}{type}.png")
+    current_dir = dirname(__file__)
+    pathSave = join(current_dir, f"dataTumor/PredictData/PersonalPatients/{type}/timeValue/img/{number}{type}.png")
+    fig.savefig(pathSave)
 plt.cla()
 plt.clf()
 plt.close()
@@ -115,7 +118,9 @@ plt.xticks(fontsize=20)
 plt.yticks(fontsize=20)
 # plt.show()
 plt.grid(True)
-fig.savefig(f"../../../dataTumor/PredictData/Total/Volume/img/All.png")
+current_dir = dirname(__file__)
+pathSave = join(current_dir, f"dataTumor/PredictData/Total/Volume/img/All.png")
+fig.savefig(pathSave)
 plt.cla()
 plt.clf()
 plt.close()

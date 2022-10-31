@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/NotLinearCancerModel/dataTumor/file.txt
+/NotLinearCancerModel/dataTumor/PredictData/file.txt
+/NotLinearCancerModel/dataTumor/PredictData/PersonalPatients/file.txt

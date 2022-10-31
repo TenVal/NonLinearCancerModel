@@ -1,29 +1,38 @@
 import codecs
 import locale
-from os.path import getctime
-from os.path import getmtime
+from os.path import dirname, join
+from os.path import getctime, getmtime
 from datetime import datetime as dt
 
 locale.setlocale(locale.LC_ALL, 'en_US')
 
 
-def writeTimeValueIntoFile(type, number, timeValue, path = "PredictData/PersonalPatients/"):
+def writeTimeValueIntoFile(type, number, timeValue, path = "dataTumor/PredictData/PersonalPatients/"):
     path = path + str(type) + "/timeValue/txt/" + str(number) + str(type) + ".txt"
+    current_dir = dirname(__file__)
+    path = join(current_dir, path)
+
     with open(path, "w") as file:
         for i in range(len(timeValue[0])):
             file.write(f"{timeValue[0][i]}\t{timeValue[1][i]}\n".encode('utf-8').decode('utf-8'))
 
 
-def writeDataIntoFile(type, number, xyzc, path = "PredictData/PersonalPatients/"):
-    path = "PredictData/PersonalPatients/" + str(type) + "/txt/" + str(number) + str(type) + ".txt"
+def writeDataIntoFile(type, number, xyzc, path = "dataTumor/PredictData/PersonalPatients/"):
+    path = path + str(type) + "/txt/" + str(number) + str(type) + ".txt"
+    current_dir = dirname(__file__)
+    path = join(current_dir, path)
+
     with open(path, "w") as file:
         for i in range(len(xyzc[0])):
             file.write(f"{xyzc[0][i]}\t{xyzc[1][i]}\t{xyzc[2][i]}\t{xyzc[3][i]}\n".encode('utf-8').decode('utf-8'))
 
 
-def writeAccuracyIntoFile(type, number, relativeError, path="../../../dataTumor/PredictData/PersonalPatients/"):
+def writeAccuracyIntoFile(type, number, relativeError, path="dataTumor/PredictData/PersonalPatients/"):
     
     path = path + str(type) + "/txt/params/" + str(number) + "Params" + ".txt"
+    current_dir = dirname(__file__)
+    path = join(current_dir, path)
+
     relativeError = str(relativeError).replace(".", ",")
     # calculate line count
     with open(path, "r") as file:
@@ -41,7 +50,7 @@ def writeAccuracyIntoFile(type, number, relativeError, path="../../../dataTumor/
     return "Ok"
 
 
-def getDataFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "../../../dataTumor/PredictData/PersonalPatients/"):
+def getDataFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "dataTumor/PredictData/PersonalPatients/"):
     """
     Get cancer data from file
 
@@ -60,13 +69,13 @@ def getDataFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "../../..
     """
 
     path = path + str(type) + "/txt/" + str(number) + str(type) + ".txt"
+    current_dir = dirname(__file__)
+    path = join(current_dir, path)
     valuesX = []
     valuesY = []
     valuesZ = []
     valuesC = []
     with open(path, "r") as file:
-    # with open(f"../dataTumor/ModelData/personalPatients/poly3current/{type}/txt/{number}{type}.txt", "r") as file:
-    # with open(f"'../dataTumor/ModelData/personalPatients/poly3current/Diameter/txt/1Diameter.txt'", "r") as file:
         i = 0
         for line in file.readlines():
             valuesString = line.split()
@@ -86,9 +95,7 @@ def getDataFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "../../..
                 valuesC.append(float(valuesString[3].replace(",", ".")))
             except IndexError:
                 valuesC.append(0)
-            
-            
-            #print(i, number)
+
         valuesX.pop()
         valuesY.pop()
         valuesZ.pop()
@@ -103,13 +110,12 @@ def getDataFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "../../..
                 valuesY2.append(valuesY[i])
                 valuesZ2.append(valuesZ[i])
                 valuesC2.append(valuesC[i])    
-        # for i in range(len(valuesC)):
-        #     print(f"{valuesX2[i]}\t{valuesY2[i]}\t{valuesZ2[i]}\t{valuesC2[i]}")
+
     writeDataIntoFile(type, number, [valuesX2, valuesY2, valuesZ2, valuesC2])
     return [valuesX2, valuesY2, valuesZ2, valuesC2]
 
 
-def getTimeValueFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "../../../dataTumor/PredictData/PersonalPatients/"):
+def getTimeValueFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "dataTumor/PredictData/PersonalPatients/"):
     """
     Get time, cancer-value (volume) from file
 
@@ -128,10 +134,20 @@ def getTimeValueFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "../
     Array[time-values, volumeCancer-values]
     """
 
+    #current_dir = dirname(__file__)
+    #file_path = join(current_dir, "dataTumor/PredictData/PersonalPatients/file.txt")
+    #with open(file_path, 'w') as f:
+    #    f.write(file_path)
+    #path1 = path + "file.txt"
+    #path1 = "dataTumor/file.txt"
+    #with open(path1, "r") as file:
+    #    pass    
+    
     path = path + str(type) + "/timeValue/txt/" + str(number) + str(type) + ".txt"
+    current_dir = dirname(__file__)
+    path = join(current_dir, path)
     valuesTime = []
     valuesCancer = []
-
     with open(path, "r") as file:
         for line in file.readlines():
             valuesString = line.split()
@@ -169,7 +185,7 @@ def getTimeValueFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "../
     return [valuesTime2, valuesCancer2]
 
 
-def getExperimentalDataFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "../../../dataTumor/ExperimentalData/"):
+def getExperimentalDataFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "dataTumor/ExperimentalData/"):
     """
     Get experimental time, cancer-value (volume) from file
 
@@ -189,7 +205,9 @@ def getExperimentalDataFromFile(type, number, stepX=10, stepY=10, stepZ=10, path
     """
 
     path = path + str(type) + "/" + str(number) + str(type) + ".txt"
-    
+    current_dir = dirname(__file__)
+    path = join(current_dir, path)
+
     valuesTime = []
     valuesCancer = []
     with open(path, "r") as file:
@@ -209,7 +227,7 @@ def getExperimentalDataFromFile(type, number, stepX=10, stepY=10, stepZ=10, path
 
     return [valuesTime, valuesCancer]
 
-def getParamsFromFile(type, stepX=10, stepY=10, stepZ=10, path="../../../dataTumor/PredictData/PersonalPatients/"):
+def getParamsFromFile(type, stepX=10, stepY=10, stepZ=10, path="dataTumor/PredictData/PersonalPatients/"):
     """
     Get params data about patient from file
 
@@ -228,6 +246,8 @@ def getParamsFromFile(type, stepX=10, stepY=10, stepZ=10, path="../../../dataTum
     Array[paramsName, paramsValues]
     """
     path = path + str(type) + "/txt/params/" + str(number) + "Params" + ".txt"
+    current_dir = dirname(__file__)
+    path = join(current_dir, path)
     paramsName = []
     paramsValues = []
     with open(path, "r") as file:
@@ -246,7 +266,7 @@ def getParamsFromFile(type, stepX=10, stepY=10, stepZ=10, path="../../../dataTum
     return [paramsName, paramsvalues]
 
 
-def findFileLastModification(type, number, pathFile1="../../../dataTumor/PredictData/PersonalPatients/", pathFile2="../../../dataTumor/PredictData/Any/"):
+def findFileLastModification(type, number, pathFile1="dataTumor/PredictData/PersonalPatients/", pathFile2="dataTumor/PredictData/Any/"):
     """
     Find File of the last modification
 
