@@ -16,6 +16,8 @@ from ActionDataFile import findFileLastModification
 if __name__ == "__main__":
     if len(sys.argv) > 1 and len(sys.argv) < 3:
         numberPatient = sys.argv[1]
+    else:
+        numberPatient = 0;
     # get the new and old cancer dataset and plot
     type = "Volume"
 

@@ -46,6 +46,7 @@ namespace NotLinearCancerModel
         {
             string message = "Ok";           
             pathToSave += type + @"\txt\params\" + (number + 1).ToString() + @"Params.txt";
+            Debug.WriteLine($"\nwriteParametersToFile\t{pathToSave}");
             try
             {
                 StreamWriter outputFile = new StreamWriter(pathToSave);
@@ -85,7 +86,7 @@ namespace NotLinearCancerModel
         {
             string message = "Ok";
             pathToSave += type + @"\timeValue\txt\" + (number + 1).ToString() + type + @".txt";
-            
+            Debug.WriteLine($"\nwriteTimeValueToFile\t{pathToSave}");
             try
             {
                 StreamWriter outputFile = new StreamWriter(pathToSave);
@@ -127,6 +128,8 @@ namespace NotLinearCancerModel
         {
             string message = "Ok";
             pathToSave += type + @"\txt\" + (number + 1).ToString() + type + @".txt";
+            Debug.WriteLine($"\nwriteDataToFile\t{pathToSave}");
+
             try
             {
                 StreamWriter outputFile = new StreamWriter(pathToSave);
@@ -249,12 +252,16 @@ namespace NotLinearCancerModel
         {
             try
             {
+                
                 DirectoryInfo dirInfo = new DirectoryInfo(pathFrom);
-                foreach (FileInfo file in dirInfo.GetFiles("*Volume.txt*"))
+                /*foreach (FileInfo file in dirInfo.GetFiles("*Volume.txt"))
                 {
-
                     File.Copy(file.FullName, pathTo + file.Name.TrimEnd(new char[] { '.', 't', 'x'}) + "Old.txt", true);
-                }
+                    pathTo = String.Format(@"{0}\{1}Old.txt", pathTo, file.Name.TrimEnd(new char[] { '.', 't', 'x' }));
+                    Debug.WriteLine($"\ncopyAllFiles\t{pathTo}");
+                }*/
+                File.Copy(pathFrom, pathTo, true);
+                Debug.WriteLine($"\ncopyAllFiles\t{pathTo}");
             }
             catch (Exception ex)
             {

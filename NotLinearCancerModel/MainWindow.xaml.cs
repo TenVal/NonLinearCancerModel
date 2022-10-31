@@ -247,23 +247,28 @@ namespace NotLinearCancerModel
             ParamsForSavePlot paramsForSavePlot;
             try
             {
+                int numberPatientSavePlot = 0;
+                if (RadioButtonFindMin.IsChecked == false)
+                {
+                    numberPatientSavePlot = int.Parse(TextBoxPatientNumberPlot.Text, CultureInfo.InvariantCulture);
+                }
                 paramsForSavePlot = new ParamsForSavePlot(
                     (bool)RadioButtonFindMin.IsChecked,
                     TextBoxPythonInterpreter.Text.ToString().Trim(),
-                    int.Parse(TextBoxPatientNumberPlot.Text, CultureInfo.InvariantCulture));
+                    numberPatientSavePlot);
                 worker.RunWorkerAsync(paramsForSavePlot);
             }
             catch (ArgumentNullException ex)
             {
-                MessageBox.Show(String.Format("Please input correct parameters!\n{ex}"));
+                MessageBox.Show(String.Format("Please input correct parameters!\n{0}", ex));
             }
             catch (FormatException ex)
             {
-                MessageBox.Show(String.Format("Please input correct parameters!\n{ex}", ex));
+                MessageBox.Show(String.Format("Please input correct parameters!\n{0}", ex));
             }
             catch (OverflowException ex)
             {
-                MessageBox.Show(String.Format("Please don't go beyond the limits\n{ex}", ex));
+                MessageBox.Show(String.Format("Please don't go beyond the limits\n{0}", ex));
             } 
         }
         
@@ -299,7 +304,7 @@ namespace NotLinearCancerModel
             var var1 = "";
             var var2 = "";
 
-            psi.Arguments = $"\"{scriptPython} {paramsForSavePlot.numberPatientSavePlot}\"";
+            psi.Arguments = $"\"{scriptPython}\"";
             // Process configuration
             psi.UseShellExecute = false;
             psi.CreateNoWindow = true;

@@ -199,7 +199,7 @@ namespace NotLinearCancerModel.MVVM.View
                 Debug.WriteLine(String.Format("2Import Key - {0} \t Value - {1}", keyValue.Key, keyValue.Value));
             }
             // copy old data to compare predict and last in the future
-            ActionDataFile.copyAllFiles(path + @"Volume\timeValue\txt", path + @"Volume\timeValue\txt");
+            ActionDataFile.copyAllFiles(path + @"Volume\timeValue\txt\" + numberPatient.ToString() + "Volume.txt", path + @"Volume\timeValue\txt\" + numberPatient.ToString() + "VolumeOld.txt");
             // write every data about modeling to files
             ActionDataFile.writeDataToFile("Volume", numberPatient-1, valuesP, path);
             // Write time-value data to file
