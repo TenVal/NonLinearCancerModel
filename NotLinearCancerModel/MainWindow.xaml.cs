@@ -20,13 +20,16 @@ namespace NotLinearCancerModel
         {
             public bool radioButtonChecked;
             public string pathPythonInterpreter;
+            public int numberPatientSavePlot;
 
             public ParamsForSavePlot(
                 bool radioButtonChecked,
-                string pathPythonInterpreter)
+                string pathPythonInterpreter, 
+                int numberPatientSavePlot)
             {
                 this.radioButtonChecked = radioButtonChecked;
                 this.pathPythonInterpreter = pathPythonInterpreter;
+                this.numberPatientSavePlot = numberPatientSavePlot;
             }
         }
 
@@ -213,19 +216,19 @@ namespace NotLinearCancerModel
 
         private void RadioButtonFindMin_Checked(object sender, RoutedEventArgs e)
         {
-            TextBoxPatientNumberPlot.Text = "";
+            /*TextBoxPatientNumberPlot.Text = "";
             TextBoxPatientNumberPlot.IsReadOnly = false;
             TextBoxPatientNumberPlot.Visibility = Visibility.Visible;
-            LabelPatientNumberPlot.Visibility = Visibility.Visible;
+            LabelPatientNumberPlot.Visibility = Visibility.Visible;*/
         }
 
 
         private void RadioButtonWithoutFindMin_Checked(object sender, RoutedEventArgs e)
         {
-            TextBoxPatientNumberPlot.Text = "There is no any definite patient";
+            /*TextBoxPatientNumberPlot.Text = "There is no any definite patient";
             TextBoxPatientNumberPlot.IsReadOnly = true;
             TextBoxPatientNumberPlot.Visibility = Visibility.Collapsed;
-            LabelPatientNumberPlot.Visibility = Visibility.Collapsed;
+            LabelPatientNumberPlot.Visibility = Visibility.Collapsed;*/
         }
 
 
@@ -233,6 +236,8 @@ namespace NotLinearCancerModel
         {
             SavePlots.Content = "Saving...";
             SavePlots.IsEnabled = false;
+            SolidColorBrush brushForPressedButton = new SolidColorBrush(Colors.Black);
+            SavePlots.Foreground = brushForPressedButton;
 
             BackgroundWorker worker = new BackgroundWorker();
             worker.RunWorkerCompleted += worker_RunWorkerComplited;
@@ -244,7 +249,8 @@ namespace NotLinearCancerModel
             {
                 paramsForSavePlot = new ParamsForSavePlot(
                     (bool)RadioButtonFindMin.IsChecked,
-                    TextBoxPythonInterpreter.Text.ToString().Trim());
+                    TextBoxPythonInterpreter.Text.ToString().Trim(),
+                    int.Parse(TextBoxPatientNumberPlot.Text, CultureInfo.InvariantCulture));
                 worker.RunWorkerAsync(paramsForSavePlot);
             }
             catch (ArgumentNullException ex)
@@ -280,26 +286,26 @@ namespace NotLinearCancerModel
             // Create Process start info
             var psi = new ProcessStartInfo();
 
-            string pathPython = paramsForSavePlot.pathPythonInterpreter.Trim();
+            string pathPythonInterpreter = paramsForSavePlot.pathPythonInterpreter.Trim();
             // checking current path to python interpreter
-            if (pathPython == "Please, input your path to python interpreter" || pathPython == "")
+            if (pathPythonInterpreter == "Please, input your path to python interpreter" || pathPythonInterpreter == "")
             {
-                pathPython = @"..\..\..\env\Scripts\python.exe";
+                pathPythonInterpreter = @"..\..\..\env\Scripts\python.exe";
             }
-
-            psi.FileName = pathPython;
+            worker.ReportProgress(20);
+            psi.FileName = pathPythonInterpreter;
 
             // Provide Scripts and Arguments
             var var1 = "";
             var var2 = "";
 
-            psi.Arguments = $"\"{scriptPython}\"";
+            psi.Arguments = $"\"{scriptPython} {paramsForSavePlot.numberPatientSavePlot}\"";
             // Process configuration
             psi.UseShellExecute = false;
             psi.CreateNoWindow = true;
             psi.RedirectStandardOutput = true;
             psi.RedirectStandardError = true;
-
+            worker.ReportProgress(30);
             // Execute process and get output
             var errors = "";
             var results = "";
@@ -309,7 +315,7 @@ namespace NotLinearCancerModel
                 errors = process.StandardError.ReadToEnd();
                 results = process.StandardOutput.ReadToEnd();
             }
-
+            worker.ReportProgress(100);
             // Display outut
             Debug.WriteLine("ERRORS:");
             Debug.WriteLine(errors);
@@ -331,6 +337,8 @@ namespace NotLinearCancerModel
         {
             SavePlots.Content = "Save Plots";
             SavePlots.IsEnabled = true;
+            SolidColorBrush brushForPressedButton = new SolidColorBrush(Colors.White);
+            SavePlots.Foreground = brushForPressedButton;
         }
 
 
