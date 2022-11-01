@@ -205,7 +205,7 @@ namespace NotLinearCancerModel.MVVM.View
                     diffusion = new MethodDiffusion(dF, c, q, alpha);
 
                     double[,,] valuesP = new double[N, N, N];
-                    diffusion.getValues(tMax, h, k, length, valuesP);      
+                    diffusion.getValues(tMax, h, k, length, valuesP);
 
                     // Data for time-volume plot
                     float[] numberPointsVolume = new float[diffusion.NumberPointsVolume.Count];

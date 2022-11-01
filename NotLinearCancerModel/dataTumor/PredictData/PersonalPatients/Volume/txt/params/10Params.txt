@@ -2,11 +2,11 @@ Length	250
 H	10
 D	1E-05
 K	0,1
-Accuracy	7,2
+Accuracy	2,2
 StepAccuracy	0,01
-Speed	7,190002
+Speed	2,1799998
 AngleXY	30
 AngleZ	30
 Alpha	1
-TMax	40,47636
-RelativeError	0,050047293604983834
+TMax	41,784885
+RelativeError	0,10504678186794912

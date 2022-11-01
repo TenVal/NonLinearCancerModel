@@ -6,5 +6,5 @@ Speed	1,1
 AngleXY	30
 AngleZ	30
 Alpha	1
-TMax	300
+TMax	50
 numberPatient	0

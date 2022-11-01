@@ -8,7 +8,7 @@ locale.setlocale(locale.LC_ALL, 'en_US')
 
 
 def writeTimeValueIntoFile(type, number, timeValue, path = "dataTumor/PredictData/PersonalPatients/"):
-    path = path + str(type) + "/timeValue/txt/" + str(number) + str(type) + ".txt"
+    #path = path + str(type) + "/timeValue/txt/" + str(number) + str(type) + ".txt"
     current_dir = dirname(__file__)
     path = join(current_dir, path)
 
@@ -18,7 +18,7 @@ def writeTimeValueIntoFile(type, number, timeValue, path = "dataTumor/PredictDat
 
 
 def writeDataIntoFile(type, number, xyzc, path = "dataTumor/PredictData/PersonalPatients/"):
-    path = path + str(type) + "/txt/" + str(number) + str(type) + ".txt"
+    #path = path + str(type) + "/txt/" + str(number) + str(type) + ".txt"
     current_dir = dirname(__file__)
     path = join(current_dir, path)
 
@@ -27,9 +27,9 @@ def writeDataIntoFile(type, number, xyzc, path = "dataTumor/PredictData/Personal
             file.write(f"{xyzc[0][i]}\t{xyzc[1][i]}\t{xyzc[2][i]}\t{xyzc[3][i]}\n".encode('utf-8').decode('utf-8'))
 
 
-def writeAccuracyIntoFile(type, number, relativeError, path="dataTumor/PredictData/PersonalPatients/"):
+def writeAccuracyIntoFile(relativeError, path="dataTumor/PredictData/PersonalPatients/"):
     
-    path = path + str(type) + "/txt/params/" + str(number) + "Params" + ".txt"
+    #path = path + str(type) + "/txt/params/" + str(number) + "Params" + ".txt"
     current_dir = dirname(__file__)
     path = join(current_dir, path)
 
@@ -68,7 +68,7 @@ def getDataFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "dataTumo
     Array[X-axis coordinates, Y-axis steep, Z-axis steep, degree of cancer damage (density)]
     """
 
-    path = path + str(type) + "/txt/" + str(number) + str(type) + ".txt"
+    #path = path + str(type) + "/txt/" + str(number) + str(type) + ".txt"
     current_dir = dirname(__file__)
     path = join(current_dir, path)
     valuesX = []
@@ -111,7 +111,7 @@ def getDataFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "dataTumo
                 valuesZ2.append(valuesZ[i])
                 valuesC2.append(valuesC[i])    
 
-    writeDataIntoFile(type, number, [valuesX2, valuesY2, valuesZ2, valuesC2])
+    #writeDataIntoFile(type, number, [valuesX2, valuesY2, valuesZ2, valuesC2])
     return [valuesX2, valuesY2, valuesZ2, valuesC2]
 
 
@@ -143,7 +143,7 @@ def getTimeValueFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "dat
     #with open(path1, "r") as file:
     #    pass    
     
-    path = path + str(type) + "/timeValue/txt/" + str(number) + str(type) + ".txt"
+    # path = path + str(type) + "/timeValue/txt/" + str(number) + str(type) + ".txt"
     current_dir = dirname(__file__)
     path = join(current_dir, path)
     valuesTime = []
@@ -181,7 +181,7 @@ def getTimeValueFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "dat
         # for i in range(len(valuesTime2)):
         #     print(valuesTime2[i])
         #     print(valuesCancer2[i])
-    writeTimeValueIntoFile(type, number, [valuesTime2, valuesCancer2])
+    #writeTimeValueIntoFile(type, number, [valuesTime2, valuesCancer2])
     return [valuesTime2, valuesCancer2]
 
 
@@ -204,7 +204,7 @@ def getExperimentalDataFromFile(type, number, stepX=10, stepY=10, stepZ=10, path
     Array[time-values, volumeCancer-values]
     """
 
-    path = path + str(type) + "/" + str(number) + str(type) + ".txt"
+    #path = path + str(type) + "/" + str(number) + str(type) + ".txt"
     current_dir = dirname(__file__)
     path = join(current_dir, path)
 
@@ -245,7 +245,7 @@ def getParamsFromFile(type, stepX=10, stepY=10, stepZ=10, path="dataTumor/Predic
     Return:
     Array[paramsName, paramsValues]
     """
-    path = path + str(type) + "/txt/params/" + str(number) + "Params" + ".txt"
+    #path = path + str(type) + "/txt/params/" + str(number) + "Params" + ".txt"
     current_dir = dirname(__file__)
     path = join(current_dir, path)
     paramsName = []
@@ -283,8 +283,7 @@ def findFileLastModification(type, number, pathFile1="dataTumor/PredictData/Pers
     Return:
     String pathFileLastModification
     """
-    pathFile1 = pathFile1 + str(type) + "/timeValue/txt/" + str(number) + str(type) + ".txt"
-    pathFile2 = pathFile2 + str(type) + "/timeValue/txt/" + str(number) + str(type) + "Old.txt"
+    
     dataModoficationFile1 = os.path.getmtime(pathFile1)
     dataModificationFile2 = os.path.getmtime(pathFile2)
     if dataModificationFile2 > dataModificationFile1:
@@ -311,7 +310,6 @@ def compareData(experimentalData, modelData):
     Array[time-values, volumeCancer-values]
     """
 
-    # print("\n{0}\t{1}\n".format(len(experimentalData[0]), len(modelData[0])))
     absoluteError = []
     relativeError = 0
     difference = []
@@ -324,5 +322,4 @@ def compareData(experimentalData, modelData):
         indexMin = difference.index(min(difference))
         relativeError += abs(modelData[1][indexMin] - experimentalData[1][i]) / experimentalData[1][i]
         
-        # print("index:{0}\tmodelX:{1}\texpX:{2}\tmodelY:{1}\texpY:{2}\n".format(indexMin, modelData[0][indexMin], experimentalData[0][i], modelData[1][indexMin], experimentalData[1][i]))
     return relativeError / len(experimentalData[0])

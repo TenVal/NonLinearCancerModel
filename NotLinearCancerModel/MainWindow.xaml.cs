@@ -45,7 +45,7 @@ namespace NotLinearCancerModel
             Image1.Source = null;
             Image2.Source = null;
             numberPatientForPlotFindMin = 1;
-            numberPatientForPlotOne = 1;
+            numberPatientForPlotOne = 0;
             string pathImgVolume;
             string pathImgTimeVolume;
             string pathParameters;
@@ -121,7 +121,7 @@ namespace NotLinearCancerModel
             else
             {
                 numberPatientForPlotOne--;
-                if (numberPatientForPlotOne < 1)
+                if (numberPatientForPlotOne < 0)
                 {
                     numberPatientForPlotOne = 10;
                 }
@@ -322,9 +322,9 @@ namespace NotLinearCancerModel
             }
             worker.ReportProgress(100);
             // Display outut
-            Debug.WriteLine("ERRORS:");
+            Debug.WriteLine("ERRORS python:");
             Debug.WriteLine(errors);
-            Debug.WriteLine("Results:");
+            Debug.WriteLine("Results python:");
             Debug.WriteLine(results);
             if (errors == "")
             {

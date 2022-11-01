@@ -22,20 +22,23 @@ if __name__ == "__main__":
                      }
 
     for number in range(1, quantity + 1):
-        timeCancer = getTimeValueFromFile(type, number)
+        pathGetTimeValue = f"dataTumor/PredictData/PersonalPatients/{type}/timeValue/txt/{number}{type}.txt"
+        timeCancer = getTimeValueFromFile(type, number, path=pathGetTimeValue)
         timeValues = timeCancer[0]
         cancerValues = timeCancer[1] 
         allTimeCancer["time"].append(timeValues)
         allTimeCancer["cancer"].append(cancerValues)
 
-        experimentalData = getExperimentalDataFromFile(type, number)
+        pathGetExperimental = f"dataTumor/ExperimentalData/{type}/{number}{type}.txt"
+        experimentalData = getExperimentalDataFromFile(type, number, path=pathGetExperimental)
         experimentalTimeValues = experimentalData[0]
         experimentalCancerValues = experimentalData[1]
         allExperimentalTimeCancer["time"].append(experimentalTimeValues)
         allExperimentalTimeCancer["cancer"].append(experimentalCancerValues)
 
 
-        xyzc = getDataFromFile(type, number)
+        pathGetData = f"dataTumor/PredictData/PersonalPatients/{type}/txt/{number}{type}.txt"
+        xyzc = getDataFromFile(type, number, path=pathGetData)
         x = xyzc[0]
         y = xyzc[1]
         z = xyzc[2]
@@ -43,7 +46,8 @@ if __name__ == "__main__":
 
         # calculate relative Error
         relativeError = compareData(experimentalData, timeCancer)
-        writeAccuracyIntoFile(type, number, relativeError)
+        pathAccuracy = f"dataTumor/PredictData/PersonalPatients/{type}/txt/params/{number}Params.txt"
+        writeAccuracyIntoFile(relativeError, path=pathAccuracy)
   
         # creating figures
         fig = plt.figure(figsize=(10, 10))

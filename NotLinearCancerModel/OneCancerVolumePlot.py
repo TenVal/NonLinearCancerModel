@@ -21,12 +21,10 @@ if __name__ == "__main__":
     # get the new and old cancer dataset and plot
     type = "Volume"
 
-    pathNew = f"dataTumor/PredictData/Any/{type}/txt/"
+    pathNew = f"dataTumor/PredictData/Any/{type}/timeValue/txt/{numberPatient}{type}.txt"
     timeCancerNew = getTimeValueFromFile(type, numberPatient, path=pathNew)
 
-    timeValuesNew = timeCancerNew[0]
-    cancerVolumeNew = timeCancerNew[1]
-
+    pathNew = f"dataTumor/PredictData/Any/{type}/txt/{numberPatient}{type}.txt"
     xyzc = getDataFromFile(type, numberPatient, path=pathNew)
     x = xyzc[0]
     y = xyzc[1]
@@ -62,19 +60,17 @@ if __name__ == "__main__":
     fig = plt.figure(figsize=(10, 10))
     ax = fig.add_subplot(111)
 
-    plt.plot(timeValuesNew, cancerVolumeNew)
+    plt.plot(timeCancerNew[0], timeCancerNew[1], label="Новые результаты")
 
-    # check numberPatient patient to compare and last date of last file modification
-    paramNumberPatient = getParamsFromFile(type)[1][-1]
-    if paramNumberPatient != 0:   
-        #get last data to put it on plot to compare
-        pathOld = findFileLastModification(type, paramNumberPatient);
-        timecancerOld = getTimeValueFromFile(type, numberPatient, path=pathOld)
-        plt.plot(timecancerOld[0], timecancerOld[1], color="#964b00")
+    pathOld = f"dataTumor/PredictData/Any/{type}/timeValue/txt/{numberPatient}{type}Old.txt"
+    timecancerOldOne = getTimeValueFromFile(type, numberPatient, path=pathOld)
+    plt.plot(timecancerOldOne[0], timecancerOldOne[1], color="#964b00", label="Предыдущие результаты")
+    if numberPatient != 0:
         # get experimental data to put it on plot
-        experimentalData = getExperimentalDataFromFile(type, paramNumberPatient)
-        plt.scatter(experimentalData[0], experimentalData[1], c="red")
-        plt.legend()
+        pathExperimentalData = f"dataTumor/ExperimentalData/{type}/{numberPatient}{type}.txt"
+        experimentalData = getExperimentalDataFromFile(type, numberPatient, path=pathExperimentalData)
+        plt.scatter(experimentalData[0], experimentalData[1], c="red", label=f"Клинические данные пацента-{numberPatient}")
+    plt.legend()
 
     ax.set_title("Динамика опухоли")
     ax.set_xlabel('время (месяцы)')
