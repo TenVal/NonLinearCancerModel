@@ -2,7 +2,7 @@ Length	250
 H	10
 D	1E-05
 K	0,1
-Speed	2,12
+Speed	2,1699998
 AngleXY	30
 AngleZ	30
 Alpha	1

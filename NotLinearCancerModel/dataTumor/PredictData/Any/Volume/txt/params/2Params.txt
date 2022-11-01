@@ -6,5 +6,5 @@ Speed	2,1699998
 AngleXY	30
 AngleZ	30
 Alpha	1
-TMax	2223,5295
+TMax	2188,2354
 numberPatient	2
