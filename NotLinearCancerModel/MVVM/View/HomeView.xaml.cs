@@ -233,11 +233,7 @@ namespace NotLinearCancerModel.MVVM.View
                 float minDifference = cancerValuesParameters["Difference"].Min();
                 int indexMinDifference = cancerValuesParameters["Difference"].IndexOf(cancerValuesParameters["Difference"].Min());
                 float requiredSpeed = cancerValuesParameters["Speed"][indexMinDifference];
-                Debug.WriteLine("indexMinDifference\t" + indexMinDifference.ToString());
-                Debug.WriteLine("listAllValuesP\t" + listAllValuesP.Count.ToString());
-                Debug.WriteLine("listAllValuesT\t" + listAllValuesT.Count.ToString());
-                Debug.WriteLine("listAllValuesNumberPointsVolume\t" + listAllValuesNumberPointsVolume.Count.ToString());
-                Debug.WriteLine("cancerValuesParameters(Speed)\t" + cancerValuesParameters["Speed"].Count.ToString());
+
                 double[,,] requiredValuesP = listAllValuesP[indexMinDifference];
                 float[] requiredTValue = listAllValuesT[indexMinDifference];
                 float[] requiredNumberPointsVolume = listAllValuesNumberPointsVolume[indexMinDifference];
@@ -250,18 +246,6 @@ namespace NotLinearCancerModel.MVVM.View
                 Debug.WriteLine("requiredTValue\t" + requiredTValue[0].ToString() + "\ntStart\t" + tStart);
 
                 //now save ml
-                /*float differencePoints = Math.Abs((requiredNumberPointsVolume[0] / 1000) - modelData.Patients[i]["Volume"][1][0]);
-                for (int itemPointsValues = 0; itemPointsValues < requiredNumberPointsVolume.Length; itemPointsValues++)
-                {
-                    if (((requiredNumberPointsVolume[0] / 1000) - modelData.Patients[i]["Volume"][1][0]) > 0) {
-                        requiredNumberPointsVolume[itemPointsValues] = requiredNumberPointsVolume[itemPointsValues] / 1000 - differencePoints;
-                    }
-                    else
-                    {
-                        requiredNumberPointsVolume[itemPointsValues] = requiredNumberPointsVolume[itemPointsValues] / 1000 + differencePoints;
-                    }
-                }
-*/
                 float differencePoints = (requiredNumberPointsVolume[0] / 1000) - modelData.Patients[i]["Volume"][1][0];
                 for (int itemPointsValues = 0; itemPointsValues < requiredNumberPointsVolume.Length; itemPointsValues++)
                 {

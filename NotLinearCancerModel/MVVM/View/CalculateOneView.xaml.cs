@@ -155,8 +155,17 @@ namespace NotLinearCancerModel.MVVM.View
             float angleZ = paramsCancer.angleZ;
             float alpha = paramsCancer.alpha;
             float tMax = paramsCancer.tMax;
-            int numberPatient = paramsCancer.numberPatient;
             
+            int numberPatient = paramsCancer.numberPatient;
+            float tStart = 0;
+            float tEnd = 0;
+            if (numberPatient != 0)
+            {
+                tStart = modelData.Patients[numberPatient]["Diameter"][0][0];
+                tEnd = modelData.Patients[numberPatient]["Diameter"][0][modelData.Patients[numberPatient]["Diameter"][0].Count - 1];
+            }
+            tMax = tEnd - tStart;
+
             string path = @"..\..\..\dataTumor\PredictData\Any\";
 
             C c = new C(speed, angleXY, angleZ);
@@ -164,9 +173,7 @@ namespace NotLinearCancerModel.MVVM.View
             D dF = new D(speed, d);
 
             worker.ReportProgress(10, String.Format("Processing ..."));
-
             MethodDiffusion diffusion = new MethodDiffusion(dF, c, q, alpha);
-
             worker.ReportProgress(20, String.Format("Processing ..."));
 
             int N = (int)(length / h);
@@ -185,14 +192,13 @@ namespace NotLinearCancerModel.MVVM.View
             {
                 //Refactoring data to compare with Experimental; change numberPatient to extract data
                 numberPatient--;
-                float tStart = modelData.Patients[numberPatient]["Diameter"][0][0];
-                float tEnd = modelData.Patients[numberPatient]["Diameter"][0][modelData.Patients[numberPatient]["Diameter"][0].Count - 1];
-                tMax = tEnd - tStart;
+
                 float differenceT = tValues[0] - (tStart / 30);
                 for (int itemTValues = 0; itemTValues < tValues.Length; itemTValues++)
                 {
                     tValues[itemTValues] = tValues[itemTValues] - differenceT;
                 }
+
                 float differencePoints = (numberPointsVolume[0] / 1000) - modelData.Patients[numberPatient]["Volume"][1][0];
                 for (int itemPointsValues = 0; itemPointsValues < numberPointsVolume.Length; itemPointsValues++)
                 {
@@ -259,10 +265,6 @@ namespace NotLinearCancerModel.MVVM.View
                 string pathToRead = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\txt\params\" + number.ToString() + @"Params.txt";
                 Dictionary<string, float> cancerParams = ActionDataFile.getParametersFromFile(type, number, pathToRead);
 
-/*                foreach (var keyValue in cancerParams)
-                {
-                    Debug.WriteLine(String.Format("Import Key - {0} \t Value - {1}", keyValue.Key, keyValue.Value));
-                }*/
                 TextBoxLength.Text = cancerParams["Length"].ToString();
                 TextBoxH.Text = cancerParams["H"].ToString();
                 TextBoxD.Text = cancerParams["D"].ToString();
