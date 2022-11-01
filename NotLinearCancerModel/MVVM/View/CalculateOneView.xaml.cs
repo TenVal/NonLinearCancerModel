@@ -140,6 +140,7 @@ namespace NotLinearCancerModel.MVVM.View
 
         private void worker_Calculate(object sender, DoWorkEventArgs e)
         {
+            DataCancer modelData = new DataCancer();
             ParametersCancerForOneCalculate paramsCancer = (ParametersCancerForOneCalculate)e.Argument;
             var worker = sender as BackgroundWorker;
             worker.ReportProgress(0, String.Format("Processing ..."));
@@ -172,14 +173,27 @@ namespace NotLinearCancerModel.MVVM.View
 
             worker.ReportProgress(60, String.Format("Processing ..."));
 
+            // Data for time-volume plot
             float[] numberPointsVolume = new float[diffusion.NumberPointsVolume.Count];
             Array.Copy(diffusion.NumberPointsVolume.ToArray(), numberPointsVolume, numberPointsVolume.Length);
-            for (int itemPointsValues = 0; itemPointsValues < numberPointsVolume.Length; itemPointsValues++)
-            {
-                numberPointsVolume[itemPointsValues] = numberPointsVolume[itemPointsValues] / 1000;
-            }
             float[] tValues = new float[diffusion.TValues.Count];
             Array.Copy(diffusion.TValues.ToArray(), tValues, tValues.Length);
+            //Refactoring data to compare with Experimental
+            float tStart = modelData.Patients[numberPatient]["Diameter"][0][0];
+            float tEnd = modelData.Patients[numberPatient]["Diameter"][0][modelData.Patients[numberPatient]["Diameter"][0].Count - 1];
+            tMax = tEnd - tStart;
+            float differenceT = tValues[0] - (tStart / 30);
+            for (int itemTValues = 0; itemTValues < tValues.Length; itemTValues++)
+            {
+                tValues[itemTValues] = tValues[itemTValues] - differenceT;
+            }
+            Debug.WriteLine("requiredTValue\t" + tValues[0].ToString() + "\ntStart\t" + tStart);
+            float differencePoints = (numberPointsVolume[0] / 1000) - modelData.Patients[numberPatient]["Volume"][1][0];
+            for (int itemPointsValues = 0; itemPointsValues < numberPointsVolume.Length; itemPointsValues++)
+            {
+                numberPointsVolume[itemPointsValues] = numberPointsVolume[itemPointsValues] / 1000 - differencePoints;
+            }
+            Debug.WriteLine("requiredNumberPointsVolume\t" + numberPointsVolume[0].ToString() + "\nmodelData\t" + modelData.Patients[numberPatient]["Volume"][1][0].ToString());
 
             Dictionary<string, float> CancerValuesParameters = new Dictionary<string, float>()
             {

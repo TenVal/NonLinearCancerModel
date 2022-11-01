@@ -184,7 +184,7 @@ namespace NotLinearCancerModel.MVVM.View
                 float tStart = modelData.Patients[i]["Diameter"][0][0];
                 float tEnd = modelData.Patients[i]["Diameter"][0][modelData.Patients[i]["Diameter"][0].Count - 1];
                 tMax = tEnd - tStart;
-                //tMax = tEnd;
+
                 tMax /= 30;
                 do
                 {
