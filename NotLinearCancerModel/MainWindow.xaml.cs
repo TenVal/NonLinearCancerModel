@@ -24,7 +24,7 @@ namespace NotLinearCancerModel
 
             public ParamsForSavePlot(
                 bool radioButtonChecked,
-                string pathPythonInterpreter, 
+                string pathPythonInterpreter,
                 int numberPatientSavePlot)
             {
                 this.radioButtonChecked = radioButtonChecked;
@@ -245,31 +245,40 @@ namespace NotLinearCancerModel
             worker.DoWork += worker_SavePlots;
             worker.ProgressChanged += worker_ProgressChanged;
             ParamsForSavePlot paramsForSavePlot;
-            try
+            int numberPatientSavePlot = 0;
+            if (RadioButtonWithoutFindMin.IsChecked == true)
             {
-                int numberPatientSavePlot = 0;
-                if (RadioButtonFindMin.IsChecked == false)
+                if (TextBoxPatientNumberPlot.Text.Trim() == "")
                 {
-                    numberPatientSavePlot = int.Parse(TextBoxPatientNumberPlot.Text, CultureInfo.InvariantCulture);
+                    numberPatientSavePlot = 0;
+                    LabelPatientNumberPlot.Content += "\nSaved non-patient data (any, number - 0)";
                 }
-                paramsForSavePlot = new ParamsForSavePlot(
-                    (bool)RadioButtonFindMin.IsChecked,
-                    TextBoxPythonInterpreter.Text.ToString().Trim(),
-                    numberPatientSavePlot);
-                worker.RunWorkerAsync(paramsForSavePlot);
+                else
+                {
+                    try
+                    {
+                        numberPatientSavePlot = int.Parse(TextBoxPatientNumberPlot.Text, CultureInfo.InvariantCulture);
+                    }
+                    catch (ArgumentNullException ex)
+                    {
+                        MessageBox.Show(String.Format("Please input correct parameters!\n{0}", ex));
+                    }
+                    catch (FormatException ex)
+                    {
+                        MessageBox.Show(String.Format("Please input correct parameters!\n{0}", ex));
+                    }
+                    catch (OverflowException ex)
+                    {
+                        MessageBox.Show(String.Format("Please don't go beyond the limits\n{0}", ex));
+                    }
+                }
             }
-            catch (ArgumentNullException ex)
-            {
-                MessageBox.Show(String.Format("Please input correct parameters!\n{0}", ex));
-            }
-            catch (FormatException ex)
-            {
-                MessageBox.Show(String.Format("Please input correct parameters!\n{0}", ex));
-            }
-            catch (OverflowException ex)
-            {
-                MessageBox.Show(String.Format("Please don't go beyond the limits\n{0}", ex));
-            } 
+            paramsForSavePlot = new ParamsForSavePlot(
+                (bool)RadioButtonFindMin.IsChecked,
+                TextBoxPythonInterpreter.Text.ToString().Trim(),
+                numberPatientSavePlot);
+            worker.RunWorkerAsync(paramsForSavePlot);
+            
         }
         
 
@@ -344,8 +353,8 @@ namespace NotLinearCancerModel
             SavePlots.IsEnabled = true;
             SolidColorBrush brushForPressedButton = new SolidColorBrush(Colors.White);
             SavePlots.Foreground = brushForPressedButton;
+            LabelPatientNumberPlot.Content = "Patient number plot";
         }
-
 
         private void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {

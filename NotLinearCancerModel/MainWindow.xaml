@@ -96,13 +96,14 @@
             <Label 
                     x:Name="LabelPatientNumberPlot" 
                     Content="Patient Number Plot" 
+                    
                     HorizontalAlignment="Left" 
                     VerticalAlignment="Top"
-                    Margin="618,546,0,0"
+                    Margin="610,546,0,0"
                     Grid.Column="1" 
                     Grid.Row="1" 
                     Grid.ColumnSpan="2"
-                    Foreground="White"/>
+                    Foreground="White" Width="125" Height="23"/>
 
             <Button x:Name="ButtonShowTotal"
                     Content="Show total data about&#xD;&#xA;        every patient" 
