@@ -14,8 +14,9 @@ namespace NotLinearCancerModel
     /// </summary>
     public partial class MainWindow : Window
     {
-        private int numberPatientForPlotFindMin;
-        private int numberPatientForPlotOne;
+        private int numberPatientOutputPlotFindMin;
+        private int numberPatientOutputPlotOne;
+        private const string type = "Volume";
         public struct ParamsForSavePlot
         {
             public bool radioButtonChecked;
@@ -44,34 +45,34 @@ namespace NotLinearCancerModel
         {
             Image1.Source = null;
             Image2.Source = null;
-            numberPatientForPlotFindMin = 1;
-            numberPatientForPlotOne = 0;
+            numberPatientOutputPlotFindMin = 1;
+            numberPatientOutputPlotOne = 0;
             string pathImgVolume;
             string pathImgTimeVolume;
             string pathParameters;
-            string type = "Volume";
+
             if (RadioButtonFindMin.IsChecked == true)
             {
                 try
                 {
-                    numberPatientForPlotFindMin = int.Parse(TextBoxPatientNumberPlot.Text, CultureInfo.InvariantCulture);
+                    numberPatientOutputPlotFindMin = int.Parse(TextBoxPatientNumberPlot.Text, CultureInfo.InvariantCulture);
                 }
                 catch (FormatException ex)
                 {
                     MessageBox.Show($"Please, input correct data (number patient)!\n{ex}");
                 }
-                pathImgVolume = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\img\" + numberPatientForPlotFindMin.ToString() + type + @".png";
-                pathImgTimeVolume = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\timeValue\img\" + numberPatientForPlotFindMin.ToString() + type + @".png";
-                pathParameters = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\txt\params\" + numberPatientForPlotFindMin.ToString() + "Params.txt";
+                pathImgVolume = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\img\" + numberPatientOutputPlotFindMin.ToString() + type + @".png";
+                pathImgTimeVolume = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\timeValue\img\" + numberPatientOutputPlotFindMin.ToString() + type + @".png";
+                pathParameters = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\txt\params\" + numberPatientOutputPlotFindMin.ToString() + "Params.txt";
             }
             else
             {
-                pathImgVolume = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\img\" + numberPatientForPlotFindMin.ToString() + type + @".png";
-                pathImgTimeVolume = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\timeValue\img\" + numberPatientForPlotFindMin.ToString() + type + @".png";
-                pathParameters = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\txt\params\" + numberPatientForPlotFindMin.ToString() + "Params.txt";
+                pathImgVolume = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\img\" + numberPatientOutputPlotFindMin.ToString() + type + @".png";
+                pathImgTimeVolume = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\timeValue\img\" + numberPatientOutputPlotFindMin.ToString() + type + @".png";
+                pathParameters = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\txt\params\" + numberPatientOutputPlotFindMin.ToString() + "Params.txt";
             }
             string textLabelParams = "Cancer\tParameters:\n";
-            Dictionary<string, float> cancerParameters = ActionDataFile.getParametersFromFile(type, numberPatientForPlotFindMin, pathParameters);
+            Dictionary<string, float> cancerParameters = ActionDataFile.getParametersFromFile(type, numberPatientOutputPlotFindMin, pathParameters);
             
             foreach (var keyValueCancer in cancerParameters)
             {
@@ -107,29 +108,29 @@ namespace NotLinearCancerModel
 
             if (RadioButtonFindMin.IsChecked == true)
             {
-                numberPatientForPlotFindMin--;
-                if (numberPatientForPlotFindMin < 1)
+                numberPatientOutputPlotFindMin--;
+                if (numberPatientOutputPlotFindMin < 1)
                 {
-                    numberPatientForPlotFindMin = 10;
+                    numberPatientOutputPlotFindMin = 10;
                 }
-                pathImgVolume = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\img\" + numberPatientForPlotFindMin.ToString() + type + @".png";
-                pathImgTimeVolume = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\timeValue\img\" + numberPatientForPlotFindMin.ToString() + type + @".png";
-                pathParameters = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\txt\params\" + numberPatientForPlotFindMin.ToString() + "Params.txt";
-                cancerParameters = ActionDataFile.getParametersFromFile(type, numberPatientForPlotFindMin, pathParameters);
-                textLabelParams = String.Format("Cancer\tParameters {0}:\n", numberPatientForPlotFindMin);
+                pathImgVolume = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\img\" + numberPatientOutputPlotFindMin.ToString() + type + @".png";
+                pathImgTimeVolume = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\timeValue\img\" + numberPatientOutputPlotFindMin.ToString() + type + @".png";
+                pathParameters = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\txt\params\" + numberPatientOutputPlotFindMin.ToString() + "Params.txt";
+                cancerParameters = ActionDataFile.getParametersFromFile(type, numberPatientOutputPlotFindMin, pathParameters);
+                textLabelParams = String.Format("Cancer\tParameters {0}:\n", numberPatientOutputPlotFindMin);
             }
             else
             {
-                numberPatientForPlotOne--;
-                if (numberPatientForPlotOne < 0)
+                numberPatientOutputPlotOne--;
+                if (numberPatientOutputPlotOne < 0)
                 {
-                    numberPatientForPlotOne = 10;
+                    numberPatientOutputPlotOne = 10;
                 }
-                pathImgVolume = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\img\" + numberPatientForPlotOne.ToString() + type + @".png";
-                pathImgTimeVolume = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\timeValue\img\" + numberPatientForPlotOne.ToString() + type + @".png";
-                pathParameters = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\txt\params\" + numberPatientForPlotOne.ToString() + "Params.txt";
-                cancerParameters = ActionDataFile.getParametersFromFile(type, numberPatientForPlotOne, pathParameters);
-                textLabelParams = String.Format("Cancer\tParameters {0}:\n", numberPatientForPlotOne);
+                pathImgVolume = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\img\" + numberPatientOutputPlotOne.ToString() + type + @".png";
+                pathImgTimeVolume = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\timeValue\img\" + numberPatientOutputPlotOne.ToString() + type + @".png";
+                pathParameters = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\txt\params\" + numberPatientOutputPlotOne.ToString() + "Params.txt";
+                cancerParameters = ActionDataFile.getParametersFromFile(type, numberPatientOutputPlotOne, pathParameters);
+                textLabelParams = String.Format("Cancer\tParameters {0}:\n", numberPatientOutputPlotOne);
             }
 
             foreach (var keyValueCancer in cancerParameters)
@@ -166,29 +167,29 @@ namespace NotLinearCancerModel
 
             if (RadioButtonFindMin.IsChecked == true)
             {
-                numberPatientForPlotFindMin++;
-                if (numberPatientForPlotFindMin > 10)
+                numberPatientOutputPlotFindMin++;
+                if (numberPatientOutputPlotFindMin > 10)
                 {
-                    numberPatientForPlotFindMin = 1;
+                    numberPatientOutputPlotFindMin = 1;
                 }
-                pathImgVolume = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\img\" + numberPatientForPlotFindMin.ToString() + type + @".png";
-                pathImgTimeVolume = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\timeValue\img\" + numberPatientForPlotFindMin.ToString() + type + @".png";
-                pathParameters = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\txt\params\" + numberPatientForPlotFindMin.ToString() + "Params.txt";
-                cancerParameters = ActionDataFile.getParametersFromFile(type, numberPatientForPlotFindMin, pathParameters);
-                textLabelParams = String.Format("Cancer\tParameters {0}:\n", numberPatientForPlotFindMin);
+                pathImgVolume = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\img\" + numberPatientOutputPlotFindMin.ToString() + type + @".png";
+                pathImgTimeVolume = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\timeValue\img\" + numberPatientOutputPlotFindMin.ToString() + type + @".png";
+                pathParameters = @"..\..\..\dataTumor\PredictData\PersonalPatients\" + type + @"\txt\params\" + numberPatientOutputPlotFindMin.ToString() + "Params.txt";
+                cancerParameters = ActionDataFile.getParametersFromFile(type, numberPatientOutputPlotFindMin, pathParameters);
+                textLabelParams = String.Format("Cancer\tParameters {0}:\n", numberPatientOutputPlotFindMin);
             }
             else
             {
-                numberPatientForPlotOne++;
-                if (numberPatientForPlotOne > 10)
+                numberPatientOutputPlotOne++;
+                if (numberPatientOutputPlotOne > 10)
                 {
-                    numberPatientForPlotOne = 1;
+                    numberPatientOutputPlotOne = 1;
                 }
-                pathImgVolume = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\img\" + numberPatientForPlotOne.ToString() + type + @".png";
-                pathImgTimeVolume = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\timeValue\img\" + numberPatientForPlotOne.ToString() + type + @".png";
-                pathParameters = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\txt\params\" + numberPatientForPlotOne.ToString() + "Params.txt";
-                cancerParameters = ActionDataFile.getParametersFromFile(type, numberPatientForPlotOne, pathParameters);
-                textLabelParams = String.Format("Cancer\tParameters {0}:\n", numberPatientForPlotOne);
+                pathImgVolume = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\img\" + numberPatientOutputPlotOne.ToString() + type + @".png";
+                pathImgTimeVolume = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\timeValue\img\" + numberPatientOutputPlotOne.ToString() + type + @".png";
+                pathParameters = @"..\..\..\dataTumor\PredictData\Any\" + type + @"\txt\params\" + numberPatientOutputPlotOne.ToString() + "Params.txt";
+                cancerParameters = ActionDataFile.getParametersFromFile(type, numberPatientOutputPlotOne, pathParameters);
+                textLabelParams = String.Format("Cancer\tParameters {0}:\n", numberPatientOutputPlotOne);
             }
 
             foreach (var keyValueCancer in cancerParameters)
@@ -297,9 +298,11 @@ namespace NotLinearCancerModel
             {
                 scriptPython = @"..\..\..\OneCancerVolumePlot.py";
             }
+
             // Create Process start info
             var psi = new ProcessStartInfo();
 
+            // Provide Script
             string pathPythonInterpreter = paramsForSavePlot.pathPythonInterpreter.Trim();
             // checking current path to python interpreter
             if (pathPythonInterpreter == "Please, input your path to python interpreter" || pathPythonInterpreter == "")
@@ -308,12 +311,12 @@ namespace NotLinearCancerModel
             }
             worker.ReportProgress(20);
             psi.FileName = pathPythonInterpreter;
+          
+            //Provide Arguments
+            var numberPatientToSavePlot = paramsForSavePlot.numberPatientSavePlot.ToString();
 
-            // Provide Scripts and Arguments
-            var var1 = "";
-            var var2 = "";
+            psi.Arguments = $"\"{scriptPython}\" \"{numberPatientToSavePlot}\" \"{type}\"";
 
-            psi.Arguments = $"\"{scriptPython}\"";
             // Process configuration
             psi.UseShellExecute = false;
             psi.CreateNoWindow = true;

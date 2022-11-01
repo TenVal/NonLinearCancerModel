@@ -14,12 +14,12 @@ from ActionDataFile import getParamsFromFile
 from ActionDataFile import findFileLastModification
  
 if __name__ == "__main__":
-    if len(sys.argv) > 1 and len(sys.argv) < 3:
-        numberPatient = sys.argv[1]
-    else:
-        numberPatient = 0;
+
+    numberPatient = int(sys.argv[1].strip())
+    type = str(sys.argv[2]).strip()
+
     # get the new and old cancer dataset and plot
-    type = "Volume"
+    
 
     pathNew = f"dataTumor/PredictData/Any/{type}/timeValue/txt/{numberPatient}{type}.txt"
     timeCancerNew = getTimeValueFromFile(path=pathNew)
@@ -62,10 +62,15 @@ if __name__ == "__main__":
 
     plt.plot(timeCancerNew[0], timeCancerNew[1], label="Новые результаты")
 
-
-    pathOld = f"dataTumor/PredictData/Any/{type}/timeValue/txt/{numberPatient}{type}Old.txt"
-    timecancerOldOne = getTimeValueFromFile(path=pathOld)
+    # find latest data
+    pathOld1 = f"dataTumor/PredictData/Any/{type}/timeValue/txt/{numberPatient}{type}Old.txt"
+    pathOld2 = f"dataTumor/PredictData/PersonalPatients/{type}/timeValue/txt/{numberPatient}{type}.txt"
+    pathToLatestModificationFile = findFileLastModification(pathOld1, pathOld2)
+    pathToLatestModificationFile = join(current_dir, pathToLatestModificationFile)
+    timecancerOldOne = getTimeValueFromFile(path=pathToLatestModificationFile) 
+    
     plt.plot(timecancerOldOne[0], timecancerOldOne[1], color="#964b00", label="Предыдущие результаты")
+
     if numberPatient != 0:
         # get experimental data to put it on plot
         pathExperimentalData = f"dataTumor/ExperimentalData/{type}/{numberPatient}{type}.txt"
@@ -78,6 +83,5 @@ if __name__ == "__main__":
     ax.set_ylabel('объем (мл)')
     plt.grid(True)
     # plt.show()
-    current_dir = dirname(__file__)
     pathSave = join(current_dir, f"dataTumor/PredictData/Any/{type}/timeValue/img/{numberPatient}{type}.png")
     fig.savefig(pathSave)

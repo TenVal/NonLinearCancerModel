@@ -275,9 +275,9 @@ def findFileLastModification(pathFile1="dataTumor/PredictData/PersonalPatients/"
     Return:
     String pathFileLastModification
     """
-    
-    dataModoficationFile1 = os.path.getmtime(pathFile1)
-    dataModificationFile2 = os.path.getmtime(pathFile2)
+
+    dataModificationFile1 = getmtime(join(dirname(__file__), pathFile1))
+    dataModificationFile2 = getmtime(join(dirname(__file__), pathFile2))
     if dataModificationFile2 > dataModificationFile1:
         return pathFile2
     else:
