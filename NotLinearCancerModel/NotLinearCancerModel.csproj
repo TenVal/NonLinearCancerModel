@@ -30,6 +30,7 @@
     <None Remove="dataTumor\PredictData\Any\Volume\timeValue\img\7Volume.png" />
     <None Remove="dataTumor\PredictData\Any\Volume\timeValue\img\8Volume.png" />
     <None Remove="dataTumor\PredictData\Any\Volume\timeValue\img\9Volume.png" />
+    <None Remove="dataTumor\PredictData\PersonalPatients\Volume\img\10Volume.png" />
     <None Remove="dataTumor\PredictData\PersonalPatients\Volume\img\1Volume.png" />
     <None Remove="dataTumor\PredictData\PersonalPatients\Volume\img\2Volume.png" />
     <None Remove="dataTumor\PredictData\PersonalPatients\Volume\img\3Volume.png" />
@@ -119,6 +120,9 @@
     <Resource Include="dataTumor\PredictData\Any\Volume\timeValue\img\7Volume.png" />
     <Resource Include="dataTumor\PredictData\Any\Volume\timeValue\img\8Volume.png" />
     <Resource Include="dataTumor\PredictData\Any\Volume\timeValue\img\9Volume.png" />
+    <Resource Include="dataTumor\PredictData\PersonalPatients\Volume\img\10Volume.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="dataTumor\PredictData\PersonalPatients\Volume\img\1Volume.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -182,9 +186,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="dataTumor\PredictData\PersonalPatients\Volume\img\10Volume.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Update="OneCancerVolumePlot.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

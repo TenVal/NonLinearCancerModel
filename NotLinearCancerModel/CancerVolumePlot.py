@@ -48,12 +48,10 @@ if __name__ == "__main__":
         relativeError = compareData(experimentalData, timeCancer)
         pathAccuracy = f"dataTumor/PredictData/PersonalPatients/{type}/txt/params/{number}Params.txt"
         writeAccuracyIntoFile(relativeError, path=pathAccuracy)
-  
+        
         # creating figures
         fig = plt.figure(figsize=(10, 10))
         ax = fig.add_subplot(111, projection='3d')
-        if number==10:
-            print(f"{number}\n\n")
 
         # creating the cancer map (heatmap)
         img = ax.scatter(x, y, z, c, marker='o')
