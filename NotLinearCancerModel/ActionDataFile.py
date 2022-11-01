@@ -7,29 +7,69 @@ from datetime import datetime as dt
 locale.setlocale(locale.LC_ALL, 'en_US')
 
 
-def writeTimeValueIntoFile(type, number, timeValue, path = "dataTumor/PredictData/PersonalPatients/"):
-    #path = path + str(type) + "/timeValue/txt/" + str(number) + str(type) + ".txt"
+def writeTimeValueIntoFile(timeValue, path = "dataTumor/PredictData/PersonalPatients/"):
+    """
+    Write data time value cancer data into file
+
+
+    Positional argument:
+    timeValue -- timeValue data
+
+    Keywords argiments:
+    path -- path to directory file
+
+    Return:
+    1
+    """
+
     current_dir = dirname(__file__)
     path = join(current_dir, path)
 
     with open(path, "w") as file:
         for i in range(len(timeValue[0])):
             file.write(f"{timeValue[0][i]}\t{timeValue[1][i]}\n".encode('utf-8').decode('utf-8'))
+    return 1
 
 
-def writeDataIntoFile(type, number, xyzc, path = "dataTumor/PredictData/PersonalPatients/"):
-    #path = path + str(type) + "/txt/" + str(number) + str(type) + ".txt"
+def writeDataIntoFile(xyzc, path = "dataTumor/PredictData/PersonalPatients/"):
+    """
+    Write data cancer data into file
+
+
+    Positional argument:
+    xyzc -- timeValue data
+
+    Keywords argiments:
+    path -- path to directory file
+
+    Return:
+    1
+    """
+
     current_dir = dirname(__file__)
     path = join(current_dir, path)
 
     with open(path, "w") as file:
         for i in range(len(xyzc[0])):
             file.write(f"{xyzc[0][i]}\t{xyzc[1][i]}\t{xyzc[2][i]}\t{xyzc[3][i]}\n".encode('utf-8').decode('utf-8'))
+    return 1
 
 
 def writeAccuracyIntoFile(relativeError, path="dataTumor/PredictData/PersonalPatients/"):
-    
-    #path = path + str(type) + "/txt/params/" + str(number) + "Params" + ".txt"
+    """
+    Write accuracy data into file
+
+
+    Positional argument:
+    relativeError -- relative error
+
+    Keywords argiments:
+    path -- path to directory file
+
+    Return:
+    1
+    """
+
     current_dir = dirname(__file__)
     path = join(current_dir, path)
 
@@ -47,16 +87,13 @@ def writeAccuracyIntoFile(relativeError, path="dataTumor/PredictData/PersonalPat
             file.writelines(lines)
     with open(path, 'a') as file:
         file.writelines("RelativeError\t{}".format(relativeError))
-    return "Ok"
+    return 1
 
 
-def getDataFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "dataTumor/PredictData/PersonalPatients/"):
+def getDataFromFile(stepX=10, stepY=10, stepZ=10, path = "dataTumor/PredictData/PersonalPatients/"):
     """
     Get cancer data from file
 
-    Positional arguments:
-    type -- data type (Volume or Diameter)
-    number -- patient number
 
     Keywords argiments:
     stepX -- X-axis steep
@@ -68,7 +105,6 @@ def getDataFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "dataTumo
     Array[X-axis coordinates, Y-axis steep, Z-axis steep, degree of cancer damage (density)]
     """
 
-    #path = path + str(type) + "/txt/" + str(number) + str(type) + ".txt"
     current_dir = dirname(__file__)
     path = join(current_dir, path)
     valuesX = []
@@ -111,18 +147,13 @@ def getDataFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "dataTumo
                 valuesZ2.append(valuesZ[i])
                 valuesC2.append(valuesC[i])    
 
-    #writeDataIntoFile(type, number, [valuesX2, valuesY2, valuesZ2, valuesC2])
     return [valuesX2, valuesY2, valuesZ2, valuesC2]
 
 
-def getTimeValueFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "dataTumor/PredictData/PersonalPatients/"):
+def getTimeValueFromFile(stepX=10, stepY=10, stepZ=10, path = "dataTumor/PredictData/PersonalPatients/"):
     """
     Get time, cancer-value (volume) from file
 
-
-    Positional arguments:
-    type -- data type (Volume or Diameter)
-    number -- patient number
 
     Keywords argiments:
     stepX -- X-axis steep
@@ -133,17 +164,7 @@ def getTimeValueFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "dat
     Return:
     Array[time-values, volumeCancer-values]
     """
-
-    #current_dir = dirname(__file__)
-    #file_path = join(current_dir, "dataTumor/PredictData/PersonalPatients/file.txt")
-    #with open(file_path, 'w') as f:
-    #    f.write(file_path)
-    #path1 = path + "file.txt"
-    #path1 = "dataTumor/file.txt"
-    #with open(path1, "r") as file:
-    #    pass    
     
-    # path = path + str(type) + "/timeValue/txt/" + str(number) + str(type) + ".txt"
     current_dir = dirname(__file__)
     path = join(current_dir, path)
     valuesTime = []
@@ -157,42 +178,23 @@ def getTimeValueFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "dat
             except IndexError:
                 valuesTime.append(0)
             try:
-                # valuesCancer.append(stepX * stepX * stepX * float(valuesString[1].replace(",", ".")))
                 valuesCancer.append(float((valuesString[1].replace(",", ".").strip())))
             except IndexError:
                 valuesCancer.append(0)
-        # if len(valuesTime)>0: 
-        #     valuesTime.pop()
-        #     valuesCancer.pop()
+
         valuesTime2 = []
         valuesCancer2 = []
         for i in range(len(valuesTime)):
-            # if valuesTime[i] not in valuesTime2 and valuesTime[i] < 125:
             if valuesTime[i] not in valuesTime2:
                 valuesTime2.append(valuesTime[i])
                 valuesCancer2.append(valuesCancer[i])
-        # for i in range(len(valuesTime2)):        
-        #     if valuesCancer2[i] == 0:
-        #         valuesTime2.pop(i)
-        #         valuesCancer2.pop(i)
-        # if number == 1:
-        #     for i in range(len(valuesTime2)):
-        #         print(f"{valuesTime2[i]}\t{valuesCancer2[i]}")
-        # for i in range(len(valuesTime2)):
-        #     print(valuesTime2[i])
-        #     print(valuesCancer2[i])
-    #writeTimeValueIntoFile(type, number, [valuesTime2, valuesCancer2])
     return [valuesTime2, valuesCancer2]
 
 
-def getExperimentalDataFromFile(type, number, stepX=10, stepY=10, stepZ=10, path = "dataTumor/ExperimentalData/"):
+def getExperimentalDataFromFile(stepX=10, stepY=10, stepZ=10, path = "dataTumor/ExperimentalData/"):
     """
     Get experimental time, cancer-value (volume) from file
 
-
-    Positional arguments:
-    type -- data type (Volume or Diameter)
-    number -- patient number
 
     Keywords argiments:
     stepX -- X-axis steep
@@ -204,7 +206,6 @@ def getExperimentalDataFromFile(type, number, stepX=10, stepY=10, stepZ=10, path
     Array[time-values, volumeCancer-values]
     """
 
-    #path = path + str(type) + "/" + str(number) + str(type) + ".txt"
     current_dir = dirname(__file__)
     path = join(current_dir, path)
 
@@ -216,25 +217,20 @@ def getExperimentalDataFromFile(type, number, stepX=10, stepY=10, stepZ=10, path
 
             try:
                 valuesTime.append(float((valuesString[0].replace(",", ".")).strip()) / 30)
-                # valuesTime.append(float((valuesString[0].replace(",", ".")).strip()))
             except IndexError:
                 valuesTime.append(0)
             try:
-                # valuesCancer.append(stepX * stepX * stepX * float(valuesString[1].replace(",", ".")))
                 valuesCancer.append(float((valuesString[1].replace(",", ".")).strip()))
             except IndexError:
                 valuesCancer.append(0)
 
     return [valuesTime, valuesCancer]
 
-def getParamsFromFile(type, stepX=10, stepY=10, stepZ=10, path="dataTumor/PredictData/PersonalPatients/"):
+
+def getParamsFromFile(stepX=10, stepY=10, stepZ=10, path="dataTumor/PredictData/PersonalPatients/"):
     """
     Get params data about patient from file
-
-
-    Positional arguments:
-    type -- data type (Volume or Diameter)
-    number -- patient number
+ 
 
     Keywords argiments:
     stepX -- X-axis steep
@@ -245,7 +241,7 @@ def getParamsFromFile(type, stepX=10, stepY=10, stepZ=10, path="dataTumor/Predic
     Return:
     Array[paramsName, paramsValues]
     """
-    #path = path + str(type) + "/txt/params/" + str(number) + "Params" + ".txt"
+
     current_dir = dirname(__file__)
     path = join(current_dir, path)
     paramsName = []
@@ -259,20 +255,16 @@ def getParamsFromFile(type, stepX=10, stepY=10, stepZ=10, path="dataTumor/Predic
             except IndexError:
                 print(f"IndexError")
             try:
-                # valuesCancer.append(stepX * stepX * stepX * float(valuesString[1].replace(",", ".")))
                 paramsValues.append(float((valuesString[1].replace(",", ".").strip())))
             except IndexError:
                 print(f"IndexError")
     return [paramsName, paramsvalues]
 
 
-def findFileLastModification(type, number, pathFile1="dataTumor/PredictData/PersonalPatients/", pathFile2="dataTumor/PredictData/Any/"):
+def findFileLastModification(pathFile1="dataTumor/PredictData/PersonalPatients/", pathFile2="dataTumor/PredictData/Any/"):
     """
     Find File of the last modification
 
-    Positional arguments:
-    type -- data type (Volume or Diameter)
-    number -- patient number
 
     Keywords argiments:
     stepX -- X-axis steep
@@ -291,20 +283,15 @@ def findFileLastModification(type, number, pathFile1="dataTumor/PredictData/Pers
     else:
         return pathFile1
 
+
 def compareData(experimentalData, modelData):
     """
-    Get comparable data between
+    Return comparable data between
 
 
     Positional arguments:
-    type -- data type (Volume or Diameter)
-    number -- patient number
-
-    Keywords argiments:
-    stepX -- X-axis steep
-    stepY -- Y-axis steep
-    stepZ -- Z-axis steep
-    path -- path to directory file
+    experimentalData -- experimental data (Volume or Diameter)
+    modelData -- ,odel data (predict)
 
     Return:
     Array[time-values, volumeCancer-values]

@@ -22,10 +22,10 @@ if __name__ == "__main__":
     type = "Volume"
 
     pathNew = f"dataTumor/PredictData/Any/{type}/timeValue/txt/{numberPatient}{type}.txt"
-    timeCancerNew = getTimeValueFromFile(type, numberPatient, path=pathNew)
+    timeCancerNew = getTimeValueFromFile(path=pathNew)
 
     pathNew = f"dataTumor/PredictData/Any/{type}/txt/{numberPatient}{type}.txt"
-    xyzc = getDataFromFile(type, numberPatient, path=pathNew)
+    xyzc = getDataFromFile(path=pathNew)
     x = xyzc[0]
     y = xyzc[1]
     z = xyzc[2]
@@ -62,13 +62,14 @@ if __name__ == "__main__":
 
     plt.plot(timeCancerNew[0], timeCancerNew[1], label="Новые результаты")
 
+
     pathOld = f"dataTumor/PredictData/Any/{type}/timeValue/txt/{numberPatient}{type}Old.txt"
-    timecancerOldOne = getTimeValueFromFile(type, numberPatient, path=pathOld)
+    timecancerOldOne = getTimeValueFromFile(path=pathOld)
     plt.plot(timecancerOldOne[0], timecancerOldOne[1], color="#964b00", label="Предыдущие результаты")
     if numberPatient != 0:
         # get experimental data to put it on plot
         pathExperimentalData = f"dataTumor/ExperimentalData/{type}/{numberPatient}{type}.txt"
-        experimentalData = getExperimentalDataFromFile(type, numberPatient, path=pathExperimentalData)
+        experimentalData = getExperimentalDataFromFile(path=pathExperimentalData)
         plt.scatter(experimentalData[0], experimentalData[1], c="red", label=f"Клинические данные пацента-{numberPatient}")
     plt.legend()
 

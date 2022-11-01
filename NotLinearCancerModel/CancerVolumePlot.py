@@ -23,14 +23,14 @@ if __name__ == "__main__":
 
     for number in range(1, quantity + 1):
         pathGetTimeValue = f"dataTumor/PredictData/PersonalPatients/{type}/timeValue/txt/{number}{type}.txt"
-        timeCancer = getTimeValueFromFile(type, number, path=pathGetTimeValue)
+        timeCancer = getTimeValueFromFile(path=pathGetTimeValue)
         timeValues = timeCancer[0]
         cancerValues = timeCancer[1] 
         allTimeCancer["time"].append(timeValues)
         allTimeCancer["cancer"].append(cancerValues)
 
         pathGetExperimental = f"dataTumor/ExperimentalData/{type}/{number}{type}.txt"
-        experimentalData = getExperimentalDataFromFile(type, number, path=pathGetExperimental)
+        experimentalData = getExperimentalDataFromFile(path=pathGetExperimental)
         experimentalTimeValues = experimentalData[0]
         experimentalCancerValues = experimentalData[1]
         allExperimentalTimeCancer["time"].append(experimentalTimeValues)
@@ -38,7 +38,7 @@ if __name__ == "__main__":
 
 
         pathGetData = f"dataTumor/PredictData/PersonalPatients/{type}/txt/{number}{type}.txt"
-        xyzc = getDataFromFile(type, number, path=pathGetData)
+        xyzc = getDataFromFile(path=pathGetData)
         x = xyzc[0]
         y = xyzc[1]
         z = xyzc[2]
