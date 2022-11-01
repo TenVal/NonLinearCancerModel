@@ -9,9 +9,27 @@
 
   <ItemGroup>
     <None Remove="dataTumor\PredictData\Any\Volume\img\0Volume.png" />
+    <None Remove="dataTumor\PredictData\Any\Volume\img\10Volume.png" />
     <None Remove="dataTumor\PredictData\Any\Volume\img\1Volume.png" />
+    <None Remove="dataTumor\PredictData\Any\Volume\img\2Volume.png" />
+    <None Remove="dataTumor\PredictData\Any\Volume\img\3Volume.png" />
+    <None Remove="dataTumor\PredictData\Any\Volume\img\4Volume.png" />
+    <None Remove="dataTumor\PredictData\Any\Volume\img\5Volume.png" />
+    <None Remove="dataTumor\PredictData\Any\Volume\img\6Volume.png" />
+    <None Remove="dataTumor\PredictData\Any\Volume\img\7Volume.png" />
+    <None Remove="dataTumor\PredictData\Any\Volume\img\8Volume.png" />
+    <None Remove="dataTumor\PredictData\Any\Volume\img\9Volume.png" />
     <None Remove="dataTumor\PredictData\Any\Volume\timeValue\img\0Volume.png" />
+    <None Remove="dataTumor\PredictData\Any\Volume\timeValue\img\10Volume.png" />
     <None Remove="dataTumor\PredictData\Any\Volume\timeValue\img\1Volume.png" />
+    <None Remove="dataTumor\PredictData\Any\Volume\timeValue\img\2Volume.png" />
+    <None Remove="dataTumor\PredictData\Any\Volume\timeValue\img\3Volume.png" />
+    <None Remove="dataTumor\PredictData\Any\Volume\timeValue\img\4Volume.png" />
+    <None Remove="dataTumor\PredictData\Any\Volume\timeValue\img\5Volume.png" />
+    <None Remove="dataTumor\PredictData\Any\Volume\timeValue\img\6Volume.png" />
+    <None Remove="dataTumor\PredictData\Any\Volume\timeValue\img\7Volume.png" />
+    <None Remove="dataTumor\PredictData\Any\Volume\timeValue\img\8Volume.png" />
+    <None Remove="dataTumor\PredictData\Any\Volume\timeValue\img\9Volume.png" />
     <None Remove="dataTumor\PredictData\PersonalPatients\Volume\img\1Volume.png" />
     <None Remove="dataTumor\PredictData\PersonalPatients\Volume\img\2Volume.png" />
     <None Remove="dataTumor\PredictData\PersonalPatients\Volume\img\3Volume.png" />
@@ -32,6 +50,14 @@
     <None Remove="dataTumor\PredictData\PersonalPatients\Volume\timeValue\img\8Volume.png" />
     <None Remove="dataTumor\PredictData\PersonalPatients\Volume\timeValue\img\9Volume.png" />
     <None Remove="dataTumor\PredictData\Total\Volume\img\All.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="dataTumor\PredictData\Any\Volume\img\6Volume.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="dataTumor\PredictData\Any\Volume\img\10Volume.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -75,8 +101,24 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="dataTumor\PredictData\Any\Volume\img\2Volume.png" />
+    <Resource Include="dataTumor\PredictData\Any\Volume\img\3Volume.png" />
+    <Resource Include="dataTumor\PredictData\Any\Volume\img\4Volume.png" />
+    <Resource Include="dataTumor\PredictData\Any\Volume\img\5Volume.png" />
+    <Resource Include="dataTumor\PredictData\Any\Volume\img\7Volume.png" />
+    <Resource Include="dataTumor\PredictData\Any\Volume\img\8Volume.png" />
+    <Resource Include="dataTumor\PredictData\Any\Volume\img\9Volume.png" />
     <Resource Include="dataTumor\PredictData\Any\Volume\timeValue\img\0Volume.png" />
+    <Resource Include="dataTumor\PredictData\Any\Volume\timeValue\img\10Volume.png" />
     <Resource Include="dataTumor\PredictData\Any\Volume\timeValue\img\1Volume.png" />
+    <Resource Include="dataTumor\PredictData\Any\Volume\timeValue\img\2Volume.png" />
+    <Resource Include="dataTumor\PredictData\Any\Volume\timeValue\img\3Volume.png" />
+    <Resource Include="dataTumor\PredictData\Any\Volume\timeValue\img\4Volume.png" />
+    <Resource Include="dataTumor\PredictData\Any\Volume\timeValue\img\5Volume.png" />
+    <Resource Include="dataTumor\PredictData\Any\Volume\timeValue\img\6Volume.png" />
+    <Resource Include="dataTumor\PredictData\Any\Volume\timeValue\img\7Volume.png" />
+    <Resource Include="dataTumor\PredictData\Any\Volume\timeValue\img\8Volume.png" />
+    <Resource Include="dataTumor\PredictData\Any\Volume\timeValue\img\9Volume.png" />
     <Resource Include="dataTumor\PredictData\PersonalPatients\Volume\img\1Volume.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>

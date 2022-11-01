@@ -73,7 +73,7 @@ namespace NotLinearCancerModel
             }
             string textLabelParams = "Cancer\tParameters:\n";
             Dictionary<string, float> cancerParameters = ActionDataFile.getParametersFromFile(type, numberPatientOutputPlotFindMin, pathParameters);
-            
+
             foreach (var keyValueCancer in cancerParameters)
             {
                 textLabelParams += (keyValueCancer.Key + "\t");
@@ -279,9 +279,8 @@ namespace NotLinearCancerModel
                 TextBoxPythonInterpreter.Text.ToString().Trim(),
                 numberPatientSavePlot);
             worker.RunWorkerAsync(paramsForSavePlot);
-            
         }
-        
+
 
         private void worker_SavePlots(object sender, DoWorkEventArgs e)
         {
