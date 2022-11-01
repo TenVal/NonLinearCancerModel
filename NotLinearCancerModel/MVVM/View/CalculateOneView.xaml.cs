@@ -163,8 +163,8 @@ namespace NotLinearCancerModel.MVVM.View
             {
                 tStart = modelData.Patients[numberPatient]["Diameter"][0][0];
                 tEnd = modelData.Patients[numberPatient]["Diameter"][0][modelData.Patients[numberPatient]["Diameter"][0].Count - 1];
+                tMax = tEnd - tStart;
             }
-            tMax = tEnd - tStart;
 
             string path = @"..\..\..\dataTumor\PredictData\Any\";
 
@@ -205,6 +205,13 @@ namespace NotLinearCancerModel.MVVM.View
                     numberPointsVolume[itemPointsValues] = numberPointsVolume[itemPointsValues] / 1000 - differencePoints;
                 }
                 numberPatient++;
+            }
+            else
+            {
+                for (int itemPointsValues = 0; itemPointsValues < numberPointsVolume.Length; itemPointsValues++)
+                {
+                    numberPointsVolume[itemPointsValues] = numberPointsVolume[itemPointsValues] / 1000;
+                }
             }
 
             Dictionary<string, float> CancerValuesParameters = new Dictionary<string, float>()

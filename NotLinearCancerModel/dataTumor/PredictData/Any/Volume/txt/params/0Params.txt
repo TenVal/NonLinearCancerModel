@@ -2,9 +2,9 @@ Length	250
 H	10
 D	1E-05
 K	0,1
-Speed	4,1
+Speed	5,1
 AngleXY	30
 AngleZ	30
 Alpha	1
-TMax	150
+TMax	180
 numberPatient	0
