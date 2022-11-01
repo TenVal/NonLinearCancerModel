@@ -60,31 +60,27 @@ if __name__ == "__main__":
         plt.colorbar(img)
   
         # adding title and labels
-        ax.set_title("3D моделирование опухоли")
-        ax.set_xlabel('X (мм)')
-        ax.set_ylabel('Y (мм)')
-        ax.set_zlabel('Z (мм)')
+        ax.set_title(f"3D моделирование опухоли {number}", fontsize=28)
+        ax.set_xlabel('X (мм)', fontsize=20)
+        ax.set_ylabel('Y (мм)', fontsize=20)
+        ax.set_zlabel('Z (мм)', fontsize=20)
+        ax.tick_params(axis='both', which='major', labelsize=14)
+        ax.tick_params(axis='both', which='minor', labelsize=14)
   
         # saving plot
         fig.savefig(f"dataTumor/PredictData/PersonalPatients/{type}/img/{number}{type}.png")
-        # print(type(timeValues))
-        # print(type(cancerVolume))
-        # plt.show()
+
 
         fig = plt.figure(figsize=(10, 10))
         ax = fig.add_subplot(111)
 
-        #fig.suptitle(f"{number}-patient Time-Volume Dinamic", fontsize=28)
         fig.suptitle(f"Динамика опухоли пациента {number}", fontsize=28)
-        #plt.xlabel('time (month)', fontsize=22)
         plt.xlabel('время (месяцы)', fontsize=26)
-        #plt.ylabel('volume (mL)', fontsize=26)
         plt.ylabel('объем (мл)', fontsize=26)
         plt.xticks(fontsize=24)
         plt.yticks(fontsize=24)
         plt.plot(timeValues, cancerValues)
         plt.scatter(experimentalTimeValues, experimentalCancerValues, c = "red")  
-        # plt.show()
         current_dir = dirname(__file__)
         pathSave = join(current_dir, f"dataTumor/PredictData/PersonalPatients/{type}/timeValue/img/{number}{type}.png")
         fig.savefig(pathSave)
@@ -96,31 +92,23 @@ if __name__ == "__main__":
     ax = fig.add_subplot(111)
     colors = ["blue", "orange", "green", "red", "purple", "brown", "pink", "gray", "tan", "cyan"]
     for i in range(10):
-        #print(allTimeCancer["time"][i])
         plt.plot(allTimeCancer["time"][i], 
                  allTimeCancer["cancer"][i], 
                  color = colors[i],
                  linestyle = "-", 
-                 #label=f"Simulated data patient {i+1}")
                  label=f"Смоделированные данные пацента-{i+1}")
         plt.plot(allExperimentalTimeCancer["time"][i], 
                  allExperimentalTimeCancer["cancer"][i], 
                  color = colors[i],
                  linestyle = "--",
-                 #label=f"Experimental data patient {i+1}")
                  label=f"Клинические данные пацента-{i+1}")
 
     plt.legend()
-    #fig.suptitle(f"Time-Volume Dinamic for every patient", fontsize=24)
     fig.suptitle(f"Динамика опухоли всех пациентов", fontsize=24)
-    #plt.xlabel('time (month)', fontsize=22)
-    #plt.xlabel('time (days)', fontsize=22)
     plt.xlabel('время (месяцы)', fontsize=22)
-    #plt.ylabel('volume (mL)', fontsize=22)
     plt.ylabel('объем (мл)', fontsize=22)
     plt.xticks(fontsize=20)
     plt.yticks(fontsize=20)
-    # plt.show()
     plt.grid(True)
     current_dir = dirname(__file__)
     pathSave = join(current_dir, f"dataTumor/PredictData/Total/Volume/img/All.png")

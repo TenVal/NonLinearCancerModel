@@ -18,8 +18,7 @@ if __name__ == "__main__":
     numberPatient = int(sys.argv[1].strip())
     type = str(sys.argv[2]).strip()
 
-    # get the new and old cancer dataset and plot
-    
+    # get the new and old cancer dataset and plot   
 
     pathNew = f"dataTumor/PredictData/Any/{type}/timeValue/txt/{numberPatient}{type}.txt"
     timeCancerNew = getTimeValueFromFile(path=pathNew)
@@ -32,7 +31,7 @@ if __name__ == "__main__":
     c = xyzc[3]
   
     # creating figures
-    fig = plt.figure(figsize=(15, 10))
+    fig = plt.figure(figsize=(10, 10))
     ax = fig.add_subplot(111, projection='3d')
 
     # creating the cancer map (heatmap)
@@ -40,48 +39,46 @@ if __name__ == "__main__":
     plt.colorbar(img)
   
     # adding title and labels
-    #ax.set_title("3D cancer map")
-    #ax.set_xlabel('X-axis (mm)')
-    #ax.set_ylabel('Y-axis (mm)')
-    #ax.set_zlabel('Z-axis (mm)')
-    ax.set_title("3D моделирование опухоли")
-    ax.set_xlabel('X (мм)')
-    ax.set_ylabel('Y (мм)')
-    ax.set_zlabel('Z (мм)')
+    ax.set_title(f"3D моделирование опухоли {numberPatient}", fontsize=28)
+    ax.set_xlabel('X (мм)', fontsize=18)
+    ax.set_ylabel('Y (мм)', fontsize=18)
+    ax.set_zlabel('Z (мм)', fontsize=18)
+    ax.tick_params(axis='both', which='major', labelsize=14)
+    ax.tick_params(axis='both', which='minor', labelsize=14)
   
     # saving plot
     current_dir = dirname(__file__)
     pathSave = join(current_dir, f"dataTumor/PredictData/Any/{type}/img/{numberPatient}{type}.png")
     fig.savefig(pathSave)
-    # print(type(timeValuesNew))
-    # print(type(cancerVolumeNew))
-    # plt.show()
 
     fig = plt.figure(figsize=(10, 10))
     ax = fig.add_subplot(111)
-
+    
     plt.plot(timeCancerNew[0], timeCancerNew[1], label="Новые результаты")
 
-    # find latest data
-    pathOld1 = f"dataTumor/PredictData/Any/{type}/timeValue/txt/{numberPatient}{type}Old.txt"
-    pathOld2 = f"dataTumor/PredictData/PersonalPatients/{type}/timeValue/txt/{numberPatient}{type}.txt"
-    pathToLatestModificationFile = findFileLastModification(pathOld1, pathOld2)
-    pathToLatestModificationFile = join(current_dir, pathToLatestModificationFile)
-    timecancerOldOne = getTimeValueFromFile(path=pathToLatestModificationFile) 
-    
-    plt.plot(timecancerOldOne[0], timecancerOldOne[1], color="#964b00", label="Предыдущие результаты")
-
+    pathToLatestModificationFile = f"dataTumor/PredictData/Any/{type}/timeValue/txt/{numberPatient}{type}Old.txt"
     if numberPatient != 0:
+        # find latest data
+        pathOld1 = f"dataTumor/PredictData/Any/{type}/timeValue/txt/{numberPatient}{type}Old.txt"
+        pathOld2 = f"dataTumor/PredictData/PersonalPatients/{type}/timeValue/txt/{numberPatient}{type}.txt"
+        pathToLatestModificationFile = findFileLastModification(pathOld1, pathOld2) 
+   
         # get experimental data to put it on plot
         pathExperimentalData = f"dataTumor/ExperimentalData/{type}/{numberPatient}{type}.txt"
         experimentalData = getExperimentalDataFromFile(path=pathExperimentalData)
         plt.scatter(experimentalData[0], experimentalData[1], c="red", label=f"Клинические данные пацента-{numberPatient}")
-    plt.legend()
 
-    ax.set_title("Динамика опухоли")
-    ax.set_xlabel('время (месяцы)')
-    ax.set_ylabel('объем (мл)')
+    pathToLatestModificationFile = join(current_dir, pathToLatestModificationFile)
+    timecancerOldOne = getTimeValueFromFile(path=pathToLatestModificationFile)    
+    plt.plot(timecancerOldOne[0], timecancerOldOne[1], color="#964b00", label="Предыдущие результаты")
+
+    fig.suptitle(f"Динамика опухоли пациента {numberPatient}", fontsize=28)
+    plt.xlabel('время (месяцы)', fontsize=26)
+    plt.ylabel('объем (мл)', fontsize=26)
+    plt.xticks(fontsize=24)
+    plt.yticks(fontsize=24)
+    plt.legend(fontsize=16)
     plt.grid(True)
-    # plt.show()
+
     pathSave = join(current_dir, f"dataTumor/PredictData/Any/{type}/timeValue/img/{numberPatient}{type}.png")
     fig.savefig(pathSave)
