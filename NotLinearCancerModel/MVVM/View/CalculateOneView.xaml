@@ -76,14 +76,14 @@
             </ComboBox>
             <Label 
             x:Name="LabelChoosePatient" 
-            Content="Choose &#xD;&#xA;patient" 
+            Content="     Choose &#xD;&#xA;patient (Import)" 
             HorizontalAlignment="Left" 
-            Width="50"
+            Width="95"
             Height="40"
             VerticalAlignment="Top"
-            Margin="435,5,0,0"
+            Margin="420,4,0,0"
             Grid.Column="0" Grid.Row="1"
-            Foreground="White" Grid.RowSpan="3"/>
+            Foreground="White" Grid.RowSpan="3" Grid.ColumnSpan="2"/>
 
             <TextBox 
             x:Name="TextBoxLength" 
@@ -96,7 +96,7 @@
             Grid.Column="1" Grid.Row="0" Background="#FF353340" Foreground="White"/>
             <Label 
             x:Name="LabelLength" 
-            Content="Length" 
+            Content="Length (mm)" 
             HorizontalAlignment="Left"  
             VerticalAlignment="Center" 
             Margin="20, 0, 0, 0"
@@ -114,13 +114,13 @@
             Grid.Column="2" Grid.Row="0" Background="#FF353340" Foreground="White"/>
             <Label 
             x:Name="LabelAngleXY" 
-            Content="AngleXY" 
+            Content="AngleXY (degree)" 
             HorizontalAlignment="Left"  
             VerticalAlignment="Center"
             Margin="20, 0, 0, 0"
             Grid.Column="2" Grid.Row="1"
             Foreground="White"/>
-            
+
             <TextBox 
             x:Name="TextBoxSpeed" 
             HorizontalAlignment="Left" 
@@ -168,13 +168,13 @@
             Grid.Column="5" Grid.Row="0" Background="#FF353340" Foreground="White"/>
             <Label 
             x:Name="LabelAlpha" 
-            Content="Alpha" 
+            Content="Alpha (Resistance)" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Center" 
             Margin="20, 0, 0, 0"
             Grid.Column="5" Grid.Row="1"
             Foreground="White"/>
-            
+
 
 
 
@@ -219,13 +219,13 @@
             Grid.Column="2" Grid.Row="2" Background="#FF353340" Foreground="White"/>
             <Label 
             x:Name="LabelAngleZ" 
-            Content="AngleZ" 
+            Content="AngleZ (degree)" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Center"
             Margin="20, 0, 0, 0"
             Grid.Column="2" Grid.Row="3"
             Foreground="White"/>
-            
+
             <TextBox 
             x:Name="TextBoxD" 
             HorizontalAlignment="Left"
@@ -248,14 +248,14 @@
             x:Name="TextBoxTMax" 
             HorizontalAlignment="Left"
             VerticalAlignment="Center" 
-            Text="300" 
+            Text="100" 
             TextWrapping="Wrap"             
             Width="120" 
             Margin="20, 0, 0, 0"
             Grid.Column="4" Grid.Row="2" Background="#FF353340" Foreground="White"/>
             <Label 
             x:Name="LabelTMax" 
-            Content="Time" 
+            Content="Time (months)" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Center" 
             Margin="20, 0, 0, 0"

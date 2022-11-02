@@ -17,8 +17,8 @@ namespace NotLinearCancerModel
     public partial class MainWindow : Window
     {
         private int _numberPatientOutputPlotFindMin;
-        private int _numberPatientOutputPlotOne;
-        private const string _type = "Volume";
+        private int numberPatientOutputPlotOne;
+        private const string type = "Volume";
 
         public class ParamsForSavePlot
         {
@@ -142,9 +142,9 @@ namespace NotLinearCancerModel
         private string[] getPathsImages(int number, string typeMode)
         {
             string[] pathsToImages = new string[3];
-            pathsToImages[0] = String.Format(@"dataTumor\PredictData\{0}\{1}\img\{2}{3}.png", typeMode, _type, number, _type);
-            pathsToImages[1] = String.Format(@"dataTumor\PredictData\{0}\{1}\timeValue\img\{2}{3}.png", typeMode, _type, number, _type);
-            pathsToImages[2] = String.Format(@"dataTumor\PredictData\{0}\{1}\txt\params\{2}Params.txt", typeMode, _type, number);
+            pathsToImages[0] = String.Format(@"dataTumor\PredictData\{0}\{1}\img\{2}{3}.png", typeMode, type, number, type);
+            pathsToImages[1] = String.Format(@"dataTumor\PredictData\{0}\{1}\timeValue\img\{2}{3}.png", typeMode, type, number, type);
+            pathsToImages[2] = String.Format(@"dataTumor\PredictData\{0}\{1}\txt\params\{2}Params.txt", typeMode, type, number);
             return pathsToImages;
         }
 
@@ -178,7 +178,7 @@ namespace NotLinearCancerModel
         private void ShowPlots_Click(object sender, RoutedEventArgs e)
         {
             _numberPatientOutputPlotFindMin = 1;
-            _numberPatientOutputPlotOne = 0;
+            numberPatientOutputPlotOne = 0;
             Dictionary<string, string> paths;
 
             if (RadioButtonFindMin.IsChecked == true)
@@ -195,9 +195,9 @@ namespace NotLinearCancerModel
             }
             else
             {
-                paths = getInfOutputImages(_numberPatientOutputPlotOne, typeMode: "Any");
+                paths = getInfOutputImages(numberPatientOutputPlotOne, typeMode: "Any");
             }
-            Dictionary<string, float> cancerParameters = ActionDataFile.getParametersFromFile(_type, _numberPatientOutputPlotFindMin, paths["pathParameters"]);
+            Dictionary<string, float> cancerParameters = ActionDataFile.getParametersFromFile(type, _numberPatientOutputPlotFindMin, paths["pathParameters"]);
             
             // Output Parameters
             outputParameters(cancerParameters, paths["textLabelParams"]);
@@ -220,18 +220,18 @@ namespace NotLinearCancerModel
                     _numberPatientOutputPlotFindMin = 10;
                 }
                 paths = getInfOutputImages(_numberPatientOutputPlotFindMin, typeMode: "PersonalPatients");
-                cancerParameters = ActionDataFile.getParametersFromFile(_type, _numberPatientOutputPlotFindMin, paths["pathParameters"]);
+                cancerParameters = ActionDataFile.getParametersFromFile(type, _numberPatientOutputPlotFindMin, paths["pathParameters"]);
 
             }
             else
             {
-                _numberPatientOutputPlotOne--;
-                if (_numberPatientOutputPlotOne < 0)
+                numberPatientOutputPlotOne--;
+                if (numberPatientOutputPlotOne < 0)
                 {
-                    _numberPatientOutputPlotOne = 10;
+                    numberPatientOutputPlotOne = 10;
                 }
-                paths = getInfOutputImages(_numberPatientOutputPlotOne, typeMode: "Any");
-                cancerParameters = ActionDataFile.getParametersFromFile(_type, _numberPatientOutputPlotOne, paths["pathParameters"]);
+                paths = getInfOutputImages(numberPatientOutputPlotOne, typeMode: "Any");
+                cancerParameters = ActionDataFile.getParametersFromFile(type, numberPatientOutputPlotOne, paths["pathParameters"]);
 
             }
             // Output Parameters
@@ -255,17 +255,17 @@ namespace NotLinearCancerModel
                     _numberPatientOutputPlotFindMin = 1;
                 }
                 paths = getInfOutputImages(_numberPatientOutputPlotFindMin, typeMode: "PersonalPatients");
-                cancerParameters = ActionDataFile.getParametersFromFile(_type, _numberPatientOutputPlotFindMin, paths["pathParameters"]);
+                cancerParameters = ActionDataFile.getParametersFromFile(type, _numberPatientOutputPlotFindMin, paths["pathParameters"]);
             }
             else
             {
-                _numberPatientOutputPlotOne++;
-                if (_numberPatientOutputPlotOne > 10)
+                numberPatientOutputPlotOne++;
+                if (numberPatientOutputPlotOne > 10)
                 {
-                    _numberPatientOutputPlotOne = 1;
+                    numberPatientOutputPlotOne = 1;
                 }
-                paths = getInfOutputImages(_numberPatientOutputPlotOne, typeMode: "Any");
-                cancerParameters = ActionDataFile.getParametersFromFile(_type, _numberPatientOutputPlotOne, paths["pathParameters"]);
+                paths = getInfOutputImages(numberPatientOutputPlotOne, typeMode: "Any");
+                cancerParameters = ActionDataFile.getParametersFromFile(type, numberPatientOutputPlotOne, paths["pathParameters"]);
             }
             // Output Parameters
             outputParameters(cancerParameters, paths["textLabelParams"]);
@@ -370,7 +370,7 @@ namespace NotLinearCancerModel
             //Provide Arguments
             var numberPatientToSavePlot = paramsForSavePlot.NumberPatientSavePlot.ToString();
 
-            psi.Arguments = $"\"{scriptPython}\" \"{numberPatientToSavePlot}\" \"{_type}\" \"{modeSaveImage}\"";
+            psi.Arguments = $"\"{scriptPython}\" \"{numberPatientToSavePlot}\" \"{type}\" \"{modeSaveImage}\"";
 
             // Process configuration
             psi.UseShellExecute = false;
@@ -410,8 +410,8 @@ namespace NotLinearCancerModel
         {
             SavePlots.Content = "Save Plots";
             SavePlots.IsEnabled = true;
-            SolidColorBrush brushForPressedButton = new SolidColorBrush(Colors.White);
-            SavePlots.Foreground = brushForPressedButton;
+            SolidColorBrush brushForUnpressedButton = new SolidColorBrush(Colors.White);
+            SavePlots.Foreground = brushForUnpressedButton;
             LabelPatientNumberPlot.Content = "Patient number plot";
         }
 
@@ -424,8 +424,8 @@ namespace NotLinearCancerModel
         {
             Image1.Source = null;
             Image2.Source = null;
-            string _type = @"Volume";
-            string pathImg = @"dataTumor\PredictData\Total\" + _type + @"\img\All.png";
+            string type = @"Volume";
+            string pathImg = @"dataTumor\PredictData\Total\" + type + @"\img\All.png";
 
             textBoxCancerParameters.Text = "";
 

@@ -88,6 +88,7 @@ namespace NotLinearCancerModel.MVVM.View
             SolidColorBrush brushForPressedButton = new SolidColorBrush(Colors.Black);
             Calculate.Foreground = brushForPressedButton;
             Calculate.IsEnabled = false;
+
             BackgroundWorker worker = new BackgroundWorker();
             worker.RunWorkerCompleted += worker_RunWorkerComplited;
             worker.WorkerReportsProgress = true;
@@ -252,6 +253,8 @@ namespace NotLinearCancerModel.MVVM.View
             MessageBox.Show("Done Calculate!");
             Calculate.Content = "Calculate";
             Calculate.IsEnabled = true;
+            SolidColorBrush brushForUnpressedButton = new SolidColorBrush(Colors.White);
+            Calculate.Foreground = brushForUnpressedButton;
             PercentProgressBarCalculate.Visibility = Visibility.Collapsed;
             ProgressBarCalculate.Visibility = Visibility.Collapsed;
             SolidColorBrush brushForPressedButton = new SolidColorBrush(Colors.White);

@@ -30,8 +30,8 @@ namespace NotLinearCancerModel.MVVM.View
             public float h;
             public float d;
             public float k;
-            public float accuracy;
-            public float stepAccuracy;
+            public float SpeedEnd;
+            public float SpeedStep;
             public float speed;
             public float angleXY;
             public float angleZ;
@@ -43,8 +43,8 @@ namespace NotLinearCancerModel.MVVM.View
                 float h,
                 float d,
                 float k,
-                float accuracy,
-                float stepAccuracy,
+                float SpeedEnd,
+                float SpeedStep,
                 float speed,
                 float angleXY,
                 float angleZ,
@@ -55,8 +55,8 @@ namespace NotLinearCancerModel.MVVM.View
                 this.h = h;
                 this.d = d;
                 this.k = k;
-                this.accuracy = accuracy;
-                this.stepAccuracy = stepAccuracy;
+                this.SpeedEnd = SpeedEnd;
+                this.SpeedStep = SpeedStep;
                 this.speed = speed;
                 this.angleXY = angleXY;
                 this.angleZ = angleZ;
@@ -83,11 +83,13 @@ namespace NotLinearCancerModel.MVVM.View
             PercentProgressBarCalculate.Visibility = Visibility.Visible;
             ProgressBarCalculate.Visibility = Visibility.Visible;
             CalculateMin.Content = "Calculate...";
-            
+            SolidColorBrush brushForPressedButton = new SolidColorBrush(Colors.Black);
+            CalculateMin.Foreground = brushForPressedButton;
+            CalculateMin.IsEnabled = false;
+
             BackgroundWorker worker = new BackgroundWorker();
             worker.RunWorkerCompleted += workerMin_RunWorkerComplited;
             worker.WorkerReportsProgress = true;
-            CalculateMin.IsEnabled = false;
             worker.DoWork += workerMin_Calculate;
             worker.ProgressChanged += workerMin_ProgressChanged;
             
@@ -99,9 +101,9 @@ namespace NotLinearCancerModel.MVVM.View
                                     float.Parse(TextBoxH.Text),
                                     float.Parse(TextBoxD.Text),
                                     float.Parse(TextBoxK.Text),
-                                    float.Parse(TextBoxAccuracy.Text),
-                                    float.Parse(TextBoxStepAccuracy.Text),
-                                    float.Parse(TextBoxSpeed.Text),
+                                    float.Parse(TextBoxSpeedEnd.Text),
+                                    float.Parse(TextBoxSpeedStep.Text),
+                                    float.Parse(TextBoxSpeedStart.Text),
                                     float.Parse(TextBoxAngleXY.Text),
                                     float.Parse(TextBoxAngleZ.Text),
                                     float.Parse(TextBoxAlpha.Text));
@@ -118,6 +120,8 @@ namespace NotLinearCancerModel.MVVM.View
             MessageBox.Show("Done Calculate min!");
             CalculateMin.Content = "Find min";
             CalculateMin.IsEnabled = true;
+            SolidColorBrush brushForUnpressedButton = new SolidColorBrush(Colors.White);
+            CalculateMin.Foreground = brushForUnpressedButton;
             PercentProgressBarCalculate.Visibility = Visibility.Collapsed;
             ProgressBarCalculate.Visibility = Visibility.Collapsed;
             ProgressBarCalculate.Value = 0;
@@ -144,8 +148,8 @@ namespace NotLinearCancerModel.MVVM.View
             float d = paramsCancer.d;
             Debug.WriteLine("D\t" + d);
             float k = paramsCancer.k;
-            float accuracy = paramsCancer.accuracy;
-            float stepAccuracy = paramsCancer.stepAccuracy;
+            float SpeedEnd = paramsCancer.SpeedEnd;
+            float SpeedStep = paramsCancer.SpeedStep;
             float speed = paramsCancer.speed;
             float angleXY = paramsCancer.angleXY;
             float angleZ = paramsCancer.angleZ;
@@ -170,8 +174,8 @@ namespace NotLinearCancerModel.MVVM.View
                     {"H" , new List<float>() },
                     {"D" , new List<float>() },
                     {"K" , new List<float>() },
-                    {"Accuracy" , new List<float>() },
-                    {"StepAccuracy" , new List<float>() },
+                    {"SpeedEnd" , new List<float>() },
+                    {"SpeedStep" , new List<float>() },
                     {"Speed" , new List<float>()},
                     {"AngleXY" , new List<float>() },
                     {"AngleZ" , new List<float>() },
@@ -195,8 +199,8 @@ namespace NotLinearCancerModel.MVVM.View
                     cancerValuesParameters["D"].Add(d);
                     //Debug.WriteLine("add D\t" + d);
                     cancerValuesParameters["K"].Add(k);
-                    cancerValuesParameters["Accuracy"].Add(accuracy);
-                    cancerValuesParameters["StepAccuracy"].Add(stepAccuracy);
+                    cancerValuesParameters["SpeedEnd"].Add(SpeedEnd);
+                    cancerValuesParameters["SpeedStep"].Add(SpeedStep);
                     cancerValuesParameters["Speed"].Add(speedForFindMin);
                     cancerValuesParameters["AngleXY"].Add(angleXY);
                     cancerValuesParameters["AngleZ"].Add(angleZ);
@@ -224,9 +228,9 @@ namespace NotLinearCancerModel.MVVM.View
                         diffusion.NumberPointsVolume[diffusion.NumberPointsVolume.Count - 1] * stepScale -
                         modelData.Patients[i]["Volume"][1][modelData.Patients[i]["Volume"][1].Count - 1]));
 
-                    speedForFindMin += stepAccuracy;
+                    speedForFindMin += SpeedStep;
                 }
-                while (speedForFindMin <= accuracy);
+                while (speedForFindMin <= SpeedEnd);
 
                 
                 speedForFindMin = speed;
@@ -254,7 +258,6 @@ namespace NotLinearCancerModel.MVVM.View
                 }
                 Debug.WriteLine("requiredNumberPointsVolume\t" + requiredNumberPointsVolume[0].ToString() + "\nmodelData\t" + modelData.Patients[i]["Volume"][1][0].ToString());
 
-
                 // prepare data about parameters of cancer for writing into files
                 Dictionary<string, float> requiredCancerValuesParameters = new Dictionary<string, float>()
                 {
@@ -262,8 +265,8 @@ namespace NotLinearCancerModel.MVVM.View
                     {"H" , cancerValuesParameters["H"][indexMinDifference] },
                     {"D" , cancerValuesParameters["D"][indexMinDifference] },
                     {"K" , cancerValuesParameters["K"][indexMinDifference] },
-                    {"Accuracy" , cancerValuesParameters["Accuracy"][indexMinDifference] },
-                    {"StepAccuracy" , cancerValuesParameters["StepAccuracy"][indexMinDifference] },
+                    {"SpeedEnd" , cancerValuesParameters["SpeedEnd"][indexMinDifference] },
+                    {"SpeedStep" , cancerValuesParameters["SpeedStep"][indexMinDifference] },
                     {"Speed" , cancerValuesParameters["Speed"][indexMinDifference]},
                     {"AngleXY" , cancerValuesParameters["AngleXY"][indexMinDifference] },
                     {"AngleZ" , cancerValuesParameters["AngleZ"][indexMinDifference] },
@@ -271,7 +274,6 @@ namespace NotLinearCancerModel.MVVM.View
                     {"TMax" , requiredTValue.Last()},
                     {"Difference" , cancerValuesParameters["Difference"][indexMinDifference]},
                 };
-
 
                 // write every data about modeling to files
                 ActionDataFile.writeDataToFile("Volume", i, requiredValuesP);
