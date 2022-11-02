@@ -150,15 +150,12 @@ def getDataFromFile(stepX=10, stepY=10, stepZ=10, path = "dataTumor/PredictData/
     return [valuesX2, valuesY2, valuesZ2, valuesC2]
 
 
-def getTimeValueFromFile(stepX=10, stepY=10, stepZ=10, path = "dataTumor/PredictData/PersonalPatients/"):
+def getTimeValueFromFile(path = "dataTumor/PredictData/PersonalPatients/"):
     """
     Get time, cancer-value (volume) from file
 
 
     Keywords argiments:
-    stepX -- X-axis steep
-    stepY -- Y-axis steep
-    stepZ -- Z-axis steep
     path -- path to directory file
 
     Return:
@@ -191,15 +188,12 @@ def getTimeValueFromFile(stepX=10, stepY=10, stepZ=10, path = "dataTumor/Predict
     return [valuesTime2, valuesCancer2]
 
 
-def getExperimentalDataFromFile(stepX=10, stepY=10, stepZ=10, path = "dataTumor/ExperimentalData/"):
+def getExperimentalDataFromFile(path = "dataTumor/ExperimentalData/"):
     """
     Get experimental time, cancer-value (volume) from file
 
 
     Keywords argiments:
-    stepX -- X-axis steep
-    stepY -- Y-axis steep
-    stepZ -- Z-axis steep
     path -- path to directory file
 
     Return:
@@ -227,15 +221,12 @@ def getExperimentalDataFromFile(stepX=10, stepY=10, stepZ=10, path = "dataTumor/
     return [valuesTime, valuesCancer]
 
 
-def getParamsFromFile(stepX=10, stepY=10, stepZ=10, path="dataTumor/PredictData/PersonalPatients/"):
+def getParamsFromFile(path="dataTumor/PredictData/PersonalPatients/"):
     """
     Get params data about patient from file
  
 
     Keywords argiments:
-    stepX -- X-axis steep
-    stepY -- Y-axis steep
-    stepZ -- Z-axis steep
     path -- path to directory file
 
     Return:
@@ -258,19 +249,16 @@ def getParamsFromFile(stepX=10, stepY=10, stepZ=10, path="dataTumor/PredictData/
                 paramsValues.append(float((valuesString[1].replace(",", ".").strip())))
             except IndexError:
                 print(f"IndexError")
-    return [paramsName, paramsvalues]
+    return [paramsName, paramsValues]
 
 
 def findFileLastModification(pathFile1="dataTumor/PredictData/PersonalPatients/", pathFile2="dataTumor/PredictData/Any/"):
     """
     Find File of the last modification
 
-
     Keywords argiments:
-    stepX -- X-axis steep
-    stepY -- Y-axis steep
-    stepZ -- Z-axis steep
-    path -- path to directory file
+    pathFile1 -- path to directory file1
+    pathFile2 -- path to directory file2
 
     Return:
     String pathFileLastModification

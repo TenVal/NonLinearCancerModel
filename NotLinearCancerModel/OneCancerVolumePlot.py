@@ -18,13 +18,19 @@ if __name__ == "__main__":
     numberPatient = int(sys.argv[1].strip())
     type = str(sys.argv[2]).strip()
 
-    # get the new and old cancer dataset and plot   
+    # get new Time Value Data from file
+    pathNewTimeValue = f"dataTumor/PredictData/Any/{type}/timeValue/txt/{numberPatient}{type}.txt"
+    timeCancerNew = getTimeValueFromFile(path=pathNewTimeValue)
 
-    pathNew = f"dataTumor/PredictData/Any/{type}/timeValue/txt/{numberPatient}{type}.txt"
-    timeCancerNew = getTimeValueFromFile(path=pathNew)
-
-    pathNew = f"dataTumor/PredictData/Any/{type}/txt/{numberPatient}{type}.txt"
-    xyzc = getDataFromFile(path=pathNew)
+    # get new Data from file
+    pathNewData = f"dataTumor/PredictData/Any/{type}/txt/{numberPatient}{type}.txt"
+    # get stepX -- H to get Data
+    pathGetParams = f"dataTumor/PredictData/Any/{type}/txt/params/{numberPatient}Params.txt"
+    params = getParamsFromFile(pathGetParams)
+    stepX = params[1][params[0].index('H')]
+    pathNewData = f"dataTumor/PredictData/Any/{type}/txt/{numberPatient}{type}.txt"
+    # get Data from file
+    xyzc = getDataFromFile(stepX=stepX, stepY=stepX, stepZ=stepX, path=pathNewData)
     x = xyzc[0]
     y = xyzc[1]
     z = xyzc[2]
@@ -39,7 +45,10 @@ if __name__ == "__main__":
     plt.colorbar(img)
   
     # adding title and labels
-    ax.set_title(f"3D моделирование опухоли {numberPatient}", fontsize=28)
+    title3D = f"3D моделирование опухоли {numberPatient}"
+    if numberPatient == 0:
+        title3D = f"3D моделирование опухоли"
+    ax.set_title(title3D, fontsize=28)
     ax.set_xlabel('X (мм)', fontsize=18)
     ax.set_ylabel('Y (мм)', fontsize=18)
     ax.set_zlabel('Z (мм)', fontsize=18)
@@ -72,7 +81,11 @@ if __name__ == "__main__":
     timecancerOldOne = getTimeValueFromFile(path=pathToLatestModificationFile)    
     plt.plot(timecancerOldOne[0], timecancerOldOne[1], color="#964b00", label="Предыдущие результаты")
 
-    fig.suptitle(f"Динамика опухоли пациента {numberPatient}", fontsize=28)
+    # title for plot time value
+    titleTimeValue = f"Динамика опухоли пациента {numberPatient}"
+    if numberPatient == 0:
+        titleTimeValue = f"Динамика опухоли"
+    fig.suptitle(titleTimeValue, fontsize=28)
     plt.xlabel('время (месяцы)', fontsize=26)
     plt.ylabel('объем (мл)', fontsize=26)
     plt.xticks(fontsize=24)

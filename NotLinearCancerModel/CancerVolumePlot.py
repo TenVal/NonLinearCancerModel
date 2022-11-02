@@ -9,8 +9,11 @@ from ActionDataFile import getTimeValueFromFile
 from ActionDataFile import getExperimentalDataFromFile
 from ActionDataFile import writeAccuracyIntoFile
 from ActionDataFile import compareData
+from ActionDataFile import getParamsFromFile
+
 
 if __name__ == "__main__":
+
     # get the cancer dataset and plot
     type = "Volume"
     quantity = 10
@@ -22,6 +25,7 @@ if __name__ == "__main__":
                      }
 
     for number in range(1, quantity + 1):
+        # get Time Value Data from file
         pathGetTimeValue = f"dataTumor/PredictData/PersonalPatients/{type}/timeValue/txt/{number}{type}.txt"
         timeCancer = getTimeValueFromFile(path=pathGetTimeValue)
         timeValues = timeCancer[0]
@@ -29,6 +33,7 @@ if __name__ == "__main__":
         allTimeCancer["time"].append(timeValues)
         allTimeCancer["cancer"].append(cancerValues)
 
+        # get Experimantal Data from file
         pathGetExperimental = f"dataTumor/ExperimentalData/{type}/{number}{type}.txt"
         experimentalData = getExperimentalDataFromFile(path=pathGetExperimental)
         experimentalTimeValues = experimentalData[0]
@@ -36,9 +41,13 @@ if __name__ == "__main__":
         allExperimentalTimeCancer["time"].append(experimentalTimeValues)
         allExperimentalTimeCancer["cancer"].append(experimentalCancerValues)
 
-
+        # get stepX -- H to get Data
+        pathGetParams = f"dataTumor/PredictData/PersonalPatients/{type}/txt/params/{number}Params.txt"
+        params = getParamsFromFile(pathGetParams)
+        stepX = params[1][params[0].index('H')]
         pathGetData = f"dataTumor/PredictData/PersonalPatients/{type}/txt/{number}{type}.txt"
-        xyzc = getDataFromFile(path=pathGetData)
+        # get Data from file
+        xyzc = getDataFromFile(stepX=stepX, stepY=stepX, stepZ=stepX, path=pathGetData)
         x = xyzc[0]
         y = xyzc[1]
         z = xyzc[2]
