@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-
+using System.Net.Cache;
 
 namespace NotLinearCancerModel
 {
@@ -57,22 +57,16 @@ namespace NotLinearCancerModel
                 // This path is a directory
                 ActionDataFile.copyDir(pathFrom + pathToEnvDataTumor, pathToEnvDataTumor);
             }
-            if (File.Exists(pathToActionDataFile) == false)
-            {
-                // This path is a file
-                File.Copy(pathFrom + pathToActionDataFile, pathToActionDataFile);
-            }
-            if (File.Exists(pathToCancerVolumePlot) == false)
-            {
-                // This path is a file
-                File.Copy(pathFrom + pathToCancerVolumePlot, pathToCancerVolumePlot);
-            }
-            if (File.Exists(pathToOneCancerVolumePlot) == false)
-            {
-                // This path is a file
-                File.Copy(pathFrom + pathToOneCancerVolumePlot, pathToOneCancerVolumePlot);
-            }
 
+            // This path is a file
+            File.Delete(pathToActionDataFile);
+            File.Copy(pathFrom + pathToActionDataFile, pathToActionDataFile);
+            // This path is a file
+            File.Delete(pathToCancerVolumePlot);
+            File.Copy(pathFrom + pathToCancerVolumePlot, pathToCancerVolumePlot);
+            // This path is a file
+            File.Delete(pathToOneCancerVolumePlot);
+            File.Copy(pathFrom + pathToOneCancerVolumePlot, pathToOneCancerVolumePlot);
         }
 
 
@@ -92,12 +86,22 @@ namespace NotLinearCancerModel
 
             BitmapImage bmpVolume = new BitmapImage();
             bmpVolume.BeginInit();
+            bmpVolume.CacheOption = BitmapCacheOption.None;
+            bmpVolume.UriCachePolicy = new RequestCachePolicy(RequestCacheLevel.BypassCache);
+            bmpVolume.CacheOption = BitmapCacheOption.OnLoad;
+            bmpVolume.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
             bmpVolume.UriSource = new Uri(pathImgVolume, UriKind.Relative);
             bmpVolume.EndInit();
+
             BitmapImage bmpTimeVolume = new BitmapImage();
             bmpTimeVolume.BeginInit();
+            bmpTimeVolume.CacheOption = BitmapCacheOption.None;
+            bmpTimeVolume.UriCachePolicy = new RequestCachePolicy(RequestCacheLevel.BypassCache);
+            bmpTimeVolume.CacheOption = BitmapCacheOption.OnLoad;
+            bmpTimeVolume.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
             bmpTimeVolume.UriSource = new Uri(pathImgTimeVolume, UriKind.Relative);
             bmpTimeVolume.EndInit();
+
             Image1.Stretch = Stretch.Fill;
             Image1.Source = bmpVolume;
             Image2.Stretch = Stretch.Fill;

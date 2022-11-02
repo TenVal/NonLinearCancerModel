@@ -221,7 +221,7 @@ namespace NotLinearCancerModel.MVVM.View
 
                     // find difference between modelData and diffusionModelData and add to list
                     cancerValuesParameters["Difference"].Add(Math.Abs(
-                        diffusion.NumberPointsVolume[diffusion.NumberPointsVolume.Count - 1] / 1000 -
+                        diffusion.NumberPointsVolume[diffusion.NumberPointsVolume.Count - 1] * stepScale -
                         modelData.Patients[i]["Volume"][1][modelData.Patients[i]["Volume"][1].Count - 1]));
 
                     speedForFindMin += stepAccuracy;
@@ -247,10 +247,10 @@ namespace NotLinearCancerModel.MVVM.View
                 Debug.WriteLine("requiredTValue\t" + requiredTValue[0].ToString() + "\ntStart\t" + tStart);
 
                 //now save ml
-                float differencePoints = (requiredNumberPointsVolume[0] / 1000) - modelData.Patients[i]["Volume"][1][0];
+                float differencePoints = (requiredNumberPointsVolume[0] * stepScale) - modelData.Patients[i]["Volume"][1][0];
                 for (int itemPointsValues = 0; itemPointsValues < requiredNumberPointsVolume.Length; itemPointsValues++)
                 {
-                    requiredNumberPointsVolume[itemPointsValues] = requiredNumberPointsVolume[itemPointsValues] / 1000 - differencePoints;
+                    requiredNumberPointsVolume[itemPointsValues] = requiredNumberPointsVolume[itemPointsValues] * stepScale - differencePoints;
                 }
                 Debug.WriteLine("requiredNumberPointsVolume\t" + requiredNumberPointsVolume[0].ToString() + "\nmodelData\t" + modelData.Patients[i]["Volume"][1][0].ToString());
 
