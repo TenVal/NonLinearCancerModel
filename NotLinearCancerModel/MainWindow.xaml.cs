@@ -6,6 +6,8 @@ using System.Globalization;
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
+
 
 namespace NotLinearCancerModel
 {
@@ -38,12 +40,56 @@ namespace NotLinearCancerModel
         public MainWindow()
         {
             InitializeComponent();
+            // Copy
+            string pathFrom = @"..\..\..\";
+            string pathToEnv = @"env";
+            string pathToEnvDataTumor = @"dataTumor";
+            string pathToActionDataFile = @"ActionDataFile.py";
+            string pathToCancerVolumePlot = @"CancerVolumePlot.py";
+            string pathToOneCancerVolumePlot = @"OneCancerVolumePlot.py";
+            if (Directory.Exists(pathToEnv) == false)
+            {
+                // This path is a directory
+                ActionDataFile.copyDir(pathFrom + pathToEnv, pathToEnv);
+            }
+            if (Directory.Exists(pathToEnvDataTumor) == false)
+            {
+                // This path is a directory
+                ActionDataFile.copyDir(pathFrom + pathToEnvDataTumor, pathToEnvDataTumor);
+            }
+            if (File.Exists(pathToActionDataFile) == false)
+            {
+                // This path is a file
+                File.Copy(pathFrom + pathToActionDataFile, pathToActionDataFile);
+            }
+            if (File.Exists(pathToCancerVolumePlot) == false)
+            {
+                // This path is a file
+                File.Copy(pathFrom + pathToCancerVolumePlot, pathToCancerVolumePlot);
+            }
+            if (File.Exists(pathToOneCancerVolumePlot) == false)
+            {
+                // This path is a file
+                File.Copy(pathFrom + pathToOneCancerVolumePlot, pathToOneCancerVolumePlot);
+            }
+
         }
 
 
         private int outputImages(string pathImgVolume, string pathImgTimeVolume)
         {
             // Output images (plots)
+            Image1.Source = null;
+            Image2.Source = null;
+            Image1.InvalidateMeasure();
+            Image1.InvalidateArrange();
+            Image1.InvalidateVisual();
+            Image1.UpdateLayout();
+            Image2.InvalidateMeasure();
+            Image2.InvalidateArrange();
+            Image2.InvalidateVisual();
+            Image2.UpdateLayout();
+
             BitmapImage bmpVolume = new BitmapImage();
             bmpVolume.BeginInit();
             bmpVolume.UriSource = new Uri(pathImgVolume, UriKind.Relative);
@@ -76,9 +122,9 @@ namespace NotLinearCancerModel
         private string[] getPathsImages(int number, string typeMode)
         {
             string[] pathsToImages = new string[3];
-            pathsToImages[0] = String.Format(@"..\..\..\dataTumor\PredictData\{0}\{1}\img\{2}{3}.png", typeMode, type, number, type);
-            pathsToImages[1] = String.Format(@"..\..\..\dataTumor\PredictData\{0}\{1}\timeValue\img\{2}{3}.png", typeMode, type, number, type);
-            pathsToImages[2] = String.Format(@"..\..\..\dataTumor\PredictData\{0}\{1}\txt\params\{2}Params.txt", typeMode, type, number);
+            pathsToImages[0] = String.Format(@"dataTumor\PredictData\{0}\{1}\img\{2}{3}.png", typeMode, type, number, type);
+            pathsToImages[1] = String.Format(@"dataTumor\PredictData\{0}\{1}\timeValue\img\{2}{3}.png", typeMode, type, number, type);
+            pathsToImages[2] = String.Format(@"dataTumor\PredictData\{0}\{1}\txt\params\{2}Params.txt", typeMode, type, number);
             return pathsToImages;
         }
 
@@ -111,8 +157,6 @@ namespace NotLinearCancerModel
 
         private void ShowPlots_Click(object sender, RoutedEventArgs e)
         {
-            Image1.Source = null;
-            Image2.Source = null;
             numberPatientOutputPlotFindMin = 1;
             numberPatientOutputPlotOne = 0;
             Dictionary<string, string> paths;
@@ -276,18 +320,24 @@ namespace NotLinearCancerModel
         {
             ParamsForSavePlot paramsForSavePlot = (ParamsForSavePlot)e.Argument;
             var worker = sender as BackgroundWorker;
-
+            string typeMode = "";
             worker.ReportProgress(0);
             string scriptPython;
             if (paramsForSavePlot.radioButtonChecked == true)
             {
-                scriptPython = @"..\..\..\CancerVolumePlot.py";
+                typeMode = "PersonalPatients";
+                scriptPython = @"CancerVolumePlot.py";
+
             }
             else
             {
-                scriptPython = @"..\..\..\OneCancerVolumePlot.py";
+                typeMode = "Any";
+                scriptPython = @"OneCancerVolumePlot.py";
+                /*if (System.IO.File.Exists(String.Format(@"..\..\..\dataTumor\PredictData\{0}\{1}\img\{2}{3}.png", typeMode, type, paramsForSavePlot.numberPatientSavePlot, type)))
+                    System.IO.File.Delete("c:\\t.jpg");*/
             }
-
+            String pathAssembley = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            Debug.WriteLine(String.Format("\npathAssembley - {0}", pathAssembley));
             // Create Process start info
             var psi = new ProcessStartInfo();
 
@@ -296,11 +346,11 @@ namespace NotLinearCancerModel
             // checking current path to python interpreter
             if (pathPythonInterpreter == "Please, input your path to python interpreter" || pathPythonInterpreter == "")
             {
-                pathPythonInterpreter = @"..\..\..\env\Scripts\python.exe";
+                pathPythonInterpreter = @"env\Scripts\python.exe";
             }
             worker.ReportProgress(20);
             psi.FileName = pathPythonInterpreter;
-          
+            
             //Provide Arguments
             var numberPatientToSavePlot = paramsForSavePlot.numberPatientSavePlot.ToString();
 
@@ -327,6 +377,9 @@ namespace NotLinearCancerModel
             Debug.WriteLine(errors);
             Debug.WriteLine("Results python:");
             Debug.WriteLine(results);
+            // Copy data directory
+            //File.Copy(@"C:\dir1\1.txt", @"C:\dir2\2.txt", true);
+
             if (errors == "")
             {
                 MessageBox.Show($"Success save img!\nResults:\t{results}");
@@ -355,8 +408,10 @@ namespace NotLinearCancerModel
 
         private void ButtonShowTotal_Click(object sender, RoutedEventArgs e)
         {
+            Image1.Source = null;
+            Image2.Source = null;
             string type = @"Volume";
-            string pathImg = @"..\..\..\dataTumor\PredictData\Total\" + type + @"\img\All.png";
+            string pathImg = @"dataTumor\PredictData\Total\" + type + @"\img\All.png";
 
             textBoxCancerParameters.Text = "";
 

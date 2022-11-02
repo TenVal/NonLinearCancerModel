@@ -42,7 +42,7 @@ namespace NotLinearCancerModel
         static public string writeParametersToFile(string type,
                                                     int number, 
                                                     Dictionary<string, float> cancerParameters, 
-                                                    string pathToSave = @"..\..\..\dataTumor\PredictData\PersonalPatients\")
+                                                    string pathToSave = @"dataTumor\PredictData\PersonalPatients\")
         {
             string message = "Ok";           
             pathToSave += type + @"\txt\params\" + (number + 1).ToString() + @"Params.txt";
@@ -82,7 +82,7 @@ namespace NotLinearCancerModel
                                                 int number, 
                                                 float[] tValues, 
                                                 float[] cancerValues, 
-                                                string pathToSave = @"..\..\..\dataTumor\PredictData\PersonalPatients\")
+                                                string pathToSave = @"dataTumor\PredictData\PersonalPatients\")
         {
             string message = "Ok";
             pathToSave += type + @"\timeValue\txt\" + (number + 1).ToString() + type + @".txt";
@@ -124,7 +124,7 @@ namespace NotLinearCancerModel
         static public string writeDataToFile(string type, 
                                         int number, 
                                         double[,,] data, 
-                                        string pathToSave = @"..\..\..\dataTumor\PredictData\PersonalPatients\")
+                                        string pathToSave = @"dataTumor\PredictData\PersonalPatients\")
         {
             string message = "Ok";
             pathToSave += type + @"\txt\" + (number + 1).ToString() + type + @".txt";
@@ -172,7 +172,7 @@ namespace NotLinearCancerModel
 
         static public List<List<float>> getDataFromFile(string type, 
                                                     int number, 
-                                                    string pathToFile = @"..\..\..\dataTumor\ExperimentalData\")
+                                                    string pathToFile = @"dataTumor\ExperimentalData\")
         {
             List<float> xValues = new List<float>();
             List<float> yValues = new List<float>();
@@ -215,7 +215,7 @@ namespace NotLinearCancerModel
 
         static public Dictionary<string, float> getParametersFromFile(string type, 
                                                                     int number, 
-                                                                    string pathToRead = @"..\..\..\dataTumor\PredictData\PersonalPatients\")
+                                                                    string pathToRead = @"dataTumor\PredictData\PersonalPatients\")
         {
             Dictionary<string, float> cancerParameters = new Dictionary<string, float> ();
             string singleString = "";
@@ -267,6 +267,23 @@ namespace NotLinearCancerModel
             {
                 System.Diagnostics.Debug.WriteLine($"{ex}");
                 Console.WriteLine($"{ex}");
+            }
+            return "Ok";
+        }
+
+
+
+        static public string copyDir(string FromDir, string ToDir)
+        {
+            Directory.CreateDirectory(ToDir);
+            foreach (string s1 in Directory.GetFiles(FromDir))
+            {
+                string s2 = ToDir + "\\" + Path.GetFileName(s1);
+                File.Copy(s1, s2);
+            }
+            foreach (string s in Directory.GetDirectories(FromDir))
+            {
+                copyDir(s, ToDir + "\\" + Path.GetFileName(s));
             }
             return "Ok";
         }

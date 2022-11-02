@@ -151,6 +151,7 @@ namespace NotLinearCancerModel.MVVM.View
             float angleZ = paramsCancer.angleZ;
             float alpha = paramsCancer.resistance;
             int N = (int)(length / h);
+            float stepScale = (h / 10) * (h / 10) * (h / 10);
 
             float tMax;
 
