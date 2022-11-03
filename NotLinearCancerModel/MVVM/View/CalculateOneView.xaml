@@ -140,7 +140,7 @@
             Foreground="White"/>
 
             <TextBox 
-            x:Name="TextBoxK" 
+            x:Name="TextBoxTStep" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Center" 
             Text="0,6" 
@@ -149,8 +149,8 @@
             Margin="20, 0, 0, 0"
             Grid.Column="4" Grid.Row="0" Background="#FF353340" Foreground="White"/>
             <Label 
-            x:Name="LabelK" 
-            Content="K" 
+            x:Name="LabelTstep" 
+            Content="T (step)" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Center" 
             Margin="20, 0, 0, 0"
@@ -261,6 +261,25 @@
             Margin="20, 0, 0, 0"
             Grid.Column="4" Grid.Row="3"
             Foreground="White"/>
+
+            <TextBox 
+                x:Name="TextK"
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Text="0,6" 
+                TextWrapping="Wrap"            
+                Width="120" 
+                Margin="20,24,0,0"
+                Grid.Column="5" Background="#FF353340" Foreground="White" Grid.RowSpan="2" Grid.Row="1"/>
+            <Label 
+                x:Name="LabelK" 
+                Content="K" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Center" 
+                Margin="20,0,0,0"
+                Grid.Column="5" Grid.Row="3"
+                Foreground="White"/>
+
         </Grid>
 
     </StackPanel>

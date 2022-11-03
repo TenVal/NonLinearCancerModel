@@ -27,6 +27,7 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
             <Button 
@@ -98,7 +99,7 @@
             Foreground="White"/>
 
             <TextBox 
-            x:Name="TextBoxK" 
+            x:Name="TextBoxTStep" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Center" 
             Text="0,1" 
@@ -107,8 +108,8 @@
             Margin="20, 0, 0, 0"
             Grid.Column="4" Grid.Row="0" Background="#FF353340" Foreground="White"/>
             <Label 
-            x:Name="LabelK" 
-            Content="K" 
+            x:Name="LabelTStep" 
+            Content="T (Step)" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Center" 
             Margin="20, 0, 0, 0"
@@ -133,7 +134,26 @@
             Grid.Column="5" Grid.Row="1"
             Foreground="White"/>
 
-            
+            <TextBox 
+                x:Name="TextK" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Text="0,1" 
+                TextWrapping="Wrap"            
+                Width="120" 
+                Margin="20,0,0,0"
+                Grid.Column="6" Background="#FF353340" Foreground="White"/>
+            <Label 
+                x:Name="LabelK" 
+                Content="K" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Center" 
+                Margin="20,0,0,0"
+                Grid.Column="5" Grid.Row="1"
+                Foreground="White"/>
+
+
+
 
             <ProgressBar
                 x:Name="ProgressBarCalculate"
@@ -218,7 +238,7 @@
             Margin="20, 0, 0, 0"
             Grid.Column="4" Grid.Row="3"
             Foreground="White"/>
-            
+
             <TextBox 
             x:Name="TextBoxSpeedStep" 
             HorizontalAlignment="Left" 
@@ -236,6 +256,7 @@
             Margin="20, 0, 0, 0"
             Grid.Column="5" Grid.Row="3"
             Foreground="White" Grid.RowSpan="2"/>
+
         </Grid>
 
     </StackPanel>

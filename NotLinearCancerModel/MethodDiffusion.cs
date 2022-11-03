@@ -76,17 +76,21 @@ namespace NotLinearCancerModel
 
             while (true)
             {
+                Debug.WriteLine($"Start t = {t}\ttau = {tau}\tTmax = {tMax}");
                 currentPoints = 0;
-                float[] minTau = { h * h / (2 * _d.get(0, 0, 0, length)) + h / this._c.getProjectionX(0, 0, 0),
-                                                 h * h / (2 * _d.get(0, 0, 0, length)) + h / this._c.getProjectionY(0, 0, 0),
-                                                 h * h / (2 * _d.get(0, 0, 0, length)) + h / this._c.getProjectionZ(0, 0, 0)};
+                float[] minTau = {  (h * h / (2 * _d.get(0, 0, 0, length)) + h / Math.Abs(this._c.getProjectionX(0, 0, 0))),
+                                    (h * h / (2 * _d.get(0, 0, 0, length)) + h / Math.Abs(this._c.getProjectionY(0, 0, 0))),
+                                    (h * h / (2 * _d.get(0, 0, 0, length)) + h / Math.Abs(this._c.getProjectionZ(0, 0, 0)))};
+                Debug.WriteLine(this._d.get(0, 0, 0, length));
+                Debug.WriteLine(h);
 
-                if (_d.get(0, 0, 0, length) <= 1)
+
+                /*if (_d.get(0, 0, 0, length) <= 1)
                 {
                     minTau[0] = h / this._c.getProjectionX(0, 0, 0);
                     minTau[1] = h / this._c.getProjectionY(0, 0, 0);
                     minTau[2] = h / this._c.getProjectionZ(0, 0, 0);
-                }
+                }*/
                 tau = K * minTau.Min();
                 for (int i = 0; i < (N - 1); i++)
                 {
@@ -169,12 +173,12 @@ namespace NotLinearCancerModel
                             double S5 = (tau / (h * h)) * (K * (valuesP1[i, j, k + 1] - valuesP1[i, j, k]) - K * (valuesP1[i, j, k] - valuesP1S5));
                             // sources
                             double S6 = (this._q.get(i, j, k, t) - this._alpha * valuesP1[i, j, k]) * tau;
-                            // Implementation of a finite difference scheme
+                            // Implementation of a finite difference scheme             
                             valuesP2[i, j, k] = S1 - S2 + S3 + S4 + S5 + S6;
 
                             // System.Diagnostics.Debug.WriteLine(valuesP2[i, j, k]);
                             // Counting the number of volume points in each time layer
-                            if (valuesP2[i, j, k] > 0)
+                                if (valuesP2[i, j, k] > 0)
                             {
                                 currentPoints++;
                             }
@@ -220,6 +224,7 @@ namespace NotLinearCancerModel
                     }
                 }
                 t += tau;
+                Debug.WriteLine($"t = {t}\ttau = {tau}");
                 _numberPointsVolume.Add(currentPoints);
                 _tValues.Add(t);
                 if (t > (tMax + tau))

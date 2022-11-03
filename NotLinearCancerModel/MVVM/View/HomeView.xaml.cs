@@ -100,7 +100,7 @@ namespace NotLinearCancerModel.MVVM.View
                                     float.Parse(TextBoxLength.Text),
                                     float.Parse(TextBoxH.Text),
                                     float.Parse(TextBoxD.Text),
-                                    float.Parse(TextBoxK.Text),
+                                    float.Parse(TextBoxTStep.Text),
                                     float.Parse(TextBoxSpeedEnd.Text),
                                     float.Parse(TextBoxSpeedStep.Text),
                                     float.Parse(TextBoxSpeedStart.Text),
@@ -206,7 +206,7 @@ namespace NotLinearCancerModel.MVVM.View
                     cancerValuesParameters["AngleZ"].Add(angleZ);
                     cancerValuesParameters["Resistance"].Add(alpha);
 
-                    D dF = new D(speedForFindMin, d);
+                    D dF = new D(d, speedForFindMin);
                     diffusion = new MethodDiffusion(dF, c, q, alpha);
 
                     double[,,] valuesP = new double[N, N, N];
@@ -240,7 +240,20 @@ namespace NotLinearCancerModel.MVVM.View
                 float requiredSpeed = cancerValuesParameters["Speed"][indexMinDifference];
 
                 double[,,] requiredValuesP = listAllValuesP[indexMinDifference];
-                float[] requiredTValue = listAllValuesT[indexMinDifference];
+                for (int a = 0; a < N; a++)
+                {
+                    for (int b = 0; b < N; b++)
+                    {
+                        for (int z = 0; z < N; z++)
+                        {
+                            if (requiredValuesP[a, b, z] < 0)
+                            {
+                                requiredValuesP[a, b, z] = 0;
+                            }
+                        }
+                    }
+                }
+                    float[] requiredTValue = listAllValuesT[indexMinDifference];
                 float[] requiredNumberPointsVolume = listAllValuesNumberPointsVolume[indexMinDifference];
 
                 float differenceT = requiredTValue[0] - (tStart / 30);

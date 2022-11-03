@@ -109,7 +109,7 @@ namespace NotLinearCancerModel.MVVM.View
                                     float.Parse(TextBoxLength.Text),
                                     float.Parse(TextBoxH.Text),
                                     float.Parse(TextBoxD.Text),
-                                    float.Parse(TextBoxK.Text),
+                                    float.Parse(TextBoxTStep.Text),
                                     float.Parse(TextBoxSpeed.Text),
                                     float.Parse(TextBoxAngleXY.Text),
                                     float.Parse(TextBoxAngleZ.Text),
@@ -173,7 +173,7 @@ namespace NotLinearCancerModel.MVVM.View
 
             C c = new C(speed, angleXY, angleZ);
             Q q = new Q(0);
-            D dF = new D(speed, d);
+            D dF = new D(d, speed);
 
             worker.ReportProgress(10, String.Format("Processing ..."));
             MethodDiffusion diffusion = new MethodDiffusion(dF, c, q, alpha);
@@ -188,14 +188,21 @@ namespace NotLinearCancerModel.MVVM.View
             // Data for time-volume plot
             float[] numberPointsVolume = new float[diffusion.NumberPointsVolume.Count];
             Array.Copy(diffusion.NumberPointsVolume.ToArray(), numberPointsVolume, numberPointsVolume.Length);
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = 0; j < N; j++)
+                {
+                    for (int a = 0; a < N; a++)
+                    {
+                        if(valuesP[i, j, a] < 0)
+                        {
+                            valuesP[i, j, a] = 0;
+                        }
+                    }
+                }
+            }
             float[] tValues = new float[diffusion.TValues.Count];
             Array.Copy(diffusion.TValues.ToArray(), tValues, tValues.Length);
-
-
-            for (int i = 0; i < 10; i++)
-            {
-                Debug.WriteLine($"\nModel data 1 {modelData.Patients[i]["Volume"][1][0]}");
-            }
 
             if (numberPatient != 0)
             {
@@ -286,7 +293,7 @@ namespace NotLinearCancerModel.MVVM.View
                 TextBoxLength.Text = cancerParams["Length"].ToString();
                 TextBoxH.Text = cancerParams["H"].ToString();
                 TextBoxD.Text = cancerParams["D"].ToString();
-                TextBoxK.Text = cancerParams["K"].ToString();
+                TextBoxTStep.Text = cancerParams["K"].ToString();
                 TextBoxSpeed.Text = cancerParams["Speed"].ToString();
                 TextBoxAngleXY.Text = cancerParams["AngleXY"].ToString();
                 TextBoxAngleZ.Text = cancerParams["AngleZ"].ToString();
