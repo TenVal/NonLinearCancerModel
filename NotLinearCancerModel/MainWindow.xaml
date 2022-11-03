@@ -107,12 +107,12 @@
 
             <Button x:Name="ButtonShowTotal"
                     Content="Show total data about&#xD;&#xA;        every patient" 
-                    Width="150"
+                    Width="160"
                     Height="40"
                     Grid.Column="1" 
                     Grid.Row="1" 
                     HorizontalAlignment="Left" 
-                    Margin="20,529,0,0" 
+                    Margin="10,529,0,0" 
                     Background="#4e99ff"
                     Foreground="White"                   
                     VerticalAlignment="Top" Click="ButtonShowTotal_Click"/>
@@ -164,10 +164,9 @@
                     <Button 
                     x:Name="SavePlots" 
                     Content="Save Plots" 
-                    HorizontalAlignment="Left" 
-                    Width="65" 
+                    Width="70" 
                     Click="SavePlots_Click"
-                    Margin="20,4,0,3"
+                    Margin="10,4,0,3"
                     Grid.Column="1" Grid.Row="2"
                     Background="#4e99ff"
                     Foreground="White"/>

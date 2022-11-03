@@ -36,6 +36,7 @@ namespace NotLinearCancerModel.MVVM.View
             public float angleXY;
             public float angleZ;
             public float resistance;
+            public float tStep;
 
             public ParametersCancer(
                 float length,
@@ -48,7 +49,8 @@ namespace NotLinearCancerModel.MVVM.View
                 float speed,
                 float angleXY,
                 float angleZ,
-                float resistance)
+                float resistance,
+                float tStep)
             {
                 this.length = length;
                 this.RightX = RightX;
@@ -61,6 +63,7 @@ namespace NotLinearCancerModel.MVVM.View
                 this.angleXY = angleXY;
                 this.angleZ = angleZ;
                 this.resistance = resistance;
+                this.tStep = tStep;
             }
         }
 
@@ -106,7 +109,8 @@ namespace NotLinearCancerModel.MVVM.View
                                     float.Parse(TextBoxSpeedStart.Text),
                                     float.Parse(TextBoxAngleXY.Text),
                                     float.Parse(TextBoxAngleZ.Text),
-                                    float.Parse(TextBoxAlpha.Text));
+                                    float.Parse(TextBoxAlpha.Text),
+                                    float.Parse(TextBoxTStep.Text));
                 worker.RunWorkerAsync(paramsCancer);
             }
             catch (Exception ex)
@@ -146,7 +150,6 @@ namespace NotLinearCancerModel.MVVM.View
             float RightX = paramsCancer.RightX;
             float h = paramsCancer.h;
             float d = paramsCancer.d;
-            Debug.WriteLine("D\t" + d);
             float k = paramsCancer.k;
             float SpeedEnd = paramsCancer.SpeedEnd;
             float SpeedStep = paramsCancer.SpeedStep;
@@ -154,6 +157,7 @@ namespace NotLinearCancerModel.MVVM.View
             float angleXY = paramsCancer.angleXY;
             float angleZ = paramsCancer.angleZ;
             float alpha = paramsCancer.resistance;
+            float tStep = paramsCancer.tStep;
             int N = (int)(length / h);
             float stepScale = (h / 10) * (h / 10) * (h / 10);
 
@@ -180,6 +184,7 @@ namespace NotLinearCancerModel.MVVM.View
                     {"AngleXY" , new List<float>() },
                     {"AngleZ" , new List<float>() },
                     {"Resistance" , new List<float>() },
+                    {"TStep", new List<float>() },
                     {"Difference" , new List<float>()},
                 };
                 List<double[,,]> listAllValuesP = new List<double[,,]>();
@@ -204,13 +209,21 @@ namespace NotLinearCancerModel.MVVM.View
                     cancerValuesParameters["Speed"].Add(speedForFindMin);
                     cancerValuesParameters["AngleXY"].Add(angleXY);
                     cancerValuesParameters["AngleZ"].Add(angleZ);
+                    cancerValuesParameters["TStep"].Add(tStep);
                     cancerValuesParameters["Resistance"].Add(alpha);
 
                     D dF = new D(d, speedForFindMin);
                     diffusion = new MethodDiffusion(dF, c, q, alpha);
 
                     double[,,] valuesP = new double[N, N, N];
-                    diffusion.getValues(tMax, h, k, length, valuesP);
+                    try
+                    {
+                        diffusion.getValues(tMax, tStep, h, k, length, valuesP);
+                    }
+                    catch(Exception eGet)
+                    {
+                        MessageBox.Show($"{eGet.Message}");
+                    }
 
                     // Data for time-volume plot
                     float[] numberPointsVolume = new float[diffusion.NumberPointsVolume.Count];
@@ -285,6 +298,7 @@ namespace NotLinearCancerModel.MVVM.View
                     {"AngleZ" , cancerValuesParameters["AngleZ"][indexMinDifference] },
                     {"Alpha" , cancerValuesParameters["Resistance"][indexMinDifference] },
                     {"TMax" , requiredTValue.Last()},
+                    {"TStep" , cancerValuesParameters["TStep"][indexMinDifference] },
                     {"Difference" , cancerValuesParameters["Difference"][indexMinDifference]},
                 };
 

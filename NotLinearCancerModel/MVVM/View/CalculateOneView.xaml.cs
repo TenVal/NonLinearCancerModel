@@ -36,6 +36,7 @@ namespace NotLinearCancerModel.MVVM.View
             public float angleZ;
             public float alpha;
             public float tMax;
+            public float tStep;
             public int numberPatient;
 
             public ParametersCancerForOneCalculate(
@@ -49,6 +50,7 @@ namespace NotLinearCancerModel.MVVM.View
                 float angleZ,
                 float alpha,
                 float tMax,
+                float tStep,
                 int numberPatient)
             {
                 this.length = length;
@@ -61,6 +63,7 @@ namespace NotLinearCancerModel.MVVM.View
                 this.angleZ = angleZ;
                 this.alpha = alpha;
                 this.tMax = tMax;
+                this.tStep = tStep;
                 this.numberPatient = numberPatient;
             }
         }
@@ -109,11 +112,12 @@ namespace NotLinearCancerModel.MVVM.View
                                     float.Parse(TextBoxLength.Text),
                                     float.Parse(TextBoxH.Text),
                                     float.Parse(TextBoxD.Text),
-                                    float.Parse(TextBoxTStep.Text),
+                                    float.Parse(TextBoxK.Text),
                                     float.Parse(TextBoxSpeed.Text),
                                     float.Parse(TextBoxAngleXY.Text),
                                     float.Parse(TextBoxAngleZ.Text),
                                     float.Parse(TextBoxAlpha.Text),
+                                    float.Parse(TextBoxTStep.Text),
                                     float.Parse(TextBoxTMax.Text),
                                     numberPatient);
                 worker.RunWorkerAsync(paramsCancer);
@@ -155,6 +159,7 @@ namespace NotLinearCancerModel.MVVM.View
             float angleXY = paramsCancer.angleXY;
             float angleZ = paramsCancer.angleZ;
             float alpha = paramsCancer.alpha;
+            float tStep = paramsCancer.tStep;
             float tMax = paramsCancer.tMax;
             float stepScale = (h / 10) * (h / 10) * (h / 10);
             int numberPatient = paramsCancer.numberPatient;
@@ -181,7 +186,7 @@ namespace NotLinearCancerModel.MVVM.View
 
             int N = (int)(length / h);
             double[,,] valuesP = new double[N, N, N];
-            diffusion.getValues(tMax, h, k, length, valuesP);
+            diffusion.getValues(tMax, tStep, h, k, length, valuesP);
 
             worker.ReportProgress(60, String.Format("Processing ..."));
 
@@ -241,6 +246,7 @@ namespace NotLinearCancerModel.MVVM.View
                 {"AngleZ" , angleZ },
                 {"Alpha", alpha },
                 {"TMax" , tMax },
+                {"TStep", tStep },
                 {"numberPatient", numberPatient }
             };
 

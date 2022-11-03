@@ -35,14 +35,13 @@
             Click="CalculateMin_Click"
             Content="Find Min" 
             HorizontalAlignment="Left" 
-            VerticalAlignment="Bottom" 
-            Width="215"
+            VerticalAlignment="Center" 
+            Width="180"
             Height="44"
-            Margin="10,0,0,0"
             Grid.Column="0" Grid.Row="0" 
             Grid.RowSpan="2" 
             Background="#4e99ff"
-            Foreground="White"/>
+            Foreground="White" Margin="10,0,0,0"/>
 
             <TextBox 
             x:Name="TextBoxLength" 
@@ -135,7 +134,7 @@
             Foreground="White"/>
 
             <TextBox 
-                x:Name="TextK" 
+                x:Name="TextBoxK" 
                 HorizontalAlignment="Left" 
                 VerticalAlignment="Top" 
                 Text="0,1" 
@@ -149,7 +148,7 @@
                 HorizontalAlignment="Left" 
                 VerticalAlignment="Center" 
                 Margin="20,0,0,0"
-                Grid.Column="5" Grid.Row="1"
+                Grid.Column="6" Grid.Row="1"
                 Foreground="White"/>
 
 

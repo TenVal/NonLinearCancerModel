@@ -63,7 +63,7 @@ namespace NotLinearCancerModel
             this._alpha = alpha;
         }
 
-        public int getValues(float tMax, float h, float K, float length, double[,,] valuesP2)
+        public int getValues(float tMax, float tStep, float h, float K, float length, double[,,] valuesP2)
         {
             this._tValues = new List<float>();
             this._numberPointsVolume = new List<float>();
@@ -72,26 +72,25 @@ namespace NotLinearCancerModel
             float t = 0;
 
             double[,,] valuesP1 = new double[N, N, N];
-            float tau = 0;
+            float tCheck = 0;
+
+            currentPoints = 0;
+            float[] minTau = {  (h * h / (2 * _d.get(0, 0, 0, length)) + h / Math.Abs(this._c.getProjectionX(0, 0, 0))),
+                                (h * h / (2 * _d.get(0, 0, 0, length)) + h / Math.Abs(this._c.getProjectionY(0, 0, 0))),
+                                (h * h / (2 * _d.get(0, 0, 0, length)) + h / Math.Abs(this._c.getProjectionZ(0, 0, 0)))};
+            Debug.WriteLine(this._d.get(0, 0, 0, length));
+            Debug.WriteLine(h);
+
+            tCheck = K * minTau.Min();
+            if (tStep >= tCheck)
+            {
+                Debug.WriteLine("ERROR!!!!!!!!!");
+                throw new Exception("Шаг по времени не дает устойчивую схему!");
+            }
+            Debug.WriteLine($"tStep = {tStep}\ttCheck = {tCheck}");
 
             while (true)
             {
-                Debug.WriteLine($"Start t = {t}\ttau = {tau}\tTmax = {tMax}");
-                currentPoints = 0;
-                float[] minTau = {  (h * h / (2 * _d.get(0, 0, 0, length)) + h / Math.Abs(this._c.getProjectionX(0, 0, 0))),
-                                    (h * h / (2 * _d.get(0, 0, 0, length)) + h / Math.Abs(this._c.getProjectionY(0, 0, 0))),
-                                    (h * h / (2 * _d.get(0, 0, 0, length)) + h / Math.Abs(this._c.getProjectionZ(0, 0, 0)))};
-                Debug.WriteLine(this._d.get(0, 0, 0, length));
-                Debug.WriteLine(h);
-
-
-                /*if (_d.get(0, 0, 0, length) <= 1)
-                {
-                    minTau[0] = h / this._c.getProjectionX(0, 0, 0);
-                    minTau[1] = h / this._c.getProjectionY(0, 0, 0);
-                    minTau[2] = h / this._c.getProjectionZ(0, 0, 0);
-                }*/
-                tau = K * minTau.Min();
                 for (int i = 0; i < (N - 1); i++)
                 {
                     for (int j = 0; j < (N - 1); j++)
@@ -107,44 +106,44 @@ namespace NotLinearCancerModel
                             
                             if (this._c.getProjectionX(i * h, j * h, k * h) > 0)
                             {
-                                M1 = valuesP1[i, j, k] * this._c.getProjectionX(i * h, j * h, k * h) * h * h * tau;
+                                M1 = valuesP1[i, j, k] * this._c.getProjectionX(i * h, j * h, k * h) * h * h * tStep;
                                 if (i - 1 < 0)
-                                    M2 = valuesP1[valuesP1.GetLength(0) - 1, j, k] * this._c.getProjectionX(i * h, j * h, k * h) * h * h * tau;
+                                    M2 = valuesP1[valuesP1.GetLength(0) - 1, j, k] * this._c.getProjectionX(i * h, j * h, k * h) * h * h * tStep;
                                 else
-                                    M2 = valuesP1[i - 1, j, k] * this._c.getProjectionX(i * h, j * h, k * h) * h * h * tau;
+                                    M2 = valuesP1[i - 1, j, k] * this._c.getProjectionX(i * h, j * h, k * h) * h * h * tStep;
                             }
                             else if (this._c.getProjectionX(i * h, j * h, k * h) < 0)
                             {
-                                M1 = valuesP1[i + 1, j, k] * this._c.getProjectionX(i * h, j * h, k * h) * h * h * tau;
-                                M2 = valuesP1[i, j, k] * this._c.getProjectionX(i * h, j * h, k * h) * h * h * tau;
+                                M1 = valuesP1[i + 1, j, k] * this._c.getProjectionX(i * h, j * h, k * h) * h * h * tStep;
+                                M2 = valuesP1[i, j, k] * this._c.getProjectionX(i * h, j * h, k * h) * h * h * tStep;
                             }
 
                             if (this._c.getProjectionY(i * h, j * h, k * h) > 0)
                             {
-                                M3 = valuesP1[i, j, k] * this._c.getProjectionY(i * h, j * h, k * h) * h * h * tau;
+                                M3 = valuesP1[i, j, k] * this._c.getProjectionY(i * h, j * h, k * h) * h * h * tStep;
                                 if (j - 1 < 0)
-                                    M4 = valuesP1[i, valuesP1.GetLength(1) - 1, k] * this._c.getProjectionY(i * h, j * h, k * h) * h * h * tau;
+                                    M4 = valuesP1[i, valuesP1.GetLength(1) - 1, k] * this._c.getProjectionY(i * h, j * h, k * h) * h * h * tStep;
                                 else
-                                    M4 = valuesP1[i, j - 1, k] * this._c.getProjectionY(i * h, j * h, k * h) * h * h * tau;
+                                    M4 = valuesP1[i, j - 1, k] * this._c.getProjectionY(i * h, j * h, k * h) * h * h * tStep;
                             }
                             else if (this._c.getProjectionY(i * h, j * h, k * h) < 0)
                             {
-                                M3 = valuesP1[i, j + 1, k] * this._c.getProjectionY(i * h, j * h, k * h) * h * tau;
-                                M4 = valuesP1[i, j, k] * this._c.getProjectionY(i * h, j * h, k * h) * h * tau;
+                                M3 = valuesP1[i, j + 1, k] * this._c.getProjectionY(i * h, j * h, k * h) * h * tStep;
+                                M4 = valuesP1[i, j, k] * this._c.getProjectionY(i * h, j * h, k * h) * h * tStep;
                             }
 
                             if (this._c.getProjectionZ(i * h, j * h, k * h) > 0)
                             {
-                                M5 = valuesP1[i, j, k] * this._c.getProjectionZ(i * h, j * h, k * h) * h * h * tau;
+                                M5 = valuesP1[i, j, k] * this._c.getProjectionZ(i * h, j * h, k * h) * h * h * tStep;
                                 if (k - 1 < 0)
-                                    M6 = valuesP1[i, j, valuesP1.GetLength(2) - 1] * this._c.getProjectionZ(i * h, j * h, k * h) * h * h * tau;
+                                    M6 = valuesP1[i, j, valuesP1.GetLength(2) - 1] * this._c.getProjectionZ(i * h, j * h, k * h) * h * h * tStep;
                                 else
-                                    M6 = valuesP1[i, j, k - 1] * this._c.getProjectionZ(i * h, j * h, k * h) * h * h * tau;
+                                    M6 = valuesP1[i, j, k - 1] * this._c.getProjectionZ(i * h, j * h, k * h) * h * h * tStep;
                             }
                             else if (this._c.getProjectionZ(i * h, j * h, k * h) < 0)
                             {
-                                M5 = valuesP1[i, j, k + 1] * this._c.getProjectionZ(i * h, j * h, k * h) * h * h * tau;
-                                M6 = valuesP1[i, j, k] * this._c.getProjectionZ(i * h, j * h, k * h) * h * h * tau;
+                                M5 = valuesP1[i, j, k + 1] * this._c.getProjectionZ(i * h, j * h, k * h) * h * h * tStep;
+                                M6 = valuesP1[i, j, k] * this._c.getProjectionZ(i * h, j * h, k * h) * h * h * tStep;
                             }
 
                             // operands of finite difference scheme
@@ -166,13 +165,13 @@ namespace NotLinearCancerModel
                                 valuesP1S5 = valuesP1[i, j, valuesP1.GetLength(2) - 1];
                             else
                                 valuesP1S5 = valuesP1[i, j, k - 1];
-                            double S3 = (tau / (h * h)) * (_d.get(i * h, j * h, k * h, length) * (valuesP1[i + 1, j, k] - valuesP1[i, j, k]) -
+                            double S3 = (tStep / (h * h)) * (_d.get(i * h, j * h, k * h, length) * (valuesP1[i + 1, j, k] - valuesP1[i, j, k]) -
                                                     _d.get(i * h, j * h, k * h, length) * (valuesP1[i, j, k] - valuesP1S3));
-                            double S4 = (tau / (h * h)) * (_d.get(i * h, j * h, k * h, length) * (valuesP1[i, j + 1, k] - valuesP1[i, j, k]) -
+                            double S4 = (tStep / (h * h)) * (_d.get(i * h, j * h, k * h, length) * (valuesP1[i, j + 1, k] - valuesP1[i, j, k]) -
                                                     _d.get(i * h, j * h, k * h, length) * (valuesP1[i, j, k] - valuesP1S4));
-                            double S5 = (tau / (h * h)) * (K * (valuesP1[i, j, k + 1] - valuesP1[i, j, k]) - K * (valuesP1[i, j, k] - valuesP1S5));
+                            double S5 = (tStep / (h * h)) * (K * (valuesP1[i, j, k + 1] - valuesP1[i, j, k]) - K * (valuesP1[i, j, k] - valuesP1S5));
                             // sources
-                            double S6 = (this._q.get(i, j, k, t) - this._alpha * valuesP1[i, j, k]) * tau;
+                            double S6 = (this._q.get(i, j, k, t) - this._alpha * valuesP1[i, j, k]) * tStep;
                             // Implementation of a finite difference scheme             
                             valuesP2[i, j, k] = S1 - S2 + S3 + S4 + S5 + S6;
 
@@ -223,14 +222,14 @@ namespace NotLinearCancerModel
                         }
                     }
                 }
-                t += tau;
-                Debug.WriteLine($"t = {t}\ttau = {tau}");
+                t += tStep;
+                Debug.WriteLine($"t = {t}\ttau = {tStep}");
                 _numberPointsVolume.Add(currentPoints);
                 _tValues.Add(t);
-                if (t > (tMax + tau))
+                if (t > (tMax + tStep))
                     break;
             }
-            this.tMax = t - tau;
+            this.tMax = t - tStep;
             return 0;
         }
     }

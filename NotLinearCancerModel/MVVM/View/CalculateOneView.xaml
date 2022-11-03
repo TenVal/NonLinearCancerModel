@@ -263,7 +263,7 @@
             Foreground="White"/>
 
             <TextBox 
-                x:Name="TextK"
+                x:Name="TextBoxK"
                 HorizontalAlignment="Left" 
                 VerticalAlignment="Top" 
                 Text="0,6" 
