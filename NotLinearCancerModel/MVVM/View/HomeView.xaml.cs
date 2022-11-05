@@ -116,7 +116,7 @@ namespace NotLinearCancerModel.MVVM.View
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
-            }   
+            }
         }
 
         private void workerMin_RunWorkerComplited(object sender, RunWorkerCompletedEventArgs e)
@@ -218,7 +218,7 @@ namespace NotLinearCancerModel.MVVM.View
                     double[,,] valuesP = new double[N, N, N];
                     try
                     {
-                        diffusion.getValues(tMax, tStep, h, k, length, valuesP);
+                        diffusion.getValues2(tMax, tStep, h, k, length, valuesP);
                     }
                     catch(Exception eGet)
                     {

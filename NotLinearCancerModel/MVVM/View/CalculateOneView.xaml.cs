@@ -186,7 +186,7 @@ namespace NotLinearCancerModel.MVVM.View
 
             int N = (int)(length / h);
             double[,,] valuesP = new double[N, N, N];
-            diffusion.getValues(tMax, tStep, h, k, length, valuesP);
+            diffusion.getValues2(tMax, tStep, h, k, length, valuesP);
 
             worker.ReportProgress(60, String.Format("Processing ..."));
 

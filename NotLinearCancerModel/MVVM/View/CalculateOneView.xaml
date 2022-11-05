@@ -141,6 +141,7 @@
 
             <TextBox 
             x:Name="TextBoxTStep" 
+                Visibility="Hidden"
             HorizontalAlignment="Left" 
             VerticalAlignment="Center" 
             Text="0,6" 
@@ -149,7 +150,8 @@
             Margin="20, 0, 0, 0"
             Grid.Column="4" Grid.Row="0" Background="#FF353340" Foreground="White"/>
             <Label 
-            x:Name="LabelTstep" 
+            x:Name="LabelTstep"                 
+                Visibility="Hidden"
             Content="T (step)" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Center" 
