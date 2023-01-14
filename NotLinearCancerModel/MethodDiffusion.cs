@@ -399,7 +399,8 @@ namespace NotLinearCancerModel
                     break;
             }
             this.tMax = t - tau;
-            Debug.WriteLine(tau);
+
+            Debug.WriteLine($"{tau}");
             return 0;
         }
     }

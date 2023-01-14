@@ -82,6 +82,19 @@ namespace NotLinearCancerModel.MVVM.View
             }
         }
 
+
+        private void unpressedButton()
+        {
+            Calculate.Content = "Calculate";
+            Calculate.IsEnabled = true;
+            SolidColorBrush brushForUnpressedButton = new SolidColorBrush(Colors.White);
+            Calculate.Foreground = brushForUnpressedButton;
+            PercentProgressBarCalculate.Visibility = Visibility.Collapsed;
+            ProgressBarCalculate.Visibility = Visibility.Collapsed;
+            ProgressBarCalculate.Value = 0;
+        }
+
+
         private void Calculate_Click(object sender, RoutedEventArgs e)
         {
             /*change style pressed and calculated button*/
@@ -125,14 +138,17 @@ namespace NotLinearCancerModel.MVVM.View
             catch (ArgumentNullException ex)
             {
                 MessageBox.Show(String.Format("Please input correct parameters!\n{ex}", ex));
+                unpressedButton();
             }
             catch (FormatException ex)
             {
                 MessageBox.Show(String.Format("Please input correct parameters!\n{ex}", ex));
+                unpressedButton();
             }
             catch (OverflowException ex)
             {
                 MessageBox.Show(String.Format("Please don't go beyond the limits\n{ex}", ex));
+                unpressedButton();
             }
         }
 
@@ -270,8 +286,6 @@ namespace NotLinearCancerModel.MVVM.View
             Calculate.Foreground = brushForUnpressedButton;
             PercentProgressBarCalculate.Visibility = Visibility.Collapsed;
             ProgressBarCalculate.Visibility = Visibility.Collapsed;
-            SolidColorBrush brushForPressedButton = new SolidColorBrush(Colors.White);
-            Calculate.Foreground = brushForPressedButton;
             ProgressBarCalculate.Value = 0;
         }
 
@@ -292,6 +306,7 @@ namespace NotLinearCancerModel.MVVM.View
                 {
                     ComboBoxChoosePatient.SelectedIndex = 0;
                     MessageBox.Show(String.Format("Please choose patient at the list!\n{ex}", ex));
+                    unpressedButton();
                 }
                 string pathToRead = @"dataTumor\PredictData\PersonalPatients\" + type + @"\txt\params\" + number.ToString() + @"Params.txt";
                 Dictionary<string, float> cancerParams = ActionDataFile.getParametersFromFile(type, number, pathToRead);

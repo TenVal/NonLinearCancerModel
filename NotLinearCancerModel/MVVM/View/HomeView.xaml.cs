@@ -81,6 +81,19 @@ namespace NotLinearCancerModel.MVVM.View
             }
         }
 
+
+        private void unpressedButton()
+        {
+            CalculateMin.Content = "Calculate";
+            CalculateMin.IsEnabled = true;
+            SolidColorBrush brushForUnpressedButton = new SolidColorBrush(Colors.White);
+            CalculateMin.Foreground = brushForUnpressedButton;
+            PercentProgressBarCalculate.Visibility = Visibility.Collapsed;
+            ProgressBarCalculate.Visibility = Visibility.Collapsed;
+            ProgressBarCalculate.Value = 0;
+        }
+
+
         private void CalculateMin_Click(object sender, RoutedEventArgs e)
         {
             PercentProgressBarCalculate.Visibility = Visibility.Visible;
@@ -116,6 +129,7 @@ namespace NotLinearCancerModel.MVVM.View
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+                unpressedButton();
             }
         }
 
@@ -223,6 +237,7 @@ namespace NotLinearCancerModel.MVVM.View
                     catch(Exception eGet)
                     {
                         MessageBox.Show($"{eGet.Message}");
+                        unpressedButton();
                     }
 
                     // Data for time-volume plot
