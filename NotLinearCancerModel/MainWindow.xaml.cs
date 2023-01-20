@@ -422,21 +422,35 @@ namespace NotLinearCancerModel
 
         private void ButtonShowTotal_Click(object sender, RoutedEventArgs e)
         {
-            Image1.Source = null;
-            Image2.Source = null;
             string type = @"Volume";
             string pathImg = @"dataTumor\PredictData\Total\" + type + @"\img\All.png";
 
             textBoxCancerParameters.Text = "";
 
             // Output images (plots)
-            BitmapImage bmp = new BitmapImage();
-            bmp.BeginInit();
-            bmp.UriSource = new Uri(pathImg, UriKind.Relative);
-            bmp.EndInit();
+            Image1.Source = null;
+            Image2.Source = null;
+            Image1.InvalidateMeasure();
+            Image1.InvalidateArrange();
+            Image1.InvalidateVisual();
+            Image1.UpdateLayout();
+            Image2.InvalidateMeasure();
+            Image2.InvalidateArrange();
+            Image2.InvalidateVisual();
+            Image2.UpdateLayout();
+
+            BitmapImage bmpVolume = new BitmapImage();
+            bmpVolume.BeginInit();
+            bmpVolume.CacheOption = BitmapCacheOption.None;
+            bmpVolume.UriCachePolicy = new RequestCachePolicy(RequestCacheLevel.BypassCache);
+            bmpVolume.CacheOption = BitmapCacheOption.OnLoad;
+            bmpVolume.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
+            bmpVolume.UriSource = new Uri(pathImg, UriKind.Relative);
+            bmpVolume.EndInit();
 
             Image1.Stretch = Stretch.Fill;
-            Image1.Source = bmp;
+            Image1.Source = bmpVolume;
+            Image2.Stretch = Stretch.Fill;
             Image2.Source = null;
         }
     }
