@@ -103,12 +103,12 @@ if __name__ == "__main__":
                  allTimeCancer["cancer"][i], 
                  color = colors[i],
                  linestyle = "-", 
-                 label=f"Simulated data of the patient-{i+1}")
+                 label=f"Simulated patient-{i+1} data")
         plt.plot(allExperimentalTimeCancer["time"][i], 
                  allExperimentalTimeCancer["cancer"][i], 
                  color = colors[i],
                  linestyle = "--",
-                 label=f"Clinical data of the patient-{i+1}")
+                 label=f"Clinical patient-{i+1} data")
 
     plt.legend()
     fig.suptitle(f"Tumor dynamics of all patients", fontsize=24)
