@@ -45,13 +45,13 @@ if __name__ == "__main__":
     plt.colorbar(img)
   
     # adding title and labels
-    title3D = f"3D моделирование опухоли {numberPatient}"
+    title3D = f"3D model cancer {numberPatient}"
     if numberPatient == 0:
-        title3D = f"3D моделирование опухоли"
+        title3D = f"3D model cancer"
     ax.set_title(title3D, fontsize=28)
-    ax.set_xlabel('X (мм)', fontsize=18)
-    ax.set_ylabel('Y (мм)', fontsize=18)
-    ax.set_zlabel('Z (мм)', fontsize=18)
+    ax.set_xlabel('X (mkm)', fontsize=18)
+    ax.set_ylabel('Y (mkm)', fontsize=18)
+    ax.set_zlabel('Z (mkm)', fontsize=18)
     ax.tick_params(axis='both', which='major', labelsize=14)
     ax.tick_params(axis='both', which='minor', labelsize=14)
   
@@ -63,7 +63,7 @@ if __name__ == "__main__":
     fig = plt.figure(figsize=(10, 10))
     ax = fig.add_subplot(111)
     
-    plt.plot(timeCancerNew[0], timeCancerNew[1], label="Новые результаты")
+    plt.plot(timeCancerNew[0], timeCancerNew[1], label="New results")
 
     pathToLatestModificationFile = f"dataTumor/PredictData/Any/{type}/timeValue/txt/{numberPatient}{type}Old.txt"
     if numberPatient != 0:
@@ -75,16 +75,16 @@ if __name__ == "__main__":
         # get experimental data to put it on plot
         pathExperimentalData = f"dataTumor/ExperimentalData/{type}/{numberPatient}{type}.txt"
         experimentalData = getExperimentalDataFromFile(path=pathExperimentalData)
-        plt.scatter(experimentalData[0], experimentalData[1], c="red", label=f"Клинические данные пацента-{numberPatient}")
+        plt.scatter(experimentalData[0], experimentalData[1], c="red", label=f"Clinical patient-{numberPatient} data")
 
     pathToLatestModificationFile = join(current_dir, pathToLatestModificationFile)
     timecancerOldOne = getTimeValueFromFile(path=pathToLatestModificationFile)    
-    plt.plot(timecancerOldOne[0], timecancerOldOne[1], color="#964b00", label="Предыдущие результаты")
+    plt.plot(timecancerOldOne[0], timecancerOldOne[1], color="#964b00", label="Previous results")
 
     # title for plot time value
-    titleTimeValue = f"Динамика опухоли пациента {numberPatient}"
+    titleTimeValue = f"Tumor dynamics of the patient-{numberPatient}"
     if numberPatient == 0:
-        titleTimeValue = f"Динамика опухоли"
+        titleTimeValue = f"Tumor dynamics"
     fig.suptitle(titleTimeValue, fontsize=28)
     plt.xlabel('время (месяцы)', fontsize=26)
     plt.ylabel('объем (мл)', fontsize=26)
