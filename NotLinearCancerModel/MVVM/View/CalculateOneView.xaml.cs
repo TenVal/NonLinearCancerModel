@@ -173,7 +173,7 @@ namespace NotLinearCancerModel.MVVM.View
 
             C c = new C(speed, angleXY, angleZ);
             Q q = new Q(0);
-            D dF = new D(speed, d);
+            D dF = new D(d, speed);
 
             worker.ReportProgress(10, String.Format("Processing ..."));
             MethodDiffusion diffusion = new MethodDiffusion(dF, c, q, alpha);

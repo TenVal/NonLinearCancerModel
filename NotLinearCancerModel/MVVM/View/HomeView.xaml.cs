@@ -206,7 +206,7 @@ namespace NotLinearCancerModel.MVVM.View
                     cancerValuesParameters["AngleZ"].Add(angleZ);
                     cancerValuesParameters["Resistance"].Add(alpha);
 
-                    D dF = new D(speedForFindMin, d);
+                    D dF = new D(d, speedForFindMin);
                     diffusion = new MethodDiffusion(dF, c, q, alpha);
 
                     double[,,] valuesP = new double[N, N, N];
