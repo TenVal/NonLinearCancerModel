@@ -1,0 +1,10 @@
+Length	450
+H	10
+D	1E-05
+K	0,1
+Speed	3,2
+AngleXY	30
+AngleZ	30
+Alpha	1
+TMax	39,88235
+numberPatient	10
