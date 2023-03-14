@@ -9,9 +9,13 @@ namespace NotLinearCancerModel.MVVM.ViewModel
         
         public RelayCommand CalculateOneViewCommand { get; set; }
 
+        public RelayCommand TemperatureFunctionViewCommand { get; set; }
+
         public HomeViewModel HomeVM { get; set; }
 
         public CalculateOneViewModel CalculateOneVM { get; set; }
+
+        public TemperatureFunctionViewModel TemperatureFunctionVM { get; set; }
 
         private object _currentView;
 
@@ -29,6 +33,7 @@ namespace NotLinearCancerModel.MVVM.ViewModel
         {
             HomeVM = new HomeViewModel();
             CalculateOneVM = new CalculateOneViewModel();
+            TemperatureFunctionVM = new TemperatureFunctionViewModel();
 
             CurrentView = HomeVM;
 
@@ -40,6 +45,11 @@ namespace NotLinearCancerModel.MVVM.ViewModel
             CalculateOneViewCommand = new RelayCommand(o =>
             {
                 CurrentView = CalculateOneVM;
+            });
+
+            TemperatureFunctionViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = TemperatureFunctionVM;
             });
         }
     }

@@ -20,6 +20,10 @@
                 <view:CalculateOneView/>
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type viewModel:TemperatureFunctionViewModel}">
+                <view:TemperatureFunctionView/>
+            </DataTemplate>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

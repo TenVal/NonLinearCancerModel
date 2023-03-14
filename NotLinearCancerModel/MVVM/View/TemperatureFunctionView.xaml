@@ -5,8 +5,79 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:NotLinearCancerModel.MVVM.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+             d:DesignHeight="100" d:DesignWidth="1350">
+    
+    <StackPanel Margin="0,0,0,0" Width="1350">
+
+        <Grid Margin="0,0,0,0" Width="1350">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="9*"></RowDefinition>
+                <RowDefinition Height="13*"></RowDefinition>
+                <RowDefinition Height="9*"></RowDefinition>
+                <RowDefinition Height="5*"></RowDefinition>
+                <RowDefinition Height="8*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Button 
+            x:Name="TemperatureFunction"
+            Click="TemperatureFunction_Click"
+            Content="Temperature Function" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center" 
+            Width="180"
+            Height="44"
+            Grid.Column="0" Grid.Row="0" 
+            Grid.RowSpan="2" 
+            Background="#4e99ff"
+            Foreground="White" Margin="10,0,0,0"/>
+
             
-    </Grid>
+
+
+
+
+            <ProgressBar
+                x:Name="ProgressBarCalculate"
+                Grid.Column="0" Grid.Row="3" Margin="10,4,0,4"
+                Visibility="Collapsed"/>
+            <TextBlock 
+                x:Name="PercentProgressBarCalculate"
+                Grid.Row="3" 
+                Visibility="Collapsed"
+                Text="{Binding ElementName=ProgressBarCalculate, Path=Value, StringFormat={}{0:0}%}" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center" />
+
+            <TextBox 
+            x:Name="TextBoxH" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center" 
+            Text="10" 
+            TextWrapping="Wrap" 
+            Width="120"
+            Margin="20, 0, 0, 0"
+            Grid.Column="1" Grid.Row="2" Background="#FF353340" Foreground="White"/>
+            <Label 
+            x:Name="LabelH" 
+            Content="H (Step by X, Y, Z)" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center" 
+            Margin="20, 0, 0, 0"
+            Grid.Column="1" Grid.Row="3"
+            Foreground="White"/>
+
+           
+        </Grid>
+
+    </StackPanel>
 </UserControl>

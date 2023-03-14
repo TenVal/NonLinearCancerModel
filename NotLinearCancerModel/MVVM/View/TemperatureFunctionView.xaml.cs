@@ -24,5 +24,11 @@ namespace NotLinearCancerModel.MVVM.View
         {
             InitializeComponent();
         }
+
+
+        private void TemperatureFunction_Click(object sender, RoutedEventArgs e)
+        { 
+        }
+
     }
 }

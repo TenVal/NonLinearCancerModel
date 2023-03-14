@@ -223,7 +223,7 @@
                 Foreground="White"
                 Checked="RadioButtonWithoutFindMin_Checked"
                 Style="{StaticResource MenuButtonTheme}"
-                Command="{Binding }"/>
+                Command="{Binding TemperatureFunctionViewCommand}"/>
 
             </StackPanel>
             <ContentControl
