@@ -1,0 +1,12 @@
+Length	330
+H	10
+D	3,89
+K	0,1
+SpeedEnd	2,79
+SpeedStep	0,01
+Speed	2,79
+AngleXY	30
+AngleZ	30
+Alpha	1
+TMax	41,77008
+RelativeError	0,08598704954051303

@@ -295,7 +295,8 @@ namespace NotLinearCancerModel.MVVM.View
                 float differencePoints = (requiredNumberPointsVolume[0] * stepScale) - modelData.Patients[i]["Volume"][1][0];
                 for (int itemPointsValues = 0; itemPointsValues < requiredNumberPointsVolume.Length; itemPointsValues++)
                 {
-                    requiredNumberPointsVolume[itemPointsValues] = requiredNumberPointsVolume[itemPointsValues] * stepScale - differencePoints;
+                    //requiredNumberPointsVolume[itemPointsValues] = requiredNumberPointsVolume[itemPointsValues] * stepScale - differencePoints;
+                    requiredNumberPointsVolume[itemPointsValues] = requiredNumberPointsVolume[itemPointsValues] / 1000 - differencePoints;
                 }
                 Debug.WriteLine("requiredNumberPointsVolume\t" + requiredNumberPointsVolume[0].ToString() + "\nmodelData\t" + modelData.Patients[i]["Volume"][1][0].ToString());
 

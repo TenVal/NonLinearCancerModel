@@ -67,10 +67,10 @@ if __name__ == "__main__":
         plt.colorbar(img)
   
         # adding title and labels
-        ax.set_title(f"3D моделирование опухоли {number}", fontsize=28)
-        ax.set_xlabel('X (мм)', fontsize=20)
-        ax.set_ylabel('Y (мм)', fontsize=20)
-        ax.set_zlabel('Z (мм)', fontsize=20)
+        ax.set_title(f"3D model cancer {number}", fontsize=28)
+        ax.set_xlabel('X (mkm)', fontsize=20)
+        ax.set_ylabel('Y (mkm)', fontsize=20)
+        ax.set_zlabel('Z (mkm)', fontsize=20)
         ax.tick_params(axis='both', which='major', labelsize=14)
         ax.tick_params(axis='both', which='minor', labelsize=14)
   
@@ -81,9 +81,9 @@ if __name__ == "__main__":
         fig = plt.figure(figsize=(10, 10))
         ax = fig.add_subplot(111)
 
-        fig.suptitle(f"Динамика опухоли пациента {number}", fontsize=28)
-        plt.xlabel('время (месяцы)', fontsize=26)
-        plt.ylabel('объем (мл)', fontsize=26)
+        fig.suptitle(f"The dynamics of the patient's {number} tumor", fontsize=28)
+        plt.xlabel('time (month)', fontsize=26)
+        plt.ylabel('volume (ml)', fontsize=26)
         plt.xticks(fontsize=24)
         plt.yticks(fontsize=24)
         plt.plot(timeValues, cancerValues)
@@ -103,17 +103,17 @@ if __name__ == "__main__":
                  allTimeCancer["cancer"][i], 
                  color = colors[i],
                  linestyle = "-", 
-                 label=f"Смоделированные данные пацента-{i+1}")
+                 label=f"Simulated patient-{i+1} data")
         plt.plot(allExperimentalTimeCancer["time"][i], 
                  allExperimentalTimeCancer["cancer"][i], 
                  color = colors[i],
                  linestyle = "--",
-                 label=f"Клинические данные пацента-{i+1}")
+                 label=f"Clinical patient-{i+1} data")
 
     plt.legend()
-    fig.suptitle(f"Динамика опухоли всех пациентов", fontsize=24)
-    plt.xlabel('время (месяцы)', fontsize=22)
-    plt.ylabel('объем (мл)', fontsize=22)
+    fig.suptitle(f"Tumor dynamics of all patients", fontsize=24)
+    plt.xlabel('time (month)', fontsize=22)
+    plt.ylabel('volume (ml)', fontsize=22)
     plt.xticks(fontsize=20)
     plt.yticks(fontsize=20)
     plt.grid(True)
