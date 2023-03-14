@@ -214,6 +214,17 @@
                 Style="{StaticResource MenuButtonTheme}"
                 Command="{Binding CalculateOneViewCommand}"/>
 
+                <RadioButton 
+                x:Name="RadioButtonTemperatureFunction" 
+                Content="Temperature Function"  
+                GroupName="TypeOfCalculate"             
+                Grid.Column="0"  Grid.Row="3" 
+                FontSize="14"
+                Foreground="White"
+                Checked="RadioButtonWithoutFindMin_Checked"
+                Style="{StaticResource MenuButtonTheme}"
+                Command="{Binding }"/>
+
             </StackPanel>
             <ContentControl
                 Grid.Column="1" Grid.Row="3"
