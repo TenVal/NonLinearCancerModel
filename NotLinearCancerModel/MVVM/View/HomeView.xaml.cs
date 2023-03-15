@@ -321,7 +321,8 @@ namespace NotLinearCancerModel.MVVM.View
                 // write every data about modeling to files
                 ActionDataFile.writeDataToFile("Volume", i, requiredValuesP);
                 // Write time-value data to file
-                ActionDataFile.writeTimeValueToFile("Volume", i, requiredTValue, requiredNumberPointsVolume);
+                string pathWriteValueToFile = @"dataTumor\PredictData\PersonalPatient\Volume\timeValue\txt\";
+                ActionDataFile.writeTimeValueToFile("Volume", i, requiredTValue, requiredNumberPointsVolume, pathWriteValueToFile);
                 // write params of modeling to file
                 float[] paramsForCancer = { requiredSpeed, d, k };
                 ActionDataFile.writeParametersToFile(type: "Volume", number: i, cancerParameters: requiredCancerValuesParameters);

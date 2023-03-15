@@ -85,7 +85,7 @@ namespace NotLinearCancerModel
                                                 string pathToSave = @"dataTumor\PredictData\PersonalPatients\")
         {
             string message = "Ok";
-            pathToSave += type + @"\timeValue\txt\" + (number + 1).ToString() + type + @".txt";
+            pathToSave += (number + 1).ToString() + type + @".txt";
             Debug.WriteLine($"\nwriteTimeValueToFile\t{pathToSave}");
             try
             {
@@ -286,6 +286,46 @@ namespace NotLinearCancerModel
                 copyDir(s, ToDir + "\\" + Path.GetFileName(s));
             }
             return "Ok";
+        }
+
+
+        static public float[][] getDynamicDataFromFile(string type, int numberPatient, string filePath)
+        {
+            int currentLine = 0;
+            filePath += (numberPatient.ToString() + type +  @".txt");
+            int count = System.IO.File.ReadAllLines(filePath).Length;
+            float[][] values = new float[2][];
+            values[0] = new float[count];
+            values[1] = new float[count];
+            try
+            {
+                foreach (string line in System.IO.File.ReadLines(filePath))
+                {
+                    string[] valuesSingleXY = line.Split("\t");
+                    valuesSingleXY[0].Replace(",", ".");
+                    valuesSingleXY[1].Replace(",", ".");
+                    values[0][currentLine] = float.Parse(valuesSingleXY[0].Trim(), NumberStyles.Any, CultureInfo.InvariantCulture);
+                    values[1][currentLine] = float.Parse(valuesSingleXY[1].Trim(), NumberStyles.Any, CultureInfo.InvariantCulture);
+                    currentLine++;
+                }
+            }
+            catch (FileNotFoundException e)
+            {
+                System.Diagnostics.Debug.WriteLine($"The file was not found: '{e}'");
+                Console.WriteLine($"The file was not found: '{e}'");
+            }
+            catch (DirectoryNotFoundException e)
+            {
+                System.Diagnostics.Debug.WriteLine($"The directory was not found: '{e}'");
+                Console.WriteLine($"The directory was not found: '{e}'");
+            }
+            catch (IOException e)
+            {
+                System.Diagnostics.Debug.WriteLine($"The file could not be opened: '{e}'");
+                Console.WriteLine($"The file could not be opened: '{e}'");
+            }
+
+            return values;
         }
     }
 }
