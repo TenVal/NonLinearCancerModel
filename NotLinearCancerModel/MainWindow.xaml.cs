@@ -199,8 +199,8 @@ namespace NotLinearCancerModel
             }
             if (RadioButtonTemperatureFunction.IsChecked == true)
             {
-                type = "Temperature";
-                paths["pathImgVolume"] = String.Format(@"dataTumor\PredictData\{0}\{1}\timeValue\img\{2}{3}.png", "PersonalPatients", type, _numberPatientOutputPlotFindMin, type);
+                string typeTemperature = "Temperature";
+                paths["pathImgVolume"] = String.Format(@"dataTumor\PredictData\{0}\{1}\timeValue\img\{2}{3}.png", "PersonalPatients", type, _numberPatientOutputPlotFindMin, typeTemperature);
             }
             Dictionary<string, float> cancerParameters = ActionDataFile.getParametersFromFile(type, _numberPatientOutputPlotFindMin, paths["pathParameters"]);
             
@@ -241,8 +241,8 @@ namespace NotLinearCancerModel
             }
             if (RadioButtonTemperatureFunction.IsChecked == true)
             {
-                type = "Temperature";
-                paths["pathImgVolume"] = String.Format(@"dataTumor\PredictData\{0}\{1}\timeValue\img\{2}{3}.png", "PersonalPatients", type, _numberPatientOutputPlotFindMin, type);
+                string typeTemperature = "Temperature";
+                paths["pathImgVolume"] = String.Format(@"dataTumor\PredictData\{0}\{1}\timeValue\img\{2}{3}.png", "PersonalPatients", type, _numberPatientOutputPlotFindMin, typeTemperature);
             }
             // Output Parameters
             outputParameters(cancerParameters, paths["textLabelParams"]);
@@ -279,8 +279,8 @@ namespace NotLinearCancerModel
             }
             if (RadioButtonTemperatureFunction.IsChecked == true)
             {
-                type = "Temperature";
-                paths["pathImgVolume"] = String.Format(@"dataTumor\PredictData\{0}\{1}\timeValue\img\{2}{3}.png", "PersonalPatients", type, _numberPatientOutputPlotFindMin, type);
+                string typeTemperature = "Temperature";
+                paths["pathImgVolume"] = String.Format(@"dataTumor\PredictData\{0}\{1}\timeValue\img\{2}{3}.png", "PersonalPatients", type, _numberPatientOutputPlotFindMin, typeTemperature);
             }
             // Output Parameters
             outputParameters(cancerParameters, paths["textLabelParams"]);

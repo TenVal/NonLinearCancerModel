@@ -85,7 +85,7 @@ namespace NotLinearCancerModel.MVVM.View
             for (int i = 0; i < numberPatients; i++)
             {
                 string pathWriteData = @"dataTumor\PredictData\PersonalPatients\Volume\timeValue\txt\";
-                float[][] Values = ActionDataFile.getDynamicDataFromFile("Volume", numberPatients, pathWriteData);
+                float[][] Values = ActionDataFile.getDynamicDataFromFile("Volume", i + 1, pathWriteData);
                 int lenthValues = Values[0].Length;
                 for (int k = 0; k < lenthValues; k++)
                 {
