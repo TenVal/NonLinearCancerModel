@@ -18,15 +18,15 @@ namespace NotLinearCancerModel
     {
         private int _numberPatientOutputPlotFindMin;
         private int numberPatientOutputPlotOne;
-        private const string type = "Volume";
+        private string type = "Volume";
 
         public class ParamsForSavePlot
         {
-            private bool _radioButtonChecked;
+            private int _radioButtonChecked;
             private string _pathPythonInterpreter;
             private int _numberPatientSavePlot;
 
-            protected internal bool RadioButtonChecked
+            protected internal int RadioButtonChecked
             {
                 get { return _radioButtonChecked; }
             }
@@ -42,7 +42,7 @@ namespace NotLinearCancerModel
             }
 
             public ParamsForSavePlot(
-                bool radioButtonChecked,
+                int radioButtonChecked,
                 string pathPythonInterpreter,
                 int numberPatientSavePlot)
             {
@@ -181,7 +181,7 @@ namespace NotLinearCancerModel
             numberPatientOutputPlotOne = 0;
             Dictionary<string, string> paths;
 
-            if (RadioButtonFindMin.IsChecked == true)
+            if (RadioButtonFindMin.IsChecked == true || RadioButtonTemperatureFunction.IsChecked == true)
             {
                 try
                 {
@@ -196,6 +196,11 @@ namespace NotLinearCancerModel
             else
             {
                 paths = getInfOutputImages(numberPatientOutputPlotOne, typeMode: "Any");
+            }
+            if (RadioButtonTemperatureFunction.IsChecked == true)
+            {
+                type = "Temperature";
+                paths["pathImgVolume"] = String.Format(@"dataTumor\PredictData\{0}\{1}\timeValue\img\{2}{3}.png", "PersonalPatients", type, _numberPatientOutputPlotFindMin, type);
             }
             Dictionary<string, float> cancerParameters = ActionDataFile.getParametersFromFile(type, _numberPatientOutputPlotFindMin, paths["pathParameters"]);
             
@@ -212,7 +217,7 @@ namespace NotLinearCancerModel
             Dictionary<string, float> cancerParameters;
             Dictionary<string, string> paths;
 
-            if (RadioButtonFindMin.IsChecked == true)
+            if (RadioButtonFindMin.IsChecked == true || RadioButtonTemperatureFunction.IsChecked == true)
             {
                 _numberPatientOutputPlotFindMin--;
                 if (_numberPatientOutputPlotFindMin < 1)
@@ -234,6 +239,11 @@ namespace NotLinearCancerModel
                 cancerParameters = ActionDataFile.getParametersFromFile(type, numberPatientOutputPlotOne, paths["pathParameters"]);
 
             }
+            if (RadioButtonTemperatureFunction.IsChecked == true)
+            {
+                type = "Temperature";
+                paths["pathImgVolume"] = String.Format(@"dataTumor\PredictData\{0}\{1}\timeValue\img\{2}{3}.png", "PersonalPatients", type, _numberPatientOutputPlotFindMin, type);
+            }
             // Output Parameters
             outputParameters(cancerParameters, paths["textLabelParams"]);
 
@@ -247,7 +257,7 @@ namespace NotLinearCancerModel
             Dictionary<string, float> cancerParameters;
             Dictionary<string, string> paths;
 
-            if (RadioButtonFindMin.IsChecked == true)
+            if (RadioButtonFindMin.IsChecked == true || RadioButtonTemperatureFunction.IsChecked == true)
             {
                 _numberPatientOutputPlotFindMin++;
                 if (_numberPatientOutputPlotFindMin > 10)
@@ -266,6 +276,11 @@ namespace NotLinearCancerModel
                 }
                 paths = getInfOutputImages(numberPatientOutputPlotOne, typeMode: "Any");
                 cancerParameters = ActionDataFile.getParametersFromFile(type, numberPatientOutputPlotOne, paths["pathParameters"]);
+            }
+            if (RadioButtonTemperatureFunction.IsChecked == true)
+            {
+                type = "Temperature";
+                paths["pathImgVolume"] = String.Format(@"dataTumor\PredictData\{0}\{1}\timeValue\img\{2}{3}.png", "PersonalPatients", type, _numberPatientOutputPlotFindMin, type);
             }
             // Output Parameters
             outputParameters(cancerParameters, paths["textLabelParams"]);
@@ -301,8 +316,10 @@ namespace NotLinearCancerModel
             worker.ProgressChanged += worker_ProgressChanged;
             ParamsForSavePlot paramsForSavePlot;
             int numberPatientSavePlot = 0;
+            int radioButtonChecked = 0;
             if (RadioButtonWithoutFindMin.IsChecked == true)
             {
+                radioButtonChecked = 1;
                 if (TextBoxPatientNumberPlot.Text.Trim() == "")
                 {
                     numberPatientSavePlot = 0;
@@ -328,8 +345,16 @@ namespace NotLinearCancerModel
                     }
                 }
             }
+            else if(RadioButtonFindMin.IsChecked == true)
+            {
+                radioButtonChecked = 0;
+            }
+            else if(RadioButtonTemperatureFunction.IsChecked == true)
+            {
+                radioButtonChecked = 2;
+            }
             paramsForSavePlot = new ParamsForSavePlot(
-                (bool)RadioButtonFindMin.IsChecked,
+                radioButtonChecked,
                 TextBoxPythonInterpreter.Text.ToString().Trim(),
                 numberPatientSavePlot);
             worker.RunWorkerAsync(paramsForSavePlot);
@@ -342,17 +367,22 @@ namespace NotLinearCancerModel
             var worker = sender as BackgroundWorker;
             string modeSaveImage = "";
             worker.ReportProgress(0);
-            string scriptPython;
-            if (paramsForSavePlot.RadioButtonChecked == true)
+            string scriptPython = "";
+            if (paramsForSavePlot.RadioButtonChecked == 0)
             {
                 modeSaveImage = "PersonalPatients";
                 scriptPython = @"CancerVolumePlot.py";
 
             }
-            else
+            else if(paramsForSavePlot.RadioButtonChecked == 1)
             {
                 modeSaveImage = "Any";
                 scriptPython = @"OneCancerVolumePlot.py";
+            }
+            else if(paramsForSavePlot.RadioButtonChecked == 2)
+            {
+                modeSaveImage = "PersonalPatients";
+                scriptPython = @"TimeTemperaturePlot.py";
             }
             // Create Process start info
             var psi = new ProcessStartInfo();

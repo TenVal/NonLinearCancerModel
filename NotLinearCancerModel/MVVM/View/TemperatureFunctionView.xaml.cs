@@ -84,14 +84,15 @@ namespace NotLinearCancerModel.MVVM.View
 
             for (int i = 0; i < numberPatients; i++)
             {
-                string pathWriteData = @"dataTumor\PredictData\PersonalPatient\Volume\timeValue\txt\";
+                string pathWriteData = @"dataTumor\PredictData\PersonalPatients\Volume\timeValue\txt\";
                 float[][] Values = ActionDataFile.getDynamicDataFromFile("Volume", numberPatients, pathWriteData);
                 int lenthValues = Values[0].Length;
                 for (int k = 0; k < lenthValues; k++)
                 {
-                    Values[0][k] = (float)Math.Sqrt(Values[1][k]);
+                    Values[1][k] = (float)Math.Sqrt(Values[1][k]);
+                    Debug.WriteLine(String.Format("{1}\t{0}", Values[1][k], Values[0][k]));
                 }
-                ActionDataFile.writeTimeValueToFile(type: "Temperature", number: i, tValues: Values[1], cancerValues: Values[0], pathToSave: pathWriteData);
+                ActionDataFile.writeTimeValueToFile(type: "Temperature", number: i, tValues: Values[0], cancerValues: Values[1], pathToSave: pathWriteData);
 
                 worker.ReportProgress((i + 1) * (int)valueOfDivisionProgressBar, String.Format("Processing Iteration {0}", i + 1));
             }

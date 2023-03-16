@@ -302,10 +302,14 @@ namespace NotLinearCancerModel
                 foreach (string line in System.IO.File.ReadLines(filePath))
                 {
                     string[] valuesSingleXY = line.Split("\t");
-                    valuesSingleXY[0].Replace(",", ".");
-                    valuesSingleXY[1].Replace(",", ".");
-                    values[0][currentLine] = float.Parse(valuesSingleXY[0].Trim(), NumberStyles.Any, CultureInfo.InvariantCulture);
-                    values[1][currentLine] = float.Parse(valuesSingleXY[1].Trim(), NumberStyles.Any, CultureInfo.InvariantCulture);
+                    valuesSingleXY[0] = valuesSingleXY[0].Replace(",", ".");
+                    valuesSingleXY[1] = valuesSingleXY[1].Replace(",", ".");
+                    Debug.WriteLine(String.Format("Get {0}\t{1}", valuesSingleXY[0], valuesSingleXY[1]));
+
+                    values[0][currentLine] = float.Parse(valuesSingleXY[0].Trim(), CultureInfo.InvariantCulture.NumberFormat);
+                    values[1][currentLine] = float.Parse(valuesSingleXY[1].Trim(), CultureInfo.InvariantCulture.NumberFormat);
+                    Debug.WriteLine(String.Format("Get 2 {0}\t{1}", values[0][currentLine], values[1][currentLine]));
+
                     currentLine++;
                 }
             }

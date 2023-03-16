@@ -186,6 +186,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="TimeTemperaturePlot.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="OneCancerVolumePlot.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
