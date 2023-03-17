@@ -24,6 +24,10 @@
                 <view:TemperatureFunctionView/>
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type viewModel:LinearModelViewModel}">
+                <view:LinearModelView/>
+            </DataTemplate>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

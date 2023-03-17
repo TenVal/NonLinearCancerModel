@@ -1,0 +1,243 @@
+﻿<UserControl x:Class="NotLinearCancerModel.MVVM.View.LinearModelView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NotLinearCancerModel.MVVM.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="1350">
+    <StackPanel Margin="0,0,0,0" Width="1350">
+
+        <Grid Margin="0,0,0,0" Width="1350">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="9*"></RowDefinition>
+                <RowDefinition Height="13*"></RowDefinition>
+                <RowDefinition Height="9*"></RowDefinition>
+                <RowDefinition Height="5*"></RowDefinition>
+                <RowDefinition Height="8*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Button 
+            x:Name="Calculate"
+            Click="Calculate_Click"
+            Content="Calculate" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center" 
+            Width="180"
+            Height="44"
+            Grid.Column="0" Grid.Row="0" 
+            Grid.RowSpan="2" 
+            Background="#4e99ff"
+            Foreground="White" Margin="10,0,0,0"/>
+
+            <TextBox 
+            x:Name="TextBoxl1" 
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center" 
+            Text="0,0834" 
+            TextWrapping="Wrap"            
+            Width="120" 
+            Margin="20, 0, 0, 0"
+            Grid.Column="1" Grid.Row="0" Background="#FF353340" Foreground="White"/>
+            <Label 
+            x:Name="Label1" 
+            Content="l1 (скор. роста оп.)" 
+            HorizontalAlignment="Left"  
+            VerticalAlignment="Bottom" 
+            Margin="20,0,0,0"
+            Grid.Column="1" Grid.Row="1"
+            Foreground="White"/>
+
+            <TextBox 
+            x:Name="TextBoxB" 
+            HorizontalAlignment="Left"             
+            VerticalAlignment="Center" 
+            Text="5,85" 
+            TextWrapping="Wrap"           
+            Width="120" 
+            Margin="20, 0, 0, 0"
+            Grid.Column="2" Grid.Row="0" Background="#FF353340" Foreground="White"/>
+            <Label 
+            x:Name="LabelB" 
+            Content="b (коэф. рожд. кр.)" 
+            HorizontalAlignment="Left"  
+            VerticalAlignment="Center"
+            Margin="20, 0, 0, 0"
+            Grid.Column="2" Grid.Row="1"
+            Foreground="White"/>
+
+            <TextBox 
+            x:Name="TextBoxE" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center"
+            Text="0,66" 
+            TextWrapping="Wrap"            
+            Width="120" 
+            Margin="20, 0, 0, 0"
+            Grid.Column="3" Grid.Row="0" Background="#FF353340" Foreground="White"/>
+            <Label 
+            x:Name="LabelE" 
+            Content="e (ск. сосудистой инакт.)" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center"
+            Margin="20, 0, 0, 0"
+            Grid.Column="3" Grid.Row="1"
+            Foreground="White"/>
+
+            <TextBox 
+            x:Name="TextBox" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center" 
+            Text="0,00873" 
+            TextWrapping="Wrap"            
+            Width="120" 
+            Margin="20, 0, 0, 0"
+            Grid.Column="4" Grid.Row="0" Background="#FF353340" Foreground="White"/>
+            <Label 
+            x:Name="Label" 
+            Content="D (Коэф. смертности кр. с.)" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center" 
+            Margin="20, 0, 0, 0"
+            Grid.Column="4" Grid.Row="1"
+            Foreground="White"/>
+
+            <TextBox 
+            x:Name="TextBoxL3" 
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center" 
+            Text="1,5" 
+            TextWrapping="Wrap" 
+            Width="120"
+            Margin="20,0,0,0"
+            Grid.Column="5" Background="#FF353340" Foreground="White"/>
+            <Label 
+            x:Name="LabelL3" 
+            Content="l3 (клиренс)" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center" 
+            Margin="20,0,0,0"
+            Grid.Column="5" Grid.Row="1"
+            Foreground="White"/>
+
+            <TextBox 
+                x:Name="TextBoxU" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Text="0,1" 
+                TextWrapping="Wrap"            
+                Width="120" 
+                Margin="20,0,0,0"
+                Grid.Column="6" Background="#FF353340" Foreground="White"/>
+            <Label 
+                x:Name="LabelU" 
+                Content="u (лекарство)" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Center" 
+                Margin="20,0,0,0"
+                Grid.Column="6" Grid.Row="1"
+                Foreground="White"/>
+
+
+
+
+            <ProgressBar
+                x:Name="ProgressBarCalculate"
+                Grid.Column="0" Grid.Row="3" Margin="10,4,0,4"
+                Visibility="Collapsed"/>
+            <TextBlock 
+                x:Name="PercentProgressBarCalculate"
+                Grid.Row="3" 
+                Visibility="Collapsed"
+                Text="{Binding ElementName=ProgressBarCalculate, Path=Value, StringFormat={}{0:0}%}" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center" />
+
+
+            <CheckBox 
+            x:Name="CheckBoxTreatment" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center" 
+            Width="120" 
+            Margin="20, 0, 0, 0"
+            Grid.Column="1" Grid.Row="2" Background="#FF353340" Foreground="White"/>
+            <Label 
+            x:Name="LabelTreatment" 
+            Content="Treatment" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center"
+            Margin="20, 0, 0, 0"
+            Grid.Column="1" Grid.Row="3"
+            Foreground="White"/>
+            
+
+            <TextBox 
+            x:Name="TextBoxDays" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center" 
+            Text="30" 
+            TextWrapping="Wrap" 
+            Width="120" 
+            Margin="20, 0, 0, 0"
+            Grid.Column="2" Grid.Row="2" Background="#FF353340" Foreground="White"/>
+            <Label 
+            x:Name="LabelDays" 
+            Content="Days" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center"
+            Margin="20, 0, 0, 0"
+            Grid.Column="2" Grid.Row="3"
+            Foreground="White"/>
+
+            <TextBox 
+            x:Name="TextBoxX" 
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center" 
+            Text="1e-5" 
+            TextWrapping="Wrap"             
+            Width="120" 
+            Margin="20, 0, 0, 0"
+            Grid.Column="3" Grid.Row="2" Background="#FF353340" Foreground="White"/>
+            <Label 
+            x:Name="LabelX" 
+            Content="X (мозг)" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center" 
+            Margin="20, 0, 0, 0"
+            Grid.Column="3" Grid.Row="3"
+            Foreground="White"/>
+
+            <TextBox 
+            x:Name="TextBoxY" 
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center" 
+            Text="1" 
+            TextWrapping="Wrap"             
+            Width="120" 
+            Margin="20, 0, 0, 0"
+            Grid.Column="4" Grid.Row="2" Background="#FF353340" Foreground="White"/>
+            <Label 
+            x:Name="LabelY" 
+            Content="Y (Мозг)" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center" 
+            Margin="20, 0, 0, 0"
+            Grid.Column="4" Grid.Row="3"
+            Foreground="White"/>
+
+            
+
+        </Grid>
+
+    </StackPanel>
+</UserControl>

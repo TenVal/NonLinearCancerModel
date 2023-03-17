@@ -224,6 +224,17 @@
                 Checked="RadioButtonWithoutFindMin_Checked"
                 Style="{StaticResource MenuButtonTheme}"
                 Command="{Binding TemperatureFunctionViewCommand}"/>
+                
+                <RadioButton 
+                x:Name="RadioButtonLinearModel" 
+                Content="LinearModel"  
+                GroupName="TypeOfCalculate"             
+                Grid.Column="0"  Grid.Row="3" 
+                FontSize="14"
+                Foreground="White"
+                Checked="RadioButtonWithoutFindMin_Checked"
+                Style="{StaticResource MenuButtonTheme}"
+                Command="{Binding LinearModelViewCommand}"/>
 
             </StackPanel>
             <ContentControl
