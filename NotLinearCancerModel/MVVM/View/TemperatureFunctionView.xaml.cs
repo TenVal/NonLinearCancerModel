@@ -74,6 +74,16 @@ namespace NotLinearCancerModel.MVVM.View
             ProgressBarCalculate.Value = e.ProgressPercentage;
         }
 
+        private float calculateRadiusValue(float volume)
+        {
+            float rValue = 0;
+            try
+            {
+                rValue = (float)Math.Sqrt(volume / Math.PI);
+            }
+            return rValue;
+        }
+
         private void workerTemperature_Calculate(object sender, DoWorkEventArgs e)
         {
             var worker = sender as BackgroundWorker;
@@ -89,7 +99,7 @@ namespace NotLinearCancerModel.MVVM.View
                 int lenthValues = Values[0].Length;
                 for (int k = 0; k < lenthValues; k++)
                 {
-                    Values[1][k] = (float)Math.Sqrt(Values[1][k]);
+                    Values[1][k] = calculateRadiusValue(Values[1][k]);
                     Debug.WriteLine(String.Format("{1}\t{0}", Values[1][k], Values[0][k]));
                 }
                 ActionDataFile.writeTimeValueToFile(type: "Temperature", number: i, tValues: Values[0], cancerValues: Values[1], pathToSave: pathWriteData);

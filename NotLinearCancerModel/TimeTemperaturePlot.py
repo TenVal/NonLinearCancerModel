@@ -18,7 +18,7 @@ if __name__ == "__main__":
     type = "Temperature"
     quantity = 10
     allTimeCancer = {"time" : [],
-                     "temperature" : []
+                     "radius" : []
                      }
 
     for number in range(1, quantity + 1):
@@ -28,15 +28,15 @@ if __name__ == "__main__":
         timeValues = timeCancer[0]
         cancerValues = timeCancer[1] 
         allTimeCancer["time"].append(timeValues)
-        allTimeCancer["temperature"].append(cancerValues)
+        allTimeCancer["radius"].append(cancerValues)
         
 
         fig = plt.figure(figsize=(10, 10))
         ax = fig.add_subplot(111)
 
-        fig.suptitle(f"Temperature dynamics of the patient's {number} tumor", fontsize=28)
+        fig.suptitle(f"Dynamics of the patient's {number} tumor", fontsize=28)
         plt.xlabel('time (month)', fontsize=26)
-        plt.ylabel('temperature', fontsize=26)
+        plt.ylabel('Radius (mm)', fontsize=26)
         plt.xticks(fontsize=24)
         plt.yticks(fontsize=24)
         plt.plot(timeValues, cancerValues)
