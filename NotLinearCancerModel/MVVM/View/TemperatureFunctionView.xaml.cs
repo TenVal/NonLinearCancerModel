@@ -81,6 +81,10 @@ namespace NotLinearCancerModel.MVVM.View
             {
                 rValue = (float)Math.Sqrt(volume / Math.PI);
             }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"e");
+            }
             return rValue;
         }
 
