@@ -23,7 +23,7 @@ namespace NotLinearCancerModel.MVVM.View
     /// </summary>
     public partial class HomeView : UserControl
     {
-        public struct ParametersCancer
+        public class ParametersCancer
         {
             public float length;
             public float RightX;
@@ -133,6 +133,7 @@ namespace NotLinearCancerModel.MVVM.View
             }
         }
 
+
         private void workerMin_RunWorkerComplited(object sender, RunWorkerCompletedEventArgs e)
         {
             MessageBox.Show("Done Calculate min!");
@@ -145,10 +146,12 @@ namespace NotLinearCancerModel.MVVM.View
             ProgressBarCalculate.Value = 0;
         }
 
+
         private void workerMin_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             ProgressBarCalculate.Value = e.ProgressPercentage;
         }
+
 
         private void workerMin_Calculate(object sender, DoWorkEventArgs e)
         {

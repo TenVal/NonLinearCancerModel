@@ -24,7 +24,7 @@ namespace NotLinearCancerModel.MVVM.View
     /// </summary>
     public partial class CalculateOneView : UserControl
     {
-        public struct ParametersCancerForOneCalculate
+        public class ParametersCancerForOneCalculate
         {
             public float length;
             public float RightX;

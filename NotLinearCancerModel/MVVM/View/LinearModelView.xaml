@@ -28,17 +28,30 @@
             </Grid.ColumnDefinitions>
 
             <Button 
-            x:Name="Calculate"
-            Click="Calculate_Click"
-            Content="Calculate" 
+            x:Name="CalculateMin"
+            Click="CalculateMin_Click"
+            Content="Calculate Min" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Center" 
-            Width="180"
+            Width="90"
             Height="44"
             Grid.Column="0" Grid.Row="0" 
             Grid.RowSpan="2" 
             Background="#4e99ff"
             Foreground="White" Margin="10,0,0,0"/>
+
+            <Button 
+            x:Name="CalculateOne"
+            Click="CalculateOne_Click"
+            Content="Calculate One" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Top" 
+            Width="90"
+            Height="44"
+            Grid.Column="0" Grid.Row="0" 
+            Grid.RowSpan="3" 
+            Background="#4e99ff"
+            Foreground="White" Margin="110,1,0,0" Grid.ColumnSpan="2"/>
 
             <TextBox 
             x:Name="TextBoxl1" 
@@ -179,7 +192,7 @@
             Margin="20, 0, 0, 0"
             Grid.Column="1" Grid.Row="3"
             Foreground="White"/>
-            
+
 
             <TextBox 
             x:Name="TextBoxDays" 
