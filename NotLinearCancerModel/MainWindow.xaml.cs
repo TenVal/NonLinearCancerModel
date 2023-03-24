@@ -299,6 +299,22 @@ namespace NotLinearCancerModel
         private void RadioButtonWithoutFindMin_Checked(object sender, RoutedEventArgs e)
         {
             LabelPatientNumberPlot.Content = "Input number patient to save plots\nOutput it";
+            Image1.Visibility = Visibility.Visible;
+            ImageBrain1.Visibility = Visibility.Collapsed;
+            ImageBrain2.Visibility = Visibility.Collapsed;
+            ImageBrain3.Visibility = Visibility.Collapsed;
+            ImageBrain1.Visibility = Visibility.Collapsed;
+        }
+        
+
+        private void RadioButtonLinearModel_Checked(object sender, RoutedEventArgs e)
+        {
+            LabelPatientNumberPlot.Content = "Input number patient to save plots\nOutput it";
+            Image1.Visibility = Visibility.Collapsed;
+            ImageBrain1.Visibility = Visibility.Visible;
+            ImageBrain2.Visibility = Visibility.Visible;
+            ImageBrain3.Visibility = Visibility.Visible;
+            ImageBrain1.Visibility = Visibility.Visible;
         }
 
 
@@ -445,10 +461,12 @@ namespace NotLinearCancerModel
             LabelPatientNumberPlot.Content = "Patient number plot";
         }
 
+
         private void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             SavePlots.Content = "Saving...";
         }
+
 
         private void ButtonShowTotal_Click(object sender, RoutedEventArgs e)
         {
