@@ -9,7 +9,7 @@ namespace NotLinearCancerModel
 {
     class MethodDiffEquation
     {
-        List<List<float>> RK2D(float t, float x0, float y0, float right, float h, float dx, float dy, SystemOfEquation Eq)
+        public List<List<float>> RK2D(float t, float x0, float y0, float right, float h, SystemOfEquation Eq)
         {
             List<List<float>> values = new List<List<float>>();
             List<float> xV = new List<float>();
@@ -17,7 +17,7 @@ namespace NotLinearCancerModel
             List<float> yV = new List<float>();
             yV.Add(y0);
             List<float> tV = new List<float>();
-            tV.Add(x0);
+            tV.Add(t);
 
             float x = x0;
             float y = y0;
@@ -55,23 +55,25 @@ namespace NotLinearCancerModel
                 tV.Add(t);
             }
 
+            values.Add(tV);
             values.Add(xV);
             values.Add(yV);
             return values;
         }
 
 
-        List<List<float>> RK3D(float t, float x0, float y0, float z0, float right, float h, float dx, float dy, float dz, SystemOfEquation Eq)
+        public List<List<float>> RK3D(float t, float x0, float y0, float z0, float right, float h, SystemOfEquation Eq)
         {
             List<List<float>> values = new List<List<float>>();
+            List<float> tV = new List<float>();
+            tV.Add(t);
             List<float> xV = new List<float>();
             xV.Add(x0);
             List<float> yV = new List<float>();
             yV.Add(y0);
             List<float> zV = new List<float>();
             zV.Add(z0);
-            List<float> tV = new List<float>();
-            tV.Add(x0);
+
 
             float x = x0;
             float y = y0;
@@ -120,6 +122,7 @@ namespace NotLinearCancerModel
                 tV.Add(t);
             }
 
+            values.Add(tV);
             values.Add(xV);
             values.Add(yV);
             values.Add(zV);

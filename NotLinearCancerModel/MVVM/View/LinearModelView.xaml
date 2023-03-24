@@ -54,7 +54,7 @@
             Foreground="White" Margin="110,1,0,0" Grid.ColumnSpan="2"/>
 
             <TextBox 
-            x:Name="TextBoxl1" 
+            x:Name="TextBoxL1" 
             HorizontalAlignment="Left"
             VerticalAlignment="Center" 
             Text="0,0834" 
@@ -63,30 +63,12 @@
             Margin="20, 0, 0, 0"
             Grid.Column="1" Grid.Row="0" Background="#FF353340" Foreground="White"/>
             <Label 
-            x:Name="Label1" 
+            x:Name="LabelL1" 
             Content="l1 (скор. роста оп.)" 
             HorizontalAlignment="Left"  
             VerticalAlignment="Bottom" 
             Margin="20,0,0,0"
             Grid.Column="1" Grid.Row="1"
-            Foreground="White"/>
-
-            <TextBox 
-            x:Name="TextBoxB" 
-            HorizontalAlignment="Left"             
-            VerticalAlignment="Center" 
-            Text="5,85" 
-            TextWrapping="Wrap"           
-            Width="120" 
-            Margin="20, 0, 0, 0"
-            Grid.Column="2" Grid.Row="0" Background="#FF353340" Foreground="White"/>
-            <Label 
-            x:Name="LabelB" 
-            Content="b (коэф. рожд. кр.)" 
-            HorizontalAlignment="Left"  
-            VerticalAlignment="Center"
-            Margin="20, 0, 0, 0"
-            Grid.Column="2" Grid.Row="1"
             Foreground="White"/>
 
             <TextBox 
@@ -97,32 +79,32 @@
             TextWrapping="Wrap"            
             Width="120" 
             Margin="20, 0, 0, 0"
-            Grid.Column="3" Grid.Row="0" Background="#FF353340" Foreground="White"/>
+            Grid.Column="2" Grid.Row="0" Background="#FF353340" Foreground="White"/>
             <Label 
             x:Name="LabelE" 
             Content="e (ск. сосудистой инакт.)" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Center"
             Margin="20, 0, 0, 0"
-            Grid.Column="3" Grid.Row="1"
+            Grid.Column="2" Grid.Row="1"
             Foreground="White"/>
 
             <TextBox 
-            x:Name="TextBox" 
+            x:Name="TextBoxD" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Center" 
             Text="0,00873" 
             TextWrapping="Wrap"            
             Width="120" 
             Margin="20, 0, 0, 0"
-            Grid.Column="4" Grid.Row="0" Background="#FF353340" Foreground="White"/>
+            Grid.Column="3" Grid.Row="0" Background="#FF353340" Foreground="White"/>
             <Label 
-            x:Name="Label" 
+            x:Name="LabelD" 
             Content="D (Коэф. смертности кр. с.)" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Center" 
             Margin="20, 0, 0, 0"
-            Grid.Column="4" Grid.Row="1"
+            Grid.Column="3" Grid.Row="1"
             Foreground="White"/>
 
             <TextBox 
@@ -133,14 +115,14 @@
             TextWrapping="Wrap" 
             Width="120"
             Margin="20,0,0,0"
-            Grid.Column="5" Background="#FF353340" Foreground="White"/>
+            Grid.Column="4" Background="#FF353340" Foreground="White"/>
             <Label 
             x:Name="LabelL3" 
             Content="l3 (клиренс)" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Center" 
             Margin="20,0,0,0"
-            Grid.Column="5" Grid.Row="1"
+            Grid.Column="4" Grid.Row="1"
             Foreground="White"/>
 
             <TextBox 
@@ -151,15 +133,32 @@
                 TextWrapping="Wrap"            
                 Width="120" 
                 Margin="20,0,0,0"
-                Grid.Column="6" Background="#FF353340" Foreground="White"/>
+                Grid.Column="5" Background="#FF353340" Foreground="White"/>
             <Label 
                 x:Name="LabelU" 
                 Content="u (лекарство)" 
                 HorizontalAlignment="Left" 
                 VerticalAlignment="Center" 
                 Margin="20,0,0,0"
-                Grid.Column="6" Grid.Row="1"
+                Grid.Column="5" Grid.Row="1"
                 Foreground="White"/>
+            <TextBox 
+            x:Name="TextBoxB" 
+            HorizontalAlignment="Left"             
+            VerticalAlignment="Center" 
+            Text="5,85" 
+            TextWrapping="Wrap"           
+            Width="120" 
+            Margin="20, 0, 0, 0"
+            Grid.Column="6" Grid.Row="0" Background="#FF353340" Foreground="White"/>
+            <Label 
+            x:Name="LabelB" 
+            Content="b (коэф. рожд. кр.)" 
+            HorizontalAlignment="Left"  
+            VerticalAlignment="Center"
+            Margin="20, 0, 0, 0"
+            Grid.Column="6" Grid.Row="1"
+            Foreground="White"/>
 
 
 
@@ -213,7 +212,7 @@
             Foreground="White"/>
 
             <TextBox 
-            x:Name="TextBoxX" 
+            x:Name="TextBoxXBrain" 
             HorizontalAlignment="Left"
             VerticalAlignment="Center" 
             Text="0" 
@@ -222,7 +221,7 @@
             Margin="20, 0, 0, 0"
             Grid.Column="3" Grid.Row="2" Background="#FF353340" Foreground="White"/>
             <Label 
-            x:Name="LabelX" 
+            x:Name="LabelXBrain" 
             Content="X (мозг)" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Center" 
@@ -231,7 +230,7 @@
             Foreground="White"/>
 
             <TextBox 
-            x:Name="TextBoxY" 
+            x:Name="TextBoxYBrain" 
             HorizontalAlignment="Left"
             VerticalAlignment="Center" 
             Text="0" 
@@ -240,7 +239,7 @@
             Margin="20, 0, 0, 0"
             Grid.Column="4" Grid.Row="2" Background="#FF353340" Foreground="White"/>
             <Label 
-            x:Name="LabelY" 
+            x:Name="LabelYBrain" 
             Content="Y (Мозг)" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Center" 
@@ -248,43 +247,41 @@
             Grid.Column="4" Grid.Row="3"
             Foreground="White"/>
 
-            <Slider 
-            x:Name="SliderDays1" 
-            Minimum="0" Maximum="100" 
-            Value="0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"           
+            <TextBox 
+            x:Name="TextBoxBStep" 
+            HorizontalAlignment="Left"             
+            VerticalAlignment="Center" 
+            Text="0,01" 
+            TextWrapping="Wrap"           
             Width="120" 
             Margin="20, 0, 0, 0"
             Grid.Column="5" Grid.Row="2" Background="#FF353340" Foreground="White"/>
             <Label 
-            x:Name="LabelDays1" 
-            Content="Days 2" 
-            HorizontalAlignment="Left" 
-            VerticalAlignment="Center" 
+            x:Name="LabelBStep" 
+            Content="b" 
+            HorizontalAlignment="Left"  
+            VerticalAlignment="Center"
             Margin="20, 0, 0, 0"
             Grid.Column="5" Grid.Row="3"
             Foreground="White"/>
 
-            <Slider
-            x:Name="SliderDays2" 
-            Minimum="0" Maximum="100" 
-            Value="0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"            
+            <TextBox 
+            x:Name="TextBoxBEnd" 
+            HorizontalAlignment="Left"             
+            VerticalAlignment="Center" 
+            Text="7" 
+            TextWrapping="Wrap"           
             Width="120" 
             Margin="20, 0, 0, 0"
             Grid.Column="6" Grid.Row="2" Background="#FF353340" Foreground="White"/>
             <Label 
-            x:Name="LabelDays2" 
-            Content="Days 2" 
-            HorizontalAlignment="Left" 
-            VerticalAlignment="Center" 
+            x:Name="LabelBEnd" 
+            Content="b End" 
+            HorizontalAlignment="Left"  
+            VerticalAlignment="Center"
             Margin="20, 0, 0, 0"
             Grid.Column="6" Grid.Row="3"
             Foreground="White"/>
-
-
 
         </Grid>
 

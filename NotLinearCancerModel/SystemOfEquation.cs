@@ -16,6 +16,16 @@ namespace NotLinearCancerModel
         private float l3;
         private float u;
 
+        public SystemOfEquation(float l1, float b, float d, float e, float l3, float  u)
+        {
+            this.l1 = l1;
+            this.b = b;
+            this.d = d;
+            this.e = e;
+            this.l3 = l3;
+            this.u = u;
+        }
+
         public float dxR(float t, float x, float y, float z = 0)
         {
             float value = 0;

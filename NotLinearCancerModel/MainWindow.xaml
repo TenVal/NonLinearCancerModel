@@ -49,8 +49,45 @@
             Height="511" 
             Width="600"
             VerticalAlignment="Top"  
-            Margin="20,9,0,0"
+            Margin="20,0,0,0"
             Grid.Column="1" Grid.Row="1"/>
+            
+            <Image 
+            x:Name="ImageBrain1" 
+            HorizontalAlignment="Left" 
+            Height="255" 
+            Width="300"
+            VerticalAlignment="Top"  
+            Margin="20,0,0,0"
+            Visibility="Collapsed"
+            Grid.Column="1" Grid.Row="1"/>
+            <Image 
+            x:Name="ImageBrain2" 
+            HorizontalAlignment="Left" 
+            Height="255" 
+            Width="300"
+            VerticalAlignment="Top"  
+            Margin="340,0,0,0"
+            Visibility="Collapsed"
+            Grid.Column="1" Grid.Row="1"/>
+            <Image 
+            x:Name="ImageBrain3" 
+            HorizontalAlignment="Left" 
+            Height="255" 
+            Width="300"
+            VerticalAlignment="Top"  
+            Margin="20,265,0,0"
+            Visibility="Collapsed"
+            Grid.Column="1" Grid.Row="1"/>
+            <Image 
+            x:Name="ImageBrain4" 
+            HorizontalAlignment="Left" 
+            Height="255" 
+            Width="300"
+            VerticalAlignment="Top"  
+            Margin="340,265,0,0"
+            Grid.Column="1" Grid.Row="1"/>
+            
             <Button 
                 x:Name="ButtonGoBackImg"
                 Click="ButtonGoBackImg_Click"
@@ -123,7 +160,7 @@
             Height="511" 
             Width="600"
             VerticalAlignment="Top" 
-            Margin="40,9,0,0"
+            Margin="40,0,0,0"
             Grid.Column="2" Grid.Row="1"/>
             <Button 
                 x:Name="ButtonGoNextImg"
@@ -180,6 +217,44 @@
                     Margin="20, 4, 0, 3"
                     Grid.Column="2" Grid.Row="2"
                     Background="#4e99ff"
+                    Foreground="White"/>
+                    
+                    <Slider 
+                    x:Name="SliderDays1" 
+                    Minimum="0" Maximum="100" 
+                    Value="0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"           
+                    Width="120" 
+                    Margin="20, 0, 0, 0"
+                    Visibility="Collapsed"
+                    Background="#FF353340" Foreground="White"/>
+                    <Label 
+                    x:Name="LabelDays1" 
+                    Content="Days 1" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Center" 
+                    Margin="20, 0, 0, 0"
+                    Visibility="Collapsed"
+                    Foreground="White"/>
+
+                    <Slider
+                    x:Name="SliderDays2" 
+                    Minimum="0" Maximum="100" 
+                    Value="0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"            
+                    Width="120" 
+                    Margin="20, 0, 0, 0"
+                    Visibility="Collapsed"
+                    Background="#FF353340" Foreground="White"/>
+                    <Label 
+                    x:Name="LabelDays2" 
+                    Content="Days 2" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Center" 
+                    Margin="20, 0, 0, 0"
+                    Visibility="Collapsed"
                     Foreground="White"/>
 
 
