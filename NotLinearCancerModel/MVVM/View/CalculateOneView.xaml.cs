@@ -270,14 +270,14 @@ namespace NotLinearCancerModel.MVVM.View
             // copy old data to compare predict and last in the future
             ActionDataFile.copyAllFiles(path + @"Volume\timeValue\txt\" + numberPatient.ToString() + "Volume.txt", path + @"Volume\timeValue\txt\" + numberPatient.ToString() + "VolumeOld.txt");
             // write every data about modeling to files
-            string pathWriteDataToFile = @"dataTumor\PredictData\Any\Volume\txt\";
-            ActionDataFile.writeDataToFile(type: "Volume", number: numberPatient-1, data: valuesP, pathToSave: pathWriteDataToFile);
+            string pathWriteDataToFile = @"dataTumor\PredictData\Any\Volume\txt\" + (numberPatient - 1).ToString() + @"Volume.txt";
+            ActionDataFile.writeDataToFile(data: valuesP, pathToSave: pathWriteDataToFile);
             // Write time-value data to file
-            string pathWriteValueToFile = @"dataTumor\PredictData\Any\Volume\timeValue\txt\";
-            ActionDataFile.writeTimeValueToFile("Volume", numberPatient-1, tValues, numberPointsVolume, pathWriteValueToFile);
+            string pathWriteValueToFile = @"dataTumor\PredictData\Any\Volume\timeValue\txt\" + (numberPatient - 1).ToString() + @"Volume.txt";
+            ActionDataFile.writeTimeValueToFile(tValues, numberPointsVolume, pathWriteValueToFile);
             // write params of modeling to file
-            string pathWriteParametersToFile = @"dataTumor\PredictData\PersonalPatients\Volume\txt\params\";
-            ActionDataFile.writeParametersToFile(type: "Params", number: numberPatient-1, cancerParameters: CancerValuesParameters, pathToSave: pathWriteParametersToFile);
+            string pathWriteParametersToFile = @"dataTumor\PredictData\PersonalPatients\Volume\txt\params\" + (numberPatient - 1).ToString() + @"Params.txt";
+            ActionDataFile.writeParametersToFile(cancerParameters: CancerValuesParameters, pathToSave: pathWriteParametersToFile);
             worker.ReportProgress(100, String.Format("Done Calculate!"));
         }
 

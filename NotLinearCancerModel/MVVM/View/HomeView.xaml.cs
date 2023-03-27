@@ -322,15 +322,15 @@ namespace NotLinearCancerModel.MVVM.View
                 };
 
                 // write every data about modeling to files
-                string pathWriteDataToFile = @"dataTumor\PredictData\PersonalPatients\Volume\txt\";
-                ActionDataFile.writeDataToFile("Volume", i, requiredValuesP, pathWriteDataToFile);
+                string pathWriteDataToFile = @"dataTumor\PredictData\PersonalPatients\Volume\txt\" + i.ToString() + "Volume.txt";
+                ActionDataFile.writeDataToFile(requiredValuesP, pathWriteDataToFile);
                 // Write time-value data to file
-                string pathWriteValueToFile = @"dataTumor\PredictData\PersonalPatient\Volume\timeValue\txt\";
-                ActionDataFile.writeTimeValueToFile("Volume", i, requiredTValue, requiredNumberPointsVolume, pathWriteValueToFile);
+                string pathWriteValueToFile = @"dataTumor\PredictData\PersonalPatients\Volume\timeValue\txt\" + i.ToString() + "Volume.txt";
+                ActionDataFile.writeTimeValueToFile(requiredTValue, requiredNumberPointsVolume, pathWriteValueToFile);
                 // write params of modeling to file
                 float[] paramsForCancer = { requiredSpeed, d, k };
-                string pathWriteParametersToFile = @"dataTumor\PredictData\PersonalPatients\Volume\txt\params\";
-                ActionDataFile.writeParametersToFile(type: "Params", number: i, cancerParameters: requiredCancerValuesParameters, pathToSave: pathWriteParametersToFile);
+                string pathWriteParametersToFile = @"dataTumor\PredictData\PersonalPatients\Volume\txt\params\" + i.ToString() + "Params.txt";
+                ActionDataFile.writeParametersToFile(cancerParameters: requiredCancerValuesParameters, pathToSave: pathWriteParametersToFile);
 
                 worker.ReportProgress((i + 1) * (int)valueOfDivisionProgressBar, String.Format("Processing Iteration {0}", i + 1));
             }

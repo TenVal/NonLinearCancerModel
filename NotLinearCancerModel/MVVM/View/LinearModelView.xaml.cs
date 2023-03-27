@@ -30,6 +30,7 @@ namespace NotLinearCancerModel.MVVM.View
             public float d;
             public float l3;
             public float u;
+            public float stepTime;
             public float days;
             public float xBrain;
             public float yBrain;
@@ -44,6 +45,7 @@ namespace NotLinearCancerModel.MVVM.View
                 float d,
                 float l3,
                 float u,
+                float stepTime,
                 float days,
                 float xBrain,
                 float yBrain,
@@ -57,6 +59,7 @@ namespace NotLinearCancerModel.MVVM.View
                 this.d = d;
                 this.l3 = l3;
                 this.u = u;
+                this.stepTime = stepTime;
                 this.days = days;
                 this.xBrain = xBrain;
                 this.yBrain = yBrain;
@@ -118,6 +121,7 @@ namespace NotLinearCancerModel.MVVM.View
             float d = paramsModel.d;
             float l3 = paramsModel.l3;
             float u = paramsModel.u;
+            float stepTime = paramsModel.stepTime;
             float days = paramsModel.days;
             float xBrain = paramsModel.xBrain;
             float yBrain = paramsModel.yBrain;
@@ -126,8 +130,6 @@ namespace NotLinearCancerModel.MVVM.View
             float bStep = paramsModel.bStep;
 
             float stepScale = 1;
-
-            float stepForMethodRK = 0.1f;
 
             float tMax;
 
@@ -147,6 +149,7 @@ namespace NotLinearCancerModel.MVVM.View
                     {"d" , new List<float>() },
                     {"l3" , new List<float>() },
                     {"u" , new List<float>() },
+                    {"stepTime", new List<float>() },
                     {"days" , new List<float>()},
                     {"xBrain" , new List<float>() },
                     {"yBrain" , new List<float>() },
@@ -165,7 +168,7 @@ namespace NotLinearCancerModel.MVVM.View
                 float y0 = 1;
                 float z0 = 0;
 
-                //tMax /= 30;
+                tMax /= 30;
                 do
                 {
                     // add to list every parameter
@@ -175,6 +178,7 @@ namespace NotLinearCancerModel.MVVM.View
                     cancerValuesParameters["d"].Add(d);
                     cancerValuesParameters["l3"].Add(l3);
                     cancerValuesParameters["u"].Add(u);
+                    cancerValuesParameters["stepTime"].Add(stepTime);
                     cancerValuesParameters["days"].Add(days);
                     cancerValuesParameters["xBrain"].Add(xBrain);
                     cancerValuesParameters["yBrain"].Add(yBrain);
@@ -187,7 +191,7 @@ namespace NotLinearCancerModel.MVVM.View
                     List<List<float>> values = new List<List<float>>();
                     try
                     {
-                        values = methodDiff.RK3D(tStart, x0, y0, z0, tEnd, stepForMethodRK, systemEq);
+                        values = methodDiff.RK3D(0, x0, y0, z0, tMax, stepTime, systemEq);
                     }
                     catch (Exception eGet)
                     {
@@ -218,8 +222,8 @@ namespace NotLinearCancerModel.MVVM.View
                 List<float> requiredTValue = listAllValuesT[indexMinDifference];
                 List<float> requiredVolume = listAllValuesVolume[indexMinDifference];
 
-                float differenceT = requiredTValue[0] - (tStart);
-                //float differenceT = requiredTValue[0] - (tStart / 30);
+                //float differenceT = requiredTValue[0] - (tStart);
+                float differenceT = requiredTValue[0] - (tStart / 30);
                 for (int itemTValues = 0; itemTValues < requiredTValue.Count; itemTValues++)
                 {
                     requiredTValue[itemTValues] = requiredTValue[itemTValues] - differenceT;
@@ -244,6 +248,7 @@ namespace NotLinearCancerModel.MVVM.View
                     {"e" , cancerValuesParameters["e"][indexMinDifference] },
                     {"l3" , cancerValuesParameters["l3"][indexMinDifference] },
                     {"u" , cancerValuesParameters["u"][indexMinDifference] },
+                    {"stepTime" , cancerValuesParameters["stepTime"][indexMinDifference] },
                     {"days" , cancerValuesParameters["days"][indexMinDifference] },
                     {"xBrain" , cancerValuesParameters["xBrain"][indexMinDifference]},
                     {"yBrain" , cancerValuesParameters["yBrain"][indexMinDifference] },
@@ -255,11 +260,11 @@ namespace NotLinearCancerModel.MVVM.View
 
                 // write every data about modeling to files
                 // Write time-value data to file
-                string pathWriteValueToFile = @"dataTumor\PredictData\PersonalPatient\Volume\timeValue\txt\";
-                ActionDataFile.writeTimeValueToFile("VolumeLin", i, requiredTValue.ToArray(), requiredVolume.ToArray(), pathWriteValueToFile);
+                string pathWriteValueToFile = @"dataTumor\PredictData\PersonalPatients\Volume\timeValue\txt\" + i.ToString() + "Volume.txt";
+                ActionDataFile.writeTimeValueToFile(requiredTValue.ToArray(), requiredVolume.ToArray(), pathWriteValueToFile);
                 // write params of modeling to file
-                string writeParametersToFile = @"dataTumor\PredictData\PersonalPatients\Volume\txt\params\";
-                ActionDataFile.writeParametersToFile(type: "ParamsLinear", number: i, cancerParameters: requiredCancerValuesParameters, pathToSave: writeParametersToFile);
+                string writeParametersToFile = @"dataTumor\PredictData\PersonalPatients\Volume\txt\params\" + i.ToString() + @"ParamsLinear.txt";
+                ActionDataFile.writeParametersToFile(cancerParameters: requiredCancerValuesParameters, pathToSave: writeParametersToFile);
 
                 worker.ReportProgress((i + 1) * (int)valueOfDivisionProgressBar, String.Format("Processing Iteration {0}", i + 1));
             }
@@ -297,6 +302,7 @@ namespace NotLinearCancerModel.MVVM.View
                                     float.Parse(TextBoxD.Text),
                                     float.Parse(TextBoxL3.Text),
                                     float.Parse(TextBoxU.Text),
+                                    float.Parse(TextBoxStepTime.Text),
                                     float.Parse(TextBoxDays.Text),
                                     float.Parse(TextBoxXBrain.Text),
                                     float.Parse(TextBoxYBrain.Text),

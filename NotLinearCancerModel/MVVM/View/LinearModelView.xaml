@@ -182,10 +182,28 @@
             VerticalAlignment="Center" 
             Width="120" 
             Margin="20, 0, 0, 0"
-            Grid.Column="1" Grid.Row="2" Background="#FF353340" Foreground="White"/>
+            Grid.Column="0" Grid.Row="2" Background="#FF353340" Foreground="White"/>
             <Label 
             x:Name="LabelTreatment" 
             Content="Treatment" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center"
+            Margin="20, 0, 0, 0"
+            Grid.Column="0" Grid.Row="3"
+            Foreground="White"/>
+
+            <TextBox 
+            x:Name="TextBoxStepTime" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center" 
+            Text="0,1" 
+            TextWrapping="Wrap" 
+            Width="120" 
+            Margin="20, 0, 0, 0"
+            Grid.Column="1" Grid.Row="2" Background="#FF353340" Foreground="White"/>
+            <Label 
+            x:Name="LabelStepTime" 
+            Content="Step (time)" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Center"
             Margin="20, 0, 0, 0"

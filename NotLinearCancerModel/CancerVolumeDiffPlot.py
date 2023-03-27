@@ -29,23 +29,17 @@ if __name__ == "__main__":
     for number in range(1, quantity + 1):
         # get Time Value Data from file
         pathGetTimeValue = f"dataTumor/PredictData/PersonalPatients/Volume/timeValue/txt/{number}{type1}.txt"
-        timeCancer = getTimeValueFromFile(path=pathGetTimeValue)
-        timeValues = timeCancer[0]
-        cancerValues = timeCancer[1] 
-        allTimeCancer["timeNonLin"].append(timeValues)
-        allTimeCancer["volumeNonLin"].append(cancerValues)
+        timeCancer = getTimeValueFromFile(path=pathGetTimeValue) 
+        allTimeCancer["timeNonLin"] = timeCancer[0]
+        allTimeCancer["volumeNonLin"] = timeCancer[1]
         pathGetTimeValue = f"dataTumor/PredictData/PersonalPatients/Volume/timeValue/txt/{number}{type2}.txt"
         timeCancer = getTimeValueFromFile(path=pathGetTimeValue)
-        timeValues = timeCancer[0]
-        cancerValues = timeCancer[1] 
-        allTimeCancer["timeLin"].append(timeValues)
-        allTimeCancer["volumeLin"].append(cancerValues)
-        pathGetTimeValue = f"dataTumor/ExperimentalData/{type}/{number}{type}.txt"
+        allTimeCancer["timeLin"] = timeCancer[0]
+        allTimeCancer["volumeLin"] = timeCancer[1]
+        pathGetTimeValue = f"dataTumor/ExperimentalData/{type2}/{number}{type2}.txt"
         timeCancer = getTimeValueFromFile(path=pathGetTimeValue)
-        timeValues = timeCancer[0]
-        cancerValues = timeCancer[1] 
-        allTimeCancer["timeEx"].append(timeValues)
-        allTimeCancer["volumeEx"].append(cancerValues)
+        allTimeCancer["timeEx"] = timeCancer[0]
+        allTimeCancer["volumeEx"] = timeCancer[1]
 
         fig = plt.figure(figsize=(10, 10))
         ax = fig.add_subplot(111)
@@ -55,9 +49,9 @@ if __name__ == "__main__":
         plt.ylabel('volume (mL)', fontsize=26)
         plt.xticks(fontsize=24)
         plt.yticks(fontsize=24)
-        plt.plot(allTimeCancer["timeNonLin"][number-1], allTimeCancer["volumeNonLin"][number-1], c = "blue")
-        plt.plot(allTimeCancer["timeLin"][number-1], allTimeCancer["volumeLin"][number-1], "-.", c = "orange")
-        plt.scatter(allTimeCancer["timeEx"][number-1], allTimeCancer["volumeEx"][number-1], c = "red")
+        plt.plot(allTimeCancer["timeNonLin"], allTimeCancer["volumeNonLin"], c = "blue")
+        plt.plot(allTimeCancer["timeLin"], allTimeCancer["volumeLin"], "-.", c = "orange")
+        plt.scatter(allTimeCancer["timeEx"], allTimeCancer["volumeEx"], c = "red")
         plt.grid(True)
         plt.legend()
         current_dir = dirname(__file__)

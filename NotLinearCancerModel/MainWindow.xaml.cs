@@ -157,7 +157,7 @@ namespace NotLinearCancerModel
         {
             Dictionary<string, string> result = new Dictionary<string, string>();
             string[] pathsToImages = new string[3];
-            pathsToImages = getPathsImages(number, typeMode, type = "Volume");
+            pathsToImages = getPathsImages(number, typeMode, type: type);
 
             result.Add("pathImgVolume", pathsToImages[0]);
             result.Add("pathImgTimeVolume", pathsToImages[1]);
@@ -293,6 +293,7 @@ namespace NotLinearCancerModel
             if(RadioButtonLinearModel.IsChecked == true)
             {
                 paths = getInfOutputImages(_numberPatientOutputPlotFindMin, typeMode: "PersonalPatients", type: "VolumeLin");
+                Debug.WriteLine(paths["pathImgTimeVolume"]);
                 outputImage(Image2, paths["pathImgTimeVolume"]);
             }
             else
@@ -493,7 +494,6 @@ namespace NotLinearCancerModel
             {
                 MessageBox.Show($"There were some errors!\nErrors:\t{errors}");
             }
-            worker.ReportProgress(100);
         }
 
 

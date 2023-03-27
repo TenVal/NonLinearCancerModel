@@ -164,6 +164,7 @@ def getTimeValueFromFile(path = "dataTumor/PredictData/PersonalPatients/"):
     
     current_dir = dirname(__file__)
     path = join(current_dir, path)
+    print("path\t" + path)
     valuesTime = []
     valuesCancer = []
     with open(path, "r") as file:

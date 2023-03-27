@@ -39,14 +39,11 @@ namespace NotLinearCancerModel
         /// Actions to write, read and do everything with data in program and files
         /// </summary>
         /// 
-        static public string writeParametersToFile(string type,
-                                                    int number, 
-                                                    Dictionary<string, float> cancerParameters, 
-                                                    string pathToSave = @"dataTumor\PredictData\PersonalPatients\")
+        static public string writeParametersToFile(Dictionary<string, float> cancerParameters, string pathToSave = @"dataTumor\PredictData\PersonalPatients\")
         {
-            string message = "Ok";           
+            string message = "Ok";
             //pathToSave += type + @"\txt\params\" + (number + 1).ToString() + @"Params.txt";
-            pathToSave += (number + 1).ToString() + type + @".txt";
+
             Debug.WriteLine($"\nwriteParametersToFile\t{pathToSave}");
             try
             {
@@ -79,14 +76,11 @@ namespace NotLinearCancerModel
         }
         
 
-        static public string writeTimeValueToFile(string type, 
-                                                int number, 
-                                                float[] tValues, 
-                                                float[] cancerValues, 
+        static public string writeTimeValueToFile(float[] tValues,
+                                                float[] cancerValues,
                                                 string pathToSave = @"dataTumor\PredictData\PersonalPatients\")
         {
             string message = "Ok";
-            pathToSave += (number + 1).ToString() + type + @".txt";
             Debug.WriteLine($"\nwriteTimeValueToFile\t{pathToSave}");
             try
             {
@@ -122,14 +116,10 @@ namespace NotLinearCancerModel
         }
 
 
-        static public string writeDataToFile(string type, 
-                                        int number, 
-                                        double[,,] data, 
-                                        string pathToSave = @"dataTumor\PredictData\PersonalPatients\")
+        static public string writeDataToFile(double[,,] data,  string pathToSave = @"dataTumor\PredictData\PersonalPatients\")
         {
             string message = "Ok";
             //pathToSave += type + @"\txt\" + (number + 1).ToString() + type + @".txt";
-            pathToSave += (number + 1).ToString() + type + @".txt";
             Debug.WriteLine($"\nwriteDataToFile\t{pathToSave}");
 
             try
