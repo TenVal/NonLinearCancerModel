@@ -270,12 +270,14 @@ namespace NotLinearCancerModel.MVVM.View
             // copy old data to compare predict and last in the future
             ActionDataFile.copyAllFiles(path + @"Volume\timeValue\txt\" + numberPatient.ToString() + "Volume.txt", path + @"Volume\timeValue\txt\" + numberPatient.ToString() + "VolumeOld.txt");
             // write every data about modeling to files
-            ActionDataFile.writeDataToFile("Volume", numberPatient-1, valuesP, path);
+            string pathWriteDataToFile = @"dataTumor\PredictData\Any\Volume\txt\";
+            ActionDataFile.writeDataToFile(type: "Volume", number: numberPatient-1, data: valuesP, pathToSave: pathWriteDataToFile);
             // Write time-value data to file
             string pathWriteValueToFile = @"dataTumor\PredictData\Any\Volume\timeValue\txt\";
             ActionDataFile.writeTimeValueToFile("Volume", numberPatient-1, tValues, numberPointsVolume, pathWriteValueToFile);
             // write params of modeling to file
-            ActionDataFile.writeParametersToFile(type: "Volume", number: numberPatient-1, cancerParameters: CancerValuesParameters, pathToSave: path);
+            string pathWriteParametersToFile = @"dataTumor\PredictData\PersonalPatients\Volume\txt\params\";
+            ActionDataFile.writeParametersToFile(type: "Params", number: numberPatient-1, cancerParameters: CancerValuesParameters, pathToSave: pathWriteParametersToFile);
             worker.ReportProgress(100, String.Format("Done Calculate!"));
         }
 

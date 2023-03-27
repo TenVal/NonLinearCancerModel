@@ -45,7 +45,8 @@ namespace NotLinearCancerModel
                                                     string pathToSave = @"dataTumor\PredictData\PersonalPatients\")
         {
             string message = "Ok";           
-            pathToSave += type + @"\txt\params\" + (number + 1).ToString() + @"Params.txt";
+            //pathToSave += type + @"\txt\params\" + (number + 1).ToString() + @"Params.txt";
+            pathToSave += (number + 1).ToString() + type + @".txt";
             Debug.WriteLine($"\nwriteParametersToFile\t{pathToSave}");
             try
             {
@@ -127,7 +128,8 @@ namespace NotLinearCancerModel
                                         string pathToSave = @"dataTumor\PredictData\PersonalPatients\")
         {
             string message = "Ok";
-            pathToSave += type + @"\txt\" + (number + 1).ToString() + type + @".txt";
+            //pathToSave += type + @"\txt\" + (number + 1).ToString() + type + @".txt";
+            pathToSave += (number + 1).ToString() + type + @".txt";
             Debug.WriteLine($"\nwriteDataToFile\t{pathToSave}");
 
             try

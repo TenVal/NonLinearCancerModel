@@ -76,6 +76,7 @@
     <Folder Include="Fonts\" />
     <Folder Include="MVVM\Model\" />
     <Folder Include="Images\" />
+    <Folder Include="Assets\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -186,6 +187,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="CancerVolumeDiffPlot.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="TimeTemperaturePlot.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

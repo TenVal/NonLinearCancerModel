@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Net.Cache;
+using System.Windows.Shapes;
+using System.Windows.Controls;
 
 namespace NotLinearCancerModel
 {
@@ -26,6 +28,7 @@ namespace NotLinearCancerModel
             private string _pathPythonInterpreter;
             private int _numberPatientSavePlot;
 
+
             protected internal int RadioButtonChecked
             {
                 get { return _radioButtonChecked; }
@@ -36,10 +39,12 @@ namespace NotLinearCancerModel
                 get { return _pathPythonInterpreter; }
             }
 
+
             protected internal int NumberPatientSavePlot
             {
                 get { return _numberPatientSavePlot; }
             }
+
 
             public ParamsForSavePlot(
                 int radioButtonChecked,
@@ -86,44 +91,32 @@ namespace NotLinearCancerModel
         }
 
 
+        private int outputImage(System.Windows.Controls.Image Image, string path)
+        {
+            Image.Source = null;
+            Image.InvalidateMeasure();
+            Image.InvalidateArrange();
+
+            BitmapImage bmp = new BitmapImage();
+            bmp.BeginInit();
+            bmp.CacheOption = BitmapCacheOption.None;
+            bmp.UriCachePolicy = new RequestCachePolicy(RequestCacheLevel.BypassCache);
+            bmp.CacheOption = BitmapCacheOption.OnLoad;
+            bmp.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
+            bmp.UriSource = new Uri(path, UriKind.Relative);
+            bmp.EndInit();
+
+            Image.Stretch = Stretch.Fill;
+            Image.Source = bmp;
+            return 0;
+        }
+
+
         private int outputImages(string pathImgVolume, string pathImgTimeVolume)
         {
-            // Output images (plots)
-            Image1.Source = null;
-            Image2.Source = null;
-            Image1.InvalidateMeasure();
-            Image1.InvalidateArrange();
-            Image1.InvalidateVisual();
-            Image1.UpdateLayout();
-            Image2.InvalidateMeasure();
-            Image2.InvalidateArrange();
-            Image2.InvalidateVisual();
-            Image2.UpdateLayout();
-
-            BitmapImage bmpVolume = new BitmapImage();
-            bmpVolume.BeginInit();
-            bmpVolume.CacheOption = BitmapCacheOption.None;
-            bmpVolume.UriCachePolicy = new RequestCachePolicy(RequestCacheLevel.BypassCache);
-            bmpVolume.CacheOption = BitmapCacheOption.OnLoad;
-            bmpVolume.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
-            bmpVolume.UriSource = new Uri(pathImgVolume, UriKind.Relative);
-            bmpVolume.EndInit();
-
-            BitmapImage bmpTimeVolume = new BitmapImage();
-            bmpTimeVolume.BeginInit();
-            bmpTimeVolume.CacheOption = BitmapCacheOption.None;
-            bmpTimeVolume.UriCachePolicy = new RequestCachePolicy(RequestCacheLevel.BypassCache);
-            bmpTimeVolume.CacheOption = BitmapCacheOption.OnLoad;
-            bmpTimeVolume.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
-            bmpTimeVolume.UriSource = new Uri(pathImgTimeVolume, UriKind.Relative);
-            bmpTimeVolume.EndInit();
-
-            Image1.Stretch = Stretch.Fill;
-            Image1.Source = bmpVolume;
-            Image2.Stretch = Stretch.Fill;
-            Image2.Source = bmpTimeVolume;
-
-            return 0;
+            int res1 = outputImage(Image1, pathImgVolume);
+            int res2 = outputImage(Image2, pathImgTimeVolume);
+            return res1 + res2;
         }
 
 
@@ -139,17 +132,17 @@ namespace NotLinearCancerModel
         }
 
 
-        private string[] getPathsImages(int number, string typeMode)
+        private string[] getPathsImages(int number, string typeMode, string type="Volume")
         {
             string[] pathsToImages = new string[3];
-            pathsToImages[0] = String.Format(@"dataTumor\PredictData\{0}\{1}\img\{2}{3}.png", typeMode, type, number, type);
-            pathsToImages[1] = String.Format(@"dataTumor\PredictData\{0}\{1}\timeValue\img\{2}{3}.png", typeMode, type, number, type);
-            pathsToImages[2] = String.Format(@"dataTumor\PredictData\{0}\{1}\txt\params\{2}Params.txt", typeMode, type, number);
+            pathsToImages[0] = String.Format(@"dataTumor\PredictData\{0}\{1}\img\{2}{3}.png", typeMode, this.type, number, type);
+            pathsToImages[1] = String.Format(@"dataTumor\PredictData\{0}\{1}\timeValue\img\{2}{3}.png", typeMode, this.type, number, type);
+            pathsToImages[2] = String.Format(@"dataTumor\PredictData\{0}\{1}\txt\params\{2}Params.txt", typeMode, this.type, number);
             return pathsToImages;
         }
 
 
-        private string getTextParams(int number, string typeMode)
+        private string getTextParams(int number, string typeMode, string type = "Params")
         {
             string textLabelParams = String.Format("Cancer\tParameters {0}:\n", number);
             if (typeMode == "Any")
@@ -160,11 +153,11 @@ namespace NotLinearCancerModel
         }
 
 
-        private Dictionary<string, string> getInfOutputImages(int number, string typeMode)
+        private Dictionary<string, string> getInfOutputImages(int number, string typeMode, string type = "Volume")
         {
             Dictionary<string, string> result = new Dictionary<string, string>();
             string[] pathsToImages = new string[3];
-            pathsToImages = getPathsImages(number, typeMode);
+            pathsToImages = getPathsImages(number, typeMode, type = "Volume");
 
             result.Add("pathImgVolume", pathsToImages[0]);
             result.Add("pathImgTimeVolume", pathsToImages[1]);
@@ -203,12 +196,19 @@ namespace NotLinearCancerModel
                 paths["pathImgVolume"] = String.Format(@"dataTumor\PredictData\{0}\{1}\timeValue\img\{2}{3}.png", "PersonalPatients", type, _numberPatientOutputPlotFindMin, typeTemperature);
             }
             Dictionary<string, float> cancerParameters = ActionDataFile.getParametersFromFile(type, _numberPatientOutputPlotFindMin, paths["pathParameters"]);
-            
-            // Output Parameters
-            outputParameters(cancerParameters, paths["textLabelParams"]);
+            if (RadioButtonLinearModel.IsChecked == true)
+            {
+                paths = getInfOutputImages(_numberPatientOutputPlotFindMin, typeMode: "PersonalPatients", type: "VolumeLin");
+                outputImage(Image2, paths["pathImgTimeVolume"]);
+            }
+            else
+            {
+                // Output Parameters
+                outputParameters(cancerParameters, paths["textLabelParams"]);
 
-            // Output images (plots)
-            outputImages(paths["pathImgVolume"], paths["pathImgTimeVolume"]);
+                // Output images (plots)
+                outputImages(paths["pathImgVolume"], paths["pathImgTimeVolume"]);
+            }
         }
 
 
@@ -217,7 +217,7 @@ namespace NotLinearCancerModel
             Dictionary<string, float> cancerParameters;
             Dictionary<string, string> paths;
 
-            if (RadioButtonFindMin.IsChecked == true || RadioButtonTemperatureFunction.IsChecked == true)
+            if (RadioButtonFindMin.IsChecked == true || RadioButtonTemperatureFunction.IsChecked == true || RadioButtonLinearModel.IsChecked == true)
             {
                 _numberPatientOutputPlotFindMin--;
                 if (_numberPatientOutputPlotFindMin < 1)
@@ -244,11 +244,19 @@ namespace NotLinearCancerModel
                 string typeTemperature = "Temperature";
                 paths["pathImgVolume"] = String.Format(@"dataTumor\PredictData\{0}\{1}\timeValue\img\{2}{3}.png", "PersonalPatients", type, _numberPatientOutputPlotFindMin, typeTemperature);
             }
-            // Output Parameters
-            outputParameters(cancerParameters, paths["textLabelParams"]);
+            if (RadioButtonLinearModel.IsChecked == true)
+            {
+                paths = getInfOutputImages(_numberPatientOutputPlotFindMin, typeMode: "PersonalPatients", type: "VolumeLin");
+                outputImage(Image2, paths["pathImgTimeVolume"]);
+            }
+            else
+            {
+                // Output Parameters
+                outputParameters(cancerParameters, paths["textLabelParams"]);
 
-            // Output images (plots)
-            outputImages(paths["pathImgVolume"] , paths["pathImgTimeVolume"]);
+                // Output images (plots)
+                outputImages(paths["pathImgVolume"], paths["pathImgTimeVolume"]);
+            }
         }
 
 
@@ -257,7 +265,7 @@ namespace NotLinearCancerModel
             Dictionary<string, float> cancerParameters;
             Dictionary<string, string> paths;
 
-            if (RadioButtonFindMin.IsChecked == true || RadioButtonTemperatureFunction.IsChecked == true)
+            if (RadioButtonFindMin.IsChecked == true || RadioButtonTemperatureFunction.IsChecked == true || RadioButtonLinearModel.IsChecked == true)
             {
                 _numberPatientOutputPlotFindMin++;
                 if (_numberPatientOutputPlotFindMin > 10)
@@ -282,11 +290,19 @@ namespace NotLinearCancerModel
                 string typeTemperature = "Temperature";
                 paths["pathImgVolume"] = String.Format(@"dataTumor\PredictData\{0}\{1}\timeValue\img\{2}{3}.png", "PersonalPatients", type, _numberPatientOutputPlotFindMin, typeTemperature);
             }
-            // Output Parameters
-            outputParameters(cancerParameters, paths["textLabelParams"]);
+            if(RadioButtonLinearModel.IsChecked == true)
+            {
+                paths = getInfOutputImages(_numberPatientOutputPlotFindMin, typeMode: "PersonalPatients", type: "VolumeLin");
+                outputImage(Image2, paths["pathImgTimeVolume"]);
+            }
+            else
+            {
+                // Output Parameters
+                outputParameters(cancerParameters, paths["textLabelParams"]);
 
-            // Output images (plots)
-            outputImages(paths["pathImgVolume"], paths["pathImgTimeVolume"]);
+                // Output images (plots)
+                outputImages(paths["pathImgVolume"], paths["pathImgTimeVolume"]);
+            }
         }
 
 
@@ -300,21 +316,41 @@ namespace NotLinearCancerModel
         {
             LabelPatientNumberPlot.Content = "Input number patient to save plots\nOutput it";
             Image1.Visibility = Visibility.Visible;
-            ImageBrain1.Visibility = Visibility.Collapsed;
-            ImageBrain2.Visibility = Visibility.Collapsed;
-            ImageBrain3.Visibility = Visibility.Collapsed;
-            ImageBrain1.Visibility = Visibility.Collapsed;
+            ImageBrainLinear1.Visibility = Visibility.Collapsed;
+            ImageBrainNonLinear1.Visibility = Visibility.Collapsed;
+            ImageBrainLinear2.Visibility = Visibility.Collapsed;
+            ImageBrainNonLinear2.Visibility = Visibility.Collapsed;
+            SliderDays1.Visibility = Visibility.Collapsed;
+            LabelDays1.Visibility = Visibility.Collapsed;
+            SliderDays2.Visibility = Visibility.Collapsed;
+            LabelDays2.Visibility = Visibility.Collapsed;
+            CircleBrainLinear1.Visibility = Visibility.Collapsed;
+            CircleBrainNonLinear1.Visibility = Visibility.Collapsed;
+            CircleBrainLinear2.Visibility = Visibility.Collapsed;
+            CircleBrainNonLinear2.Visibility = Visibility.Collapsed;
         }
-        
+
 
         private void RadioButtonLinearModel_Checked(object sender, RoutedEventArgs e)
         {
             LabelPatientNumberPlot.Content = "Input number patient to save plots\nOutput it";
             Image1.Visibility = Visibility.Collapsed;
-            ImageBrain1.Visibility = Visibility.Visible;
-            ImageBrain2.Visibility = Visibility.Visible;
-            ImageBrain3.Visibility = Visibility.Visible;
-            ImageBrain1.Visibility = Visibility.Visible;
+            ImageBrainLinear1.Visibility = Visibility.Visible;
+            ImageBrainNonLinear1.Visibility = Visibility.Visible;
+            ImageBrainLinear2.Visibility = Visibility.Visible;
+            ImageBrainNonLinear2.Visibility = Visibility.Visible;
+            SliderDays1.Visibility = Visibility.Visible;
+            LabelDays1.Visibility = Visibility.Visible;
+            SliderDays2.Visibility = Visibility.Visible;
+            LabelDays2.Visibility = Visibility.Visible;
+            outputImage(ImageBrainNonLinear1, @"Assets\brain.jpg");
+            outputImage(ImageBrainLinear1, @"Assets\brain.jpg");
+            outputImage(ImageBrainNonLinear2, @"Assets\brain.jpg");
+            outputImage(ImageBrainLinear2, @"Assets\brain.jpg");
+            CircleBrainLinear1.Visibility = Visibility.Visible;
+            CircleBrainNonLinear1.Visibility = Visibility.Visible;
+            CircleBrainLinear2.Visibility = Visibility.Visible;
+            CircleBrainNonLinear2.Visibility = Visibility.Visible;
         }
 
 
@@ -369,6 +405,10 @@ namespace NotLinearCancerModel
             {
                 radioButtonChecked = 2;
             }
+            else if(RadioButtonLinearModel.IsChecked == true)
+            {
+                radioButtonChecked = 3;
+            }
             paramsForSavePlot = new ParamsForSavePlot(
                 radioButtonChecked,
                 TextBoxPythonInterpreter.Text.ToString().Trim(),
@@ -399,6 +439,11 @@ namespace NotLinearCancerModel
             {
                 modeSaveImage = "PersonalPatients";
                 scriptPython = @"TimeTemperaturePlot.py";
+            }
+            else if(paramsForSavePlot.RadioButtonChecked == 3)
+            {
+                modeSaveImage = "PersonalPatients";
+                scriptPython = @"CancerVolumeDiffPlot.py";
             }
             // Create Process start info
             var psi = new ProcessStartInfo();
@@ -500,6 +545,35 @@ namespace NotLinearCancerModel
             Image1.Source = bmpVolume;
             Image2.Stretch = Stretch.Fill;
             Image2.Source = null;
+        }
+
+        private void SliderDays1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            //((SliderDays1)sender).SelectionEnd = e.NewValue;
+        }
+
+        private void SliderDays2_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            //((SliderDays2)sender).SelectionEnd = e.NewValue;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            /*Ellipse affectedArea = new Ellipse();
+            affectedArea.Width = 16;
+            affectedArea.Height = 16;
+            affectedArea.Fill = Brushes.Red;
+            Canvas.SetLeft(affectedArea, 150);
+            Canvas.SetTop(affectedArea, 200);*/
+            CircleBrainLinear1.Visibility = Visibility.Collapsed;
+            CircleBrainNonLinear1.Visibility = Visibility.Collapsed;
+            CircleBrainLinear2.Visibility = Visibility.Collapsed;
+            CircleBrainNonLinear2.Visibility = Visibility.Collapsed;
+
+            ImageBrainLinear1.Visibility = Visibility.Collapsed;
+            ImageBrainNonLinear1.Visibility = Visibility.Collapsed;
+            ImageBrainLinear2.Visibility = Visibility.Collapsed;
+            ImageBrainNonLinear2.Visibility = Visibility.Collapsed;
         }
     }
 }

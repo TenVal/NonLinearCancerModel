@@ -196,7 +196,6 @@ namespace NotLinearCancerModel.MVVM.View
                     }
 
                     // Data for time-volume plot
-
                     listAllValuesT.Add(values[0]);
                     listAllValuesVolume.Add(values[1]);
 
@@ -257,15 +256,15 @@ namespace NotLinearCancerModel.MVVM.View
                 // write every data about modeling to files
                 // Write time-value data to file
                 string pathWriteValueToFile = @"dataTumor\PredictData\PersonalPatient\Volume\timeValue\txt\";
-                ActionDataFile.writeTimeValueToFile("Volume", i, requiredTValue.ToArray(), requiredVolume.ToArray(), pathWriteValueToFile);
+                ActionDataFile.writeTimeValueToFile("VolumeLin", i, requiredTValue.ToArray(), requiredVolume.ToArray(), pathWriteValueToFile);
                 // write params of modeling to file
-                ActionDataFile.writeParametersToFile(type: "Volume", number: i, cancerParameters: requiredCancerValuesParameters);
+                string writeParametersToFile = @"dataTumor\PredictData\PersonalPatients\Volume\txt\params\";
+                ActionDataFile.writeParametersToFile(type: "ParamsLinear", number: i, cancerParameters: requiredCancerValuesParameters, pathToSave: writeParametersToFile);
 
                 worker.ReportProgress((i + 1) * (int)valueOfDivisionProgressBar, String.Format("Processing Iteration {0}", i + 1));
             }
 
             worker.ReportProgress(100, "Done Calculate min!");
-            
         }
 
 
@@ -311,7 +310,6 @@ namespace NotLinearCancerModel.MVVM.View
                 MessageBox.Show(ex.ToString());
                 unpressedButton();
             }
-            
         }
 
 

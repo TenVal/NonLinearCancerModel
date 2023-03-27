@@ -17,9 +17,6 @@ if __name__ == "__main__":
     # get the cancer dataset and plot
     type = "Temperature"
     quantity = 10
-    allTimeCancer = {"time" : [],
-                     "radius" : []
-                     }
 
     for number in range(1, quantity + 1):
         # get Time Value Data from file
@@ -27,8 +24,6 @@ if __name__ == "__main__":
         timeCancer = getTimeValueFromFile(path=pathGetTimeValue)
         timeValues = timeCancer[0]
         cancerValues = timeCancer[1] 
-        allTimeCancer["time"].append(timeValues)
-        allTimeCancer["radius"].append(cancerValues)
         
 
         fig = plt.figure(figsize=(10, 10))

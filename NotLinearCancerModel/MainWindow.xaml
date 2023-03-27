@@ -10,7 +10,7 @@
         Height="810" 
         Width="1500"
         ResizeMode="NoResize"
-        Background="Transparent"
+        Background="Transparent" Loaded="Window_Loaded"
       
         >
     <Window.DataContext>
@@ -29,7 +29,8 @@
 
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"></ColumnDefinition>
+                <ColumnDefinition Width="15"></ColumnDefinition>
+                <ColumnDefinition Width="135"/>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
 
@@ -40,7 +41,7 @@
                 Height="40"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Left"
-                Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" 
+                Grid.Column="2" 
                 Style="{StaticResource ModernTextbox}"/>
 
             <Image 
@@ -50,44 +51,77 @@
             Width="600"
             VerticalAlignment="Top"  
             Margin="20,0,0,0"
-            Grid.Column="1" Grid.Row="1"/>
-            
+            Grid.Column="2" Grid.Row="1"/>
+
             <Image 
-            x:Name="ImageBrain1" 
+            x:Name="ImageBrainLinear1" 
             HorizontalAlignment="Left" 
             Height="255" 
             Width="300"
             VerticalAlignment="Top"  
             Margin="20,0,0,0"
-            Visibility="Collapsed"
-            Grid.Column="1" Grid.Row="1"/>
+            Grid.Column="2" Grid.Row="1"/>
+            <Ellipse 
+            x:Name="CircleBrainLinear1" 
+            HorizontalAlignment="Left" 
+            Fill="LightBlue" 
+            Width="200" 
+            Height="200"
+            VerticalAlignment="Top"  
+            Margin="70,30,0,0"
+            Grid.Column="2" Grid.Row="1"/>
             <Image 
-            x:Name="ImageBrain2" 
+            x:Name="ImageBrainNonLinear1" 
             HorizontalAlignment="Left" 
             Height="255" 
             Width="300"
             VerticalAlignment="Top"  
             Margin="340,0,0,0"
-            Visibility="Collapsed"
-            Grid.Column="1" Grid.Row="1"/>
+            Grid.Column="2" Grid.Row="1"/>
+            <Ellipse 
+            x:Name="CircleBrainNonLinear1" 
+            HorizontalAlignment="Left" 
+            Fill="LightBlue" 
+            Width="200" 
+            Height="200"
+            VerticalAlignment="Top"  
+            Margin="390,30,0,0"
+            Grid.Column="2" Grid.Row="1"/>
             <Image 
-            x:Name="ImageBrain3" 
+            x:Name="ImageBrainLinear2" 
             HorizontalAlignment="Left" 
             Height="255" 
             Width="300"
             VerticalAlignment="Top"  
             Margin="20,265,0,0"
-            Visibility="Collapsed"
-            Grid.Column="1" Grid.Row="1"/>
+            Grid.Column="2" Grid.Row="1"/>
+            <Ellipse 
+            x:Name="CircleBrainLinear2" 
+            HorizontalAlignment="Left" 
+            Fill="LightBlue" 
+            Width="200" 
+            Height="200"
+            VerticalAlignment="Top"  
+            Margin="70,292,0,0"
+            Grid.Column="2" Grid.Row="1"/>
             <Image 
-            x:Name="ImageBrain4" 
+            x:Name="ImageBrainNonLinear2" 
             HorizontalAlignment="Left" 
             Height="255" 
             Width="300"
             VerticalAlignment="Top"  
             Margin="340,265,0,0"
-            Grid.Column="1" Grid.Row="1"/>
-            
+            Grid.Column="2" Grid.Row="1"/>
+            <Ellipse 
+            x:Name="CircleBrainNonLinear2" 
+            HorizontalAlignment="Left" 
+            Fill="LightBlue" 
+            Width="200" 
+            Height="200"
+            VerticalAlignment="Top"  
+            Margin="390,292,0,0"
+            Grid.Column="2" Grid.Row="1"/>
+
             <Button 
                 x:Name="ButtonGoBackImg"
                 Click="ButtonGoBackImg_Click"
@@ -95,7 +129,7 @@
                 Height="40"
                 HorizontalAlignment="Left" 
                 Margin="250,529,0,0" 
-                Grid.Column="1" Grid.Row="1" 
+                Grid.Column="2" Grid.Row="1" 
                 VerticalAlignment="Top"
                 Background="#4e99ff"
                 Foreground="White">
@@ -124,7 +158,7 @@
                     VerticalAlignment="Top"
                     TextWrapping="Wrap"             
                     Width="200"
-                    Grid.Column="1" 
+                    Grid.Column="2" 
                     Grid.Row="1" 
                     Grid.ColumnSpan="2"
                     Margin="575,529,0,0"
@@ -137,7 +171,7 @@
                     HorizontalAlignment="Left" 
                     VerticalAlignment="Top"
                     Margin="575,546,0,0"
-                    Grid.Column="1" 
+                    Grid.Column="2" 
                     Grid.Row="1" 
                     Grid.ColumnSpan="2"
                     Foreground="White" Width="200" Height="48"/>
@@ -146,7 +180,7 @@
                     Content="Show total data about&#xD;&#xA;        every patient" 
                     Width="160"
                     Height="40"
-                    Grid.Column="1" 
+                    Grid.Column="2" 
                     Grid.Row="1" 
                     HorizontalAlignment="Left" 
                     Margin="10,529,0,0" 
@@ -161,7 +195,7 @@
             Width="600"
             VerticalAlignment="Top" 
             Margin="40,0,0,0"
-            Grid.Column="2" Grid.Row="1"/>
+            Grid.Column="3" Grid.Row="1"/>
             <Button 
                 x:Name="ButtonGoNextImg"
                 Click="ButtonGoNextImg_Click"
@@ -169,7 +203,7 @@
                 Height="40"
                 HorizontalAlignment="Left" 
                 Margin="250,529,0,0" 
-                Grid.Column="2"  Grid.Row="1" 
+                Grid.Column="3"  Grid.Row="1" 
                 VerticalAlignment="Top"
                 Background="#4e99ff"
                 Foreground="White">
@@ -194,9 +228,9 @@
 
 
             <StackPanel 
-                        Grid.Column="1"
-                        Grid.Row="2"
-                        Grid.ColumnSpan="2">
+                        Grid.Column="2"
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2" Margin="0,604,0,0" Grid.RowSpan="2">
                 <StackPanel Orientation="Horizontal">
                     <Button 
                     x:Name="SavePlots" 
@@ -218,15 +252,17 @@
                     Grid.Column="2" Grid.Row="2"
                     Background="#4e99ff"
                     Foreground="White"/>
-                    
+
                     <Slider 
                     x:Name="SliderDays1" 
                     Minimum="0" Maximum="100" 
+                    IsSelectionRangeEnabled="True"
                     Value="0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"           
                     Width="120" 
                     Margin="20, 0, 0, 0"
+                    ValueChanged="SliderDays1_ValueChanged"
                     Visibility="Collapsed"
                     Background="#FF353340" Foreground="White"/>
                     <Label 
@@ -241,11 +277,13 @@
                     <Slider
                     x:Name="SliderDays2" 
                     Minimum="0" Maximum="100" 
+                    IsSelectionRangeEnabled="True"
                     Value="0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"            
                     Width="120" 
                     Margin="20, 0, 0, 0"
+                    ValueChanged="SliderDays2_ValueChanged"
                     Visibility="Collapsed"
                     Background="#FF353340" Foreground="White"/>
                     <Label 
@@ -264,7 +302,7 @@
 
 
             <StackPanel
-                Grid.Column="0" Grid.Row="3">
+                Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,50,0,0" Grid.RowSpan="2">
 
                 <RadioButton  
                 x:Name="RadioButtonFindMin" 
@@ -299,7 +337,7 @@
                 Checked="RadioButtonWithoutFindMin_Checked"
                 Style="{StaticResource MenuButtonTheme}"
                 Command="{Binding TemperatureFunctionViewCommand}"/>
-                
+
                 <RadioButton 
                 x:Name="RadioButtonLinearModel" 
                 Content="LinearModel"  
@@ -313,9 +351,9 @@
 
             </StackPanel>
             <ContentControl
-                Grid.Column="1" Grid.Row="3"
+                Grid.Column="2" Grid.Row="2"
                 Grid.ColumnSpan="2"
-                Content="{Binding CurrentView}">
+                Content="{Binding CurrentView}" Margin="0,50,0,0" Grid.RowSpan="2">
 
             </ContentControl>
 
@@ -323,14 +361,13 @@
                      Text="" 
                      IsReadOnly="True"
                      Height="250"
-                     HorizontalAlignment="Stretch"
                      Background="#22202f"
                      Foreground="#ffffff"
                      BorderBrush="{x:Null}"
                      HorizontalScrollBarVisibility="Auto"
                      VerticalScrollBarVisibility="Auto"
-                     Margin="0,20,0,324" 
-                     Grid.Row="1">
+                     Margin="0,25,0,329" 
+                     Grid.Row="1" Grid.ColumnSpan="2">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type ScrollBar}">
                         <Setter Property="Background" Value="#000"/>

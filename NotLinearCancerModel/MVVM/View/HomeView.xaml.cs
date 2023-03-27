@@ -284,7 +284,7 @@ namespace NotLinearCancerModel.MVVM.View
                         }
                     }
                 }
-                    float[] requiredTValue = listAllValuesT[indexMinDifference];
+                float[] requiredTValue = listAllValuesT[indexMinDifference];
                 float[] requiredNumberPointsVolume = listAllValuesNumberPointsVolume[indexMinDifference];
 
                 float differenceT = requiredTValue[0] - (tStart / 30);
@@ -322,13 +322,15 @@ namespace NotLinearCancerModel.MVVM.View
                 };
 
                 // write every data about modeling to files
-                ActionDataFile.writeDataToFile("Volume", i, requiredValuesP);
+                string pathWriteDataToFile = @"dataTumor\PredictData\PersonalPatients\Volume\txt\";
+                ActionDataFile.writeDataToFile("Volume", i, requiredValuesP, pathWriteDataToFile);
                 // Write time-value data to file
                 string pathWriteValueToFile = @"dataTumor\PredictData\PersonalPatient\Volume\timeValue\txt\";
                 ActionDataFile.writeTimeValueToFile("Volume", i, requiredTValue, requiredNumberPointsVolume, pathWriteValueToFile);
                 // write params of modeling to file
                 float[] paramsForCancer = { requiredSpeed, d, k };
-                ActionDataFile.writeParametersToFile(type: "Volume", number: i, cancerParameters: requiredCancerValuesParameters);
+                string pathWriteParametersToFile = @"dataTumor\PredictData\PersonalPatients\Volume\txt\params\";
+                ActionDataFile.writeParametersToFile(type: "Params", number: i, cancerParameters: requiredCancerValuesParameters, pathToSave: pathWriteParametersToFile);
 
                 worker.ReportProgress((i + 1) * (int)valueOfDivisionProgressBar, String.Format("Processing Iteration {0}", i + 1));
             }

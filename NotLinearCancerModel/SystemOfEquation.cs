@@ -54,7 +54,7 @@ namespace NotLinearCancerModel
             return value;
         }
 
-        public float dx(float t, float x, float y, float z = 0)
+        public float dz(float t, float x, float y, float z = 0)
         {
             float value = 0;
             value = -this.l3 * z + this.u;
@@ -75,7 +75,7 @@ namespace NotLinearCancerModel
             return value;
         }
 
-        public float dz(float t, float x, float y, float z = 0)
+        public float dx(float t, float x, float y, float z = 0)
         {
             float value = 0;
             try
