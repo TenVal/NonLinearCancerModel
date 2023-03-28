@@ -64,20 +64,28 @@ namespace NotLinearCancerModel
             // Copy
             string pathFrom = @"..\..\..\";
             string pathToEnv = @"env";
-            string pathToEnvDataTumor = @"dataTumor";
+            string pathToDataTumor = @"dataTumor";
+            string pathToAssets = @"Assets";
             string pathToActionDataFile = @"ActionDataFile.py";
             string pathToCancerVolumePlot = @"CancerVolumePlot.py";
             string pathToOneCancerVolumePlot = @"OneCancerVolumePlot.py";
             string pathToCancerVolumeDiffPlot = @"CancerVolumeDiffPlot.py";
+            string pathToTimeTemperaturePlot = @"TimeTemperaturePlot.py";
+            
             if (Directory.Exists(pathToEnv) == false)
             {
                 // This path is a directory
                 ActionDataFile.copyDir(pathFrom + pathToEnv, pathToEnv);
             }
-            if (Directory.Exists(pathToEnvDataTumor) == false)
+            if (Directory.Exists(pathToDataTumor) == false)
             {
                 // This path is a directory
-                ActionDataFile.copyDir(pathFrom + pathToEnvDataTumor, pathToEnvDataTumor);
+                ActionDataFile.copyDir(pathFrom + pathToDataTumor, pathToDataTumor);
+            }
+            if (Directory.Exists(pathToDataTumor) == false)
+            {
+                // This path is a directory
+                ActionDataFile.copyDir(pathFrom + pathToAssets, pathToAssets);
             }
 
             // This path is a file
@@ -92,6 +100,9 @@ namespace NotLinearCancerModel
             // This path is a file
             File.Delete(pathToCancerVolumeDiffPlot);
             File.Copy(pathFrom + pathToCancerVolumeDiffPlot, pathToCancerVolumeDiffPlot);
+            // This path is a file
+            File.Delete(pathToCancerVolumeDiffPlot);
+            File.Copy(pathFrom + pathToTimeTemperaturePlot, pathToTimeTemperaturePlot);
         }
 
 
