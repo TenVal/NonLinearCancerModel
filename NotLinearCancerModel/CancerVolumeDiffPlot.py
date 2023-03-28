@@ -37,7 +37,7 @@ if __name__ == "__main__":
         allTimeCancer["timeLin"] = timeCancer[0]
         allTimeCancer["volumeLin"] = timeCancer[1]
         pathGetTimeValue = f"dataTumor/ExperimentalData/{type2}/{number}{type2}.txt"
-        timeCancer = getTimeValueFromFile(path=pathGetTimeValue)
+        timeCancer = getExperimentalDataFromFile(path=pathGetTimeValue)
         allTimeCancer["timeEx"] = timeCancer[0]
         allTimeCancer["volumeEx"] = timeCancer[1]
 
@@ -49,9 +49,9 @@ if __name__ == "__main__":
         plt.ylabel('volume (mL)', fontsize=26)
         plt.xticks(fontsize=24)
         plt.yticks(fontsize=24)
-        plt.plot(allTimeCancer["timeNonLin"], allTimeCancer["volumeNonLin"], c = "blue")
-        plt.plot(allTimeCancer["timeLin"], allTimeCancer["volumeLin"], "-.", c = "orange")
-        plt.scatter(allTimeCancer["timeEx"], allTimeCancer["volumeEx"], c = "red")
+        plt.plot(allTimeCancer["timeNonLin"], allTimeCancer["volumeNonLin"], color = "blue", label="Non-linear Model Data")
+        plt.plot(allTimeCancer["timeLin"], allTimeCancer["volumeLin"], "-.", color = "orange", label="Linear Model Data")
+        plt.scatter(allTimeCancer["timeEx"], allTimeCancer["volumeEx"], color = "red", label="Clinical Data")
         plt.grid(True)
         plt.legend()
         current_dir = dirname(__file__)

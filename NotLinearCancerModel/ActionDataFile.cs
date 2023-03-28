@@ -205,9 +205,7 @@ namespace NotLinearCancerModel
         }
 
 
-        static public Dictionary<string, float> getParametersFromFile(string type, 
-                                                                    int number, 
-                                                                    string pathToRead = @"dataTumor\PredictData\PersonalPatients\")
+        static public Dictionary<string, float> getParametersFromFile(string pathToRead = @"dataTumor\PredictData\PersonalPatients\")
         {
             Dictionary<string, float> cancerParameters = new Dictionary<string, float> ();
             string singleString = "";

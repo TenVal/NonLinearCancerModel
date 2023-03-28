@@ -155,6 +155,7 @@ namespace NotLinearCancerModel.MVVM.View
                     {"yBrain" , new List<float>() },
                     {"treatment" , new List<float>() },
                     {"BStep", new List<float>() },
+                    {"BEnd", new List<float>() },
                     {"Difference" , new List<float>()},
                 };
                 List<List<float>> listAllValuesT = new List<List<float>>();
@@ -184,6 +185,7 @@ namespace NotLinearCancerModel.MVVM.View
                     cancerValuesParameters["yBrain"].Add(yBrain);
                     cancerValuesParameters["treatment"].Add(treatment);
                     cancerValuesParameters["BStep"].Add(bStep);
+                    cancerValuesParameters["BEnd"].Add(bEnd);
 
                     systemEq = new SystemOfEquation(l1, b, d, eSpeed, l3, u);
                     methodDiff = new MethodDiffEquation();
@@ -254,6 +256,7 @@ namespace NotLinearCancerModel.MVVM.View
                     {"yBrain" , cancerValuesParameters["yBrain"][indexMinDifference] },
                     {"treatment" , cancerValuesParameters["treatment"][indexMinDifference] },
                     {"BStep" , cancerValuesParameters["BStep"][indexMinDifference] },
+                    {"BEnd" , cancerValuesParameters["BEnd"][indexMinDifference] },
                     {"TMax" , requiredTValue.Last()},
                     {"Difference" , cancerValuesParameters["Difference"][indexMinDifference]},
                 };

@@ -313,7 +313,7 @@ namespace NotLinearCancerModel.MVVM.View
                     unpressedButton();
                 }
                 string pathToRead = @"dataTumor\PredictData\PersonalPatients\" + type + @"\txt\params\" + number.ToString() + @"Params.txt";
-                Dictionary<string, float> cancerParams = ActionDataFile.getParametersFromFile(type, number, pathToRead);
+                Dictionary<string, float> cancerParams = ActionDataFile.getParametersFromFile(pathToRead);
 
                 TextBoxLength.Text = cancerParams["Length"].ToString();
                 TextBoxH.Text = cancerParams["H"].ToString();

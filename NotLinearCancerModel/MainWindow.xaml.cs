@@ -68,6 +68,7 @@ namespace NotLinearCancerModel
             string pathToActionDataFile = @"ActionDataFile.py";
             string pathToCancerVolumePlot = @"CancerVolumePlot.py";
             string pathToOneCancerVolumePlot = @"OneCancerVolumePlot.py";
+            string pathToCancerVolumeDiffPlot = @"CancerVolumeDiffPlot.py";
             if (Directory.Exists(pathToEnv) == false)
             {
                 // This path is a directory
@@ -88,6 +89,9 @@ namespace NotLinearCancerModel
             // This path is a file
             File.Delete(pathToOneCancerVolumePlot);
             File.Copy(pathFrom + pathToOneCancerVolumePlot, pathToOneCancerVolumePlot);
+            // This path is a file
+            File.Delete(pathToCancerVolumeDiffPlot);
+            File.Copy(pathFrom + pathToCancerVolumeDiffPlot, pathToCancerVolumeDiffPlot);
         }
 
 
@@ -195,20 +199,20 @@ namespace NotLinearCancerModel
                 string typeTemperature = "Temperature";
                 paths["pathImgVolume"] = String.Format(@"dataTumor\PredictData\{0}\{1}\timeValue\img\{2}{3}.png", "PersonalPatients", type, _numberPatientOutputPlotFindMin, typeTemperature);
             }
-            Dictionary<string, float> cancerParameters = ActionDataFile.getParametersFromFile(type, _numberPatientOutputPlotFindMin, paths["pathParameters"]);
             if (RadioButtonLinearModel.IsChecked == true)
             {
                 paths = getInfOutputImages(_numberPatientOutputPlotFindMin, typeMode: "PersonalPatients", type: "VolumeLin");
-                outputImage(Image2, paths["pathImgTimeVolume"]);
+                outputImage(Image2, paths["pathImgTimeVolume"]); 
+                paths["pathParameters"] = String.Format(@"dataTumor\PredictData\{0}\{1}\txt\params\{2}ParamsLinear.txt", "PersonalPatients", this.type, _numberPatientOutputPlotFindMin);
             }
             else
             {
-                // Output Parameters
-                outputParameters(cancerParameters, paths["textLabelParams"]);
-
                 // Output images (plots)
                 outputImages(paths["pathImgVolume"], paths["pathImgTimeVolume"]);
             }
+            // Output Parameters
+            Dictionary<string, float> cancerParameters = ActionDataFile.getParametersFromFile(paths["pathParameters"]);
+            outputParameters(cancerParameters, paths["textLabelParams"]);
         }
 
 
@@ -225,8 +229,6 @@ namespace NotLinearCancerModel
                     _numberPatientOutputPlotFindMin = 10;
                 }
                 paths = getInfOutputImages(_numberPatientOutputPlotFindMin, typeMode: "PersonalPatients");
-                cancerParameters = ActionDataFile.getParametersFromFile(type, _numberPatientOutputPlotFindMin, paths["pathParameters"]);
-
             }
             else
             {
@@ -236,7 +238,6 @@ namespace NotLinearCancerModel
                     numberPatientOutputPlotOne = 10;
                 }
                 paths = getInfOutputImages(numberPatientOutputPlotOne, typeMode: "Any");
-                cancerParameters = ActionDataFile.getParametersFromFile(type, numberPatientOutputPlotOne, paths["pathParameters"]);
 
             }
             if (RadioButtonTemperatureFunction.IsChecked == true)
@@ -248,15 +249,16 @@ namespace NotLinearCancerModel
             {
                 paths = getInfOutputImages(_numberPatientOutputPlotFindMin, typeMode: "PersonalPatients", type: "VolumeLin");
                 outputImage(Image2, paths["pathImgTimeVolume"]);
+                paths["pathParameters"] = String.Format(@"dataTumor\PredictData\{0}\{1}\txt\params\{2}ParamsLinear.txt", "PersonalPatients", this.type, _numberPatientOutputPlotFindMin);
             }
             else
             {
-                // Output Parameters
-                outputParameters(cancerParameters, paths["textLabelParams"]);
-
                 // Output images (plots)
                 outputImages(paths["pathImgVolume"], paths["pathImgTimeVolume"]);
             }
+            // Output Parameters
+            cancerParameters = ActionDataFile.getParametersFromFile(paths["pathParameters"]);
+            outputParameters(cancerParameters, paths["textLabelParams"]);
         }
 
 
@@ -273,7 +275,6 @@ namespace NotLinearCancerModel
                     _numberPatientOutputPlotFindMin = 1;
                 }
                 paths = getInfOutputImages(_numberPatientOutputPlotFindMin, typeMode: "PersonalPatients");
-                cancerParameters = ActionDataFile.getParametersFromFile(type, _numberPatientOutputPlotFindMin, paths["pathParameters"]);
             }
             else
             {
@@ -283,7 +284,6 @@ namespace NotLinearCancerModel
                     numberPatientOutputPlotOne = 1;
                 }
                 paths = getInfOutputImages(numberPatientOutputPlotOne, typeMode: "Any");
-                cancerParameters = ActionDataFile.getParametersFromFile(type, numberPatientOutputPlotOne, paths["pathParameters"]);
             }
             if (RadioButtonTemperatureFunction.IsChecked == true)
             {
@@ -294,16 +294,17 @@ namespace NotLinearCancerModel
             {
                 paths = getInfOutputImages(_numberPatientOutputPlotFindMin, typeMode: "PersonalPatients", type: "VolumeLin");
                 Debug.WriteLine(paths["pathImgTimeVolume"]);
-                outputImage(Image2, paths["pathImgTimeVolume"]);
+                outputImage(Image2, paths["pathImgTimeVolume"]); 
+                paths["pathParameters"] = String.Format(@"dataTumor\PredictData\{0}\{1}\txt\params\{2}ParamsLinear.txt", "PersonalPatients", this.type, _numberPatientOutputPlotFindMin);
             }
             else
             {
-                // Output Parameters
-                outputParameters(cancerParameters, paths["textLabelParams"]);
-
                 // Output images (plots)
                 outputImages(paths["pathImgVolume"], paths["pathImgTimeVolume"]);
             }
+            // Output Parameters
+            cancerParameters = ActionDataFile.getParametersFromFile(paths["pathParameters"]);
+            outputParameters(cancerParameters, paths["textLabelParams"]);
         }
 
 
