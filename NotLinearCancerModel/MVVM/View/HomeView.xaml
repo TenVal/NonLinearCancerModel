@@ -83,7 +83,7 @@
             x:Name="TextBoxSpeedStart" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Center"
-            Text="1,1" 
+            Text="1,7" 
             TextWrapping="Wrap"            
             Width="120" 
             Margin="20, 0, 0, 0"
@@ -99,7 +99,6 @@
 
             <TextBox 
             x:Name="TextBoxTStep" 
-                Visibility="Hidden"
             HorizontalAlignment="Left" 
             VerticalAlignment="Center" 
             Text="0,1" 
@@ -109,7 +108,6 @@
             Grid.Column="4" Grid.Row="0" Background="#FF353340" Foreground="White"/>
             <Label 
             x:Name="LabelTStep" 
-                Visibility="Hidden"
             Content="T (Step)" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Center" 
@@ -121,7 +119,7 @@
             x:Name="TextBoxSpeedEnd" 
             HorizontalAlignment="Left"
             VerticalAlignment="Center" 
-            Text="1,5" 
+            Text="3" 
             TextWrapping="Wrap" 
             Width="120"
             Margin="20,0,0,0"
@@ -208,7 +206,7 @@
             x:Name="TextBoxD" 
             HorizontalAlignment="Left"
             VerticalAlignment="Center" 
-            Text="1e-5" 
+            Text="1,8" 
             TextWrapping="Wrap"             
             Width="120" 
             Margin="20, 0, 0, 0"
@@ -244,7 +242,7 @@
             x:Name="TextBoxSpeedStep" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Center" 
-            Text="0,01" 
+            Text="0,1" 
             TextWrapping="Wrap" 
             Width="120" 
             Margin="20,0,0,0"

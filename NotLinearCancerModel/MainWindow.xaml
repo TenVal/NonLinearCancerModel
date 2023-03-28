@@ -334,7 +334,7 @@
                 Grid.Column="0"  Grid.Row="3" 
                 FontSize="14"
                 Foreground="White"
-                Checked="RadioButtonWithoutFindMin_Checked"
+                Checked="RadioButtonTemperatureFunction_Checked"
                 Style="{StaticResource MenuButtonTheme}"
                 Command="{Binding TemperatureFunctionViewCommand}"/>
 

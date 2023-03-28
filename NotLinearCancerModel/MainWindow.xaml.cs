@@ -307,51 +307,56 @@ namespace NotLinearCancerModel
         }
 
 
+        private void changeVisibleOfElements(Visibility visibilityBrain, Visibility visibilityNonBrain)
+        {
+            Image1.Visibility = visibilityNonBrain;
+            ImageBrainLinear1.Visibility = visibilityBrain;
+            ImageBrainNonLinear1.Visibility = visibilityBrain;
+            ImageBrainLinear2.Visibility = visibilityBrain;
+            ImageBrainNonLinear2.Visibility = visibilityBrain;
+            SliderDays1.Visibility = visibilityBrain;
+            LabelDays1.Visibility = visibilityBrain;
+            SliderDays2.Visibility = visibilityBrain;
+            LabelDays2.Visibility = visibilityBrain;
+            CircleBrainLinear1.Visibility = visibilityBrain;
+            CircleBrainNonLinear1.Visibility = visibilityBrain;
+            CircleBrainLinear2.Visibility = visibilityBrain;
+            CircleBrainNonLinear2.Visibility = visibilityBrain;
+        }
+
+
         private void RadioButtonFindMin_Checked(object sender, RoutedEventArgs e)
         {
             LabelPatientNumberPlot.Content = "Patient Number Plot";
+            changeVisibleOfElements(Visibility.Collapsed, Visibility.Visible);
+
+        }
+
+
+        private void RadioButtonTemperatureFunction_Checked(object sender, RoutedEventArgs e)
+        {
+            LabelPatientNumberPlot.Content = "Input number patient to save plots\nOutput it";
+            changeVisibleOfElements(Visibility.Collapsed, Visibility.Visible);
         }
 
 
         private void RadioButtonWithoutFindMin_Checked(object sender, RoutedEventArgs e)
         {
             LabelPatientNumberPlot.Content = "Input number patient to save plots\nOutput it";
-            Image1.Visibility = Visibility.Visible;
-            ImageBrainLinear1.Visibility = Visibility.Collapsed;
-            ImageBrainNonLinear1.Visibility = Visibility.Collapsed;
-            ImageBrainLinear2.Visibility = Visibility.Collapsed;
-            ImageBrainNonLinear2.Visibility = Visibility.Collapsed;
-            SliderDays1.Visibility = Visibility.Collapsed;
-            LabelDays1.Visibility = Visibility.Collapsed;
-            SliderDays2.Visibility = Visibility.Collapsed;
-            LabelDays2.Visibility = Visibility.Collapsed;
-            CircleBrainLinear1.Visibility = Visibility.Collapsed;
-            CircleBrainNonLinear1.Visibility = Visibility.Collapsed;
-            CircleBrainLinear2.Visibility = Visibility.Collapsed;
-            CircleBrainNonLinear2.Visibility = Visibility.Collapsed;
+            changeVisibleOfElements(Visibility.Collapsed, Visibility.Visible);
         }
 
 
         private void RadioButtonLinearModel_Checked(object sender, RoutedEventArgs e)
         {
             LabelPatientNumberPlot.Content = "Input number patient to save plots\nOutput it";
-            Image1.Visibility = Visibility.Collapsed;
-            ImageBrainLinear1.Visibility = Visibility.Visible;
-            ImageBrainNonLinear1.Visibility = Visibility.Visible;
-            ImageBrainLinear2.Visibility = Visibility.Visible;
-            ImageBrainNonLinear2.Visibility = Visibility.Visible;
-            SliderDays1.Visibility = Visibility.Visible;
-            LabelDays1.Visibility = Visibility.Visible;
-            SliderDays2.Visibility = Visibility.Visible;
-            LabelDays2.Visibility = Visibility.Visible;
+
             outputImage(ImageBrainNonLinear1, @"Assets\brain.jpg");
             outputImage(ImageBrainLinear1, @"Assets\brain.jpg");
             outputImage(ImageBrainNonLinear2, @"Assets\brain.jpg");
             outputImage(ImageBrainLinear2, @"Assets\brain.jpg");
-            CircleBrainLinear1.Visibility = Visibility.Visible;
-            CircleBrainNonLinear1.Visibility = Visibility.Visible;
-            CircleBrainLinear2.Visibility = Visibility.Visible;
-            CircleBrainNonLinear2.Visibility = Visibility.Visible;
+
+            changeVisibleOfElements(Visibility.Visible, Visibility.Collapsed);
         }
 
 
