@@ -311,14 +311,22 @@ namespace NotLinearCancerModel
         private void changeVisibleOfElements(Visibility visibilityBrain, Visibility visibilityNonBrain)
         {
             Image1.Visibility = visibilityNonBrain;
+
             ImageBrainLinear1.Visibility = visibilityBrain;
             ImageBrainNonLinear1.Visibility = visibilityBrain;
             ImageBrainLinear2.Visibility = visibilityBrain;
             ImageBrainNonLinear2.Visibility = visibilityBrain;
-            SliderDays1.Visibility = visibilityBrain;
-            LabelDays1.Visibility = visibilityBrain;
-            SliderDays2.Visibility = visibilityBrain;
-            LabelDays2.Visibility = visibilityBrain;
+
+            SliderTime1.Visibility = visibilityBrain;
+            LabelSliderTime1.Visibility = visibilityBrain;
+            LabelTimeEnd1.Visibility = visibilityBrain;
+            LabelTimeStart1.Visibility = visibilityBrain;
+
+            SliderTime2.Visibility = visibilityBrain;
+            LabelSliderTime2.Visibility = visibilityBrain;
+            LabelTimeEnd2.Visibility = visibilityBrain;
+            LabelTimeStart2.Visibility = visibilityBrain;
+
             CircleBrainLinear1.Visibility = visibilityBrain;
             CircleBrainNonLinear1.Visibility = visibilityBrain;
             CircleBrainLinear2.Visibility = visibilityBrain;
@@ -526,60 +534,71 @@ namespace NotLinearCancerModel
 
             textBoxCancerParameters.Text = "";
 
-            // Output images (plots)
-            Image1.Source = null;
+            outputImage(Image1, pathImg);
+
             Image2.Source = null;
-            Image1.InvalidateMeasure();
-            Image1.InvalidateArrange();
-            Image1.InvalidateVisual();
-            Image1.UpdateLayout();
             Image2.InvalidateMeasure();
             Image2.InvalidateArrange();
             Image2.InvalidateVisual();
             Image2.UpdateLayout();
-
-            BitmapImage bmpVolume = new BitmapImage();
-            bmpVolume.BeginInit();
-            bmpVolume.CacheOption = BitmapCacheOption.None;
-            bmpVolume.UriCachePolicy = new RequestCachePolicy(RequestCacheLevel.BypassCache);
-            bmpVolume.CacheOption = BitmapCacheOption.OnLoad;
-            bmpVolume.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
-            bmpVolume.UriSource = new Uri(pathImg, UriKind.Relative);
-            bmpVolume.EndInit();
-
-            Image1.Stretch = Stretch.Fill;
-            Image1.Source = bmpVolume;
+            
             Image2.Stretch = Stretch.Fill;
             Image2.Source = null;
         }
 
-        private void SliderDays1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+
+        private float[] getRadiusValuesSlider()
         {
-            //((SliderDays1)sender).SelectionEnd = e.NewValue;
+            float[] borders = new float[2];
+            return borders;
         }
 
-        private void SliderDays2_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private float[] getBorderValuesSlider()
         {
-            //((SliderDays2)sender).SelectionEnd = e.NewValue;
+            float[] borders = new float[2];
+            return borders;
         }
+
+
+        private void changeEllipse(Ellipse ellipse, StackPanel stackPanel, float radius)
+        {
+            ellipse.Width = radius * 2;
+            ellipse.Height = radius * 2;
+            int marginTop = (int)(stackPanel.Height / 2 - radius);
+            int marginLeft = (int)(stackPanel.Width / 2 - radius);
+            ellipse.Margin = new Thickness(marginLeft, marginTop, 0, 0);
+        }
+
+
+        private void SliderTime1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            changeEllipse(CircleBrainLinear1, StackPanelBrainLin1, (float)e.NewValue);
+            changeEllipse(CircleBrainNonLinear1, StackPanelBrainNonLin1, (float)e.NewValue);
+            LabelSliderTime1.Content = $"Time {(int)e.NewValue}";
+        }
+
+
+        private void SliderTime2_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            changeEllipse(CircleBrainLinear2, StackPanelBrainLin2, (float)e.NewValue);
+            changeEllipse(CircleBrainNonLinear2, StackPanelBrainNonLin2, (float)e.NewValue);
+            LabelSliderTime2.Content = $"Time {(int)e.NewValue}";
+        }
+
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            /*Ellipse affectedArea = new Ellipse();
-            affectedArea.Width = 16;
-            affectedArea.Height = 16;
-            affectedArea.Fill = Brushes.Red;
-            Canvas.SetLeft(affectedArea, 150);
-            Canvas.SetTop(affectedArea, 200);*/
-            CircleBrainLinear1.Visibility = Visibility.Collapsed;
-            CircleBrainNonLinear1.Visibility = Visibility.Collapsed;
-            CircleBrainLinear2.Visibility = Visibility.Collapsed;
-            CircleBrainNonLinear2.Visibility = Visibility.Collapsed;
+            int startValueSlider = 20;
+            changeEllipse(CircleBrainLinear1, StackPanelBrainLin1, startValueSlider);
+            changeEllipse(CircleBrainNonLinear1, StackPanelBrainNonLin1, startValueSlider);
+            changeEllipse(CircleBrainLinear2, StackPanelBrainLin1, startValueSlider);
+            changeEllipse(CircleBrainNonLinear2, StackPanelBrainNonLin1, startValueSlider);
+            SliderTime1.Value = startValueSlider;
+            SliderTime2.Value = startValueSlider;
+            LabelSliderTime1.Content = $"Time {SliderTime1.Value}";
+            LabelSliderTime2.Content = $"Time {SliderTime2.Value}";
 
-            ImageBrainLinear1.Visibility = Visibility.Collapsed;
-            ImageBrainNonLinear1.Visibility = Visibility.Collapsed;
-            ImageBrainLinear2.Visibility = Visibility.Collapsed;
-            ImageBrainNonLinear2.Visibility = Visibility.Collapsed;
+            changeVisibleOfElements(Visibility.Collapsed, Visibility.Visible);
         }
     }
 }
