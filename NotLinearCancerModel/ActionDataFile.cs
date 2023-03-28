@@ -162,8 +162,8 @@ namespace NotLinearCancerModel
         }
 
 
-        static public List<List<float>> getDataFromFile(string type, 
-                                                    int number, 
+        static public List<List<float>> getDataFromFile(/*string type, 
+                                                    int number, */
                                                     string pathToFile = @"dataTumor\ExperimentalData\")
         {
             List<float> xValues = new List<float>();
@@ -174,15 +174,15 @@ namespace NotLinearCancerModel
                 yValues
             };
             //pathToFile = pathToFile + type + @"\txt\" + number.ToString() + type + @".txt";
-            pathToFile = pathToFile + type + @"\" + number.ToString() + type + @".txt";
+            //pathToFile = pathToFile + type + @"\" + number.ToString() + type + @".txt";
             // Read the file and display it line by line.
             try
             {
                 foreach (string line in System.IO.File.ReadLines(pathToFile))
                 {
                 string[] valuesSingleXY = line.Split("\t");
-                    xyValues[0].Add(float.Parse(valuesSingleXY[0].Trim(), CultureInfo.InvariantCulture));
-                    xyValues[1].Add(float.Parse(valuesSingleXY[1].Trim(), CultureInfo.InvariantCulture));
+                    xyValues[0].Add(float.Parse((valuesSingleXY[0].Trim()).Replace(",", "."), NumberStyles.Any, CultureInfo.InvariantCulture));
+                    xyValues[1].Add(float.Parse((valuesSingleXY[1].Trim()).Replace(",", "."), NumberStyles.Any, CultureInfo.InvariantCulture));
                 }
             }
             catch (FileNotFoundException e)
@@ -217,7 +217,7 @@ namespace NotLinearCancerModel
                 while((singleString = inputFile.ReadLine()) != null)
                 {
                     string[] splitSingleString = singleString.Split("\t");
-                    cancerParameters.Add(splitSingleString[0].Trim(), float.Parse(splitSingleString[1].Trim(), ci));
+                    cancerParameters.Add((splitSingleString[0].Trim()).Replace(".", ","), float.Parse(splitSingleString[1].Trim(), ci));
                 }
             }
             catch (FileNotFoundException e)

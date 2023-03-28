@@ -63,7 +63,9 @@ namespace NotLinearCancerModel
             foreach (KeyValuePair<string, List<List<float>>> kvp in cancerValues)
             {
                 // easy coping
-                cancerValues[kvp.Key] = ActionDataFile.getDataFromFile(kvp.Key, number);
+                string pathToFile = @"dataTumor\ExperimentalData\";
+                pathToFile = pathToFile + kvp.Key + @"\" + number.ToString() + kvp.Key + @".txt";
+                cancerValues[kvp.Key] = ActionDataFile.getDataFromFile(pathToFile);
             }
 
             return cancerValues;

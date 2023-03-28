@@ -22,6 +22,13 @@ namespace NotLinearCancerModel
         private int numberPatientOutputPlotOne;
         private string type = "Volume";
 
+
+        private float scaleX;
+        private float scaleY;
+        private List<List<float>> linData;
+        private List<List<float>> nonLinData;
+        
+
         public class ParamsForSavePlot
         {
             private int _radioButtonChecked;
@@ -82,7 +89,7 @@ namespace NotLinearCancerModel
                 // This path is a directory
                 ActionDataFile.copyDir(pathFrom + pathToDataTumor, pathToDataTumor);
             }
-            if (Directory.Exists(pathToDataTumor) == false)
+            if (Directory.Exists(pathToAssets) == false)
             {
                 // This path is a directory
                 ActionDataFile.copyDir(pathFrom + pathToAssets, pathToAssets);
@@ -101,8 +108,31 @@ namespace NotLinearCancerModel
             File.Delete(pathToCancerVolumeDiffPlot);
             File.Copy(pathFrom + pathToCancerVolumeDiffPlot, pathToCancerVolumeDiffPlot);
             // This path is a file
-            File.Delete(pathToCancerVolumeDiffPlot);
+            File.Delete(pathToTimeTemperaturePlot);
             File.Copy(pathFrom + pathToTimeTemperaturePlot, pathToTimeTemperaturePlot);
+
+            this.scaleX = (float)(ImageBrainLinear1.Width / 14);
+            this.scaleY = (float)(ImageBrainLinear1.Height / 17);
+            this.numberPatientOutputPlotOne = 1;
+            this._numberPatientOutputPlotFindMin = 1;
+            changeDataPatientSlider();
+        }
+
+
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            int startValueSlider = 10;
+            changeEllipse(CircleBrainLinear1, StackPanelBrainLin1, startValueSlider);
+            changeEllipse(CircleBrainNonLinear1, StackPanelBrainNonLin1, startValueSlider);
+            changeEllipse(CircleBrainLinear2, StackPanelBrainLin1, startValueSlider);
+            changeEllipse(CircleBrainNonLinear2, StackPanelBrainNonLin1, startValueSlider);
+            SliderTime1.Value = startValueSlider;
+            SliderTime2.Value = startValueSlider;
+            LabelSliderTime1.Content = $"Time {SliderTime1.Value}";
+            LabelSliderTime2.Content = $"Time {SliderTime2.Value}";
+
+            changeVisibleOfElements(Visibility.Collapsed, Visibility.Visible);
         }
 
 
@@ -215,6 +245,7 @@ namespace NotLinearCancerModel
                 paths = getInfOutputImages(_numberPatientOutputPlotFindMin, typeMode: "PersonalPatients", type: "VolumeLin");
                 outputImage(Image2, paths["pathImgTimeVolume"]); 
                 paths["pathParameters"] = String.Format(@"dataTumor\PredictData\{0}\{1}\txt\params\{2}ParamsLinear.txt", "PersonalPatients", this.type, _numberPatientOutputPlotFindMin);
+                changeDataPatientSlider();
             }
             else
             {
@@ -261,6 +292,7 @@ namespace NotLinearCancerModel
                 paths = getInfOutputImages(_numberPatientOutputPlotFindMin, typeMode: "PersonalPatients", type: "VolumeLin");
                 outputImage(Image2, paths["pathImgTimeVolume"]);
                 paths["pathParameters"] = String.Format(@"dataTumor\PredictData\{0}\{1}\txt\params\{2}ParamsLinear.txt", "PersonalPatients", this.type, _numberPatientOutputPlotFindMin);
+                changeDataPatientSlider();
             }
             else
             {
@@ -304,9 +336,9 @@ namespace NotLinearCancerModel
             if(RadioButtonLinearModel.IsChecked == true)
             {
                 paths = getInfOutputImages(_numberPatientOutputPlotFindMin, typeMode: "PersonalPatients", type: "VolumeLin");
-                Debug.WriteLine(paths["pathImgTimeVolume"]);
                 outputImage(Image2, paths["pathImgTimeVolume"]); 
                 paths["pathParameters"] = String.Format(@"dataTumor\PredictData\{0}\{1}\txt\params\{2}ParamsLinear.txt", "PersonalPatients", this.type, _numberPatientOutputPlotFindMin);
+                changeDataPatientSlider();
             }
             else
             {
@@ -558,15 +590,31 @@ namespace NotLinearCancerModel
         }
 
 
-        private float[] getRadiusValuesSlider()
+        private float getValueForCircleSlider(List<List<float>> data, float valueSlider)
         {
-            float[] borders = new float[2];
-            return borders;
+            float radius;
+            float time = 0;
+            float delta = valueSlider;
+            foreach (var val in data[0])
+            {
+                if (Math.Abs(valueSlider - val) < delta)
+                {
+                    delta = Math.Abs(valueSlider - val);
+                    time = val;
+                }
+            }
+            int index = data[0].IndexOf(time);
+            radius = (float)(Math.Cbrt(data[1][index]) / Math.PI);
+            
+            return radius;
         }
 
-        private float[] getBorderValuesSlider()
+
+        private float[] getBorderValuesSlider(List<List<float>> Data)
         {
             float[] borders = new float[2];
+            borders[0] = Data[0][0];
+            borders[1] = Data[0][Data[0].Count-1];
             return borders;
         }
 
@@ -581,35 +629,48 @@ namespace NotLinearCancerModel
         }
 
 
+        private void changeDataPatientSlider()
+        {
+            string pathLinData = @"dataTumor\PredictData\PersonalPatients\Volume\timeValue\txt\" + _numberPatientOutputPlotFindMin.ToString() + "VolumeLin.txt";
+            string pathNonLinData = @"dataTumor\PredictData\PersonalPatients\Volume\timeValue\txt\" + _numberPatientOutputPlotFindMin.ToString() + "Volume.txt";
+
+            this.linData = ActionDataFile.getDataFromFile(pathLinData);
+            this.nonLinData = ActionDataFile.getDataFromFile(pathNonLinData);
+
+            float[] borders = getBorderValuesSlider(linData);
+
+            SliderTime1.Minimum = borders[0];
+            SliderTime1.Maximum = borders[1];
+            LabelTimeStart1.Content = borders[0].ToString();
+            LabelTimeEnd1.Content = borders[1].ToString();
+
+            SliderTime2.Minimum = borders[0];
+            SliderTime2.Maximum = borders[1];
+            LabelTimeStart2.Content = borders[0].ToString();
+            LabelTimeEnd2.Content = borders[1].ToString();
+        }
+
         private void SliderTime1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            changeEllipse(CircleBrainLinear1, StackPanelBrainLin1, (float)e.NewValue);
-            changeEllipse(CircleBrainNonLinear1, StackPanelBrainNonLin1, (float)e.NewValue);
-            LabelSliderTime1.Content = $"Time {(int)e.NewValue}";
+            float radiusLin = getValueForCircleSlider(this.linData, (float)e.NewValue);
+            float radiusNonLin = getValueForCircleSlider(this.nonLinData, (float)e.NewValue);
+            radiusLin = (radiusLin * this.scaleX);
+            radiusNonLin = (radiusNonLin * this.scaleX);
+            changeEllipse(CircleBrainLinear1, StackPanelBrainLin1, radiusLin);
+            changeEllipse(CircleBrainNonLinear1, StackPanelBrainNonLin1, radiusNonLin);
+            LabelSliderTime1.Content = $"Time " + ((int)e.NewValue).ToString();
         }
 
 
         private void SliderTime2_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            changeEllipse(CircleBrainLinear2, StackPanelBrainLin2, (float)e.NewValue);
-            changeEllipse(CircleBrainNonLinear2, StackPanelBrainNonLin2, (float)e.NewValue);
-            LabelSliderTime2.Content = $"Time {(int)e.NewValue}";
-        }
-
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            int startValueSlider = 20;
-            changeEllipse(CircleBrainLinear1, StackPanelBrainLin1, startValueSlider);
-            changeEllipse(CircleBrainNonLinear1, StackPanelBrainNonLin1, startValueSlider);
-            changeEllipse(CircleBrainLinear2, StackPanelBrainLin1, startValueSlider);
-            changeEllipse(CircleBrainNonLinear2, StackPanelBrainNonLin1, startValueSlider);
-            SliderTime1.Value = startValueSlider;
-            SliderTime2.Value = startValueSlider;
-            LabelSliderTime1.Content = $"Time {SliderTime1.Value}";
-            LabelSliderTime2.Content = $"Time {SliderTime2.Value}";
-
-            changeVisibleOfElements(Visibility.Collapsed, Visibility.Visible);
+            float radiusLin = getValueForCircleSlider(this.linData, (float)e.NewValue);
+            float radiusNonLin = getValueForCircleSlider(this.nonLinData, (float)e.NewValue);
+            radiusLin = (radiusLin * this.scaleX);
+            radiusNonLin = (radiusNonLin * this.scaleX);
+            changeEllipse(CircleBrainLinear2, StackPanelBrainLin2, radiusLin);
+            changeEllipse(CircleBrainNonLinear2, StackPanelBrainNonLin2, radiusNonLin);
+            LabelSliderTime2.Content = $"Time " + ((int)e.NewValue).ToString();
         }
     }
 }
