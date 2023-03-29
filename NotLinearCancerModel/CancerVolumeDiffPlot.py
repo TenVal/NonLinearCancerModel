@@ -28,18 +28,23 @@ if __name__ == "__main__":
 
     for number in range(1, quantity + 1):
         # get Time Value Data from file
-        pathGetTimeValue = f"dataTumor/PredictData/PersonalPatients/Volume/timeValue/txt/{number}{type1}.txt"
-        timeCancer = getTimeValueFromFile(path=pathGetTimeValue) 
-        allTimeCancer["timeNonLin"] = timeCancer[0]
-        allTimeCancer["volumeNonLin"] = timeCancer[1]
-        pathGetTimeValue = f"dataTumor/PredictData/PersonalPatients/Volume/timeValue/txt/{number}{type2}.txt"
-        timeCancer = getTimeValueFromFile(path=pathGetTimeValue)
-        allTimeCancer["timeLin"] = timeCancer[0]
-        allTimeCancer["volumeLin"] = timeCancer[1]
-        pathGetTimeValue = f"dataTumor/ExperimentalData/{type2}/{number}{type2}.txt"
-        timeCancer = getExperimentalDataFromFile(path=pathGetTimeValue)
-        allTimeCancer["timeEx"] = timeCancer[0]
-        allTimeCancer["volumeEx"] = timeCancer[1]
+        pathGetTimeValueNonLin = f"dataTumor/PredictData/PersonalPatients/Volume/timeValue/txt/{number}{type1}.txt"
+        timeCancerNonLin = getTimeValueFromFile(path=pathGetTimeValueNonLin) 
+        allTimeCancer["timeNonLin"] = timeCancerNonLin[0]
+        allTimeCancer["volumeNonLin"] = timeCancerNonLin[1]
+        pathGetTimeValueLin = f"dataTumor/PredictData/PersonalPatients/Volume/timeValue/txt/{number}{type2}.txt"
+        timeCancerLin = getTimeValueFromFile(path=pathGetTimeValueLin)
+        allTimeCancer["timeLin"] = timeCancerLin[0]
+        allTimeCancer["volumeLin"] = timeCancerLin[1]
+        pathGetTimeValueEx = f"dataTumor/ExperimentalData/{type2}/{number}{type2}.txt"
+        timeCancerExperimental = getExperimentalDataFromFile(path=pathGetTimeValueEx)
+        allTimeCancer["timeEx"] = timeCancerExperimental[0]
+        allTimeCancer["volumeEx"] = timeCancerExperimental[1]
+
+        # calculate relative Error
+        relativeError = compareData(timeCancerExperimental, timeCancerLin)
+        pathAccuracy = f"dataTumor/PredictData/PersonalPatients/{type2}/txt/params/{number}ParamsLinear.txt"
+        writeAccuracyIntoFile(relativeError, path=pathAccuracy)
 
         fig = plt.figure(figsize=(10, 10))
         ax = fig.add_subplot(111)
