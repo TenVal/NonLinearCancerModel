@@ -220,6 +220,7 @@ namespace NotLinearCancerModel.MVVM.View
                 float minDifference = cancerValuesParameters["Difference"].Min();
                 int indexMinDifference = cancerValuesParameters["Difference"].IndexOf(cancerValuesParameters["Difference"].Min());
                 float requiredB = cancerValuesParameters["b"][indexMinDifference];
+                Debug.WriteLine("indexMinDifference\t" + indexMinDifference.ToString());
 
                 List<float> requiredTValue = listAllValuesT[indexMinDifference];
                 List<float> requiredVolume = listAllValuesVolume[indexMinDifference];
@@ -237,7 +238,8 @@ namespace NotLinearCancerModel.MVVM.View
                 for (int itemPointsValues = 0; itemPointsValues < requiredVolume.Count; itemPointsValues++)
                 {
                     //requiredNumberPointsVolume[itemPointsValues] = requiredNumberPointsVolume[itemPointsValues] * stepScale - differencePoints;
-                    requiredVolume[itemPointsValues] = requiredVolume[itemPointsValues] / 1000 - differencePoints;
+                    //requiredVolume[itemPointsValues] = requiredVolume[itemPointsValues] / 1000 - differencePoints;
+                    requiredVolume[itemPointsValues] = requiredVolume[itemPointsValues] - differencePoints;
                 }
                 Debug.WriteLine("requiredVolume\t" + requiredVolume[0].ToString() + "\nmodelData\t" + modelData.Patients[i]["Volume"][1][0].ToString());
 
