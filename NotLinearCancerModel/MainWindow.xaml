@@ -11,43 +11,63 @@
         Width="1500"
         ResizeMode="CanResize"
         Background="Transparent" Loaded="Window_Loaded">
-    
-        
-    
+
+
+
     <Window.DataContext>
         <viewModel:MainViewModel/>
     </Window.DataContext>
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-    <Border Background="#272537"
+        <Border Background="#272537"
             CornerRadius="30">
-        <Grid 
-        Margin="0,0,0,0" Width="1500">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="40"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="50"></RowDefinition>
-                <RowDefinition Height="100"></RowDefinition>
+            <Grid 
+            Margin="0,0,0,0" Width="1500">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="100"></RowDefinition>
 
 
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="15"></ColumnDefinition>
-                <ColumnDefinition Width="135"/>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15"></ColumnDefinition>
+                    <ColumnDefinition Width="135"/>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
 
-            </Grid.ColumnDefinitions>
-            <TextBox 
+                </Grid.ColumnDefinitions>
+
+                <TextBox 
                 x:Name="TextBoxPythonInterpreter"
                 Width="350"
                 Height="40"
                 VerticalAlignment="Center"
-                HorizontalAlignment="Left"
-                Grid.Column="2" 
+                HorizontalAlignment="Right"
+                Grid.Column="3" Grid.Row="0"
                 Style="{StaticResource ModernTextbox}"/>
 
-            
-            <Image 
+                <Label 
+                    x:Name="LabelBrainImageLinear" 
+                    Content="Visualization of a Linear model" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top" 
+                    HorizontalContentAlignment = "Center"
+                    VerticalContentAlignment = "Center"
+                    Grid.Column="2"  Grid.Row="0"
+                    Foreground="White"
+                    Margin="50,10,0,0"/>
+                <Label 
+                    x:Name="LabelBrainImageNonLinear" 
+                    Content="Visualization of a Non-linear model" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top" 
+                    HorizontalContentAlignment = "Center"
+                    VerticalContentAlignment = "Center"
+                    Grid.Column="2"  Grid.Row="0"
+                    Foreground="White" 
+                    Margin="350,10,0,0"/>
+                <Image 
                 x:Name="Image1" 
                 HorizontalAlignment="Left" 
                 Height="511" 
@@ -56,7 +76,7 @@
                 Margin="20,0,0,0"
                 Grid.Column="2" Grid.Row="1"/>
 
-            <Image 
+                <Image 
                 x:Name="ImageBrainLinear1" 
                 HorizontalAlignment="Left" 
                 Height="255" 
@@ -64,7 +84,7 @@
                 VerticalAlignment="Top"  
                 Margin="40,0,0,0"
                 Grid.Column="2" Grid.Row="1"/>
-            <StackPanel
+                <StackPanel
                 x:Name="StackPanelBrainLin1"
                 HorizontalAlignment="Left" 
                 Height="255" 
@@ -72,7 +92,7 @@
                 VerticalAlignment="Top"  
                 Margin="40,0,0,0"
                 Grid.Column="2" Grid.Row="1">
-                <Ellipse 
+                    <Ellipse 
                     x:Name="CircleBrainLinear1" 
                     HorizontalAlignment="Left" 
                     Fill="Transparent"
@@ -82,9 +102,9 @@
                     Height="20"
                     VerticalAlignment="Top"  
                     Margin="0,0,0,0"/>
-            </StackPanel>
-            
-            <Image 
+                </StackPanel>
+
+                <Image 
                 x:Name="ImageBrainNonLinear1" 
                 HorizontalAlignment="Left" 
                 Height="255" 
@@ -92,7 +112,7 @@
                 VerticalAlignment="Top"  
                 Margin="340,0,0,0"
                 Grid.Column="2" Grid.Row="1"/>
-            <StackPanel
+                <StackPanel
                 x:Name="StackPanelBrainNonLin1"
                 HorizontalAlignment="Left" 
                 Height="255" 
@@ -100,7 +120,7 @@
                 VerticalAlignment="Top"  
                 Margin="340,0,0,0"
                 Grid.Column="2" Grid.Row="1">
-                <Ellipse 
+                    <Ellipse 
                     x:Name="CircleBrainNonLinear1" 
                     HorizontalAlignment="Left" 
                     Fill="Transparent"
@@ -110,11 +130,11 @@
                     Height="20"
                     VerticalAlignment="Top"  
                     Margin="0,0,0,0"/>
-            </StackPanel>
-            
-            
+                </StackPanel>
 
-            <Slider 
+
+
+                <Slider 
                 x:Name="SliderTime1" 
                 Minimum="0" Maximum="100" 
                 IsSelectionRangeEnabled="True"
@@ -126,16 +146,16 @@
                 ValueChanged="SliderTime1_ValueChanged"
                 Grid.Column="2" Grid.Row="1"
                 Background="#FF353340" Foreground="White" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
-                <Slider.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="90"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Slider.RenderTransform>
-            </Slider>
-            <Label 
+                    <Slider.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="90"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Slider.RenderTransform>
+                </Slider>
+                <Label 
                 x:Name="LabelSliderTime1" 
                 Content="Time 1" 
                 HorizontalAlignment="Left" 
@@ -145,7 +165,7 @@
                 Margin="600,0,0,0"
                 Grid.Column="2"
                 Foreground="White" Grid.Row="1"/>
-            <Label 
+                <Label 
                 x:Name="LabelTimeStart1" 
                 Content="0" 
                 Width="50"
@@ -156,7 +176,7 @@
                 Margin="615,30,0,0"
                 Grid.Column="2"
                 Foreground="White" Grid.Row="1"/>
-            <Label 
+                <Label 
                 x:Name="LabelTimeEnd1" 
                 Content="100" 
                 Width="50"
@@ -169,7 +189,7 @@
                 Foreground="White" Grid.Row="1"/>
 
 
-            <Image 
+                <Image 
                 x:Name="ImageBrainLinear2" 
                 HorizontalAlignment="Left" 
                 Height="255" 
@@ -177,7 +197,7 @@
                 VerticalAlignment="Top"  
                 Margin="40,265,0,0"
                 Grid.Column="2" Grid.Row="1"/>
-            <StackPanel
+                <StackPanel
                 x:Name="StackPanelBrainLin2"
                 HorizontalAlignment="Left" 
                 Height="255" 
@@ -185,7 +205,7 @@
                 VerticalAlignment="Top"  
                 Margin="40,265,0,0"
                 Grid.Column="2" Grid.Row="1">
-                <Ellipse 
+                    <Ellipse 
                     x:Name="CircleBrainLinear2" 
                     HorizontalAlignment="Left" 
                     Fill="Transparent"
@@ -195,10 +215,10 @@
                     Height="20"
                     VerticalAlignment="Top"  
                     Margin="0,0,0,0"/>
-            </StackPanel>
+                </StackPanel>
 
 
-            <Image 
+                <Image 
                 x:Name="ImageBrainNonLinear2" 
                 HorizontalAlignment="Left" 
                 Height="255" 
@@ -206,7 +226,7 @@
                 VerticalAlignment="Top"  
                 Margin="340,265,0,0"
                 Grid.Column="2" Grid.Row="1"/>
-            <StackPanel
+                <StackPanel
                 x:Name="StackPanelBrainNonLin2"
                 HorizontalAlignment="Left" 
                 Height="255" 
@@ -214,7 +234,7 @@
                 VerticalAlignment="Top"  
                 Margin="340,265,0,0"
                 Grid.Column="2" Grid.Row="1">
-                <Ellipse 
+                    <Ellipse 
                     x:Name="CircleBrainNonLinear2" 
                     HorizontalAlignment="Left" 
                     Fill="Transparent"
@@ -224,10 +244,10 @@
                     Height="20"               
                     VerticalAlignment="Top"  
                     Margin="0,0,0,0"/>
-            </StackPanel>
+                </StackPanel>
 
 
-            <Slider 
+                <Slider 
                 x:Name="SliderTime2" 
                 Minimum="0" Maximum="100" 
                 IsSelectionRangeEnabled="True"
@@ -239,16 +259,16 @@
                 ValueChanged="SliderTime2_ValueChanged"
                 Grid.Column="2" Grid.Row="1"
                 Background="#FF353340" Foreground="White" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
-                <Slider.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="90"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Slider.RenderTransform>
-            </Slider>
-            <Label 
+                    <Slider.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="90"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Slider.RenderTransform>
+                </Slider>
+                <Label 
                 x:Name="LabelSliderTime2" 
                 Content="Time 2" 
                 HorizontalAlignment="Left" 
@@ -258,7 +278,7 @@
                 Margin="610,280,0,0"
                 Grid.Column="2"
                 Foreground="White" Grid.Row="1"/>
-            <Label 
+                <Label 
                 x:Name="LabelTimeStart2" 
                 Content="0" 
                 Width="50"
@@ -269,7 +289,7 @@
                 Margin="615,310,0,0"
                 Grid.Column="2"
                 Foreground="White" Grid.Row="1"/>
-            <Label 
+                <Label 
                 x:Name="LabelTimeEnd2" 
                 Content="100" 
                 Width="50"
@@ -282,7 +302,7 @@
                 Foreground="White" Grid.Row="1"/>
 
 
-            <Button 
+                <Button 
                 x:Name="ButtonGoBackImg"
                 Click="ButtonGoBackImg_Click"
                 Width="160"
@@ -293,70 +313,70 @@
                 VerticalAlignment="Top"
                 Background="#4e99ff"
                 Foreground="White">
-                <Style TargetType="Button">
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#6ebfff"></Setter>
-                            <Setter Property="Cursor" Value="Hand"></Setter>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-                <Button.Template>
-                    <ControlTemplate>
-                        <Grid Background="{Binding Background, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}}">
-                            <Line Stroke="#fff" StrokeThickness="6" X1="120" Y1="18" X2="40" Y2="18"/>
-                            <Line Stroke="#fff" StrokeThickness="6" X1="40" Y1="18" X2="60" Y2="28"/>
-                            <Line Stroke="#fff" StrokeThickness="6" X1="40" Y1="18" X2="60" Y2="8"/>
-                        </Grid>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#6ebfff"></Setter>
+                                <Setter Property="Cursor" Value="Hand"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Grid Background="{Binding Background, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}}">
+                                <Line Stroke="#fff" StrokeThickness="6" X1="120" Y1="18" X2="40" Y2="18"/>
+                                <Line Stroke="#fff" StrokeThickness="6" X1="40" Y1="18" X2="60" Y2="28"/>
+                                <Line Stroke="#fff" StrokeThickness="6" X1="40" Y1="18" X2="60" Y2="8"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
 
-            <TextBox 
-                    x:Name="TextBoxPatientNumberPlot" 
-                    HorizontalAlignment="Left" 
-                    VerticalAlignment="Top"
-                    TextWrapping="Wrap"             
-                    Width="200"
-                    Grid.Column="2" 
-                    Grid.Row="1" 
-                    Grid.ColumnSpan="2"
-                    Margin="575,529,0,0"
-                    Background="#FF353340" Foreground="White"/>
+                <TextBox 
+                x:Name="TextBoxPatientNumberPlot" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top"
+                TextWrapping="Wrap"             
+                Width="200"
+                Grid.Column="2" 
+                Grid.Row="1" 
+                Grid.ColumnSpan="2"
+                Margin="575,529,0,0"
+                Background="#FF353340" Foreground="White"/>
 
-            <Label 
-                    x:Name="LabelPatientNumberPlot" 
-                    Content="Patient Number Plot" 
+                <Label 
+                x:Name="LabelPatientNumberPlot" 
+                Content="Patient Number Plot" 
                     
-                    HorizontalAlignment="Left" 
-                    VerticalAlignment="Top"
-                    Margin="575,546,0,0"
-                    Grid.Column="2" 
-                    Grid.Row="1" 
-                    Grid.ColumnSpan="2"
-                    Foreground="White" Width="200" Height="48"/>
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top"
+                Margin="575,546,0,0"
+                Grid.Column="2" 
+                Grid.Row="1" 
+                Grid.ColumnSpan="2"
+                Foreground="White" Width="200" Height="48"/>
 
-            <Button x:Name="ButtonShowTotal"
-                    Content="Show total data about&#xD;&#xA;        every patient" 
-                    Width="160"
-                    Height="40"
-                    Grid.Column="2" 
-                    Grid.Row="1" 
-                    HorizontalAlignment="Left" 
-                    Margin="10,529,0,0" 
-                    Background="#4e99ff"
-                    Foreground="White"                   
-                    VerticalAlignment="Top" Click="ButtonShowTotal_Click"/>
+                <Button x:Name="ButtonShowTotal"
+                Content="Show total data about&#xD;&#xA;        every patient" 
+                Width="160"
+                Height="40"
+                Grid.Column="2" 
+                Grid.Row="1" 
+                HorizontalAlignment="Left" 
+                Margin="10,529,0,0" 
+                Background="#4e99ff"
+                Foreground="White"                   
+                VerticalAlignment="Top" Click="ButtonShowTotal_Click"/>
 
-            <Image 
-            x:Name="Image2" 
-            HorizontalAlignment="Left" 
-            Height="511" 
-            Width="600"
-            VerticalAlignment="Top" 
-            Margin="40,0,0,0"
-            Grid.Column="3" Grid.Row="1"/>
-            <Button 
+                <Image 
+                x:Name="Image2" 
+                HorizontalAlignment="Left" 
+                Height="511" 
+                Width="600"
+                VerticalAlignment="Top" 
+                Margin="40,0,0,0"
+                Grid.Column="3" Grid.Row="1"/>
+                <Button 
                 x:Name="ButtonGoNextImg"
                 Click="ButtonGoNextImg_Click"
                 Width="160"
@@ -367,117 +387,113 @@
                 VerticalAlignment="Top"
                 Background="#4e99ff"
                 Foreground="White">
-                <Style TargetType="Button">
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#6ebfff"></Setter>
-                            <Setter Property="Cursor" Value="Hand"></Setter>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-                <Button.Template>
-                    <ControlTemplate>
-                        <Grid Background="{Binding Background, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}}">
-                            <Line Stroke="#fff" StrokeThickness="6" X1="120" Y1="18" X2="40" Y2="18"/>
-                            <Line Stroke="#fff" StrokeThickness="6" X1="120" Y1="18" X2="100" Y2="28"/>
-                            <Line Stroke="#fff" StrokeThickness="6" X1="120" Y1="18" X2="100" Y2="8"/>
-                        </Grid>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#6ebfff"></Setter>
+                                <Setter Property="Cursor" Value="Hand"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Grid Background="{Binding Background, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}}">
+                                <Line Stroke="#fff" StrokeThickness="6" X1="120" Y1="18" X2="40" Y2="18"/>
+                                <Line Stroke="#fff" StrokeThickness="6" X1="120" Y1="18" X2="100" Y2="28"/>
+                                <Line Stroke="#fff" StrokeThickness="6" X1="120" Y1="18" X2="100" Y2="8"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
 
 
-            <StackPanel 
-                        Grid.Column="2"
-                        Grid.Row="1"
-                        Grid.ColumnSpan="2" Margin="0,604,0,0" Grid.RowSpan="2">
-                <StackPanel Orientation="Horizontal">
-                    <Button 
-                    x:Name="SavePlots" 
-                    Content="Save Plots" 
-                    Width="70" 
-                    Click="SavePlots_Click"
-                    Margin="10,4,0,3"
-                    Grid.Column="1" Grid.Row="2"
-                    Background="#4e99ff"
-                    Foreground="White"/>
-                    <Button 
-                    x:Name="ShowPlots" 
-                    Content="Show Plots" 
-                    HorizontalAlignment="Left" 
-                    VerticalAlignment="Center" 
-                    Width="65"  
-                    Click="ShowPlots_Click"
-                    Margin="20, 4, 0, 3"
-                    Grid.Column="2" Grid.Row="2"
-                    Background="#4e99ff"
-                    Foreground="White"/>
-
-
-
+                <StackPanel 
+                Grid.Column="2"
+                Grid.Row="1"
+                Grid.ColumnSpan="2" Margin="0,604,0,0" Grid.RowSpan="2">
+                    <StackPanel Orientation="Horizontal">
+                        <Button 
+                        x:Name="SavePlots" 
+                        Content="Save Plots" 
+                        Width="70" 
+                        Click="SavePlots_Click"
+                        Margin="10,4,0,3"
+                        Grid.Column="1" Grid.Row="2"
+                        Background="#4e99ff"
+                        Foreground="White"/>
+                        <Button 
+                        x:Name="ShowPlots" 
+                        Content="Show Plots" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Center" 
+                        Width="65"  
+                        Click="ShowPlots_Click"
+                        Margin="20, 4, 0, 3"
+                        Grid.Column="2" Grid.Row="2"
+                        Background="#4e99ff"
+                        Foreground="White"/>
+                    </StackPanel>
 
                 </StackPanel>
 
-            </StackPanel>
 
-
-            <StackPanel
+                <StackPanel
                 Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,50,0,0" Grid.RowSpan="2">
 
-                <RadioButton  
-                x:Name="RadioButtonFindMin" 
-                Content="With find min" 
-                GroupName="TypeOfCalculate"
-                Grid.Column="0" Grid.Row="2" 
-                FontSize="14"
-                Foreground="White"
-                IsChecked="True"
-                Checked="RadioButtonFindMin_Checked"
-                Style="{StaticResource MenuButtonTheme}"
-                Command="{Binding HomeViewCommand}"/>
+                    <RadioButton  
+                    x:Name="RadioButtonFindMin" 
+                    Content="With find min" 
+                    GroupName="TypeOfCalculate"
+                    Grid.Column="0" Grid.Row="2" 
+                    FontSize="14"
+                    Foreground="White"
+                    IsChecked="True"
+                    Checked="RadioButtonFindMin_Checked"
+                    Style="{StaticResource MenuButtonTheme}"
+                    Command="{Binding HomeViewCommand}"/>
 
-                <RadioButton 
-                x:Name="RadioButtonWithoutFindMin" 
-                Content="Without find min"  
-                GroupName="TypeOfCalculate"             
-                Grid.Column="0"  Grid.Row="3" 
-                FontSize="14"
-                Foreground="White"
-                Checked="RadioButtonWithoutFindMin_Checked"
-                Style="{StaticResource MenuButtonTheme}"
-                Command="{Binding CalculateOneViewCommand}"/>
+                    <RadioButton 
+                    x:Name="RadioButtonWithoutFindMin" 
+                    Content="Without find min"  
+                    GroupName="TypeOfCalculate"             
+                    Grid.Column="0"  Grid.Row="3" 
+                    FontSize="14"
+                    Foreground="White"
+                    Checked="RadioButtonWithoutFindMin_Checked"
+                    Style="{StaticResource MenuButtonTheme}"
+                    Command="{Binding CalculateOneViewCommand}"/>
 
-                <RadioButton 
-                x:Name="RadioButtonTemperatureFunction" 
-                Content="Temperature Function"  
-                GroupName="TypeOfCalculate"             
-                Grid.Column="0"  Grid.Row="3" 
-                FontSize="14"
-                Foreground="White"
-                Checked="RadioButtonTemperatureFunction_Checked"
-                Style="{StaticResource MenuButtonTheme}"
-                Command="{Binding TemperatureFunctionViewCommand}"/>
+                    <RadioButton 
+                    x:Name="RadioButtonTemperatureFunction" 
+                    Content="Temperature Function"  
+                    GroupName="TypeOfCalculate"             
+                    Grid.Column="0"  Grid.Row="3" 
+                    FontSize="14"
+                    Foreground="White"
+                    Checked="RadioButtonTemperatureFunction_Checked"
+                    Style="{StaticResource MenuButtonTheme}"
+                    Command="{Binding TemperatureFunctionViewCommand}"/>
 
-                <RadioButton 
-                x:Name="RadioButtonLinearModel" 
-                Content="LinearModel"  
-                GroupName="TypeOfCalculate"             
-                Grid.Column="0"  Grid.Row="3" 
-                FontSize="14"
-                Foreground="White"
-                Checked="RadioButtonLinearModel_Checked"
-                Style="{StaticResource MenuButtonTheme}"
-                Command="{Binding LinearModelViewCommand}"/>
+                    <RadioButton 
+                    x:Name="RadioButtonLinearModel" 
+                    Content="LinearModel"  
+                    GroupName="TypeOfCalculate"             
+                    Grid.Column="0"  Grid.Row="3" 
+                    FontSize="14"
+                    Foreground="White"
+                    Checked="RadioButtonLinearModel_Checked"
+                    Style="{StaticResource MenuButtonTheme}"
+                    Command="{Binding LinearModelViewCommand}"/>
 
-            </StackPanel>
-            <ContentControl
+                </StackPanel>
+                <ContentControl
                 Grid.Column="2" Grid.Row="2"
                 Grid.ColumnSpan="2"
                 Content="{Binding CurrentView}" Margin="0,50,0,0" Grid.RowSpan="2">
 
-            </ContentControl>
+                </ContentControl>
 
-            <TextBox Name="textBoxCancerParameters"  
+                <TextBox Name="textBoxCancerParameters"  
                      Text="" 
                      IsReadOnly="True"
                      Height="250"
@@ -488,31 +504,31 @@
                      VerticalScrollBarVisibility="Auto"
                      Margin="0,25,0,329" 
                      Grid.Row="1" Grid.ColumnSpan="2">
-                <TextBox.Resources>
-                    <Style TargetType="{x:Type ScrollBar}">
-                        <Setter Property="Background" Value="#000"/>
-                    </Style>
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type ScrollBar}">
+                            <Setter Property="Background" Value="#000"/>
+                        </Style>
 
-                </TextBox.Resources>
-                <TextBox.Style>
-                    <Style TargetType="TextBox">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Text, ElementName=textBoxCancerParameters}" Value="">
-                                <Setter Property="Visibility" Value="Collapsed" />
-                            </DataTrigger>
-                            <Trigger Property="TextBox.IsMouseOver" Value="True">
-                                <Setter Property="BorderBrush" Value="{x:Null}"/>
-                            </Trigger>
-                            <Trigger Property="TextBox.IsFocused" Value="True">
-                                <Setter Property="BorderBrush" Value="{x:Null}"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBox.Style>
-            </TextBox>
+                    </TextBox.Resources>
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text, ElementName=textBoxCancerParameters}" Value="">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                                <Trigger Property="TextBox.IsMouseOver" Value="True">
+                                    <Setter Property="BorderBrush" Value="{x:Null}"/>
+                                </Trigger>
+                                <Trigger Property="TextBox.IsFocused" Value="True">
+                                    <Setter Property="BorderBrush" Value="{x:Null}"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
 
 
-        </Grid>
-    </Border>
+            </Grid>
+        </Border>
     </ScrollViewer>
 </Window>

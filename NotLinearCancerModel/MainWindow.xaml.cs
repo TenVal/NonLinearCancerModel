@@ -381,6 +381,9 @@ namespace NotLinearCancerModel
             CircleBrainNonLinear1.Visibility = visibilityBrain;
             CircleBrainLinear2.Visibility = visibilityBrain;
             CircleBrainNonLinear2.Visibility = visibilityBrain;
+
+            LabelBrainImageLinear.Visibility = visibilityBrain;
+            LabelBrainImageNonLinear.Visibility = visibilityBrain;
         }
 
 
