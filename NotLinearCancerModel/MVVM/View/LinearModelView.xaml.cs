@@ -37,6 +37,7 @@ namespace NotLinearCancerModel.MVVM.View
             public float treatment;
             public float bEnd;
             public float bStep;
+            public bool checkTreatment;
 
             public ParametersModel(
                 float l1,
@@ -51,7 +52,8 @@ namespace NotLinearCancerModel.MVVM.View
                 float yBrain,
                 float treatment,
                 float bEnd,
-                float bStep)
+                float bStep,
+                bool checkTreatment)
             {
                 this.l1 = l1;
                 this.b = b;
@@ -66,6 +68,7 @@ namespace NotLinearCancerModel.MVVM.View
                 this.treatment = treatment;
                 this.bEnd = bEnd;
                 this.bStep = bStep;
+                this.checkTreatment = checkTreatment;
             }
         }
         public LinearModelView()
@@ -128,6 +131,7 @@ namespace NotLinearCancerModel.MVVM.View
             float treatment = paramsModel.treatment;
             float bEnd = paramsModel.bEnd;
             float bStep = paramsModel.bStep;
+            bool checkTreatment = paramsModel.checkTreatment;
 
             float stepScale = 1;
 
@@ -161,20 +165,20 @@ namespace NotLinearCancerModel.MVVM.View
                 List<List<float>> listAllValuesT = new List<List<float>>();
                 List<List<float>> listAllValuesVolume = new List<List<float>>();
 
-                float tStart = modelData.Patients[i]["Diameter"][0][0];
-                float tEnd = modelData.Patients[i]["Diameter"][0][modelData.Patients[i]["Diameter"][0].Count - 1];
+                float tStart = modelData.Patients[i]["Volume"][0][0];
+                float tEnd = modelData.Patients[i]["Volume"][0][modelData.Patients[i]["Volume"][0].Count - 1];
                 tMax = tEnd - tStart;
 
-                float x0 = 1;
+                float x0 = modelData.Patients[i]["Volume"][1][0];
                 float y0 = 1;
                 float z0 = 0;
 
-                tMax /= 30;
+                tMax = tEnd / 30;
                 do
                 {
                     // add to list every parameter
                     cancerValuesParameters["l1"].Add(l1);
-                    cancerValuesParameters["b"].Add(b);
+                    cancerValuesParameters["b"].Add(bForFindMin);
                     cancerValuesParameters["e"].Add(eSpeed);
                     cancerValuesParameters["d"].Add(d);
                     cancerValuesParameters["l3"].Add(l3);
@@ -187,13 +191,20 @@ namespace NotLinearCancerModel.MVVM.View
                     cancerValuesParameters["BStep"].Add(bStep);
                     cancerValuesParameters["BEnd"].Add(bEnd);
 
-                    systemEq = new SystemOfEquation(l1, b, d, eSpeed, l3, u);
+                    systemEq = new SystemOfEquation(l1, bForFindMin, d, eSpeed, l3, u);
                     methodDiff = new MethodDiffEquation();
 
                     List<List<float>> values = new List<List<float>>();
                     try
                     {
-                        values = methodDiff.RK3D(0, x0, y0, z0, tMax, stepTime, systemEq);
+                        if(checkTreatment)
+                        {
+                            values = methodDiff.RK3D((tStart / 30), x0, y0, z0, tMax, stepTime, systemEq);
+                        }
+                        else
+                        {
+                            values = methodDiff.RK2D((tStart / 30), x0, y0, tMax, stepTime, systemEq);
+                        }
                     }
                     catch (Exception eGet)
                     {
@@ -209,7 +220,6 @@ namespace NotLinearCancerModel.MVVM.View
                     cancerValuesParameters["Difference"].Add(Math.Abs(
                         values[1][values[1].Count - 1] -
                         modelData.Patients[i]["Volume"][1][modelData.Patients[i]["Volume"][1].Count - 1]));
-
                     bForFindMin += bStep;
                 }
                 while (bForFindMin <= bEnd);
@@ -220,27 +230,11 @@ namespace NotLinearCancerModel.MVVM.View
                 float minDifference = cancerValuesParameters["Difference"].Min();
                 int indexMinDifference = cancerValuesParameters["Difference"].IndexOf(cancerValuesParameters["Difference"].Min());
                 float requiredB = cancerValuesParameters["b"][indexMinDifference];
-                Debug.WriteLine("indexMinDifference\t" + indexMinDifference.ToString());
+                Debug.WriteLine("\nindexMinDifference\t" + indexMinDifference.ToString());
 
                 List<float> requiredTValue = listAllValuesT[indexMinDifference];
                 List<float> requiredVolume = listAllValuesVolume[indexMinDifference];
 
-                //float differenceT = requiredTValue[0] - (tStart);
-                float differenceT = requiredTValue[0] - (tStart / 30);
-                for (int itemTValues = 0; itemTValues < requiredTValue.Count; itemTValues++)
-                {
-                    requiredTValue[itemTValues] = requiredTValue[itemTValues] - differenceT;
-                }
-                Debug.WriteLine("requiredTValue\t" + requiredTValue[0].ToString() + "\ntStart\t" + tStart);
-
-                //now save ml
-                float differencePoints = (requiredVolume[0] * stepScale) - modelData.Patients[i]["Volume"][1][0];
-                for (int itemPointsValues = 0; itemPointsValues < requiredVolume.Count; itemPointsValues++)
-                {
-                    //requiredNumberPointsVolume[itemPointsValues] = requiredNumberPointsVolume[itemPointsValues] * stepScale - differencePoints;
-                    //requiredVolume[itemPointsValues] = requiredVolume[itemPointsValues] / 1000 - differencePoints;
-                    requiredVolume[itemPointsValues] = requiredVolume[itemPointsValues] - differencePoints;
-                }
                 Debug.WriteLine("requiredVolume\t" + requiredVolume[0].ToString() + "\nmodelData\t" + modelData.Patients[i]["Volume"][1][0].ToString());
 
                 // prepare data about parameters of cancer for writing into files
@@ -250,6 +244,7 @@ namespace NotLinearCancerModel.MVVM.View
                     {"l1" ,  cancerValuesParameters["l1"][indexMinDifference] },
                     {"b" , cancerValuesParameters["b"][indexMinDifference] },
                     {"e" , cancerValuesParameters["e"][indexMinDifference] },
+                    {"d" , cancerValuesParameters["d"][indexMinDifference] },
                     {"l3" , cancerValuesParameters["l3"][indexMinDifference] },
                     {"u" , cancerValuesParameters["u"][indexMinDifference] },
                     {"stepTime" , cancerValuesParameters["stepTime"][indexMinDifference] },
@@ -313,7 +308,8 @@ namespace NotLinearCancerModel.MVVM.View
                                     float.Parse(TextBoxYBrain.Text),
                                     treatment,
                                     float.Parse(TextBoxBEnd.Text),
-                                    float.Parse(TextBoxBStep.Text));
+                                    float.Parse(TextBoxBStep.Text),
+                                    (CheckBoxTreatment.IsChecked == true));
                 worker.RunWorkerAsync(paramsModel);
             }
             catch (Exception ex)

@@ -1,0 +1,15 @@
+l1	0,0066
+b	0,39
+e	0,66
+d	0,00873
+l3	1,7
+u	0,1
+stepTime	0,1
+days	30
+xBrain	0
+yBrain	0
+treatment	0
+BStep	0,01
+BEnd	0,39
+TMax	123,58098
+RelativeError	0,17228094243403555

@@ -28,11 +28,11 @@ if __name__ == "__main__":
 
     for number in range(1, quantity + 1):
         # get Time Value Data from file
-        pathGetTimeValueNonLin = f"dataTumor/PredictData/PersonalPatients/Volume/timeValue/txt/{number}{type1}.txt"
+        pathGetTimeValueNonLin = f"dataTumor/PredictData/PersonalPatients/Volume/timeValue/txt/{number}{type2}.txt"
         timeCancerNonLin = getTimeValueFromFile(path=pathGetTimeValueNonLin) 
         allTimeCancer["timeNonLin"] = timeCancerNonLin[0]
         allTimeCancer["volumeNonLin"] = timeCancerNonLin[1]
-        pathGetTimeValueLin = f"dataTumor/PredictData/PersonalPatients/Volume/timeValue/txt/{number}{type2}.txt"
+        pathGetTimeValueLin = f"dataTumor/PredictData/PersonalPatients/Volume/timeValue/txt/{number}{type1}.txt"
         timeCancerLin = getTimeValueFromFile(path=pathGetTimeValueLin)
         allTimeCancer["timeLin"] = timeCancerLin[0]
         allTimeCancer["volumeLin"] = timeCancerLin[1]

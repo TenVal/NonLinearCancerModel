@@ -118,7 +118,7 @@ namespace NotLinearCancerModel
                 t += h;
                 xV.Add(x);
                 yV.Add(y);
-                zV.Add(y);
+                zV.Add(z);
                 tV.Add(t);
             }
 
