@@ -9,13 +9,15 @@
         Title="Calculate Cancer" 
         Height="810" 
         Width="1500"
-        ResizeMode="NoResize"
-        Background="Transparent" Loaded="Window_Loaded"
-      
-        >
+        ResizeMode="CanResize"
+        Background="Transparent" Loaded="Window_Loaded">
+    
+        
+    
     <Window.DataContext>
         <viewModel:MainViewModel/>
     </Window.DataContext>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
     <Border Background="#272537"
             CornerRadius="30">
         <Grid 
@@ -512,4 +514,5 @@
 
         </Grid>
     </Border>
+    </ScrollViewer>
 </Window>
