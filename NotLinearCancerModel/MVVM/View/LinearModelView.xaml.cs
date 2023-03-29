@@ -263,10 +263,10 @@ namespace NotLinearCancerModel.MVVM.View
 
                 // write every data about modeling to files
                 // Write time-value data to file
-                string pathWriteValueToFile = @"dataTumor\PredictData\PersonalPatients\Volume\timeValue\txt\" + i.ToString() + "VolumeLin.txt";
+                string pathWriteValueToFile = @"dataTumor\PredictData\PersonalPatients\Volume\timeValue\txt\" + (i + 1).ToString() + "VolumeLin.txt";
                 ActionDataFile.writeTimeValueToFile(requiredTValue.ToArray(), requiredVolume.ToArray(), pathWriteValueToFile);
                 // write params of modeling to file
-                string writeParametersToFile = @"dataTumor\PredictData\PersonalPatients\Volume\txt\params\" + i.ToString() + @"ParamsLinear.txt";
+                string writeParametersToFile = @"dataTumor\PredictData\PersonalPatients\Volume\txt\params\" + (i + 1).ToString() + @"ParamsLinear.txt";
                 ActionDataFile.writeParametersToFile(cancerParameters: requiredCancerValuesParameters, pathToSave: writeParametersToFile);
 
                 worker.ReportProgress((i + 1) * (int)valueOfDivisionProgressBar, String.Format("Processing Iteration {0}", i + 1));

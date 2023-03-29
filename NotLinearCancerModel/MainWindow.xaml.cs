@@ -115,7 +115,14 @@ namespace NotLinearCancerModel
             this.scaleY = (float)(ImageBrainLinear1.Height / 17);
             this.numberPatientOutputPlotOne = 1;
             this._numberPatientOutputPlotFindMin = 1;
-            changeDataPatientSlider();
+            try
+            {
+                changeDataPatientSlider();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error!\n{ex}");
+            }
         }
 
 
@@ -592,7 +599,7 @@ namespace NotLinearCancerModel
 
         private float getValueForCircleSlider(List<List<float>> data, float valueSlider)
         {
-            float radius;
+            float radius = 0;
             float time = 0;
             float delta = valueSlider;
             foreach (var val in data[0])
@@ -604,7 +611,14 @@ namespace NotLinearCancerModel
                 }
             }
             int index = data[0].IndexOf(time);
-            radius = (float)(Math.Cbrt(data[1][index]) / Math.PI);
+            try
+            {
+                radius = (float)(Math.Cbrt(data[1][index]) / Math.PI);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error!\n{ex}");
+            }
             
             return radius;
         }

@@ -10,6 +10,7 @@ from ActionDataFile import getExperimentalDataFromFile
 from ActionDataFile import writeAccuracyIntoFile
 from ActionDataFile import compareData
 from ActionDataFile import getParamsFromFile
+from ActionDataFile import getSingleDataFromFile
 
 
 if __name__ == "__main__":
@@ -18,13 +19,16 @@ if __name__ == "__main__":
     type = "Temperature"
     quantity = 10
 
+    pathHeatDissipation = f"dataTumor/PredictData/Total/heatDissipation.txt"
+    heatDissipationValues = getSingleDataFromFile(pathHeatDissipation)
     for number in range(1, quantity + 1):
         # get Time Value Data from file
         pathGetTimeValue = f"dataTumor/PredictData/PersonalPatients/Volume/timeValue/txt/{number}{type}.txt"
         timeCancer = getTimeValueFromFile(path=pathGetTimeValue)
         timeValues = timeCancer[0]
         cancerValues = timeCancer[1] 
-        
+
+        heatDissipationValues[number-1] = round(heatDissipationValues[number-1], 1)
 
         fig = plt.figure(figsize=(10, 10))
         ax = fig.add_subplot(111)
@@ -34,8 +38,9 @@ if __name__ == "__main__":
         plt.ylabel('Radius (mm)', fontsize=26)
         plt.xticks(fontsize=24)
         plt.yticks(fontsize=24)
-        plt.plot(timeValues, cancerValues)
+        plt.plot(timeValues, cancerValues, label=f"Heat {heatDissipationValues[number-1]}")
         plt.grid(True)
+        plt.legend(prop={"size":20})
         current_dir = dirname(__file__)
         pathSave = join(current_dir, f"dataTumor/PredictData/PersonalPatients/Volume/timeValue/img/{number}{type}.png")
         fig.savefig(pathSave)

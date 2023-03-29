@@ -253,6 +253,31 @@ def getParamsFromFile(path="dataTumor/PredictData/PersonalPatients/"):
     return [paramsName, paramsValues]
 
 
+def getSingleDataFromFile(path):
+    """
+    Get params data about patient from file
+ 
+
+    Keywords argiments:
+    path -- path to directory file
+
+    Return:
+    Array[values]
+    """
+    current_dir = dirname(__file__)
+    path = join(current_dir, path)
+    values = []
+    with open(path, "r") as file:
+         for line in file.readlines():
+            valuesString = line.strip()
+            try:
+                values.append(float((valuesString.replace(",", ".").strip())))
+            except IndexError:
+                print(f"IndexError")
+    return values
+
+
+
 def findFileLastModification(pathFile1="dataTumor/PredictData/PersonalPatients/", pathFile2="dataTumor/PredictData/Any/"):
     """
     Find File of the last modification

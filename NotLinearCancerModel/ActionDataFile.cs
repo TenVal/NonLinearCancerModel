@@ -279,10 +279,9 @@ namespace NotLinearCancerModel
         }
 
 
-        static public float[][] getDynamicDataFromFile(string type, int numberPatient, string filePath)
+        static public float[][] getDynamicDataFromFile(string filePath)
         {
             int currentLine = 0;
-            filePath += (numberPatient.ToString() + type +  @".txt");
             int count = System.IO.File.ReadAllLines(filePath).Length;
             float[][] values = new float[2][];
             values[0] = new float[count];
