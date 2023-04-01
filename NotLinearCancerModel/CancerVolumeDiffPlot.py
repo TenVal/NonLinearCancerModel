@@ -58,7 +58,7 @@ if __name__ == "__main__":
         plt.plot(allTimeCancer["timeLin"], allTimeCancer["volumeLin"], "-.", color = "orange", label="Linear Model Data")
         plt.scatter(allTimeCancer["timeEx"], allTimeCancer["volumeEx"], color = "red", label="Clinical Data")
         plt.grid(True)
-        plt.legend()
+        plt.legend(prop={"size":20})
         current_dir = dirname(__file__)
         pathSave = join(current_dir, f"dataTumor/PredictData/PersonalPatients/Volume/timeValue/img/{number}{type1}.png")
         fig.savefig(pathSave)

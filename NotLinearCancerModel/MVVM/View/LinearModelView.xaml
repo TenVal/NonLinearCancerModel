@@ -31,28 +31,31 @@
             <Button 
                 x:Name="CalculateMin"
                 Click="CalculateMin_Click"
-                Content="Calculate Min" 
+                
                 HorizontalAlignment="Left" 
                 VerticalAlignment="Center" 
-                Width="80"
+                Width="70"
                 Height="44"
                 Grid.Column="0" Grid.Row="0" 
                 Grid.RowSpan="2" 
                 Background="#4e99ff"
-                Foreground="White" Margin="0,0,0,0"/>
+                Foreground="White" Margin="10,0,0,0">
+                <TextBlock TextAlignment="Center"> Calculate <LineBreak/> Minimum</TextBlock>
+            </Button>
 
             <Button 
                 x:Name="CalculateOne"
                 Click="CalculateOne_Click"
-                Content="Calculate One" 
                 HorizontalAlignment="Left" 
-                VerticalAlignment="Top" 
-                Width="80"
+                VerticalAlignment="Center" 
+                Width="70"
                 Height="44"
                 Grid.Column="0" Grid.Row="0" 
                 Grid.RowSpan="2" 
                 Background="#4e99ff"
-                Foreground="White" Margin="90,0,0,0"/>
+                Foreground="White" Margin="100,0,0,0">
+                <TextBlock TextAlignment="Center"> Calculate <LineBreak/> One</TextBlock>
+            </Button>
 
             <TextBox 
                 x:Name="TextBoxE" 
@@ -201,7 +204,7 @@
                 Grid.Column="7" Grid.Row="1"
                 Foreground="White"/>
 
-            
+
 
 
 
