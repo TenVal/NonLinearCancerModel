@@ -303,7 +303,7 @@ namespace NotLinearCancerModel.MVVM.View
                                     float.Parse(TextBoxL3.Text),
                                     float.Parse(TextBoxU.Text),
                                     float.Parse(TextBoxStepTime.Text),
-                                    float.Parse(TextBoxDays.Text),
+                                    float.Parse(TextBoxTime.Text),
                                     float.Parse(TextBoxXBrain.Text),
                                     float.Parse(TextBoxYBrain.Text),
                                     treatment,

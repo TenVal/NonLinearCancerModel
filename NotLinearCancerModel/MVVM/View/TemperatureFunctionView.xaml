@@ -29,19 +29,19 @@
             </Grid.ColumnDefinitions>
 
             <Button 
-            x:Name="TemperatureFunction"
-            Click="TemperatureFunction_Click"
-            Content="Temperature Function" 
-            HorizontalAlignment="Left" 
-            VerticalAlignment="Center" 
-            Width="180"
-            Height="44"
-            Grid.Column="0" Grid.Row="0" 
-            Grid.RowSpan="2" 
-            Background="#4e99ff"
-            Foreground="White" Margin="10,0,0,0"/>
+                x:Name="TemperatureFunction"
+                Click="TemperatureFunction_Click"
+                Content="Temperature Function" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Center" 
+                Width="180"
+                Height="44"
+                Grid.Column="0" Grid.Row="0" 
+                Grid.RowSpan="2" 
+                Background="#4e99ff"
+                Foreground="White" Margin="10,0,0,0"/>
 
-            
+
 
 
 
@@ -59,22 +59,26 @@
                 VerticalAlignment="Center" />
 
             <TextBox 
-            x:Name="TextBoxH" 
-            HorizontalAlignment="Left" 
-            VerticalAlignment="Center" 
-            Text="10" 
-            TextWrapping="Wrap" 
-            Width="120"
-            Margin="20, 0, 0, 0"
-            Grid.Column="1" Grid.Row="2" Background="#FF353340" Foreground="White"/>
+                x:Name="TextBoxH" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Center" 
+                Text="10" 
+                TextWrapping="Wrap" 
+                Width="120"
+                Margin="20, 0, 0, 0"
+                Visibility="Collapsed"
+                Grid.Column="1" Grid.Row="2" 
+                Background="#FF353340" 
+                Foreground="White"/>
             <Label 
-            x:Name="LabelH" 
-            Content="H (Step by X, Y, Z)" 
-            HorizontalAlignment="Left" 
-            VerticalAlignment="Center" 
-            Margin="20, 0, 0, 0"
-            Grid.Column="1" Grid.Row="3"
-            Foreground="White"/>
+                x:Name="LabelH" 
+                Content="H (Step by X, Y, Z)" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Center" 
+                Margin="20, 0, 0, 0"
+                Visibility="Collapsed"
+                Grid.Column="1" Grid.Row="3"
+                Foreground="White"/>
 
            
         </Grid>

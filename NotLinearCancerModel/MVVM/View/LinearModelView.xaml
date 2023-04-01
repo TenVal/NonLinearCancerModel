@@ -62,10 +62,18 @@
                 TextWrapping="Wrap"            
                 Width="120" 
                 Margin="20, 0, 0, 0"
-                Grid.Column="2" Grid.Row="0" Background="#FF353340" Foreground="White"/>
+                Grid.Column="2" Grid.Row="0" 
+                Background="#FF353340" 
+                Foreground="White">
+                <TextBox.ToolTip>
+                    <ToolTip>
+                        Скорость сосудистой инактивации
+                    </ToolTip>
+                </TextBox.ToolTip>
+            </TextBox>
             <Label 
                 x:Name="LabelE" 
-                Content="e (ск. сосудистой инакт.)" 
+                Content="e (kg/mg*day)" 
                 HorizontalAlignment="Left" 
                 VerticalAlignment="Center"
                 Margin="20, 0, 0, 0"
@@ -80,10 +88,18 @@
                 TextWrapping="Wrap"            
                 Width="120" 
                 Margin="20, 0, 0, 0"
-                Grid.Column="3" Grid.Row="0" Background="#FF353340" Foreground="White"/>
+                Grid.Column="3" Grid.Row="0" 
+                Background="#FF353340" 
+                Foreground="White">
+                <TextBox.ToolTip>
+                    <ToolTip>
+                        Коэффициент смертности кровеносных сосудов
+                    </ToolTip>
+                </TextBox.ToolTip>
+            </TextBox>
             <Label 
                 x:Name="LabelD" 
-                Content="D (Коэф. смертности кр. с.)" 
+                Content="D (mm^(2/3)*day)" 
                 HorizontalAlignment="Left" 
                 VerticalAlignment="Center" 
                 Margin="20, 0, 0, 0"
@@ -98,16 +114,22 @@
                 TextWrapping="Wrap" 
                 Width="120"
                 Margin="20,0,0,0"
-                Grid.Column="4" Background="#FF353340" Foreground="White"/>
+                Grid.Column="4" Background="#FF353340" Foreground="White">
+                <TextBox.ToolTip>
+                    <ToolTip>
+                        Клиренс (показатель скорости очищения тканей организма от лекарства)
+                    </ToolTip>
+                </TextBox.ToolTip>
+            </TextBox>
             <Label 
                 x:Name="LabelL3" 
-                Content="l3 (клиренс)" 
+                Content="l3 (1/day)" 
                 HorizontalAlignment="Left" 
                 VerticalAlignment="Center" 
                 Margin="20,0,0,0"
                 Grid.Column="4" Grid.Row="1"
                 Foreground="White"/>
-           
+
             <TextBox 
                 x:Name="TextBoxB" 
                 HorizontalAlignment="Left"             
@@ -116,10 +138,16 @@
                 TextWrapping="Wrap"           
                 Width="120" 
                 Margin="20, 0, 0, 0"
-                Grid.Column="5" Grid.Row="0" Background="#FF353340" Foreground="White"/>
+                Grid.Column="5" Grid.Row="0" Background="#FF353340" Foreground="White">
+                <TextBox.ToolTip>
+                    <ToolTip>
+                        Коэффициент рождаемости кровеносных сосудов
+                    </ToolTip>
+                </TextBox.ToolTip>
+            </TextBox>
             <Label 
                 x:Name="LabelB" 
-                Content="b (коэф. рожд. кр.)" 
+                Content="b Start (1/day)" 
                 HorizontalAlignment="Left"  
                 VerticalAlignment="Center"
                 Margin="20, 0, 0, 0"
@@ -133,10 +161,16 @@
                 TextWrapping="Wrap"           
                 Width="120" 
                 Margin="20, 0, 0, 0"
-                Grid.Column="6" Grid.Row="0" Background="#FF353340" Foreground="White"/>
+                Grid.Column="6" Grid.Row="0" Background="#FF353340" Foreground="White">
+                <TextBox.ToolTip>
+                    <ToolTip>
+                        Шаг для нахождения коэффициента рождаемости кровеносных сосудов
+                    </ToolTip>
+                </TextBox.ToolTip>
+            </TextBox>
             <Label 
                 x:Name="LabelBStep" 
-                Content="b step" 
+                Content="b Step (1/day)" 
                 HorizontalAlignment="Left"  
                 VerticalAlignment="Center"
                 Margin="20, 0, 0, 0"
@@ -151,10 +185,16 @@
                 TextWrapping="Wrap"           
                 Width="120" 
                 Margin="20, 0, 0, 0"
-                Grid.Column="7" Grid.Row="0" Background="#FF353340" Foreground="White"/>
+                Grid.Column="7" Grid.Row="0" Background="#FF353340" Foreground="White">
+                <TextBox.ToolTip>
+                    <ToolTip>
+                        Нижняя граница для нахождения коэффициента рождаемости кровеносных сосудов
+                    </ToolTip>
+                </TextBox.ToolTip>
+            </TextBox>
             <Label 
                 x:Name="LabelBEnd" 
-                Content="b End" 
+                Content="b End (1/day)" 
                 HorizontalAlignment="Left"  
                 VerticalAlignment="Center"
                 Margin="20, 0, 0, 0"
@@ -185,7 +225,13 @@
                 VerticalAlignment="Center" 
                 Width="120" 
                 Margin="10, 0, 0, 0"
-                Grid.Column="1" Grid.Row="0" Background="#FF353340" Foreground="White"/>
+                Grid.Column="1" Grid.Row="0" Background="#FF353340" Foreground="White">
+                <CheckBox.ToolTip>
+                    <ToolTip>
+                        Наличие/отсутствие лечения
+                    </ToolTip>
+                </CheckBox.ToolTip>
+            </CheckBox>
             <Label 
                 x:Name="LabelTreatment" 
                 Content="Treatment" 
@@ -203,10 +249,16 @@
                 TextWrapping="Wrap" 
                 Width="120" 
                 Margin="20, 0, 0, 0"
-                Grid.Column="1" Grid.Row="2" Background="#FF353340" Foreground="White"/>
+                Grid.Column="1" Grid.Row="2" Background="#FF353340" Foreground="White">
+                <TextBox.ToolTip>
+                    <ToolTip>
+                        Шаг по времени
+                    </ToolTip>
+                </TextBox.ToolTip>
+            </TextBox>
             <Label 
                 x:Name="LabelStepTime" 
-                Content="Step (time)" 
+                Content="Time Step (days)" 
                 HorizontalAlignment="Left" 
                 VerticalAlignment="Center"
                 Margin="20, 0, 0, 0"
@@ -215,17 +267,23 @@
 
 
             <TextBox 
-                x:Name="TextBoxDays" 
+                x:Name="TextBoxTime" 
                 HorizontalAlignment="Left" 
                 VerticalAlignment="Center" 
                 Text="30" 
                 TextWrapping="Wrap" 
                 Width="120" 
                 Margin="20, 0, 0, 0"
-                Grid.Column="2" Grid.Row="2" Background="#FF353340" Foreground="White"/>
+                Grid.Column="2" Grid.Row="2" Background="#FF353340" Foreground="White">
+                <TextBox.ToolTip>
+                    <ToolTip>
+                        Время моделирования
+                    </ToolTip>
+                </TextBox.ToolTip>
+            </TextBox>
             <Label 
                 x:Name="LabelDays" 
-                Content="Days" 
+                Content="Time (days)" 
                 HorizontalAlignment="Left" 
                 VerticalAlignment="Center"
                 Margin="20, 0, 0, 0"
@@ -240,10 +298,16 @@
                 Width="120" 
                 Margin="20,0,0,0"
                 Grid.Column="3"  Grid.Row="2"
-                Background="#FF353340" Foreground="White"/>
+                Background="#FF353340" Foreground="White">
+                <TextBox.ToolTip>
+                    <ToolTip>
+                        Лекарство
+                    </ToolTip>
+                </TextBox.ToolTip>
+            </TextBox>
             <Label 
                 x:Name="LabelU" 
-                Content="u (лекарство)" 
+                Content="u (mg/(kg*day))" 
                 HorizontalAlignment="Left" 
                 VerticalAlignment="Center" 
                 Margin="20,0,0,0"
@@ -253,58 +317,76 @@
 
 
             <TextBox 
-            x:Name="TextBoxL1" 
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center" 
-            Text="0,0534" 
-            TextWrapping="Wrap"            
-            Width="120" 
-            Margin="20, 0, 0, 0"
-            Grid.Column="5" Grid.Row="2" Background="#FF353340" Foreground="White"/>
+                x:Name="TextBoxL1" 
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center" 
+                Text="0,0534" 
+                TextWrapping="Wrap"            
+                Width="120" 
+                Margin="20, 0, 0, 0"
+                Grid.Column="5" Grid.Row="2" Background="#FF353340" Foreground="White">
+                <TextBox.ToolTip>
+                    <ToolTip>
+                        Скорость роста опухоли
+                    </ToolTip>
+                </TextBox.ToolTip>
+            </TextBox>
             <Label 
-            x:Name="LabelL1" 
-            Content="l1 (скор. роста оп.)" 
-            HorizontalAlignment="Left"  
-            VerticalAlignment="Bottom" 
-            Margin="20,0,0,0"
-            Grid.Column="5" Grid.Row="3"
-            Foreground="White"/>
+                x:Name="LabelL1" 
+                Content="l1 (1/day)" 
+                HorizontalAlignment="Left"  
+                VerticalAlignment="Bottom" 
+                Margin="20,0,0,0"
+                Grid.Column="5" Grid.Row="3"
+                Foreground="White"/>
 
             <TextBox 
-            x:Name="TextBoxXBrain" 
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center" 
-            Text="0" 
-            TextWrapping="Wrap"             
-            Width="120" 
-            Margin="20, 0, 0, 0"
-            Grid.Column="6" Grid.Row="2" Background="#FF353340" Foreground="White"/>
+                x:Name="TextBoxXBrain" 
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center" 
+                Text="0" 
+                TextWrapping="Wrap"             
+                Width="120" 
+                Margin="20, 0, 0, 0"
+                Grid.Column="6" Grid.Row="2" Background="#FF353340" Foreground="White">
+                <TextBox.ToolTip>
+                    <ToolTip>
+                        X brain
+                    </ToolTip>
+                </TextBox.ToolTip>
+            </TextBox>
             <Label 
-            x:Name="LabelXBrain" 
-            Content="X (мозг)" 
-            HorizontalAlignment="Left" 
-            VerticalAlignment="Center" 
-            Margin="20, 0, 0, 0"
-            Grid.Column="6" Grid.Row="3"
-            Foreground="White"/>
+                x:Name="LabelXBrain" 
+                Content="X" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Center" 
+                Margin="20, 0, 0, 0"
+                Grid.Column="6" Grid.Row="3"
+                Foreground="White"/>
 
             <TextBox 
-            x:Name="TextBoxYBrain" 
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center" 
-            Text="0" 
-            TextWrapping="Wrap"             
-            Width="120" 
-            Margin="20, 0, 0, 0"
-            Grid.Column="7" Grid.Row="2" Background="#FF353340" Foreground="White"/>
+                x:Name="TextBoxYBrain" 
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center" 
+                Text="0" 
+                TextWrapping="Wrap"             
+                Width="120" 
+                Margin="20, 0, 0, 0"
+                Grid.Column="7" Grid.Row="2" Background="#FF353340" Foreground="White">
+                <TextBox.ToolTip>
+                    <ToolTip>
+                        Y brain
+                    </ToolTip>
+                </TextBox.ToolTip>
+            </TextBox>
             <Label 
-            x:Name="LabelYBrain" 
-            Content="Y (Мозг)" 
-            HorizontalAlignment="Left" 
-            VerticalAlignment="Center" 
-            Margin="20, 0, 0, 0"
-            Grid.Column="7" Grid.Row="3"
-            Foreground="White"/>
+                x:Name="LabelYBrain" 
+                Content="Y" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Center" 
+                Margin="20, 0, 0, 0"
+                Grid.Column="7" Grid.Row="3"
+                Foreground="White"/>
 
         </Grid>
 

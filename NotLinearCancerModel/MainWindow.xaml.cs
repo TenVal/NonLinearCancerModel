@@ -518,6 +518,7 @@ namespace NotLinearCancerModel
 
             // Provide Script
             string pathPythonInterpreter = paramsForSavePlot.PathPythonInterpreter.Trim();
+            Debug.WriteLine("pathPythonInterpreter\t" + pathPythonInterpreter);
             // checking current path to python interpreter
             if (pathPythonInterpreter == "Please, input your path to python interpreter" || pathPythonInterpreter == "")
             {
