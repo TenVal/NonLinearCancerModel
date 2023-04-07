@@ -25,7 +25,7 @@
                     <RowDefinition Height="40"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="50"></RowDefinition>
-                    <RowDefinition Height="100"></RowDefinition>
+                    <RowDefinition Height="110"></RowDefinition>
 
 
                 </Grid.RowDefinitions>
@@ -298,15 +298,7 @@
                     Margin="250,529,0,0" 
                     Style="{StaticResource DefaultButton}"
                     Grid.Column="2" Grid.Row="1">
-                    <Button.Template>
-                        <ControlTemplate>
-                            <Grid Background="{Binding Background, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}}">
-                                <Line Stroke="#fff" StrokeThickness="6" X1="120" Y1="18" X2="40" Y2="18"/>
-                                <Line Stroke="#fff" StrokeThickness="6" X1="40" Y1="18" X2="60" Y2="28"/>
-                                <Line Stroke="#fff" StrokeThickness="6" X1="40" Y1="18" X2="60" Y2="8"/>
-                            </Grid>
-                        </ControlTemplate>
-                    </Button.Template>
+                    <Image Source="Assets\left-arrow.png"></Image>
                 </Button>
 
                 <TextBox 
@@ -355,15 +347,7 @@
                     Margin="250,529,0,0"
                     Grid.Column="3"  Grid.Row="1" 
                     Style="{StaticResource DefaultButton}">
-                    <Button.Template>
-                        <ControlTemplate>
-                            <Grid Background="{Binding Background, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}}">
-                                <Line Stroke="#fff" StrokeThickness="6" X1="120" Y1="18" X2="40" Y2="18"/>
-                                <Line Stroke="#fff" StrokeThickness="6" X1="120" Y1="18" X2="100" Y2="28"/>
-                                <Line Stroke="#fff" StrokeThickness="6" X1="120" Y1="18" X2="100" Y2="8"/>
-                            </Grid>
-                        </ControlTemplate>
-                    </Button.Template>
+                    <Image Source="Assets\right-arrow.png"></Image>
                 </Button>
 
 
