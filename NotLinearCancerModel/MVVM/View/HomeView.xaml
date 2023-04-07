@@ -8,20 +8,18 @@
              d:DesignHeight="100" d:DesignWidth="1350">
 
 
-
     <StackPanel Margin="0,0,0,0" Width="1350">
-
         <Grid Margin="0,0,0,0" Width="1350">
             <Grid.RowDefinitions>
-                <RowDefinition Height="9*"></RowDefinition>
-                <RowDefinition Height="13*"></RowDefinition>
-                <RowDefinition Height="9*"></RowDefinition>
-                <RowDefinition Height="5*"></RowDefinition>
-                <RowDefinition Height="8*"/>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition/>
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
@@ -31,27 +29,22 @@
             </Grid.ColumnDefinitions>
 
             <Button 
-            x:Name="CalculateMin"
-            Click="CalculateMin_Click"
-            Content="Find Min" 
-            HorizontalAlignment="Left" 
-            VerticalAlignment="Center" 
-            Width="180"
-            Height="44"
-            Grid.Column="0" Grid.Row="0" 
-            Grid.RowSpan="2" 
-            Background="#4e99ff"
-            Foreground="White" Margin="10,0,0,0"/>
+                x:Name="CalculateMin"
+                Click="CalculateMin_Click"
+                Content="Find Min" 
+                Margin="10,0,0,0"
+                Width="180"
+                Height="44"
+                Grid.Column="0" Grid.Row="0" 
+                Grid.RowSpan="2" 
+                Style="{StaticResource DefaultButton}"/>
 
             <TextBox 
                 x:Name="TextBoxLength" 
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center" 
                 Text="250" 
-                TextWrapping="Wrap"            
-                Width="120" 
                 Margin="20, 0, 0, 0"
-                Grid.Column="1" Grid.Row="0" Background="#FF353340" Foreground="White">
+                Grid.Column="1" Grid.Row="0"
+                Style="{StaticResource DefaultTextBox}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Ширина области интегрирования
@@ -60,22 +53,17 @@
             </TextBox>
             <Label 
                 x:Name="LabelLength" 
-                Content="Length (mkm)" 
-                HorizontalAlignment="Left"  
-                VerticalAlignment="Center" 
+                Content="Length (mkm)"
                 Margin="20, 0, 0, 0"
                 Grid.Column="1" Grid.Row="1"
-                Foreground="White"/>
+                Style="{StaticResource DefaultLabel}"/>
 
             <TextBox 
                 x:Name="TextBoxAngleXY" 
-                HorizontalAlignment="Left"             
-                VerticalAlignment="Top" 
                 Text="30" 
-                TextWrapping="Wrap"           
-                Width="120" 
                 Margin="20,0,0,0"
-                Grid.Column="2" Grid.Row="0" Background="#FF353340" Foreground="White">
+                Grid.Column="2" Grid.Row="0"
+                Style="{StaticResource DefaultTextBox}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Угол скорости между X Y
@@ -85,21 +73,16 @@
             <Label 
                 x:Name="LabelAngleXY" 
                 Content="AngleXY (degree)" 
-                HorizontalAlignment="Left"  
-                VerticalAlignment="Center"
                 Margin="20, 0, 0, 0"
                 Grid.Column="2" Grid.Row="1"
-                Foreground="White"/>
+                Style="{StaticResource DefaultLabel}"/>
 
             <TextBox 
                 x:Name="TextBoxSpeedStart" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center"
                 Text="1,7" 
-                TextWrapping="Wrap"            
-                Width="120" 
                 Margin="20, 0, 0, 0"
-                Grid.Column="3" Grid.Row="0" Background="#FF353340" Foreground="White">
+                Grid.Column="3" Grid.Row="0"
+                Style="{StaticResource DefaultTextBox}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Верхняя граница значения скорости для нахождения минимума
@@ -108,22 +91,17 @@
             </TextBox>
             <Label 
                 x:Name="LabelSpeedStart" 
-                Content="Speed Start (mkm/s)" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center"
+                Content="Speed Start (mkm/s)"
                 Margin="20, 0, 0, 0"
                 Grid.Column="3" Grid.Row="1"
-                Foreground="White"/>
+                Style="{StaticResource DefaultLabel}"/>
 
             <TextBox 
                 x:Name="TextBoxTStep" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center" 
                 Text="0,1" 
-                TextWrapping="Wrap"            
-                Width="120" 
                 Margin="20, 0, 0, 0"
-                Grid.Column="4" Grid.Row="0" Background="#FF353340" Foreground="White">
+                Grid.Column="4" Grid.Row="0"
+                Style="{StaticResource DefaultTextBox}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Шаг по времени
@@ -133,21 +111,16 @@
             <Label 
                 x:Name="LabelTStep" 
                 Content="T (months)" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center" 
                 Margin="20, 0, 0, 0"
                 Grid.Column="4" Grid.Row="1"
-                Foreground="White"/>
+                Style="{StaticResource DefaultLabel}"/>
 
             <TextBox 
                 x:Name="TextBoxSpeedEnd" 
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center" 
-                Text="3" 
-                TextWrapping="Wrap" 
-                Width="120"
+                Text="3"
                 Margin="20,0,0,0"
-                Grid.Column="5" Background="#FF353340" Foreground="White">
+                Grid.Column="5"
+                Style="{StaticResource DefaultTextBox}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Нижнаяя граница скорости для нахождения минимума
@@ -165,13 +138,10 @@
 
             <TextBox 
                 x:Name="TextBoxK" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Top" 
-                Text="0,1" 
-                TextWrapping="Wrap"            
-                Width="120" 
+                Text="0,1"
                 Margin="20,0,0,0"
-                Grid.Column="6" Background="#FF353340" Foreground="White">
+                Grid.Column="6"
+                Style="{StaticResource DefaultTextBox}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Коэффициент Куранта
@@ -203,14 +173,11 @@
                 VerticalAlignment="Center" />
 
             <TextBox 
-                x:Name="TextBoxH" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center" 
-                Text="10" 
-                TextWrapping="Wrap" 
-                Width="120"
+                x:Name="TextBoxH"
+                Text="10"
                 Margin="20, 0, 0, 0"
-                Grid.Column="1" Grid.Row="2" Background="#FF353340" Foreground="White">
+                Grid.Column="1" Grid.Row="2"
+                Style="{StaticResource DefaultTextBox}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Шаг по пространству (X, Y, Z)
@@ -220,21 +187,16 @@
             <Label 
                 x:Name="LabelH" 
                 Content="H (mkm)" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center" 
                 Margin="20, 0, 0, 0"
                 Grid.Column="1" Grid.Row="3"
-                Foreground="White"/>
+                Style="{StaticResource DefaultLabel}"/>
 
             <TextBox 
-                x:Name="TextBoxAngleZ" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center" 
-                Text="30" 
-                TextWrapping="Wrap" 
-                Width="120" 
+                x:Name="TextBoxAngleZ"
+                Text="30"
                 Margin="20, 0, 0, 0"
-                Grid.Column="2" Grid.Row="2" Background="#FF353340" Foreground="White">
+                Grid.Column="2" Grid.Row="2"
+                Style="{StaticResource DefaultTextBox}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Угол скорости Z
@@ -244,21 +206,16 @@
             <Label 
                 x:Name="LabelAngleZ" 
                 Content="AngleZ (degree)" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center"
                 Margin="20, 0, 0, 0"
                 Grid.Column="2" Grid.Row="3"
-                Foreground="White"/>
+                Style="{StaticResource DefaultLabel}"/>
 
             <TextBox 
-                x:Name="TextBoxD" 
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center" 
-                Text="1,8" 
-                TextWrapping="Wrap"             
-                Width="120" 
+                x:Name="TextBoxD"
+                Text="1,8"
                 Margin="20, 0, 0, 0"
-                Grid.Column="3" Grid.Row="2" Background="#FF353340" Foreground="White">
+                Grid.Column="3" Grid.Row="2"
+                Style="{StaticResource DefaultTextBox}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Коэффициент распространения болезни (диффузии)
@@ -267,22 +224,17 @@
             </TextBox>
             <Label 
                 x:Name="LabelD" 
-                Content="D (mkm^2/s)" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center" 
+                Content="D (mkm^2/s)"
                 Margin="20, 0, 0, 0"
                 Grid.Column="3" Grid.Row="3"
-                Foreground="White"/>
+                Style="{StaticResource DefaultLabel}"/>
 
             <TextBox 
-                x:Name="TextBoxAlpha" 
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center" 
-                Text="1" 
-                TextWrapping="Wrap"             
-                Width="120" 
+                x:Name="TextBoxAlpha"
+                Text="1"
                 Margin="20, 0, 0, 0"
-                Grid.Column="4" Grid.Row="2" Background="#FF353340" Foreground="White">
+                Grid.Column="4" Grid.Row="2"
+                Style="{StaticResource DefaultTextBox}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Коэффициент сопротивления
@@ -291,22 +243,17 @@
             </TextBox>
             <Label 
                 x:Name="LabelAlpha" 
-                Content="Alpha" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center" 
+                Content="Alpha"
                 Margin="20, 0, 0, 0"
                 Grid.Column="4" Grid.Row="3"
-                Foreground="White"/>
+                Style="{StaticResource DefaultLabel}"/>
 
             <TextBox 
-                x:Name="TextBoxSpeedStep" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center" 
-                Text="0,1" 
-                TextWrapping="Wrap" 
-                Width="120" 
+                x:Name="TextBoxSpeedStep"
+                Text="0,1"
                 Margin="20,0,0,0"
-                Grid.Column="5" Grid.Row="2" Background="#FF353340" Foreground="White">
+                Grid.Column="5" Grid.Row="2"
+                Style="{StaticResource DefaultTextBox}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Шаг по скорости для нахождения минимума
@@ -315,12 +262,10 @@
             </TextBox>
             <Label 
                 x:Name="LabelSpeedStep" 
-                Content="Speed step (mkm/s)" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Top"
+                Content="Speed step (mkm/s)"
                 Margin="20, 0, 0, 0"
                 Grid.Column="5" Grid.Row="3"
-                Foreground="White" Grid.RowSpan="2"/>
+                Style="{StaticResource DefaultLabel}"/>
 
         </Grid>
 

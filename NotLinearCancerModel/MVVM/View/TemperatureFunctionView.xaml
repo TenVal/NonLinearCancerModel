@@ -6,20 +6,21 @@
              xmlns:local="clr-namespace:NotLinearCancerModel.MVVM.View"
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="1350">
+
     
     <StackPanel Margin="0,0,0,0" Width="1350">
 
         <Grid Margin="0,0,0,0" Width="1350">
             <Grid.RowDefinitions>
-                <RowDefinition Height="9*"></RowDefinition>
-                <RowDefinition Height="13*"></RowDefinition>
-                <RowDefinition Height="9*"></RowDefinition>
-                <RowDefinition Height="5*"></RowDefinition>
-                <RowDefinition Height="8*"/>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition/>
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
@@ -31,18 +32,13 @@
             <Button 
                 x:Name="TemperatureFunction"
                 Click="TemperatureFunction_Click"
-                Content="Temperature Function" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center" 
+                Content="Temperature Function"  
                 Width="180"
                 Height="44"
                 Grid.Column="0" Grid.Row="0" 
-                Grid.RowSpan="2" 
-                Background="#4e99ff"
-                Foreground="White" Margin="10,0,0,0"/>
-
-
-
+                Grid.RowSpan="2"
+                Margin="10,0,0,0"
+                Style="{StaticResource DefaultButton}"/>
 
 
 
@@ -60,27 +56,19 @@
 
             <TextBox 
                 x:Name="TextBoxH" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center" 
                 Text="10" 
-                TextWrapping="Wrap" 
-                Width="120"
                 Margin="20, 0, 0, 0"
                 Visibility="Collapsed"
-                Grid.Column="1" Grid.Row="2" 
-                Background="#FF353340" 
-                Foreground="White"/>
+                Grid.Column="1" Grid.Row="2"
+                Style="{StaticResource DefaultTextBox}"/>
             <Label 
                 x:Name="LabelH" 
                 Content="H (Step by X, Y, Z)" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center" 
                 Margin="20, 0, 0, 0"
                 Visibility="Collapsed"
                 Grid.Column="1" Grid.Row="3"
-                Foreground="White"/>
+                Style="{StaticResource DefaultLabel}"/>
 
-           
         </Grid>
 
     </StackPanel>

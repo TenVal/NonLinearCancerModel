@@ -6,22 +6,25 @@
              xmlns:local="clr-namespace:NotLinearCancerModel.MVVM.View"
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="1350">
+
+    
     <StackPanel Margin="0,0,0,0" Width="1350">
 
         <Grid Margin="0,0,0,0" Width="1350">
             <Grid.RowDefinitions>
-                <RowDefinition Height="9*"></RowDefinition>
-                <RowDefinition Height="13*"></RowDefinition>
-                <RowDefinition Height="9*"></RowDefinition>
-                <RowDefinition Height="5*"></RowDefinition>
-                <RowDefinition Height="8*"/>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition/>
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="180"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition/>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
@@ -31,43 +34,33 @@
             <Button 
                 x:Name="CalculateMin"
                 Click="CalculateMin_Click"
-                
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center" 
                 Width="70"
                 Height="44"
                 Grid.Column="0" Grid.Row="0" 
-                Grid.RowSpan="2" 
-                Background="#4e99ff"
-                Foreground="White" Margin="10,0,0,0">
+                Grid.RowSpan="2"
+                Margin="10,0,0,0"
+                Style="{StaticResource DefaultButton}">
                 <TextBlock TextAlignment="Center"> Calculate <LineBreak/> Minimum</TextBlock>
             </Button>
 
             <Button 
                 x:Name="CalculateOne"
                 Click="CalculateOne_Click"
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center" 
                 Width="70"
                 Height="44"
                 Grid.Column="0" Grid.Row="0" 
-                Grid.RowSpan="2" 
-                Background="#4e99ff"
-                Foreground="White" Margin="100,0,0,0">
+                Grid.RowSpan="2"
+                Margin="100,0,0,0"
+                Style="{StaticResource DefaultButton}" Grid.ColumnSpan="2">
                 <TextBlock TextAlignment="Center"> Calculate <LineBreak/> One</TextBlock>
             </Button>
 
             <TextBox 
-                x:Name="TextBoxE" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center"
-                Text="0,66" 
-                TextWrapping="Wrap"            
-                Width="120" 
-                Margin="20, 0, 0, 0"
-                Grid.Column="2" Grid.Row="0" 
-                Background="#FF353340" 
-                Foreground="White">
+            x:Name="TextBoxE"
+            Text="0,66"
+            Margin="20, 0, 0, 0"
+            Grid.Column="2" Grid.Row="0" 
+            Style="{StaticResource DefaultTextBox}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Скорость сосудистой инактивации
@@ -76,24 +69,17 @@
             </TextBox>
             <Label 
                 x:Name="LabelE" 
-                Content="e (kg/mg*day)" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center"
-                Margin="20, 0, 0, 0"
+                Content="e (kg/mg*day)"
+                Margin="20,0,0,0"
                 Grid.Column="2" Grid.Row="1"
-                Foreground="White"/>
+                Style="{StaticResource DefaultLabel}" VerticalAlignment="Center"/>
 
             <TextBox 
                 x:Name="TextBoxD" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center" 
-                Text="0,00873" 
-                TextWrapping="Wrap"            
-                Width="120" 
+                Text="0,00873"
                 Margin="20, 0, 0, 0"
                 Grid.Column="3" Grid.Row="0" 
-                Background="#FF353340" 
-                Foreground="White">
+                Style="{StaticResource DefaultTextBox}" Grid.ColumnSpan="2">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Коэффициент смертности кровеносных сосудов
@@ -103,21 +89,17 @@
             <Label 
                 x:Name="LabelD" 
                 Content="D (mm^(2/3)*day)" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center" 
-                Margin="20, 0, 0, 0"
+                Margin="20,0,0,0"
                 Grid.Column="3" Grid.Row="1"
-                Foreground="White"/>
+                Grid.ColumnSpan="2"
+                Style="{StaticResource DefaultLabel}"/>
 
             <TextBox 
                 x:Name="TextBoxL3" 
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center" 
                 Text="1,7" 
-                TextWrapping="Wrap" 
-                Width="120"
                 Margin="20,0,0,0"
-                Grid.Column="4" Background="#FF353340" Foreground="White">
+                Grid.Column="5" 
+                Style="{StaticResource DefaultTextBox}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Клиренс (показатель скорости очищения тканей организма от лекарства)
@@ -127,21 +109,16 @@
             <Label 
                 x:Name="LabelL3" 
                 Content="l3 (1/day)" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center" 
                 Margin="20,0,0,0"
-                Grid.Column="4" Grid.Row="1"
-                Foreground="White"/>
+                Grid.Column="5" Grid.Row="1"
+                Style="{StaticResource DefaultLabel}"/>
 
             <TextBox 
-                x:Name="TextBoxB" 
-                HorizontalAlignment="Left"             
-                VerticalAlignment="Center" 
-                Text="0,5" 
-                TextWrapping="Wrap"           
-                Width="120" 
-                Margin="20, 0, 0, 0"
-                Grid.Column="5" Grid.Row="0" Background="#FF353340" Foreground="White">
+                x:Name="TextBoxB"  
+                Text="0,5"
+                Margin="20,0,0,0"
+                Grid.Column="6" 
+                Style="{StaticResource DefaultTextBox}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Коэффициент рождаемости кровеносных сосудов
@@ -151,20 +128,16 @@
             <Label 
                 x:Name="LabelB" 
                 Content="b Start (1/day)" 
-                HorizontalAlignment="Left"  
-                VerticalAlignment="Center"
-                Margin="20, 0, 0, 0"
-                Grid.Column="5" Grid.Row="1"
-                Foreground="White"/>
+                Margin="20,0,0,0"
+                Grid.Column="6" Grid.Row="1"
+                Style="{StaticResource DefaultLabel}"/>
+            
             <TextBox 
-                x:Name="TextBoxBStep" 
-                HorizontalAlignment="Left"             
-                VerticalAlignment="Center" 
-                Text="0,01" 
-                TextWrapping="Wrap"           
-                Width="120" 
-                Margin="20, 0, 0, 0"
-                Grid.Column="6" Grid.Row="0" Background="#FF353340" Foreground="White">
+                x:Name="TextBoxBStep"
+                Text="0,01"
+                Margin="20,0,0,0"
+                Grid.Column="7" 
+                Style="{StaticResource DefaultTextBox}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Шаг для нахождения коэффициента рождаемости кровеносных сосудов
@@ -174,21 +147,16 @@
             <Label 
                 x:Name="LabelBStep" 
                 Content="b Step (1/day)" 
-                HorizontalAlignment="Left"  
-                VerticalAlignment="Center"
-                Margin="20, 0, 0, 0"
-                Grid.Column="6" Grid.Row="1"
-                Foreground="White"/>
+                Margin="20,0,0,0"
+                Grid.Column="7" Grid.Row="1"
+                Style="{StaticResource DefaultLabel}"/>
 
             <TextBox 
                 x:Name="TextBoxBEnd" 
-                HorizontalAlignment="Left"             
-                VerticalAlignment="Center" 
                 Text="6" 
-                TextWrapping="Wrap"           
-                Width="120" 
-                Margin="20, 0, 0, 0"
-                Grid.Column="7" Grid.Row="0" Background="#FF353340" Foreground="White">
+                Margin="20,0,0,0"
+                Grid.Column="8" 
+                Style="{StaticResource DefaultTextBox}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Нижняя граница для нахождения коэффициента рождаемости кровеносных сосудов
@@ -197,22 +165,17 @@
             </TextBox>
             <Label 
                 x:Name="LabelBEnd" 
-                Content="b End (1/day)" 
-                HorizontalAlignment="Left"  
-                VerticalAlignment="Center"
-                Margin="20, 0, 0, 0"
-                Grid.Column="7" Grid.Row="1"
-                Foreground="White"/>
-
-
-
+                Content="b End (1/day)"
+                Margin="20,0,0,0"
+                Grid.Column="8" Grid.Row="1"
+                Style="{StaticResource DefaultLabel}"/>
 
 
 
             <ProgressBar
                 x:Name="ProgressBarCalculate"
-                Grid.Column="0" Grid.Row="3" Margin="10,4,0,4"
-                Visibility="Collapsed"/>
+                Grid.Column="0" Grid.Row="3" Margin="10,4,168,4"
+                Visibility="Collapsed" Grid.ColumnSpan="2"/>
             <TextBlock 
                 x:Name="PercentProgressBarCalculate"
                 Grid.Row="3" 
@@ -223,12 +186,10 @@
 
 
             <CheckBox 
-                x:Name="CheckBoxTreatment" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center" 
-                Width="120" 
-                Margin="10, 0, 0, 0"
-                Grid.Column="1" Grid.Row="0" Background="#FF353340" Foreground="White">
+                x:Name="CheckBoxTreatment"
+                Margin="10,0,0,0"
+                Grid.Column="1"
+                Style="{StaticResource DefaultCheckBox}">
                 <CheckBox.ToolTip>
                     <ToolTip>
                         Наличие/отсутствие лечения
@@ -237,22 +198,17 @@
             </CheckBox>
             <Label 
                 x:Name="LabelTreatment" 
-                Content="Treatment" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center"
-                Margin="30, 0, 0, 0"
-                Grid.Column="1" Grid.Row="0"
-                Foreground="White"/>
+                Content="Treatment"
+                Margin="30,0,0,0"
+                Grid.Column="1"
+                Style="{StaticResource DefaultLabel}"/>
 
             <TextBox 
                 x:Name="TextBoxStepTime" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center" 
                 Text="0,1" 
-                TextWrapping="Wrap" 
-                Width="120" 
-                Margin="20, 0, 0, 0"
-                Grid.Column="1" Grid.Row="2" Background="#FF353340" Foreground="White">
+                Margin="20,0,0,0"
+                Grid.Column="1" Grid.Row="2" 
+                Style="{StaticResource DefaultTextBox}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Шаг по времени
@@ -261,23 +217,18 @@
             </TextBox>
             <Label 
                 x:Name="LabelStepTime" 
-                Content="Time Step (days)" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center"
-                Margin="20, 0, 0, 0"
+                Content="Time Step (days)"
+                Margin="20,0,0,0"
                 Grid.Column="1" Grid.Row="3"
-                Foreground="White"/>
+                Style="{StaticResource DefaultLabel}"/>
 
 
             <TextBox 
                 x:Name="TextBoxTime" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center" 
                 Text="30" 
-                TextWrapping="Wrap" 
-                Width="120" 
-                Margin="20, 0, 0, 0"
-                Grid.Column="2" Grid.Row="2" Background="#FF353340" Foreground="White">
+                Margin="20,0,0,0"
+                Grid.Column="2" Grid.Row="2" 
+                Style="{StaticResource DefaultTextBox}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Время моделирования
@@ -287,21 +238,17 @@
             <Label 
                 x:Name="LabelDays" 
                 Content="Time (days)" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center"
-                Margin="20, 0, 0, 0"
+                Margin="20,0,0,0"
                 Grid.Column="2" Grid.Row="3"
-                Foreground="White"/>
+                Style="{StaticResource DefaultLabel}"/>
+            
             <TextBox 
                 x:Name="TextBoxU" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Top" 
-                Text="0,1" 
-                TextWrapping="Wrap"            
-                Width="120" 
+                Text="0,1"
                 Margin="20,0,0,0"
                 Grid.Column="3"  Grid.Row="2"
-                Background="#FF353340" Foreground="White">
+                Grid.ColumnSpan="2"
+                Style="{StaticResource DefaultTextBox}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Лекарство
@@ -311,23 +258,19 @@
             <Label 
                 x:Name="LabelU" 
                 Content="u (mg/(kg*day))" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center" 
                 Margin="20,0,0,0"
                 Grid.Column="3" Grid.Row="3"
-                Foreground="White"/>
+                Grid.ColumnSpan="2"
+                Style="{StaticResource DefaultLabel}"/>
 
 
 
             <TextBox 
                 x:Name="TextBoxL1" 
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center" 
-                Text="0,0534" 
-                TextWrapping="Wrap"            
-                Width="120" 
-                Margin="20, 0, 0, 0"
-                Grid.Column="5" Grid.Row="2" Background="#FF353340" Foreground="White">
+                Text="0,0534"
+                Margin="20,0,0,0"
+                Grid.Column="6" Grid.Row="2" 
+                Style="{StaticResource DefaultTextBox}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Скорость роста опухоли
@@ -337,21 +280,16 @@
             <Label 
                 x:Name="LabelL1" 
                 Content="l1 (1/day)" 
-                HorizontalAlignment="Left"  
-                VerticalAlignment="Bottom" 
                 Margin="20,0,0,0"
-                Grid.Column="5" Grid.Row="3"
-                Foreground="White"/>
+                Grid.Column="6" Grid.Row="3"
+                Style="{StaticResource DefaultLabel}"/>
 
             <TextBox 
-                x:Name="TextBoxXBrain" 
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center" 
+                x:Name="TextBoxXBrain"  
                 Text="0" 
-                TextWrapping="Wrap"             
-                Width="120" 
-                Margin="20, 0, 0, 0"
-                Grid.Column="6" Grid.Row="2" Background="#FF353340" Foreground="White">
+                Margin="20,0,0,0"
+                Grid.Column="7" Grid.Row="2" 
+                Style="{StaticResource DefaultTextBox}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         X brain
@@ -360,22 +298,17 @@
             </TextBox>
             <Label 
                 x:Name="LabelXBrain" 
-                Content="X" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center" 
-                Margin="20, 0, 0, 0"
-                Grid.Column="6" Grid.Row="3"
-                Foreground="White"/>
+                Content="X"
+                Margin="20,0,0,0"
+                Grid.Column="7" Grid.Row="3"
+                Style="{StaticResource DefaultLabel}"/>
 
             <TextBox 
                 x:Name="TextBoxYBrain" 
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center" 
                 Text="0" 
-                TextWrapping="Wrap"             
-                Width="120" 
-                Margin="20, 0, 0, 0"
-                Grid.Column="7" Grid.Row="2" Background="#FF353340" Foreground="White">
+                Margin="20,0,0,0"
+                Grid.Column="8" Grid.Row="2" 
+                Style="{StaticResource DefaultTextBox}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Y brain
@@ -385,11 +318,9 @@
             <Label 
                 x:Name="LabelYBrain" 
                 Content="Y" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center" 
-                Margin="20, 0, 0, 0"
-                Grid.Column="7" Grid.Row="3"
-                Foreground="White"/>
+                Margin="20,0,0,0"
+                Grid.Column="8" Grid.Row="3"
+                Style="{StaticResource DefaultLabel}"/>
 
         </Grid>
 

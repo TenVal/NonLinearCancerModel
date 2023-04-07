@@ -9,7 +9,6 @@
 
 
     <StackPanel Margin="0,0,0,0" Width="1350">
-
         <Grid Margin="0,0,0,0" Width="1350">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
@@ -29,31 +28,26 @@
             </Grid.ColumnDefinitions>
 
             <Button 
-            x:Name="Calculate"
-            Click="Calculate_Click"
-            Content="Calculate" 
-            HorizontalAlignment="Left" 
-            VerticalAlignment="Center" 
-            Width="200"
-            Height="50"
-            Margin="10,0,0,0"
-            Grid.Column="0" Grid.Row="0" 
-            Grid.RowSpan="2"
-            Background="#4e99ff"
-            Foreground="White"/>
+                x:Name="Calculate"
+                Click="Calculate_Click"
+                Content="Calculate" 
+                Width="200"
+                Height="50"
+                Margin="10,0,0,0"
+                Grid.Column="0" Grid.Row="0" 
+                Grid.RowSpan="2"
+                Style="{StaticResource DefaultButton}"/>
 
             <Button 
-            x:Name="ImportParams"
-            Click="ImportParams_Click"
-            Content="Import finded &#xD;&#xA;min params" 
-            HorizontalAlignment="Left" 
-            Width="200"
-            Height ="50"
-            Margin="220,0,0,0"
-            Grid.Column="0" Grid.Row="0" 
-            Grid.RowSpan="2" 
-            Background="#4e99ff"
-            Foreground="White"/>
+                x:Name="ImportParams"
+                Click="ImportParams_Click"
+                Content="Import finded &#xD;&#xA;min params" 
+                Width="200"
+                Height ="50"
+                Margin="220,0,0,0"
+                Grid.Column="0" Grid.Row="0" 
+                Grid.RowSpan="2" 
+                Style="{StaticResource DefaultButton}"/>
 
             <ComboBox 
                 x:Name="ComboBoxChoosePatient"
@@ -75,25 +69,22 @@
                 <TextBlock>10</TextBlock>
             </ComboBox>
             <Label 
-            x:Name="LabelChoosePatient" 
-            Content="     Choose &#xD;&#xA;patient (Import)" 
-            HorizontalAlignment="Left" 
-            Width="95"
-            Height="40"
-            VerticalAlignment="Top"
-            Margin="420,4,0,0"
-            Grid.Column="0" Grid.Row="1"
-            Foreground="White" Grid.RowSpan="3" Grid.ColumnSpan="2"/>
+                x:Name="LabelChoosePatient" 
+                Content="     Choose &#xD;&#xA;patient (Import)" 
+                HorizontalAlignment="Left" 
+                Width="95"
+                Height="40"
+                VerticalAlignment="Top"
+                Margin="420,4,0,0"
+                Grid.Column="0" Grid.Row="1"
+                Foreground="White" Grid.RowSpan="3" Grid.ColumnSpan="2"/>
 
             <TextBox 
-                x:Name="TextBoxLength" 
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center" 
+                x:Name="TextBoxLength"
                 Text="250" 
-                TextWrapping="Wrap"            
-                Width="120" 
                 Margin="20, 0, 0, 0"
-                Grid.Column="1" Grid.Row="0" Background="#FF353340" Foreground="White">
+                Grid.Column="1" Grid.Row="0" 
+                Style="{StaticResource DefaultTextBox}">
                     <TextBox.ToolTip>
                         <ToolTip>
                             Ширина области интегрирования
@@ -103,21 +94,16 @@
             <Label 
                 x:Name="LabelLength" 
                 Content="Length (mkm)" 
-                HorizontalAlignment="Left"  
-                VerticalAlignment="Center" 
                 Margin="20, 0, 0, 0"
                 Grid.Column="1" Grid.Row="1"
-                Foreground="White"/>
+                Style="{StaticResource DefaultLabel}"/>
 
             <TextBox 
                 x:Name="TextBoxAngleXY" 
-                HorizontalAlignment="Left"             
-                VerticalAlignment="Center" 
-                Text="30" 
-                TextWrapping="Wrap"           
-                Width="120" 
+                Text="30"          
                 Margin="20, 0, 0, 0"
-                Grid.Column="2" Grid.Row="0" Background="#FF353340" Foreground="White">
+                Grid.Column="2" Grid.Row="0" 
+                Style="{StaticResource DefaultTextBox}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Угол скорости между X Y
@@ -126,22 +112,17 @@
             </TextBox>
             <Label 
                 x:Name="LabelAngleXY" 
-                Content="AngleXY (degree)" 
-                HorizontalAlignment="Left"  
-                VerticalAlignment="Center"
+                Content="AngleXY (degree)"
                 Margin="20, 0, 0, 0"
                 Grid.Column="2" Grid.Row="1"
-                Foreground="White"/>
+                Style="{StaticResource DefaultLabel}"/>
 
             <TextBox 
                 x:Name="TextBoxSpeed" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center"
-                Text="1,1" 
-                TextWrapping="Wrap"            
-                Width="120" 
+                Text="1,1"            
                 Margin="20, 0, 0, 0"
-                Grid.Column="3" Grid.Row="0" Background="#FF353340" Foreground="White">
+                Grid.Column="3" Grid.Row="0" 
+                Style="{StaticResource DefaultTextBox}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Скорость роста опухоли
@@ -151,41 +132,31 @@
             <Label 
                 x:Name="LabelSpeed" 
                 Content="Speed (mkm/s)" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center"
                 Margin="20, 0, 0, 0"
                 Grid.Column="3" Grid.Row="1"
-                Foreground="White"/>
+                Style="{StaticResource DefaultLabel}"/>
 
             <TextBox 
-            x:Name="TextBoxTStep" 
+                x:Name="TextBoxTStep" 
                 Visibility="Hidden"
-            HorizontalAlignment="Left" 
-            VerticalAlignment="Center" 
-            Text="0,6" 
-            TextWrapping="Wrap"            
-            Width="120" 
-            Margin="20, 0, 0, 0"
-            Grid.Column="4" Grid.Row="0" Background="#FF353340" Foreground="White"/>
+                Text="0,6" 
+                Margin="20, 0, 0, 0"
+                Grid.Column="4" Grid.Row="0" 
+                Style="{StaticResource DefaultTextBox}"/>
             <Label 
-            x:Name="LabelTstep"                 
+                x:Name="LabelTstep"                 
                 Visibility="Hidden"
-            Content="T (step)" 
-            HorizontalAlignment="Left" 
-            VerticalAlignment="Center" 
-            Margin="20, 0, 0, 0"
-            Grid.Column="4" Grid.Row="1"
-            Foreground="White"/>
+                Content="T (step)" 
+                Margin="20, 0, 0, 0"
+                Grid.Column="4" Grid.Row="1"
+                Style="{StaticResource DefaultLabel}"/>
 
             <TextBox 
-                x:Name="TextBoxAlpha" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Bottom" 
-                Text="1" 
-                TextWrapping="Wrap"            
-                Width="120" 
-                Margin="20,0,0,4"
-                Grid.Column="5" Grid.Row="0" Background="#FF353340" Foreground="White">
+                x:Name="TextBoxAlpha"
+                Text="1"
+                Margin="20,0,0,0"
+                Grid.Column="5" Grid.Row="0" 
+                Style="{StaticResource DefaultTextBox}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Коэффициент сопротивления
@@ -194,14 +165,10 @@
             </TextBox>
             <Label 
                 x:Name="LabelAlpha" 
-                Content="Alpha" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center" 
+                Content="Alpha"
                 Margin="20, 0, 0, 0"
                 Grid.Column="5" Grid.Row="1"
-                Foreground="White"/>
-
-
+                Style="{StaticResource DefaultLabel}"/>
 
 
             <ProgressBar
@@ -217,14 +184,11 @@
                 VerticalAlignment="Center" />
 
             <TextBox 
-            x:Name="TextBoxH" 
-            HorizontalAlignment="Left" 
-            VerticalAlignment="Center" 
-            Text="10" 
-            TextWrapping="Wrap" 
-            Width="120"
-            Margin="20, 0, 0, 0"
-            Grid.Column="1" Grid.Row="2" Background="#FF353340" Foreground="White">
+                x:Name="TextBoxH"
+                Text="10"
+                Margin="20, 0, 0, 0"
+                Grid.Column="1" Grid.Row="2" 
+                Style="{StaticResource DefaultTextBox}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Шаг по пространству (X, Y, Z)
@@ -234,21 +198,16 @@
             <Label 
                 x:Name="LabelH" 
                 Content="H (mkm)" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center" 
                 Margin="20, 0, 0, 0"
                 Grid.Column="1" Grid.Row="3"
-                Foreground="White"/>
+                Style="{StaticResource DefaultLabel}"/>
 
             <TextBox 
-                x:Name="TextBoxAngleZ" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center" 
-                Text="30" 
-                TextWrapping="Wrap" 
-                Width="120" 
+                x:Name="TextBoxAngleZ"
+                Text="30"
                 Margin="20, 0, 0, 0"
-                Grid.Column="2" Grid.Row="2" Background="#FF353340" Foreground="White">
+                Grid.Column="2" Grid.Row="2" 
+                Style="{StaticResource DefaultTextBox}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Угол скорости Z
@@ -258,21 +217,16 @@
             <Label 
                 x:Name="LabelAngleZ" 
                 Content="AngleZ (degree)" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center"
                 Margin="20, 0, 0, 0"
                 Grid.Column="2" Grid.Row="3"
-                Foreground="White"/>
+                Style="{StaticResource DefaultLabel}"/>
 
             <TextBox 
-                x:Name="TextBoxD" 
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center" 
-                Text="1e-5" 
-                TextWrapping="Wrap"             
-                Width="120" 
+                x:Name="TextBoxD"
+                Text="1e-5"
                 Margin="20, 0, 0, 0"
-                Grid.Column="3" Grid.Row="2" Background="#FF353340" Foreground="White">
+                Grid.Column="3" Grid.Row="2" 
+                Style="{StaticResource DefaultTextBox}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Коэффициент распространения болезни (диффузии)
@@ -281,22 +235,17 @@
             </TextBox>
             <Label 
                 x:Name="LabelD" 
-                Content="D (mkm^2/s)" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center" 
+                Content="D (mkm^2/s)"
                 Margin="20, 0, 0, 0"
                 Grid.Column="3" Grid.Row="3"
-                Foreground="White"/>
+                Style="{StaticResource DefaultLabel}"/>
 
             <TextBox 
-                x:Name="TextBoxTMax" 
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center" 
+                x:Name="TextBoxTMax"  
                 Text="100" 
-                TextWrapping="Wrap"             
-                Width="120" 
                 Margin="20, 0, 0, 0"
-                Grid.Column="4" Grid.Row="2" Background="#FF353340" Foreground="White">
+                Grid.Column="4" Grid.Row="2" 
+                Style="{StaticResource DefaultTextBox}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Время моделирования
@@ -305,25 +254,18 @@
             </TextBox>
             <Label 
                 x:Name="LabelTMax" 
-                Content="Time (months)" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center" 
+                Content="Time (months)"
                 Margin="20, 0, 0, 0"
                 Grid.Column="4" Grid.Row="3"
-                Foreground="White"/>
+                Style="{StaticResource DefaultLabel}"/>
 
             <TextBox 
                 x:Name="TextBoxK"
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Top" 
-                Text="0,6" 
-                TextWrapping="Wrap"            
-                Width="120" 
+                Text="0,6"
                 Margin="20,24,0,0"
-                Grid.Column="5"
-                Background="#FF353340"
-                Foreground="White" 
-                Grid.RowSpan="2" Grid.Row="1">
+                Grid.Column="5" 
+                Grid.RowSpan="2" Grid.Row="1"
+                Style="{StaticResource DefaultTextBox}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Коэффициент Куранта
@@ -332,12 +274,10 @@
             </TextBox>
             <Label 
                 x:Name="LabelK" 
-                Content="K" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center" 
+                Content="K"
                 Margin="20,0,0,0"
                 Grid.Column="5" Grid.Row="3"
-                Foreground="White"/>
+                Style="{StaticResource DefaultLabel}"/>
 
         </Grid>
 
