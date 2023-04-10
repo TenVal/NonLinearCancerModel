@@ -8,6 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\left-arrow.png" />
+    <None Remove="Assets\right-arrow.png" />
     <None Remove="dataTumor\PredictData\Any\Volume\img\0Volume.png" />
     <None Remove="dataTumor\PredictData\Any\Volume\img\10Volume.png" />
     <None Remove="dataTumor\PredictData\Any\Volume\img\1Volume.png" />
@@ -54,6 +56,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\left-arrow.png" />
+    <Resource Include="Assets\right-arrow.png" />
     <Resource Include="dataTumor\PredictData\Any\Volume\img\6Volume.png" />
   </ItemGroup>
 
@@ -76,7 +80,6 @@
     <Folder Include="Fonts\" />
     <Folder Include="MVVM\Model\" />
     <Folder Include="Images\" />
-    <Folder Include="Assets\" />
   </ItemGroup>
 
   <ItemGroup>

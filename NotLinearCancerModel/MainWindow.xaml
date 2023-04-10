@@ -11,7 +11,7 @@
         Width="1500"
         ResizeMode="CanResize"
         Background="Transparent" Loaded="Window_Loaded">
-    
+
 
     <Window.DataContext>
         <viewModel:MainViewModel/>
@@ -293,32 +293,37 @@
                 <Button 
                     x:Name="ButtonGoBackImg"
                     Click="ButtonGoBackImg_Click"
-                    Width="160"
+                    Width="100"
                     Height="40"
-                    Margin="250,529,0,0" 
-                    Style="{StaticResource DefaultButton}"
-                    Grid.Column="2" Grid.Row="1">
-                    <Image Source="Assets\left-arrow.png"></Image>
+                    Margin="410,529,0,0" 
+                    Grid.Column="2" Grid.Row="1"
+                    Style="{StaticResource DefaultButton}">
+                    <!--<Button.Background>
+                        <ImageBrush ImageSource="/Assets/left-arrow.png" Stretch="None"></ImageBrush>
+                    </Button.Background>-->
+                    Left
                 </Button>
 
                 <TextBox 
                     x:Name="TextBoxPatientNumberPlot" 
                     Height="20"
-                    Width="200"
+                    Width="50"
                     Grid.Column="2" 
                     Grid.Row="1" 
                     Grid.ColumnSpan="2"
-                    Margin="575,529,0,0"
-                    Style="{StaticResource DefaultTextBox}"/>
+                    Margin="640,529,0,0"
+                    Style="{StaticResource DefaultTextBox}"
+                    Template="{StaticResource TextBoxBaseControlTemplate}"/>
 
                 <Label 
                     x:Name="LabelPatientNumberPlot" 
                     Content="Patient Number Plot" 
-                    Margin="575,546,0,0"
+                    HorizontalContentAlignment="Center"
+                    Margin="540,544,0,0"
                     Grid.Column="2" 
                     Grid.Row="1" 
                     Grid.ColumnSpan="2"                           
-                    Style="{StaticResource DefaultLabel}"/>
+                    Style="{StaticResource DefaultLabel}" Height="40" Width="255"/>
 
                 <Button 
                     x:Name="ButtonShowTotal"
@@ -342,13 +347,14 @@
                 <Button 
                     x:Name="ButtonGoNextImg"
                     Click="ButtonGoNextImg_Click"
-                    Width="160"
+                    Width="100"
                     Height="40"
-                    Margin="250,529,0,0"
+                    Margin="150,529,0,0"
                     Grid.Column="3"  Grid.Row="1" 
                     Style="{StaticResource DefaultButton}">
-                    <Image Source="Assets\right-arrow.png"></Image>
+                    Right
                 </Button>
+
 
 
                 <StackPanel 
@@ -426,9 +432,9 @@
 
                 </StackPanel>
                 <ContentControl
-                    Grid.Column="2" Grid.Row="2"
+                    Grid.Column="2" Grid.Row="3"
                     Grid.ColumnSpan="2"
-                    Content="{Binding CurrentView}" Margin="0,50,0,0" Grid.RowSpan="2">
+                    Content="{Binding CurrentView}" Margin="0,10,0,0" Grid.RowSpan="2">
                 </ContentControl>
 
                 <TextBox Name="textBoxCancerParameters"  

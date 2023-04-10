@@ -5,28 +5,6 @@
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Foreground" Value="#fff"/>
         <Setter Property="Background" Value="#827F9B"/>
-    </Style>
-
-    <Style TargetType="Button" x:Key="DefaultButton" BasedOn="{StaticResource BaseButton}">
-        <Setter Property="HorizontalAlignment" Value ="Left"/>
-        <Setter Property="VerticalAlignment" Value ="Top"/>
-        <Setter Property="VerticalAlignment" Value ="Top"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-
-                        <Border Background="{TemplateBinding Background}" CornerRadius="4">
-                        <ContentPresenter
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Margin="{TemplateBinding Padding}" >
-                            
-                        </ContentPresenter>
-                    </Border>
-
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Foreground" Value="#827F9B"/>
@@ -35,5 +13,64 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <Style TargetType="Button" x:Key="DefaultButton" BasedOn="{StaticResource BaseButton}">
+        <Setter Property="HorizontalAlignment" Value ="Left"/>
+        <Setter Property="VerticalAlignment" Value ="Top"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="4">
+                        <ContentPresenter
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Margin="{TemplateBinding Padding}" >
+
+                        </ContentPresenter>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        
+    </Style>
+
+    <Style TargetType="Button" x:Key="DefaultImageButton" BasedOn="{StaticResource BaseButton}">
+        <Setter Property="HorizontalAlignment" Value ="Left"/>
+        <Setter Property="VerticalAlignment" Value ="Top"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="4">
+                        <Border.Background>
+                            <ImageBrush ImageSource="/Assets/left-arrow.png" Stretch="Uniform"></ImageBrush>
+                        </Border.Background>
+                        <ContentPresenter
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Margin="{TemplateBinding Padding}" >
+
+                        </ContentPresenter>
+                    </Border>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <ControlTemplate x:Key="ButtonImageBaseControlTemplate" TargetType="{x:Type ButtonBase}">
+        <Border                 
+            BorderThickness="{TemplateBinding BorderThickness}" 
+            CornerRadius="4">
+            <Border.Background>
+                <ImageBrush ImageSource="/Assets/left-arrow.png" Stretch="Uniform"></ImageBrush>
+            </Border.Background>
+            <ContentPresenter
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Margin="{TemplateBinding Padding}" >
+            </ContentPresenter>
+        </Border>
+
+    </ControlTemplate>
 
 </ResourceDictionary>

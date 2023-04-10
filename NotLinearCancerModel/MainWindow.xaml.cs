@@ -397,7 +397,7 @@ namespace NotLinearCancerModel
 
         private void RadioButtonTemperatureFunction_Checked(object sender, RoutedEventArgs e)
         {
-            LabelPatientNumberPlot.Content = "Input number patient to save plots\nOutput it";
+            LabelPatientNumberPlot.Content = "Patient Number Plot";
             changeVisibleOfElements(Visibility.Collapsed, Visibility.Visible);
         }
 
@@ -411,8 +411,7 @@ namespace NotLinearCancerModel
 
         private void RadioButtonLinearModel_Checked(object sender, RoutedEventArgs e)
         {
-            LabelPatientNumberPlot.Content = "Input number patient to save plots\nOutput it";
-
+            LabelPatientNumberPlot.Content = "Patient Number Plot";
             outputImage(ImageBrainNonLinear1, @"Assets\brain.jpg");
             outputImage(ImageBrainLinear1, @"Assets\brain.jpg");
             outputImage(ImageBrainNonLinear2, @"Assets\brain.jpg");
