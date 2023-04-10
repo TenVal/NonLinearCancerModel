@@ -44,7 +44,8 @@
                 Text="250" 
                 Margin="20, 0, 0, 0"
                 Grid.Column="1" Grid.Row="0"
-                Style="{StaticResource DefaultTextBox}">
+                Style="{StaticResource DefaultTextBox}"
+                Template="{StaticResource TextBoxBaseControlTemplate}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Ширина области интегрирования
@@ -63,7 +64,8 @@
                 Text="30" 
                 Margin="20,0,0,0"
                 Grid.Column="2" Grid.Row="0"
-                Style="{StaticResource DefaultTextBox}">
+                Style="{StaticResource DefaultTextBox}"
+                Template="{StaticResource TextBoxBaseControlTemplate}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Угол скорости между X Y
@@ -82,7 +84,8 @@
                 Text="1,7" 
                 Margin="20, 0, 0, 0"
                 Grid.Column="3" Grid.Row="0"
-                Style="{StaticResource DefaultTextBox}">
+                Style="{StaticResource DefaultTextBox}"
+                Template="{StaticResource TextBoxBaseControlTemplate}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Верхняя граница значения скорости для нахождения минимума
@@ -101,7 +104,8 @@
                 Text="0,1" 
                 Margin="20, 0, 0, 0"
                 Grid.Column="4" Grid.Row="0"
-                Style="{StaticResource DefaultTextBox}">
+                Style="{StaticResource DefaultTextBox}"
+                Template="{StaticResource TextBoxBaseControlTemplate}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Шаг по времени
@@ -120,7 +124,8 @@
                 Text="3"
                 Margin="20,0,0,0"
                 Grid.Column="5"
-                Style="{StaticResource DefaultTextBox}">
+                Style="{StaticResource DefaultTextBox}"
+                Template="{StaticResource TextBoxBaseControlTemplate}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Нижнаяя граница скорости для нахождения минимума
@@ -141,7 +146,8 @@
                 Text="0,1"
                 Margin="20,0,0,0"
                 Grid.Column="6"
-                Style="{StaticResource DefaultTextBox}">
+                Style="{StaticResource DefaultTextBox}"
+                Template="{StaticResource TextBoxBaseControlTemplate}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Коэффициент Куранта
@@ -177,7 +183,8 @@
                 Text="10"
                 Margin="20, 0, 0, 0"
                 Grid.Column="1" Grid.Row="2"
-                Style="{StaticResource DefaultTextBox}">
+                Style="{StaticResource DefaultTextBox}"
+                Template="{StaticResource TextBoxBaseControlTemplate}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Шаг по пространству (X, Y, Z)
@@ -196,7 +203,8 @@
                 Text="30"
                 Margin="20, 0, 0, 0"
                 Grid.Column="2" Grid.Row="2"
-                Style="{StaticResource DefaultTextBox}">
+                Style="{StaticResource DefaultTextBox}"
+                Template="{StaticResource TextBoxBaseControlTemplate}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Угол скорости Z
@@ -215,7 +223,8 @@
                 Text="1,8"
                 Margin="20, 0, 0, 0"
                 Grid.Column="3" Grid.Row="2"
-                Style="{StaticResource DefaultTextBox}">
+                Style="{StaticResource DefaultTextBox}"
+                Template="{StaticResource TextBoxBaseControlTemplate}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Коэффициент распространения болезни (диффузии)
@@ -234,7 +243,8 @@
                 Text="1"
                 Margin="20, 0, 0, 0"
                 Grid.Column="4" Grid.Row="2"
-                Style="{StaticResource DefaultTextBox}">
+                Style="{StaticResource DefaultTextBox}"
+                Template="{StaticResource TextBoxBaseControlTemplate}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Коэффициент сопротивления
@@ -253,7 +263,8 @@
                 Text="0,1"
                 Margin="20,0,0,0"
                 Grid.Column="5" Grid.Row="2"
-                Style="{StaticResource DefaultTextBox}">
+                Style="{StaticResource DefaultTextBox}"
+                Template="{StaticResource TextBoxBaseControlTemplate}">
                 <TextBox.ToolTip>
                     <ToolTip>
                         Шаг по скорости для нахождения минимума

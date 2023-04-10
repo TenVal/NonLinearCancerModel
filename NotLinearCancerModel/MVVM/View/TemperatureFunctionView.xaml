@@ -60,7 +60,8 @@
                 Margin="20, 0, 0, 0"
                 Visibility="Collapsed"
                 Grid.Column="1" Grid.Row="2"
-                Style="{StaticResource DefaultTextBox}"/>
+                Style="{StaticResource DefaultTextBox}"
+                Template="{StaticResource TextBoxBaseControlTemplate}"/>
             <Label 
                 x:Name="LabelH" 
                 Content="H (Step by X, Y, Z)" 
