@@ -523,6 +523,8 @@ namespace NotLinearCancerModel
             {
                 pathPythonInterpreter = @"env\Scripts\python.exe";
             }
+            Debug.WriteLine("pathPythonInterpreter\t" + pathPythonInterpreter);
+
             worker.ReportProgress(20);
             psi.FileName = pathPythonInterpreter;
             
@@ -547,7 +549,7 @@ namespace NotLinearCancerModel
                 results = process.StandardOutput.ReadToEnd();
             }
             worker.ReportProgress(100);
-            // Display outut
+            // Display output
             Debug.WriteLine("ERRORS python:");
             Debug.WriteLine(errors);
             Debug.WriteLine("Results python:");

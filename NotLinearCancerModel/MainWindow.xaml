@@ -94,8 +94,8 @@
                     <Ellipse 
                         x:Name="CircleBrainLinear1" 
                         HorizontalAlignment="Left" 
-                        Fill="Transparent"
-                        Stroke="Red"
+                        Fill="#898989"
+                        Stroke="#898989"
                         StrokeThickness="1" 
                         Width="20" 
                         Height="20"
@@ -122,8 +122,8 @@
                     <Ellipse 
                         x:Name="CircleBrainNonLinear1" 
                         HorizontalAlignment="Left" 
-                        Fill="Transparent"
-                        Stroke="Red"
+                        Fill="#898989"
+                        Stroke="#898989"
                         StrokeThickness="1"  
                         Width="20" 
                         Height="20"
@@ -201,8 +201,8 @@
                     <Ellipse 
                         x:Name="CircleBrainLinear2" 
                         HorizontalAlignment="Left" 
-                        Fill="Transparent"
-                        Stroke="Red"
+                        Fill="#898989"
+                        Stroke="#898989"
                         StrokeThickness="1" 
                         Width="20" 
                         Height="20"
@@ -230,8 +230,8 @@
                     <Ellipse 
                         x:Name="CircleBrainNonLinear2" 
                         HorizontalAlignment="Left" 
-                        Fill="Transparent"
-                        Stroke="Red"
+                        Fill="#898989"
+                        Stroke="#898989"
                         StrokeThickness="1" 
                         Width="20" 
                         Height="20"               
