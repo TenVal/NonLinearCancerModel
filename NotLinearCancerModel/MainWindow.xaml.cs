@@ -384,6 +384,11 @@ namespace NotLinearCancerModel
 
             LabelBrainImageLinear.Visibility = visibilityBrain;
             LabelBrainImageNonLinear.Visibility = visibilityBrain;
+
+            LabelBrainY.Visibility = visibilityBrain;
+            TextBoxBrainY.Visibility = visibilityBrain;
+            LabelBrainX.Visibility = visibilityBrain;
+            TextBoxBrainX.Visibility = visibilityBrain;
         }
 
 
@@ -640,11 +645,38 @@ namespace NotLinearCancerModel
 
         private void changeEllipse(Ellipse ellipse, StackPanel stackPanel, float radius)
         {
-            ellipse.Width = radius * 2;
-            ellipse.Height = radius * 2;
-            int marginTop = (int)(stackPanel.Height / 2 - radius);
-            int marginLeft = (int)(stackPanel.Width / 2 - radius);
-            ellipse.Margin = new Thickness(marginLeft, marginTop, 0, 0);
+            float brainX = 0;
+            float brainY = 0;
+            int marginTop = 0;
+            int marginLeft = 0;
+            if (float.TryParse(TextBoxBrainX.Text, out brainX))
+            {
+            }
+            else
+            {
+                MessageBox.Show($"Error!\n{brainX}"); // converted value
+            }
+            if (float.TryParse(TextBoxBrainY.Text, out brainY))
+            {
+            }
+            else
+            {
+                MessageBox.Show($"Error!\n{brainY}"); // converted value
+            }
+
+            marginTop = (int)(stackPanel.Height / 2 - radius + brainY);
+            marginLeft = (int)(stackPanel.Width / 2 - radius + brainX);
+            if ((marginTop + 2 * radius) > (ImageBrainLinear1.Width) || (marginLeft + 2 * radius) > (ImageBrainLinear1.Height)
+                || brainX < 0 || brainY < 0)
+            {
+                MessageBox.Show($"Error!\nInput other coordinates x = {brainX}, y = {brainY}");
+            }
+            else
+            {
+                ellipse.Width = radius * 2;
+                ellipse.Height = radius * 2;
+                ellipse.Margin = new Thickness(marginLeft, marginTop, 0, 0);
+            }
         }
 
 

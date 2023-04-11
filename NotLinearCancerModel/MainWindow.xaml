@@ -378,6 +378,35 @@
                             Margin="20, 4, 0, 3"
                             Grid.Column="2" Grid.Row="2"
                             Style="{StaticResource DefaultButton}"/>
+
+                        <TextBox 
+                            x:Name="TextBoxBrainX" 
+                            Text="0"  
+                            Width="70"  
+                            Margin="20, 4, 0, 3"
+                            Grid.Column="2" Grid.Row="3"
+                            Style="{StaticResource DefaultTextBox}"
+                            Template="{StaticResource TextBoxBaseControlTemplate}"/>
+                        <Label 
+                            x:Name="LabelBrainX" 
+                            Content="Brain X (mm)" 
+                            HorizontalContentAlignment="Center"
+                            Margin="20, 0, 0, 3"                         
+                            Style="{StaticResource DefaultLabel}"/>
+                        <TextBox 
+                            x:Name="TextBoxBrainY" 
+                            Text="0"  
+                            Width="70"  
+                            Margin="20, 4, 0, 3"
+                            Grid.Column="2" Grid.Row="4"
+                            Style="{StaticResource DefaultTextBox}"
+                            Template="{StaticResource TextBoxBaseControlTemplate}"/>
+                        <Label 
+                            x:Name="LabelBrainY" 
+                            Content="Brain Y (mm)" 
+                            HorizontalContentAlignment="Center"
+                            Margin="20, 0, 0, 3"                         
+                            Style="{StaticResource DefaultLabel}"/>
                     </StackPanel>
 
                 </StackPanel>
