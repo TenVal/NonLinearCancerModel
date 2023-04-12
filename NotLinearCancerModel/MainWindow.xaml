@@ -144,7 +144,8 @@
                     Margin="565,125,0,0"
                     ValueChanged="SliderTime1_ValueChanged"
                     Grid.Column="2" Grid.Row="1"
-                    Background="#FF353340" Foreground="White" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
+                    Background="#FF353340" Foreground="White" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2"
+                    Style="{StaticResource CustomSliderStyle}">
                     <Slider.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -251,7 +252,8 @@
                     Margin="565,405,0,0"
                     ValueChanged="SliderTime2_ValueChanged"
                     Grid.Column="2" Grid.Row="1"
-                    Background="#FF353340" Foreground="White" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
+                    Background="#FF353340" Foreground="White" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2"
+                    Style="{StaticResource CustomSliderStyle}">
                     <Slider.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>

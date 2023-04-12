@@ -205,6 +205,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Update="Theme\SliderTheme.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Theme\LabelTheme.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
