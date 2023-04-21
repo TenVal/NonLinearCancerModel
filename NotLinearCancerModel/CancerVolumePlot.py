@@ -110,7 +110,7 @@ if __name__ == "__main__":
                  linestyle = "--",
                  label=f"Clinical patient-{i+1} data")
 
-    plt.legend()
+    # plt.legend()
     fig.suptitle(f"Tumor dynamics of all patients", fontsize=24)
     plt.xlabel('time (month)', fontsize=22)
     plt.ylabel('volume (ml)', fontsize=22)

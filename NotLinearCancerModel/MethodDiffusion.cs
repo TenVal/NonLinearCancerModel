@@ -16,7 +16,7 @@ namespace NotLinearCancerModel
         private D _d;
         private C _c;
         private Q _q;
-        private float _alpha;
+        private Resistance _alpha;
         private List<float> _tValues;
         private List<float> _numberPointsVolume;
         public float tMax = 0;
@@ -53,7 +53,7 @@ namespace NotLinearCancerModel
             }
         }
 
-        public MethodDiffusion(D d, C c, Q q, float alpha)
+        public MethodDiffusion(D d, C c, Q q, Resistance alpha)
         {
             this._tValues = new List<float>();
             this._numberPointsVolume = new List<float>();
@@ -171,7 +171,7 @@ namespace NotLinearCancerModel
                                                     _d.get(i * h, j * h, k * h, length) * (valuesP1[i, j, k] - valuesP1S4));
                             double S5 = (tStep / (h * h)) * (K * (valuesP1[i, j, k + 1] - valuesP1[i, j, k]) - K * (valuesP1[i, j, k] - valuesP1S5));
                             // sources
-                            double S6 = (this._q.get(i, j, k, t) - this._alpha * valuesP1[i, j, k]) * tStep;
+                            double S6 = (this._q.get(i, j, k, t) - this._alpha.get(i, j, k, t) * valuesP1[i, j, k]) * tStep;
                             // Implementation of a finite difference scheme             
                             valuesP2[i, j, k] = S1 - S2 + S3 + S4 + S5 + S6;
 
@@ -341,7 +341,7 @@ namespace NotLinearCancerModel
                                                     _d.get(i * h, j * h, k * h, length) * (valuesP1[i, j, k] - valuesP1S4));
                             double S5 = (tau / (h * h)) * (K * (valuesP1[i, j, k + 1] - valuesP1[i, j, k]) - K * (valuesP1[i, j, k] - valuesP1S5));
                             // sources
-                            double S6 = (this._q.get(i, j, k, t) - this._alpha * valuesP1[i, j, k]) * tau;
+                            double S6 = (this._q.get(i, j, k, t) - this._alpha.get(i, j, k, t) * valuesP1[i, j, k]) * tau;
                             // Implementation of a finite difference scheme             
                             valuesP2[i, j, k] = S1 - S2 + S3 + S4 + S5 + S6;
                             //Debug.WriteLine($"D: {_d.get(i * h, j * h, k * h, length)}");

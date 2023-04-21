@@ -197,7 +197,8 @@ namespace NotLinearCancerModel.MVVM.View
             D dF = new D(d, speed);
 
             worker.ReportProgress(10, String.Format("Processing ..."));
-            MethodDiffusion diffusion = new MethodDiffusion(dF, c, q, alpha);
+            Resistance alphaResistance = new Resistance(alpha);
+            MethodDiffusion diffusion = new MethodDiffusion(dF, c, q, alphaResistance);
             worker.ReportProgress(20, String.Format("Processing ..."));
 
             int N = (int)(length / h);

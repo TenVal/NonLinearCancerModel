@@ -219,7 +219,6 @@ namespace NotLinearCancerModel.MVVM.View
                     cancerValuesParameters["Length"].Add(length);
                     cancerValuesParameters["H"].Add(h);
                     cancerValuesParameters["D"].Add(d);
-                    //Debug.WriteLine("add D\t" + d);
                     cancerValuesParameters["K"].Add(k);
                     cancerValuesParameters["SpeedEnd"].Add(SpeedEnd);
                     cancerValuesParameters["SpeedStep"].Add(SpeedStep);
@@ -230,7 +229,8 @@ namespace NotLinearCancerModel.MVVM.View
                     cancerValuesParameters["Resistance"].Add(alpha);
 
                     D dF = new D(d, speedForFindMin);
-                    diffusion = new MethodDiffusion(dF, c, q, alpha);
+                    Resistance alphaResistance = new Resistance(alpha);
+                    diffusion = new MethodDiffusion(dF, c, q, alphaResistance);
 
                     double[,,] valuesP = new double[N, N, N];
                     try
@@ -292,10 +292,10 @@ namespace NotLinearCancerModel.MVVM.View
                 {
                     requiredTValue[itemTValues] = requiredTValue[itemTValues] - differenceT;
                 }
-                Debug.WriteLine("requiredTValue\t" + requiredTValue[0].ToString() + "\ntStart\t" + tStart);
+                Debug.WriteLine("requiredTValue\t" + requiredTValue[0].ToString() + "\ntStart\t" + (tStart / 30).ToString());
 
                 //now save ml
-                float differencePoints = (requiredNumberPointsVolume[0] * stepScale) - modelData.Patients[i]["Volume"][1][0];
+                float differencePoints = (requiredNumberPointsVolume[0] / 1000) - modelData.Patients[i]["Volume"][1][0];
                 for (int itemPointsValues = 0; itemPointsValues < requiredNumberPointsVolume.Length; itemPointsValues++)
                 {
                     //requiredNumberPointsVolume[itemPointsValues] = requiredNumberPointsVolume[itemPointsValues] * stepScale - differencePoints;
