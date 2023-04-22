@@ -20,7 +20,7 @@ namespace NotLinearCancerModel
 
         public float get(float x, float y, float z, float t)
         {
-            float result = _module;
+            float result = _module * _module;
 
             return result;
         }

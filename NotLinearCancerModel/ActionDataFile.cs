@@ -119,7 +119,6 @@ namespace NotLinearCancerModel
         static public string writeDataToFile(double[,,] data,  string pathToSave = @"dataTumor\PredictData\PersonalPatients\")
         {
             string message = "Ok";
-            //pathToSave += type + @"\txt\" + (number + 1).ToString() + type + @".txt";
             Debug.WriteLine($"\nwriteDataToFile\t{pathToSave}");
 
             try
@@ -173,8 +172,6 @@ namespace NotLinearCancerModel
                 xValues,
                 yValues
             };
-            //pathToFile = pathToFile + type + @"\txt\" + number.ToString() + type + @".txt";
-            //pathToFile = pathToFile + type + @"\" + number.ToString() + type + @".txt";
             // Read the file and display it line by line.
             try
             {
@@ -237,6 +234,45 @@ namespace NotLinearCancerModel
             }
             return cancerParameters;
         }
+
+
+        static public List<List<float>> getDataXYZFromFile(string pathToFile)
+        {
+            List<float> xValues = new List<float>();
+            List<float> yValues = new List<float>();
+            List<float> zValues = new List<float>();
+            List<List<float>> xyzValue = new List<List<float>>();
+            // Read the file and display it line by line.
+            try
+            {
+                foreach (string line in System.IO.File.ReadLines(pathToFile))
+                {
+                    string[] valuesSingleXYZ = line.Split("\t");
+                    xyzValue[0].Add(float.Parse((valuesSingleXYZ[0].Trim()).Replace(",", "."), NumberStyles.Any, CultureInfo.InvariantCulture));
+                    xyzValue[1].Add(float.Parse((valuesSingleXYZ[1].Trim()).Replace(",", "."), NumberStyles.Any, CultureInfo.InvariantCulture));
+                    xyzValue[2].Add(float.Parse((valuesSingleXYZ[2].Trim()).Replace(",", "."), NumberStyles.Any, CultureInfo.InvariantCulture));
+                    xyzValue[3].Add(float.Parse((valuesSingleXYZ[3].Trim()).Replace(",", "."), NumberStyles.Any, CultureInfo.InvariantCulture));
+                }
+            }
+            catch (FileNotFoundException e)
+            {
+                System.Diagnostics.Debug.WriteLine($"The file was not found: '{e}'");
+                Console.WriteLine($"The file was not found: '{e}'");
+            }
+            catch (DirectoryNotFoundException e)
+            {
+                System.Diagnostics.Debug.WriteLine($"The directory was not found: '{e}'");
+                Console.WriteLine($"The directory was not found: '{e}'");
+            }
+            catch (IOException e)
+            {
+                System.Diagnostics.Debug.WriteLine($"The file could not be opened: '{e}'");
+                Console.WriteLine($"The file could not be opened: '{e}'");
+            }
+
+            return xyzValue;
+        }
+
 
         static public string copyAllFiles(string pathFrom, string pathTo)
         {

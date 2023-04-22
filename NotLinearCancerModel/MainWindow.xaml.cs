@@ -10,6 +10,8 @@ using System.IO;
 using System.Net.Cache;
 using System.Windows.Shapes;
 using System.Windows.Controls;
+using System.Drawing;
+using Color = System.Windows.Media.Color;
 
 namespace NotLinearCancerModel
 {
@@ -111,8 +113,8 @@ namespace NotLinearCancerModel
             File.Delete(pathToTimeTemperaturePlot);
             File.Copy(pathFrom + pathToTimeTemperaturePlot, pathToTimeTemperaturePlot);
 
-            this.scaleX = (float)(ImageBrainLinear1.Width / 14);
-            this.scaleY = (float)(ImageBrainLinear1.Height / 17);
+            this.scaleX = (float)(StackPanelBrainNonLin1.Width / 14);
+            this.scaleY = (float)(StackPanelBrainNonLin1.Height / 17);
             this.numberPatientOutputPlotOne = 1;
             this._numberPatientOutputPlotFindMin = 1;
             try
@@ -130,10 +132,43 @@ namespace NotLinearCancerModel
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             int startValueSlider = 10;
-            changeEllipse(CircleBrainLinear1, StackPanelBrainLin1, startValueSlider);
-            changeEllipse(CircleBrainNonLinear1, StackPanelBrainNonLin1, startValueSlider);
-            changeEllipse(CircleBrainLinear2, StackPanelBrainLin1, startValueSlider);
-            changeEllipse(CircleBrainNonLinear2, StackPanelBrainNonLin1, startValueSlider);
+            //changeEllipse(CircleBrainLinear1, StackPanelBrainLin1, startValueSlider);
+            //changeEllipse(CircleBrainNonLinear1, StackPanelBrainNonLin1, startValueSlider);
+            //changeEllipse(CircleBrainLinear2, StackPanelBrainLin1, startValueSlider);
+            //changeEllipse(CircleBrainNonLinear2, StackPanelBrainNonLin1, startValueSlider);
+            string path = @"Assets\brain.jpg";
+            Bitmap brainBmp = new Bitmap(path, true);
+            
+            CircleBrainNonLinear1.Plot.Style(dataBackgroundImage: brainBmp, figBg: Color.FromRgb(222, 27, 27));
+            CircleBrainNonLinear1.Plot.XLabel("cm");
+            CircleBrainNonLinear1.Plot.YLabel("cm");
+            CircleBrainNonLinear1.Plot.Title($"{_numberPatientOutputPlotFindMin} Patient");
+            CircleBrainNonLinear1.Plot.SetAxisLimits(xMin: -7, xMax: 7, yMin: -8.5, yMax: 8.5);
+
+            CircleBrainLinear1.Plot.Style(dataBackgroundImage: brainBmp);
+            CircleBrainLinear1.Plot.XLabel("cm");
+            CircleBrainLinear1.Plot.YLabel("cm");
+            CircleBrainLinear1.Plot.Title($"{_numberPatientOutputPlotFindMin} Patient");
+            CircleBrainLinear1.Plot.SetAxisLimits(xMin: -7, xMax: 7, yMin: -8.5, yMax: 8.5);
+
+            CircleBrainNonLinear2.Plot.Style(dataBackgroundImage: brainBmp);
+            CircleBrainNonLinear2.Plot.XLabel("cm");
+            CircleBrainNonLinear2.Plot.YLabel("cm");
+            CircleBrainNonLinear2.Plot.Title($"{_numberPatientOutputPlotFindMin} Patient");
+            CircleBrainNonLinear2.Plot.SetAxisLimits(xMin: -7, xMax: 7, yMin: -8.5, yMax: 8.5);
+
+            CircleBrainLinear2.Plot.Style(dataBackgroundImage: brainBmp);
+            CircleBrainLinear2.Plot.XLabel("cm");
+            CircleBrainLinear2.Plot.YLabel("cm");
+            CircleBrainLinear2.Plot.Title($"{_numberPatientOutputPlotFindMin} Patient");
+            CircleBrainLinear2.Plot.SetAxisLimits(xMin: -7, xMax: 7, yMin: -8.5, yMax: 8.5);
+
+            CircleBrainLinear1.Refresh();
+            CircleBrainNonLinear1.Refresh();
+
+            CircleBrainLinear2.Refresh();
+            CircleBrainNonLinear2.Refresh();
+
             SliderTime1.Value = startValueSlider;
             SliderTime2.Value = startValueSlider;
             LabelSliderTime1.Content = $"Time {SliderTime1.Value}";
@@ -362,10 +397,10 @@ namespace NotLinearCancerModel
         {
             Image1.Visibility = visibilityNonBrain;
 
-            ImageBrainLinear1.Visibility = visibilityBrain;
+            /*ImageBrainLinear1.Visibility = visibilityBrain;
             ImageBrainNonLinear1.Visibility = visibilityBrain;
             ImageBrainLinear2.Visibility = visibilityBrain;
-            ImageBrainNonLinear2.Visibility = visibilityBrain;
+            ImageBrainNonLinear2.Visibility = visibilityBrain;*/
 
             SliderTime1.Visibility = visibilityBrain;
             LabelSliderTime1.Visibility = visibilityBrain;
@@ -417,11 +452,10 @@ namespace NotLinearCancerModel
         private void RadioButtonLinearModel_Checked(object sender, RoutedEventArgs e)
         {
             LabelPatientNumberPlot.Content = "Patient Number Plot";
-            outputImage(ImageBrainNonLinear1, @"Assets\brain.jpg");
+            /*outputImage(ImageBrainNonLinear1, @"Assets\brain.jpg");
             outputImage(ImageBrainLinear1, @"Assets\brain.jpg");
             outputImage(ImageBrainNonLinear2, @"Assets\brain.jpg");
-            outputImage(ImageBrainLinear2, @"Assets\brain.jpg");
-
+            outputImage(ImageBrainLinear2, @"Assets\brain.jpg");*/
             changeVisibleOfElements(Visibility.Visible, Visibility.Collapsed);
         }
 
@@ -607,6 +641,28 @@ namespace NotLinearCancerModel
         }
 
 
+        
+
+        private List<List<float>> getPolygonShapeOfCancerSlider()
+        {
+            List<List<float>> xy = new List<List<float>>();
+            string pathToFile = @"dataTumor\PredictData\PersonalPatients\Volume\txt\" + _numberPatientOutputPlotFindMin.ToString() + "Volume.txt";
+
+            List<List<float>> xyz = ActionDataFile.getDataXYZFromFile(pathToFile);
+
+            for (int i = 0; i < xyz[0].Count; i++)
+            {
+                for(int j = 0; j < xyz[1].Count; j++)
+                {
+                    
+                }
+            }
+            return xy;
+
+        }
+
+
+
         private float getValueForCircleSlider(List<List<float>> data, float valueSlider)
         {
             float radius = 0;
@@ -631,6 +687,14 @@ namespace NotLinearCancerModel
             }
             
             return radius;
+        }
+
+
+        private float getValueNonLinearSlider()
+        {
+            float result = 0;
+
+            return result;
         }
 
 
@@ -666,7 +730,7 @@ namespace NotLinearCancerModel
 
             marginTop = (int)(stackPanel.Height / 2 - radius + brainY);
             marginLeft = (int)(stackPanel.Width / 2 - radius + brainX);
-            if ((marginTop + 2 * radius) > (ImageBrainLinear1.Width) || (marginLeft + 2 * radius) > (ImageBrainLinear1.Height)
+            if ((marginTop + 2 * radius) > (StackPanelBrainNonLin1.Width) || (marginLeft + 2 * radius) > (StackPanelBrainNonLin1.Height)
                 || brainX < 0 || brainY < 0)
             {
                 MessageBox.Show($"Error!\nInput other coordinates x = {brainX}, y = {brainY}");
@@ -701,26 +765,88 @@ namespace NotLinearCancerModel
             LabelTimeEnd2.Content = borders[1].ToString();
         }
 
+        private float[] getXYBrain()
+        {
+            float[] xy = new float[2];
+            float brainX = 0;
+            float brainY = 0;
+            if (float.TryParse(TextBoxBrainX.Text, out brainX))
+            {
+            }
+            else
+            {
+                MessageBox.Show($"Error!\n{brainX}"); // converted value
+            }
+            if (float.TryParse(TextBoxBrainY.Text, out brainY))
+            {
+            }
+            else
+            {
+                MessageBox.Show($"Error!\n{brainY}"); // converted value
+            }
+            xy[0] = brainX;
+            xy[1] = brainY;
+            return xy;
+        }
+
+
         private void SliderTime1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            float[] xyBrain = getXYBrain();
             float radiusLin = getValueForCircleSlider(this.linData, (float)e.NewValue);
             float radiusNonLin = getValueForCircleSlider(this.nonLinData, (float)e.NewValue);
-            radiusLin = (radiusLin * this.scaleX);
-            radiusNonLin = (radiusNonLin * this.scaleX);
-            changeEllipse(CircleBrainLinear1, StackPanelBrainLin1, radiusLin);
-            changeEllipse(CircleBrainNonLinear1, StackPanelBrainNonLin1, radiusNonLin);
+            /*radiusLin = (radiusLin * this.scaleX);
+            radiusNonLin = (radiusNonLin * this.scaleX);*/
+            CircleBrainLinear1.Plot.Clear();
+            CircleBrainNonLinear1.Plot.Clear();
+
+            CircleBrainLinear1.Plot.SetAxisLimits(xMin: -7, xMax: 7, yMin: -8.5, yMax: 8.5);
+            CircleBrainNonLinear1.Plot.SetAxisLimits(xMin: -7, xMax: 7, yMin: -8.5, yMax: 8.5);
+
+            CircleBrainLinear1.Plot.AddCircle(
+                x: xyBrain[0],
+                y: xyBrain[1],
+                radius: radiusLin,
+                lineWidth: 1);
+            CircleBrainNonLinear1.Plot.AddCircle(
+                x: xyBrain[0],
+                y: xyBrain[1],
+                radius: radiusNonLin,
+                lineWidth: 1);
+            CircleBrainLinear1.Refresh();
+            CircleBrainNonLinear1.Refresh();
+            //changeEllipse(CircleBrainLinear1, StackPanelBrainLin1, radiusLin);
+            //changeEllipse(CircleBrainNonLinear1, StackPanelBrainNonLin1, radiusNonLin);
             LabelSliderTime1.Content = $"Time " + ((int)e.NewValue).ToString();
         }
 
 
         private void SliderTime2_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            float[] xyBrain = getXYBrain();
             float radiusLin = getValueForCircleSlider(this.linData, (float)e.NewValue);
             float radiusNonLin = getValueForCircleSlider(this.nonLinData, (float)e.NewValue);
-            radiusLin = (radiusLin * this.scaleX);
-            radiusNonLin = (radiusNonLin * this.scaleX);
-            changeEllipse(CircleBrainLinear2, StackPanelBrainLin2, radiusLin);
-            changeEllipse(CircleBrainNonLinear2, StackPanelBrainNonLin2, radiusNonLin);
+
+            CircleBrainLinear2.Plot.Clear();
+            CircleBrainNonLinear2.Plot.Clear();
+
+            CircleBrainLinear2.Plot.SetAxisLimits(xMin: -7, xMax: 7, yMin: -8.5, yMax: 8.5);
+            CircleBrainNonLinear2.Plot.SetAxisLimits(xMin: -7, xMax: 7, yMin: -8.5, yMax: 8.5);
+
+            CircleBrainLinear2.Plot.AddCircle(
+                x: xyBrain[0],
+                y: xyBrain[1],
+                radius: radiusLin,
+                lineWidth: 1);
+            CircleBrainNonLinear2.Plot.AddCircle(
+                x: xyBrain[0],
+                y: xyBrain[1],
+                radius: radiusNonLin,
+                lineWidth: 1);
+            CircleBrainLinear2.Refresh();
+            CircleBrainNonLinear2.Refresh();
+            //changeEllipse(CircleBrainLinear2, StackPanelBrainLin2, radiusLin);
+            //changeEllipse(CircleBrainNonLinear2, StackPanelBrainNonLin2, radiusNonLin);
             LabelSliderTime2.Content = $"Time " + ((int)e.NewValue).ToString();
         }
     }

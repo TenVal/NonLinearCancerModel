@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NotLinearCancerModel"
+        xmlns:ScottPlot="clr-namespace:ScottPlot;assembly=ScottPlot.WPF"
         xmlns:viewModel="clr-namespace:NotLinearCancerModel.MVVM.ViewModel"
         mc:Ignorable="d"
         Title="Calculate Cancer" 
@@ -75,14 +76,14 @@
                     Margin="20,0,0,0"
                     Grid.Column="2" Grid.Row="1"/>
 
-                <Image 
+                <!--<Image 
                     x:Name="ImageBrainLinear1" 
                     HorizontalAlignment="Left" 
                     Height="255" 
                     Width="239"
                     VerticalAlignment="Top"  
                     Margin="40,0,0,0"
-                    Grid.Column="2" Grid.Row="1"/>
+                    Grid.Column="2" Grid.Row="1"/>-->
                 <StackPanel
                     x:Name="StackPanelBrainLin1"
                     HorizontalAlignment="Left" 
@@ -91,7 +92,7 @@
                     VerticalAlignment="Top"  
                     Margin="40,0,0,0"
                     Grid.Column="2" Grid.Row="1">
-                    <Ellipse 
+                    <!--<Ellipse 
                         x:Name="CircleBrainLinear1" 
                         HorizontalAlignment="Left" 
                         Fill="#898989"
@@ -100,17 +101,21 @@
                         Width="20" 
                         Height="20"
                         VerticalAlignment="Top"  
-                        Margin="0,0,0,0"/>
+                        Margin="0,0,0,0"/>-->
+                    <WpfPlot 
+                        Name="CircleBrainLinear1" 
+                        Height="255" 
+                        Width="239"/>
                 </StackPanel>
 
-                <Image 
+                <!--<Image 
                     x:Name="ImageBrainNonLinear1" 
                     HorizontalAlignment="Left" 
                     Height="255" 
                     Width="239"
                     VerticalAlignment="Top"  
                     Margin="340,0,0,0"
-                    Grid.Column="2" Grid.Row="1"/>
+                    Grid.Column="2" Grid.Row="1"/>-->
                 <StackPanel
                     x:Name="StackPanelBrainNonLin1"
                     HorizontalAlignment="Left" 
@@ -119,16 +124,21 @@
                     VerticalAlignment="Top"  
                     Margin="340,0,0,0"
                     Grid.Column="2" Grid.Row="1">
-                    <Ellipse 
+                    <!--<Ellipse 
                         x:Name="CircleBrainNonLinear1" 
                         HorizontalAlignment="Left" 
-                        Fill="#898989"
                         Stroke="#898989"
                         StrokeThickness="1"  
                         Width="20" 
                         Height="20"
                         VerticalAlignment="Top"  
-                        Margin="0,0,0,0"/>
+                        Margin="0,0,0,0">
+                        
+                    </Ellipse>-->
+                    <WpfPlot 
+                        Name="CircleBrainNonLinear1"
+                        Height="255" 
+                        Width="239"/>
                 </StackPanel>
 
 
@@ -183,14 +193,14 @@
                     Style="{StaticResource DefaultLabel}"/>
 
 
-                <Image 
+                <!--<Image 
                     x:Name="ImageBrainLinear2" 
                     HorizontalAlignment="Left" 
                     Height="255" 
                     Width="239"
                     VerticalAlignment="Top"  
                     Margin="40,265,0,0"
-                    Grid.Column="2" Grid.Row="1"/>
+                    Grid.Column="2" Grid.Row="1"/>-->
                 <StackPanel
                     x:Name="StackPanelBrainLin2"
                     HorizontalAlignment="Left" 
@@ -199,7 +209,7 @@
                     VerticalAlignment="Top"  
                     Margin="40,265,0,0"
                     Grid.Column="2" Grid.Row="1">
-                    <Ellipse 
+                    <!--<Ellipse 
                         x:Name="CircleBrainLinear2" 
                         HorizontalAlignment="Left" 
                         Fill="#898989"
@@ -208,18 +218,22 @@
                         Width="20" 
                         Height="20"
                         VerticalAlignment="Top"  
-                        Margin="0,0,0,0"/>
+                        Margin="0,0,0,0"/>-->
+                    <WpfPlot 
+                        Name="CircleBrainLinear2"
+                        Height="255" 
+                        Width="239"/>
                 </StackPanel>
 
 
-                <Image 
+                <!--<Image 
                     x:Name="ImageBrainNonLinear2" 
                     HorizontalAlignment="Left" 
                     Height="255" 
                     Width="239"
                     VerticalAlignment="Top"  
                     Margin="340,265,0,0"
-                    Grid.Column="2" Grid.Row="1"/>
+                    Grid.Column="2" Grid.Row="1"/>-->
                 <StackPanel
                     x:Name="StackPanelBrainNonLin2"
                     HorizontalAlignment="Left" 
@@ -228,16 +242,23 @@
                     VerticalAlignment="Top"  
                     Margin="340,265,0,0"
                     Grid.Column="2" Grid.Row="1">
-                    <Ellipse 
+                    <!--<Ellipse 
                         x:Name="CircleBrainNonLinear2" 
                         HorizontalAlignment="Left" 
-                        Fill="#898989"
                         Stroke="#898989"
                         StrokeThickness="1" 
                         Width="20" 
                         Height="20"               
                         VerticalAlignment="Top"  
-                        Margin="0,0,0,0"/>
+                        Margin="0,0,0,0">
+                    </Ellipse>
+                    <Polygon Points="10,110 60,10 110,110"
+                    Fill="#898989"
+                    Stroke="#898989" StrokeThickness="1" />-->
+                    <WpfPlot 
+                        Name="CircleBrainNonLinear2"
+                        Height="255" 
+                        Width="239"/>
                 </StackPanel>
 
 
